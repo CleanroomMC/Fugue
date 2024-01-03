@@ -1,4 +1,4 @@
-package top.outlands;
+package com.cleanroommc;
 
 public class Reference {
 	

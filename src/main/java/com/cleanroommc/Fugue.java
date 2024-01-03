@@ -1,4 +1,4 @@
-package top.outlands;
+package com.cleanroommc;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;

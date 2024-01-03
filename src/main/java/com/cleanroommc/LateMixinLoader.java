@@ -1,4 +1,4 @@
-package top.outlands;
+package com.cleanroommc;
 
 import net.minecraftforge.fml.common.Loader;
 import zone.rong.mixinbooter.ILateMixinLoader;

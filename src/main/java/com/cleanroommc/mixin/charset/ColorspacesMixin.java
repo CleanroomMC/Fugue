@@ -1,4 +1,4 @@
-package top.outlands.mixin.charset;
+package com.cleanroommc.mixin.charset;
 
 import com.google.common.collect.Table;
 import com.google.common.graph.ValueGraph;

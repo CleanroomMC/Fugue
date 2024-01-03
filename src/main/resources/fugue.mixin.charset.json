@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "top.outlands.mixin.charset",
+  "package": "com.cleanroommc.mixin.charset",
   "compatibilityLevel": "JAVA_8",
   "refmap": "fugue.mixin.refmap.json",
   "mixins": [
