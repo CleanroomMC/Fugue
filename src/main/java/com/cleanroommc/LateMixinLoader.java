@@ -4,7 +4,6 @@ import net.minecraftforge.fml.common.Loader;
 import zone.rong.mixinbooter.ILateMixinLoader;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class LateMixinLoader implements ILateMixinLoader {
