@@ -1,16 +1,9 @@
-package io.github.examplemod;
+package top.outlands;
 
-import io.github.examplemod.proxy.IProxy;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
+import net.minecraftforge.fml.common.event.*;
 
 @Mod(
         modid = Reference.MOD_ID,
@@ -19,14 +12,13 @@ import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
         version = Reference.MOD_VERSION,
         dependencies = Reference.MOD_DEPENDENCIES
 )
-public class ExampleMod {
+public class Fugue {
     
-    @SidedProxy(clientSide = "io.github.examplemod.proxy.ClientProxy", serverSide = "io.github.examplemod.proxy.CommonProxy")
-    public static IProxy proxy;
+
 	
 	@Instance(Reference.MOD_ID)
-	public static ExampleMod _instance;
-    public ExampleMod() {}
+	public static Fugue _instance;
+    public Fugue() {}
         
     @EventHandler
     public static void preInit(FMLPreInitializationEvent event) {

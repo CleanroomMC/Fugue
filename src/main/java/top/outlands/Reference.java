@@ -1,4 +1,4 @@
-package io.github.examplemod;
+package top.outlands;
 
 public class Reference {
 	

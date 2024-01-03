@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "top.outlands.mixin.charset",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "fugue.mixin.refmap.json",
+  "mixins": [
+    "ColorspacesMixin"
+  ],
+  "client": [
+  ],
+  "minVersion": "0.8"
+}

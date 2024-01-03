@@ -1,3 +1,6 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+import java.nio.file.Paths
 
 buildscript {
     repositories {
@@ -8,13 +11,14 @@ buildscript {
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '6.10.+', changing: true
-        //classpath "org.spongepowered:mixingradle:0.7-SNAPSHOT"
+        classpath "org.spongepowered:mixingradle:0.7.+"
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: 'java'
+apply plugin: 'org.spongepowered.mixin'
 
 version = "${minecraft_version}-${mod_version}"
 group = mod_base_package
@@ -36,6 +40,7 @@ minecraft {
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
+            jvmArgs.add("-Dmixin.debug=true")
 
         }
 
@@ -55,7 +60,7 @@ minecraft {
 }
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
-//mixin {add sourceSets.main, mod_id + "mixins.refmap.json"}
+mixin {add sourceSets.main, mod_id + "mixins.refmap.json"}
 repositories {
     maven {
         name 'Cleanroom Maven'
@@ -67,12 +72,19 @@ repositories {
     maven {
         url "https://maven.outlands.top/releases/"
     }
-
+    maven {
+        url "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
     mavenCentral()
 }
 
 dependencies {
     minecraft "com.cleanroommc:cleanroom:15.24.0.3023"
+    compileOnly(fg.deobf("curse.maven:charset-284523:3656492"))
+    runtimeOnly("curse.maven:charset-284523:3656492")
 }
 
 
@@ -104,16 +116,16 @@ processResources {
 def modFileTokens = [VERSION: mod_version, MODNAME: mod_name, MODID: mod_id]
 def included = ["${mod_base_package.replace('.', '/')}/Reference.java".toString()]
 
-def expandedSrc = new File(project.buildDir, 'expandedSrc')
+def expandedSrc = new File(project.getBuildDir(), 'expandedSrc')
 def srcMainJava = project.file('src/main/java').toPath()
-def includedPaths = included.collect { java.nio.file.Paths.get(it) }
-task javaReplaceTokens(type: Copy) {
+def includedPaths = included.collect { Paths.get(it) }
+tasks.register('javaReplaceTokens', Copy) {
     inputs.property 'tokens', modFileTokens
     from(srcMainJava) {
         include included
     }
     into expandedSrc
-    filter(org.apache.tools.ant.filters.ReplaceTokens, beginToken: '@', endToken: '@', tokens: modFileTokens)
+    filter(ReplaceTokens, beginToken: '@', endToken: '@', tokens: modFileTokens)
 }
 
 compileJava {
@@ -133,7 +145,7 @@ jar {
                 //'FMLCorePluginContainsFMLMod': true,
                 //'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
                 //'FMLCorePlugin': '',
-                //'ForceLoadAsMod': true
+                //'ForceLoadAsMod': true,
                 //'FMLAT': '',
                 'Implementation-Title': project.name,
                 'Implementation-Version': mod_version,
