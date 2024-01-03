@@ -8,10 +8,12 @@ buildscript {
         maven { url = 'https://repo.spongepowered.org/repository/maven-public' }
         maven { url = 'https://maven.outlands.top/releases' }
         mavenCentral()
+        gradlePluginPortal()
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '6.10.+', changing: true
         classpath "org.spongepowered:mixingradle:0.7.+"
+        classpath "cl.franciscosolis:blossom:1.3.1" 
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
@@ -19,6 +21,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: 'java'
 apply plugin: 'org.spongepowered.mixin'
+apply plugin: 'cl.franciscosolis.blossom-extended'
 
 version = "${minecraft_version}-${mod_version}"
 group = mod_base_package
@@ -87,53 +90,25 @@ dependencies {
     runtimeOnly("curse.maven:charset-284523:3656492")
 }
 
-
-def resourceTargets = ['mcmod.info', 'pack.mcmeta']
-def intoTargets = ["$rootDir/out/production/resources/", "$rootDir/out/production/${project.name}.main/", "$rootDir/bin/main/"]
-def replaceProperties = [mod_id: mod_id, mod_name: mod_name, mod_version: mod_version,
-        mod_authors: mod_authors, mod_description: mod_description.replace('\n', '\\n'), minecraft_version: minecraft_version]
 processResources {
-    inputs.properties replaceProperties
-    replaceProperties.put 'project', project
-
-    filesMatching(resourceTargets) {
-        expand replaceProperties
-    }
-
-    intoTargets.each { target ->
-        if (file(target).exists()) {
-            copy {
-                from(sourceSets.main.resources) {
-                    include resourceTargets
-                    expand replaceProperties
-                }
-                into target
-            }
-        }
+    blossom {
+        String mcmod = "src/main/resources/mcmod.info"
+        String mcmeta = "src/main/resources/pack.mcmeta"
+        replaceToken("mod_id", mod_id, mcmod)
+        replaceToken("mod_name", mod_name, mcmod)
+        replaceToken("mod_description", mod_description, mcmod)
+        replaceToken("mod_version", mod_version, mcmod)
+        replaceToken("mod_authors", mod_authors, mcmod)
+        replaceToken("minecraft_version", minecraft_version, mcmod)
+        replaceToken("mod_id", mod_id, mcmeta)
     }
 }
-//put what you want to replace here
-def modFileTokens = [VERSION: mod_version, MODNAME: mod_name, MODID: mod_id]
-def included = ["${mod_base_package.replace('.', '/')}/Reference.java".toString()]
 
-def expandedSrc = new File(project.getBuildDir(), 'expandedSrc')
-def srcMainJava = project.file('src/main/java').toPath()
-def includedPaths = included.collect { Paths.get(it) }
-tasks.register('javaReplaceTokens', Copy) {
-    inputs.property 'tokens', modFileTokens
-    from(srcMainJava) {
-        include included
-    }
-    into expandedSrc
-    filter(ReplaceTokens, beginToken: '@', endToken: '@', tokens: modFileTokens)
-}
-
-compileJava {
-    dependsOn javaReplaceTokens
-    exclude {
-        srcMainJava.relativize(it.file.toPath()) in includedPaths
-    }
-    source expandedSrc
+blossom {
+    String reference = "src/main/java/com/cleanroommc/Reference.java"
+    replaceToken("@VERSION@", mod_version, reference)
+    replaceToken("@MODNAME@", mod_name, reference)
+    replaceToken("@MODID@", mod_id, reference)
 }
 
 jar {
