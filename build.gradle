@@ -21,7 +21,7 @@ apply plugin: 'cl.franciscosolis.blossom-extended'
 
 version = "${minecraft_version}-${mod_version}"
 group = mod_base_package
-archivesBaseName = mod_id
+archivesBaseName = mod_name
 
 
 
@@ -82,6 +82,10 @@ repositories {
             includeGroup "curse.maven"
         }
     }
+    maven {
+        name "chickenbones"
+        url "https://chickenbones.net/maven/"
+    }
     mavenCentral()
 }
 
@@ -90,11 +94,28 @@ dependencies {
     //Charset Lib
     compileOnly(fg.deobf("curse.maven:charset-284523:3656492"))
     runtimeOnly(fg.deobf("curse.maven:charset-284523:3656492"))
+    
     //Xaero's Minimap
     compileOnly(fg.deobf("curse.maven:xaero-263420:4911777"))
     runtimeOnly(fg.deobf("curse.maven:xaero-263420:4911777"))
     compileOnly(fg.deobf("curse.maven:xaero-plus-866084:4912433"))
-    //runtimeOnly(fg.deobf("curse.maven:xaero-plus-866084:4912433")) //Don't uncomment it or you will crash
+    //runtimeOnly(fg.deobf("curse.maven:xaero-plus-866084:4912433")) //Don't uncomment it or you will crash, it ships a fxxking Mixin
+    
+    //CodeChickenASM
+    compileOnly("codechicken:ChickenASM:3.2.0.17")
+    //runtimeOnly("codechicken:ChickenASM:3.2.0.17")
+    
+    //CodeChickenLib
+    compileOnly(fg.deobf("codechicken:CodeChickenLib:1.12-3.1.5.330:universal"))
+    //runtimeOnly(fg.deobf("codechicken:CodeChickenLib:1.12-3.1.5.330:universal"))
+    
+    //ForgeMultipart
+    compileOnly(fg.deobf("codechicken:ForgeMultipart:1.12-2.3.0.51:universal"))
+    //runtimeOnly(fg.deobf("codechicken:ForgeMultipart:1.12-2.3.0.51:universal")) //Don't uncomment it or you will crash, a Scala 2.12 is somehow resolved in the path
+    
+    //Project Red Core
+    compileOnly(fg.deobf("curse.maven:pr-core-228702:2745545"))
+    //runtimeOnly(fg.deobf("curse.maven:pr-core-228702:2745545"))
 }
 
 processResources {
@@ -126,7 +147,7 @@ jar {
                 'Specification-Version': '1', // We are version 1 of ourselves
                 //'FMLCorePluginContainsFMLMod': true,
                 //'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
-                //'FMLCorePlugin': '',
+                //'FMLCorePlugin': 'com.cleanroommc.FugueLoadingPlugin',
                 //'ForceLoadAsMod': true,
                 //'FMLAT': '',
                 'Implementation-Title': project.name,

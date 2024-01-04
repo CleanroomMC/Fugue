@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "com.cleanroommc.mixin.minecraftmultipartcbe",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "fugue.mixin.refmap.json",
+  "mixins": [
+    "StackAnalyserMixin",
+    "ASMMixinCompilerMixin"
+  ],
+  "client": [
+  ],
+  "minVersion": "0.8"
+}
