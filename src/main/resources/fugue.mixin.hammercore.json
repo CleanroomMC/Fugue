@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "com.cleanroommc.mixin.hammercore",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "fugue.mixin.refmap.json",
+  "mixins": [
+    "ReflectionUtilMixin"
+  ],
+  "client": [
+  ],
+  "minVersion": "0.8"
+}

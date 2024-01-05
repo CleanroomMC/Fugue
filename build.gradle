@@ -124,6 +124,10 @@ dependencies {
     //Custom Main Menu
     compileOnly(fg.deobf("curse.maven:cmm-226406:2857869"))
     //runtimeOnly(fg.deobf("curse.maven:cmm-226406:2857869"))
+
+    //HammerLib
+    compileOnly(fg.deobf("curse.maven:hammer-247401:4878669"))
+    //runtimeOnly(fg.deobf("curse.maven:hammer-247401:4878669"))
 }
 
 processResources {

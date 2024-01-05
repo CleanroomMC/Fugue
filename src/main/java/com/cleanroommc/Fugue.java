@@ -4,6 +4,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.event.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Mod(
         modid = Reference.MOD_ID,
@@ -14,7 +16,7 @@ import net.minecraftforge.fml.common.event.*;
 )
 public class Fugue {
     
-
+    public static Logger LOGGER = LogManager.getLogger(Reference.MOD_ID);
 	
 	@Instance(Reference.MOD_ID)
 	public static Fugue _instance;
