@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "com.cleanroommc.mixin.custommainmenu",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "fugue.mixin.refmap.json",
+  "mixins": [
+    "SlideshowMixin"
+  ],
+  "client": [
+  ],
+  "minVersion": "0.8"
+}

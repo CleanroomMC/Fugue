@@ -99,7 +99,7 @@ dependencies {
     compileOnly(fg.deobf("curse.maven:xaero-263420:4911777"))
     runtimeOnly(fg.deobf("curse.maven:xaero-263420:4911777"))
     compileOnly(fg.deobf("curse.maven:xaero-plus-866084:4912433"))
-    //runtimeOnly(fg.deobf("curse.maven:xaero-plus-866084:4912433")) //Don't uncomment it or you will crash, it ships a fxxking Mixin
+    //runtimeOnly(fg.deobf("curse.maven:xaero-plus-866084:4912433")) 
     
     //CodeChickenASM
     compileOnly("codechicken:ChickenASM:3.2.0.17")
@@ -120,6 +120,10 @@ dependencies {
     //Solar Flux Reborne
     compileOnly(fg.deobf("curse.maven:solarflux-246974:3050838"))
     //runtimeOnly(fg.deobf("curse.maven:pr-core-228702:2745545"))
+    
+    //Custom Main Menu
+    compileOnly(fg.deobf("curse.maven:cmm-226406:2857869"))
+    //runtimeOnly(fg.deobf("curse.maven:cmm-226406:2857869"))
 }
 
 processResources {
