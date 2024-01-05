@@ -1,4 +1,4 @@
-package com.cleanroommc.mixin;
+package com.cleanroommc;
 
 import net.minecraft.launchwrapper.IClassTransformer;
 import org.objectweb.asm.ClassReader;

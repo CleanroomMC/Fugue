@@ -9,10 +9,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader {
+public class FugueLoadingPlugin implements IFMLLoadingPlugin {
     @Override
     public String[] getASMTransformerClass() {
-        return new String[]{"com.cleanroommc.mixin.EnderCoreTransformerTransformer"};
+        return new String[]{"com.cleanroommc.EnderCoreTransformerTransformer"};
     }
 
     @Override
@@ -35,9 +35,5 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
     public String getAccessTransformerClass() {
         return null;
     }
-
-    @Override
-    public List<String> getMixinConfigs() {
-        return new ArrayList<>();
-    }
+    
 }

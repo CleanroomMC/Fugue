@@ -165,7 +165,7 @@ jar {
                 'Specification-Title': mod_id,
                 'Specification-Vendor': mod_authors,
                 'Specification-Version': '1', // We are version 1 of ourselves
-                //'FMLCorePluginContainsFMLMod': true,
+                'FMLCorePluginContainsFMLMod': true,
                 //'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
                 'FMLCorePlugin': 'com.cleanroommc.FugueLoadingPlugin',
                 'ForceLoadAsMod': true,
