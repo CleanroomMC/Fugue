@@ -3,6 +3,7 @@ package com.cleanroommc.mixin.hammercore;
 import com.cleanroommc.Fugue;
 import com.cleanroommc.hackery.ReflectionHackery;
 import com.zeitheron.hammercore.utils.ReflectionUtil;
+import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -36,7 +37,9 @@ public class ReflectionUtilMixin {
     private static void makeWritable(Field f, CallbackInfoReturnable<Field> cir) {
         try {
             ReflectionHackery.stripFieldOfFinalModifier(f);
-        } catch (IllegalAccessException ignored) {}
+        } catch (IllegalAccessException e) {
+            Fugue.LOGGER.error(e);
+        }
         cir.setReturnValue(f);
     }
 }
