@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(targets = "codechicken.multipart.asm.ASMMixinCompiler$")
+@Mixin(targets = "codechicken.multipart.asm.ASMMixinCompiler$", remap = false)
 public class ASMMixinCompilerMixin {
 
     @Shadow

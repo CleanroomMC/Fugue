@@ -14,25 +14,22 @@ public class LateMixinLoader implements ILateMixinLoader {
                 "fugue.mixin.xaeroplus.json",
                 "fugue.mixin.codechickenlib.json",
                 "fugue.mixin.minecraftmultipartcbe.json",
-                "fugue.mixin.projectred-core.json"
+                "fugue.mixin.projectred-core.json",
+                "fugue.mixin.solarflux.json"
         );
     }
 
     @Override
     public boolean shouldMixinConfigQueue(String mixinConfig) {
-        switch (mixinConfig) {
-            case "fugue.mixin.charset.json":
-                return Loader.isModLoaded("charset");
-            case "fugue.mixin.xaeroplus.json":
-                return Loader.isModLoaded("xaeroplus");
-            case "fugue.mixin.codechickenlib.json":
-                return Loader.isModLoaded("codechickenlib");
-            case "fugue.mixin.minecraftmultipartcbe.json":
-                return Loader.isModLoaded("minecraftmultipartcbe");
-            default:
-                return ILateMixinLoader.super.shouldMixinConfigQueue(mixinConfig);
-                
-        }
+        return switch (mixinConfig) {
+            case "fugue.mixin.charset.json" -> Loader.isModLoaded("charset");
+            case "fugue.mixin.xaeroplus.json" -> Loader.isModLoaded("xaeroplus");
+            case "fugue.mixin.codechickenlib.json" -> Loader.isModLoaded("codechickenlib");
+            case "fugue.mixin.minecraftmultipartcbe.json" -> Loader.isModLoaded("minecraftmultipartcbe");
+            case "fugue.mixin.projectred-core.json" -> Loader.isModLoaded("projectred-core");
+            case "fugue.mixin.solarflux.json" -> Loader.isModLoaded("solarflux");
+            default -> ILateMixinLoader.super.shouldMixinConfigQueue(mixinConfig);
+        };
     }
     
 }

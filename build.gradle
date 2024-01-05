@@ -7,7 +7,7 @@ buildscript {
         gradlePluginPortal()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '6.10.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '6.10.8', changing: true
         classpath "org.spongepowered:mixingradle:0.7.+"
         classpath "cl.franciscosolis:blossom:1.3.1" 
     }
@@ -115,6 +115,10 @@ dependencies {
     
     //Project Red Core
     compileOnly(fg.deobf("curse.maven:pr-core-228702:2745545"))
+    //runtimeOnly(fg.deobf("curse.maven:pr-core-228702:2745545"))
+    
+    //Solar Flux Reborne
+    compileOnly(fg.deobf("curse.maven:solarflux-246974:3050838"))
     //runtimeOnly(fg.deobf("curse.maven:pr-core-228702:2745545"))
 }
 

@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(StackAnalyser.class)
+@Mixin(value = StackAnalyser.class, remap = false)
 public class StackAnalyserMixin {
     @Redirect(method = "visitInsn", at = @At(value = "INVOKE", target = "Lorg/objectweb/asm/Type;getType(Ljava/lang/String;)Lorg/objectweb/asm/Type;"))
     Type getType(String typeDescriptor) {
