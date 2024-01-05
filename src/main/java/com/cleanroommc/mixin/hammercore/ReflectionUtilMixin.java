@@ -31,4 +31,12 @@ public class ReflectionUtilMixin {
         }
         cir.setReturnValue(true);
     }
+    
+    @Inject(method = "makeWritable", at = @At("HEAD"), cancellable = true)
+    private static void makeWritable(Field f, CallbackInfoReturnable<Field> cir) {
+        try {
+            ReflectionHackery.stripFieldOfFinalModifier(f);
+        } catch (IllegalAccessException ignored) {}
+        cir.setReturnValue(f);
+    }
 }
