@@ -16,3 +16,6 @@ Also check [The Fugue Plane](https://forgottenrealms.fandom.com/wiki/Fugue_Plane
 * Lag Goggles
 * Snow! Real Magic
 * Botania Tweaks
+
+## Note
+Add ! to start of the file name to fix Lag Goggles.
