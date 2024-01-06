@@ -14,3 +14,4 @@ Also check [The Fugue Plane](https://forgottenrealms.fandom.com/wiki/Fugue_Plane
 * Xaero Plus
 * EnderCore
 * Lag Goggles
+* Snow! Real Magic
