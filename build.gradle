@@ -31,7 +31,7 @@ minecraft {
 
     mappings channel: mappings_channel, version: mappings_version
 
-    // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
     legacy {
         fixClasspath = true
@@ -174,7 +174,7 @@ jar {
                 //'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
                 'FMLCorePlugin': 'com.cleanroommc.FugueLoadingPlugin',
                 'ForceLoadAsMod': true,
-                //'FMLAT': '',
+                'FMLAT': 'accesstransformer.cfg',
                 'Implementation-Title': project.name,
                 'Implementation-Version': mod_version,
                 'Implementation-Vendor': mod_authors,
