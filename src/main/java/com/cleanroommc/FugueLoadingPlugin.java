@@ -1,18 +1,25 @@
 package com.cleanroommc;
 
+import net.minecraft.launchwrapper.Launch;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
-import zone.rong.mixinbooter.IEarlyMixinLoader;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
+@IFMLLoadingPlugin.MCVersion("1.12.2")
 public class FugueLoadingPlugin implements IFMLLoadingPlugin {
+    static {
+        Launch.classLoader.addTransformerExclusionFilter("com.github.terminatornl.laggoggles.");
+        Launch.classLoader.registerTransformer("com.cleanroommc.transformer.InitializerTransformer");
+    }
+    
     @Override
     public String[] getASMTransformerClass() {
-        return new String[]{"com.cleanroommc.EnderCoreTransformerTransformer"};
+        
+        return new String[]{
+                "com.cleanroommc.transformer.EnderCoreTransformerTransformer", 
+                "com.cleanroommc.transformer.InitializerTransformer"
+        };
     }
 
     @Override
