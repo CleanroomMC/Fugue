@@ -15,3 +15,4 @@ Also check [The Fugue Plane](https://forgottenrealms.fandom.com/wiki/Fugue_Plane
 * EnderCore
 * Lag Goggles
 * Snow! Real Magic
+* Botania Tweaks
