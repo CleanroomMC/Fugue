@@ -7,6 +7,7 @@ import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;
 
 public class EnderCoreTransformerTransformer implements IClassTransformer {
+    private static boolean hit = false;
     @Override
     public byte[] transform(String s, String s1, byte[] bytes) {
         if (bytes == null)
@@ -14,7 +15,7 @@ public class EnderCoreTransformerTransformer implements IClassTransformer {
             return null;
         }
 
-        if (!s1.equals("com.enderio.core.common.transform.EnderCoreTransformer"))
+        if (!s1.equals("com.enderio.core.common.transform.EnderCoreTransformer") || hit)
         {
             return bytes;
         }
@@ -79,6 +80,7 @@ public class EnderCoreTransformerTransformer implements IClassTransformer {
         }
         if (modified)
         {
+            hit = true;
             ClassWriter classWriter = new ClassWriter(0);
 
             classNode.accept(classWriter);

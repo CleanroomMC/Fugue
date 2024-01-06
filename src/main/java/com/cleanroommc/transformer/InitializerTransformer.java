@@ -9,6 +9,7 @@ import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;
 
 public class InitializerTransformer implements IClassTransformer {
+    private static boolean hit = false;
     @Override
     public byte[] transform(String s, String s1, byte[] bytes) {
         
@@ -17,7 +18,7 @@ public class InitializerTransformer implements IClassTransformer {
             return null;
         }
 
-        if (!s1.equals("com.github.terminatornl.laggoggles.tickcentral.Initializer"))
+        if (!s1.equals("com.github.terminatornl.laggoggles.tickcentral.Initializer") || hit)
         {
             return bytes;
         }
@@ -56,6 +57,7 @@ public class InitializerTransformer implements IClassTransformer {
         }
         if (modified)
         {
+            hit = true;
             ClassWriter classWriter = new ClassWriter(0);
 
             classNode.accept(classWriter);
