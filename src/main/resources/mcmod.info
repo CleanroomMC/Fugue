@@ -5,7 +5,7 @@
     "description": "mod_description",
     "version": "mod_version",
     "mcversion": "minecraft_version",
-    "url": "",
+    "url": "https://github.com/CleanroomMC/Fugue",
     "updateUrl": "",
     "authorList": ["mod_authors"],
     "credits": "",
