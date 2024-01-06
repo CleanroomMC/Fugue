@@ -41,7 +41,7 @@ public class InitializerTransformer implements IClassTransformer {
                                 {
                                     InsnList toInsert = new InsnList();
                                     toInsert.add(new VarInsnNode(Opcodes.ALOAD, 10));
-                                    toInsert.add(new VarInsnNode(Opcodes.ALOAD, 6));
+                                    toInsert.add(new VarInsnNode(Opcodes.ILOAD, 6));
                                     toInsert.add(new MethodInsnNode(Opcodes.INVOKESTATIC, "com/cleanroommc/HookHelper", "isInterface", "(I)Z"));
                                     toInsert.add(new FieldInsnNode(Opcodes.PUTFIELD, "org/objectweb/asm/tree/MethodInsnNode", "itf", "Z"));
                                     instructions.insert(fieldInsnNode, toInsert);

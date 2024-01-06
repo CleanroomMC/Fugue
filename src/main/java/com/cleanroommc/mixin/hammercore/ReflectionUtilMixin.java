@@ -14,7 +14,7 @@ import java.lang.reflect.Field;
 @Mixin(value = ReflectionUtil.class, remap = false)
 public class ReflectionUtilMixin {
     @Inject(method = "setStaticFinalField(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/Object;)Z", at = @At("HEAD"), cancellable = true)
-    private static void setFinalFieldInClass(Class<?> cls, String _var, Object val, CallbackInfoReturnable<Boolean> cir) {
+    private static void setFinalFieldStaticInClass(Class<?> cls, String _var, Object val, CallbackInfoReturnable<Boolean> cir) {
         try {
             ReflectionHackery.setField(cls.getDeclaredField(_var), null, val);
         } catch (NoSuchFieldException | IllegalAccessException e) {
@@ -24,9 +24,19 @@ public class ReflectionUtilMixin {
     }
     
     @Inject(method = "setStaticFinalField(Ljava/lang/reflect/Field;Ljava/lang/Object;)Z", at = @At("HEAD"), cancellable = true)
-    private static void setFinalField(Field f, Object val, CallbackInfoReturnable<Boolean> cir) {
+    private static void setFinalFieldStatic(Field f, Object val, CallbackInfoReturnable<Boolean> cir) {
         try {
             ReflectionHackery.setField(f, null, val);
+        } catch (IllegalAccessException e) {
+            Fugue.LOGGER.error(e);
+        }
+        cir.setReturnValue(true);
+    }
+    
+    @Inject(method = "setFinalField", at = @At("HEAD"), cancellable = true)
+    private static void setFinalField(Field f, Object instance, Object thing, CallbackInfoReturnable<Boolean> cir) {
+        try {
+            ReflectionHackery.setField(f, instance, thing);
         } catch (IllegalAccessException e) {
             Fugue.LOGGER.error(e);
         }

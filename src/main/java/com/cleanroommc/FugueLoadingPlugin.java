@@ -10,6 +10,7 @@ import java.util.Map;
 public class FugueLoadingPlugin implements IFMLLoadingPlugin {
     static {
         Launch.classLoader.addTransformerExclusionFilter("com.github.terminatornl.laggoggles.");
+        Launch.classLoader.addTransformerExclusionFilter("quaternary.botaniatweaks.");
         Launch.classLoader.registerTransformer("com.cleanroommc.transformer.InitializerTransformer");
     }
     
