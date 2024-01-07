@@ -43,5 +43,5 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
     public String getAccessTransformerClass() {
         return null;
     }
-    
+
 }

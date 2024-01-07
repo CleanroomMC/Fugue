@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.lang.reflect.Field;
 
-@Mixin(targets = "mrtjp.projectred.core.WirePropagator$", remap = false)
+@Mixin(value = mrtjp.projectred.core.WirePropagator$.class, remap = false)
 public class WirePropagatorMixin {
     @Final
     @Shadow

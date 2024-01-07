@@ -63,8 +63,12 @@ minecraft {
     }
 }
 
-sourceSets.main.resources { srcDir 'src/generated/resources' }
-mixin {add sourceSets.main, mod_id + "mixins.refmap.json"}
+sourceSets.main.resources { 
+    srcDir 'src/generated/resources' 
+}
+mixin {
+    add sourceSets.main, mod_id + ".mixins.refmap.json"
+}
 repositories {
     maven {
         name 'Cleanroom Maven'
@@ -140,7 +144,15 @@ dependencies {
     //Lag Goggles
     compileOnly(fg.deobf("curse.maven:lag-goggles-283525:4493884"))
     //runtimeOnly(fg.deobf("curse.maven:lag-goggles-283525:4493884"))
+
+
+    // Common:
     
+    annotationProcessor 'org.ow2.asm:asm-debug-all:5.2'
+    annotationProcessor 'com.google.guava:guava:33.0.0-jre'
+    annotationProcessor 'com.google.code.gson:gson:2.10.1'
+
+    annotationProcessor ('com.cleanroommc:sponge-mixin:0.15.3+mixin.0.8.5')
 }
 
 processResources {

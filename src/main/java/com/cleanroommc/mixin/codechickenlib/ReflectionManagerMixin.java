@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.lang.reflect.Field;
 
-@Mixin(ReflectionManager.class)
+@Mixin(value = ReflectionManager.class, remap = false)
 public class ReflectionManagerMixin {
     @Redirect(method = "removeFinal", at = @At(value = "INVOKE", target = "Lcodechicken/lib/reflect/ReflectionManager;getField(Lcodechicken/lib/reflect/ObfMapping;)Ljava/lang/reflect/Field;"))
     private static Field getField(ObfMapping e) {
