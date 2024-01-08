@@ -18,6 +18,7 @@ import pl.asie.charset.lib.utils.colorspace.Colorspaces;
 import java.util.function.Function;
 
 @Mixin(value = Colorspaces.class, remap = false)
+@SuppressWarnings("unchecked")
 public class ColorspacesMixin {
     @Shadow private static Table<Colorspace, Colorspace, Function<float[], float[]>> conversionTable;
 

@@ -1,7 +1,5 @@
 package com.cleanroommc.transformer;
 
-import com.cleanroommc.Fugue;
-import com.cleanroommc.HookHelper;
 import net.minecraft.launchwrapper.IClassTransformer;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
@@ -18,7 +16,7 @@ public class InitializerTransformer implements IClassTransformer {
             return null;
         }
 
-        if (!s1.equals("com.github.terminatornl.laggoggles.tickcentral.Initializer") || hit)
+        if (hit || !s1.equals("com.github.terminatornl.laggoggles.tickcentral.Initializer"))
         {
             return bytes;
         }
@@ -43,7 +41,7 @@ public class InitializerTransformer implements IClassTransformer {
                                     InsnList toInsert = new InsnList();
                                     toInsert.add(new VarInsnNode(Opcodes.ALOAD, 10));
                                     toInsert.add(new VarInsnNode(Opcodes.ILOAD, 6));
-                                    toInsert.add(new MethodInsnNode(Opcodes.INVOKESTATIC, "com/cleanroommc/HookHelper", "isInterface", "(I)Z"));
+                                    toInsert.add(new MethodInsnNode(Opcodes.INVOKESTATIC, "com/cleanroommc/helper/HookHelper", "isInterface", "(I)Z"));
                                     toInsert.add(new FieldInsnNode(Opcodes.PUTFIELD, "org/objectweb/asm/tree/MethodInsnNode", "itf", "Z"));
                                     instructions.insert(fieldInsnNode, toInsert);
                                     modified = true;

@@ -1,4 +1,4 @@
-package com.cleanroommc;
+package com.cleanroommc.helper;
 
 import scala.tools.asm.Opcodes;
 

@@ -15,7 +15,7 @@ public class EnderCoreTransformerTransformer implements IClassTransformer {
             return null;
         }
 
-        if (!s1.equals("com.enderio.core.common.transform.EnderCoreTransformer") || hit)
+        if (hit || !s1.equals("com.enderio.core.common.transform.EnderCoreTransformer"))
         {
             return bytes;
         }
