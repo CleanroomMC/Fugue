@@ -14,6 +14,7 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
     static {
         Launch.classLoader.addTransformerExclusionFilter("com.github.terminatornl.laggoggles.");
         Launch.classLoader.addTransformerExclusionFilter("quaternary.botaniatweaks.");
+        Launch.classLoader.addTransformerExclusionFilter("zmaster587.advancedRocketry.asm.");
         Launch.classLoader.registerTransformer("com.cleanroommc.transformer.InitializerTransformer");
     }
     
@@ -22,7 +23,8 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
         
         return new String[]{
                 "com.cleanroommc.transformer.EnderCoreTransformerTransformer", 
-                "com.cleanroommc.transformer.InitializerTransformer"
+                "com.cleanroommc.transformer.InitializerTransformer",
+                "com.cleanroommc.transformer.ClassTransformerTransformer"
         };
     }
 

@@ -17,6 +17,7 @@ Also check [The Fugue Plane](https://forgottenrealms.fandom.com/wiki/Fugue_Plane
 * Snow! Real Magic
 * Botania Tweaks
 * Aqua Acrobatics
+* Advanced Rocketry
 
 ## Note
 Add ! to start of the file name to fix Lag Goggles.
