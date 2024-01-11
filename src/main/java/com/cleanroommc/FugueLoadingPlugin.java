@@ -15,6 +15,10 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
         Launch.classLoader.addTransformerExclusionFilter("com.github.terminatornl.laggoggles.");
         Launch.classLoader.addTransformerExclusionFilter("quaternary.botaniatweaks.");
         Launch.classLoader.addTransformerExclusionFilter("zmaster587.advancedRocketry.asm.");
+        Launch.classLoader.addTransformerExclusion("pl.asie.foamfix.shared.");
+        Launch.classLoader.addTransformerExclusion("pl.asie.patchy.handlers.");
+        Launch.classLoader.addTransformerExclusion("pl.asie.foamfix.coremod.patches.BlockPosPatch$BlockPosMethodVisitor");
+        Launch.classLoader.addTransformerExclusionFilter("pl.asie.foamfix");
         Launch.classLoader.registerTransformer("com.cleanroommc.transformer.InitializerTransformer");
     }
     
@@ -24,7 +28,8 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
         return new String[]{
                 "com.cleanroommc.transformer.EnderCoreTransformerTransformer", 
                 "com.cleanroommc.transformer.InitializerTransformer",
-                "com.cleanroommc.transformer.ClassTransformerTransformer"
+                "com.cleanroommc.transformer.ClassTransformerTransformer",
+                "com.cleanroommc.transformer.FoamFixTransformer"
         };
     }
 

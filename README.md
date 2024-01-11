@@ -19,6 +19,7 @@ Also check [The Fugue Plane](https://forgottenrealms.fandom.com/wiki/Fugue_Plane
 * Aqua Acrobatics
 * Advanced Rocketry
 * Entity Distance
+* FoamFix
 
 ## Note
 Add ! to start of the file name to fix Lag Goggles.
