@@ -7,9 +7,9 @@ buildscript {
         gradlePluginPortal()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '6.10.8', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '6.10.9', changing: true
         classpath "org.spongepowered:mixingradle:0.7.+"
-        classpath "cl.franciscosolis:blossom:1.3.1" 
+        classpath "net.kyori:blossom:2.1.0"
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
@@ -17,7 +17,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: 'java'
 apply plugin: 'org.spongepowered.mixin'
-apply plugin: 'cl.franciscosolis.blossom-extended'
+apply plugin: 'net.kyori.blossom'
 
 version = "${minecraft_version}-${mod_version}"
 group = mod_base_package
@@ -63,8 +63,26 @@ minecraft {
     }
 }
 
-sourceSets.main.resources { 
-    srcDir 'src/generated/resources' 
+sourceSets {
+    main {
+        resources {
+            srcDir 'src/generated/resources'
+        }
+        blossom {
+            resources {
+                property("mod_id", mod_id)
+                property("mod_name", mod_name)
+                property("mod_description", mod_description)
+                property("mod_version", mod_version)
+                property("mod_authors", mod_authors)
+            }
+            javaSources {
+                property("MODNAME", mod_name)
+                property("MODID", mod_id)
+                property("VERSION", version)
+            }
+        }
+    }
 }
 mixin {
     add sourceSets.main, mod_id + ".mixins.refmap.json"
@@ -105,6 +123,7 @@ dependencies {
     
     //Xaero's Minimap
     compileOnly(fg.deobf("curse.maven:xaero-263420:4911777"))
+    compileOnly(fg.deobf("curse.maven:xaero-map-317780:4911823"))
     runtimeOnly(fg.deobf("curse.maven:xaero-263420:4911777"))
     compileOnly(fg.deobf("curse.maven:xaero-plus-866084:4912433"))
     //runtimeOnly(fg.deobf("curse.maven:xaero-plus-866084:4912433")) 
@@ -155,26 +174,6 @@ dependencies {
     annotationProcessor ('com.cleanroommc:sponge-mixin:0.15.3+mixin.0.8.5')
 }
 
-processResources {
-    blossom {
-        String mcmod = "src/main/resources/mcmod.info"
-        String mcmeta = "src/main/resources/pack.mcmeta"
-        replaceToken("mod_id", mod_id, mcmod)
-        replaceToken("mod_name", mod_name, mcmod)
-        replaceToken("mod_description", mod_description, mcmod)
-        replaceToken("mod_version", mod_version, mcmod)
-        replaceToken("mod_authors", mod_authors, mcmod)
-        replaceToken("minecraft_version", minecraft_version, mcmod)
-        replaceToken("mod_id", mod_id, mcmeta)
-    }
-}
-
-blossom {
-    String reference = "src/main/java/com/cleanroommc/Reference.java"
-    replaceToken("@VERSION@", mod_version, reference)
-    replaceToken("@MODNAME@", mod_name, reference)
-    replaceToken("@MODID@", mod_id, reference)
-}
 
 jar {
     manifest {

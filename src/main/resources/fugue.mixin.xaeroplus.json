@@ -4,7 +4,8 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "fugue.mixin.refmap.json",
   "mixins": [
-    "ChunkHighlightSavingCacheMixin"
+    "ChunkHighlightSavingCacheMixin",
+    "XaeroPlusSettingsReflectionHaxMixin"
   ],
   "client": [
   ],
