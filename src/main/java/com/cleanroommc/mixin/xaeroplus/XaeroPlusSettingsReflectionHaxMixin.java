@@ -54,11 +54,4 @@ public class XaeroPlusSettingsReflectionHaxMixin{
         }
         return args;
     }
-    /*
-    @Redirect(method = "getWorldMapConfigSettingEntries", at = @At(value = "INVOKE", target = "Lxaeroplus/settings/XaeroPlusSettingsReflectionHax;constructXaeroPlusSettings(Ljava/lang/Class;Lxaeroplus/settings/XaeroPlusSettingsReflectionHax$ModType;Ljava/util/List;)Ljava/util/List;"))
-    private static <T extends Enum<T>> List<T> constructXaeroPlusSettings(Class<T> clazz, @Coerce Object type, List<XaeroPlusSetting> settings) {
-        if (type.getClass().getEnumConstants()[0] == type) {
-            
-        }
-    }*/
 }
