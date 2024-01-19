@@ -30,7 +30,8 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
                 "com.cleanroommc.transformer.EnderCoreTransformerTransformer", 
                 "com.cleanroommc.transformer.InitializerTransformer",
                 "com.cleanroommc.transformer.ClassTransformerTransformer",
-                "com.cleanroommc.transformer.FoamFixTransformer"
+                "com.cleanroommc.transformer.FoamFixTransformer",
+                "com.cleanroommc.transformer.EntityPlayerRayTraceTransformer"
         };
     }
 

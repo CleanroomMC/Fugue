@@ -164,6 +164,9 @@ dependencies {
     compileOnly(fg.deobf("curse.maven:lag-goggles-283525:4493884"))
     //runtimeOnly(fg.deobf("curse.maven:lag-goggles-283525:4493884"))
 
+    //Shoulder Surfing Reloaded
+    compileOnly(fg.deobf("curse.maven:shoulder-surfing-243190:5009912"))
+    //runtimeOnly(fg.deobf("curse.maven:shoulder-surfing-243190:5009912"))
 
     // Common:
     
