@@ -5,6 +5,7 @@ import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 import zone.rong.mixinbooter.IEarlyMixinLoader;
 
 import javax.annotation.Nullable;
+import java.lang.reflect.Array;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -56,6 +57,6 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
 
     @Override
     public List<String> getMixinConfigs() {
-        return Collections.singletonList("fugue.mixin.aquaacrobatics.json");
+        return Collections.emptyList();
     }
 }
