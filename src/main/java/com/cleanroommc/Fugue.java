@@ -16,7 +16,7 @@ import org.apache.logging.log4j.Logger;
 )
 public class Fugue {
     
-    public static Logger LOGGER = LogManager.getLogger(Reference.MOD_ID);
+    public static Logger LOGGER = LogManager.getLogger(Reference.MOD_NAME);
 	
 	@Instance(Reference.MOD_ID)
 	public static Fugue _instance;
@@ -24,6 +24,7 @@ public class Fugue {
         
     @EventHandler
     public static void preInit(FMLPreInitializationEvent event) {
+        FugueLoadingPlugin.unRegisterUselessTransformer();
     }
 
     @EventHandler

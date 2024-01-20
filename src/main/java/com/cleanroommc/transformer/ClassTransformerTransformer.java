@@ -1,13 +1,18 @@
 package com.cleanroommc.transformer;
 
+import com.cleanroommc.FugueLoadingPlugin;
 import net.minecraft.launchwrapper.IClassTransformer;
+import net.minecraft.launchwrapper.Launch;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;
 
 public class ClassTransformerTransformer implements IClassTransformer {
-    private static boolean hit = false;
+    
+    public ClassTransformerTransformer(){
+        FugueLoadingPlugin.registerToKnownTransformer("advancedrocketry", this);
+    }
     @Override
     public byte[] transform(String s, String s1, byte[] bytes) {
         if (bytes == null)
@@ -15,7 +20,7 @@ public class ClassTransformerTransformer implements IClassTransformer {
             return null;
         }
 
-        if (hit || !s1.equals("zmaster587.advancedRocketry.asm.ClassTransformer"))
+        if (!s1.equals("zmaster587.advancedRocketry.asm.ClassTransformer"))
         {
             return bytes;
         }
@@ -25,7 +30,6 @@ public class ClassTransformerTransformer implements IClassTransformer {
         ClassReader classReader = new ClassReader(bytes);
         classReader.accept(classNode, 0);
         boolean modified = false;
-        AbstractInsnNode prevLine = null;
         if (classNode.methods != null)
         {
             for (MethodNode methodNode : classNode.methods)
@@ -51,7 +55,7 @@ public class ClassTransformerTransformer implements IClassTransformer {
         }
         if (modified)
         {
-            hit = true;
+            Launch.classLoader.unRegisterSuperTransformer(this);
             ClassWriter classWriter = new ClassWriter(0);
 
             classNode.accept(classWriter);

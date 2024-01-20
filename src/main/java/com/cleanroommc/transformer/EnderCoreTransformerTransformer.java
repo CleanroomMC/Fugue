@@ -1,13 +1,18 @@
 package com.cleanroommc.transformer;
 
+import com.cleanroommc.FugueLoadingPlugin;
 import net.minecraft.launchwrapper.IClassTransformer;
+import net.minecraft.launchwrapper.Launch;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;
 
 public class EnderCoreTransformerTransformer implements IClassTransformer {
-    private static boolean hit = false;
+
+    public EnderCoreTransformerTransformer(){
+        FugueLoadingPlugin.registerToKnownTransformer("endercore", this);
+    }
     @Override
     public byte[] transform(String s, String s1, byte[] bytes) {
         if (bytes == null)
@@ -15,7 +20,7 @@ public class EnderCoreTransformerTransformer implements IClassTransformer {
             return null;
         }
 
-        if (hit || !s1.equals("com.enderio.core.common.transform.EnderCoreTransformer"))
+        if (!s1.equals("com.enderio.core.common.transform.EnderCoreTransformer"))
         {
             return bytes;
         }
@@ -80,7 +85,7 @@ public class EnderCoreTransformerTransformer implements IClassTransformer {
         }
         if (modified)
         {
-            hit = true;
+            Launch.classLoader.unRegisterSuperTransformer(this);
             ClassWriter classWriter = new ClassWriter(0);
 
             classNode.accept(classWriter);

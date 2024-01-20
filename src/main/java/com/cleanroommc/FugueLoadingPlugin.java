@@ -1,38 +1,72 @@
 package com.cleanroommc;
 
+import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraft.launchwrapper.Launch;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
+import scala.actors.threadpool.Arrays;
 import zone.rong.mixinbooter.IEarlyMixinLoader;
 
 import javax.annotation.Nullable;
 import java.lang.reflect.Array;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import static java.util.Arrays.asList;
+
 @IFMLLoadingPlugin.MCVersion("1.12.2")
 public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader {
+    private static final LinkedHashMap<String, IClassTransformer> transformerCache = new LinkedHashMap<>();
+    
     static {
-        Launch.classLoader.addTransformerExclusionFilter("com.github.terminatornl.laggoggles.");
-        Launch.classLoader.addTransformerExclusionFilter("quaternary.botaniatweaks.");
-        Launch.classLoader.addTransformerExclusionFilter("zmaster587.advancedRocketry.asm.");
-        Launch.classLoader.addTransformerExclusion("pl.asie.foamfix.shared.");
-        Launch.classLoader.addTransformerExclusion("pl.asie.patchy.handlers.");
-        Launch.classLoader.addTransformerExclusion("pl.asie.foamfix.coremod.patches.BlockPosPatch$BlockPosMethodVisitor");
-        Launch.classLoader.addTransformerExclusionFilter("pl.asie.foamfix");
-        Launch.classLoader.registerTransformer("com.cleanroommc.transformer.InitializerTransformer");
+        List<String> transformers = asList(
+                "com.cleanroommc.transformer.EnderCoreTransformerTransformer",
+                "com.cleanroommc.transformer.ClassTransformerTransformer",
+                "com.cleanroommc.transformer.FoamFixTransformer",
+                "com.cleanroommc.transformer.EntityPlayerRayTraceTransformer",
+                "com.cleanroommc.transformer.SplashProgressTransformerTransformer",
+                "com.cleanroommc.transformer.InitializerTransformer"
+        );
+
+        for(String str : transformers) {
+            Fugue.LOGGER.info("Registering " + str);
+            Launch.classLoader.registerSuperTransformer(str);
+        }
+    }
+
+    /**
+     * Used to register transformer need to be un register
+     * @param key         The identify key, could be modid or class name (if not containing ".")
+     * @param transformer The transformer instance
+     */
+    public static void registerToKnownTransformer(String key, IClassTransformer transformer) {
+        transformerCache.put(key, transformer);
+    }
+
+    /**
+     * Used to un register super transformers when the target mods is not exist to lower performance impact
+     */
+    public static void unRegisterUselessTransformer() {
+        for(String key : transformerCache.keySet()) {
+            if (key.contains(".")) {
+                try {
+                    Class.forName(key);
+                } catch (ClassNotFoundException e) {
+                    Launch.classLoader.unRegisterSuperTransformer(transformerCache.get(key));
+                }
+            } else {
+                if (!Loader.isModLoaded(key)) {
+                    Launch.classLoader.unRegisterSuperTransformer(transformerCache.get(key));
+                }
+            }
+        }
     }
     
     @Override
     public String[] getASMTransformerClass() {
-        
-        return new String[]{
-                "com.cleanroommc.transformer.EnderCoreTransformerTransformer", 
-                "com.cleanroommc.transformer.InitializerTransformer",
-                "com.cleanroommc.transformer.ClassTransformerTransformer",
-                "com.cleanroommc.transformer.FoamFixTransformer",
-                "com.cleanroommc.transformer.EntityPlayerRayTraceTransformer"
-        };
+        return new String[0];
     }
 
     @Override

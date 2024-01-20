@@ -1,6 +1,7 @@
 package com.cleanroommc.transformer;
 
 import com.cleanroommc.Fugue;
+import com.cleanroommc.FugueLoadingPlugin;
 import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.launchwrapper.LaunchClassLoader;
@@ -12,6 +13,10 @@ import org.objectweb.asm.tree.*;
 import java.util.LinkedHashMap;
 
 public class FoamFixTransformer implements IClassTransformer {
+    
+    public FoamFixTransformer() {
+        FugueLoadingPlugin.registerToKnownTransformer("foamfix", this);
+    }
     private int count = 4;
     private static final LinkedHashMap<String, String> classMap = new LinkedHashMap<>();
     static {
@@ -25,11 +30,6 @@ public class FoamFixTransformer implements IClassTransformer {
         if (bytes == null)
         {
             return null;
-        }
-
-        if (count == 0)
-        {
-            return bytes;
         }
         
         for (String clazz : classMap.keySet()) {
@@ -49,6 +49,7 @@ public class FoamFixTransformer implements IClassTransformer {
                                         instructions.insert(ldcInsnNode, new LdcInsnNode(Opcodes.ASM9));
                                         instructions.remove(ldcInsnNode);
                                         modified = true;
+                                        count--;
                                     }
                                 }
                             }
@@ -56,8 +57,9 @@ public class FoamFixTransformer implements IClassTransformer {
                     }
                 }
                 if (modified) {
-                    Launch.classLoader.addTransformerExclusion(clazz);
-                    count--;
+                    if (count == 0) {
+                        Launch.classLoader.unRegisterSuperTransformer(this);
+                    }
                     ClassWriter classWriter = new ClassWriter(0);
 
                     classNode.accept(classWriter);
