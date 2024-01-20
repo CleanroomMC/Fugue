@@ -17,6 +17,7 @@ import java.util.Map;
 import static java.util.Arrays.asList;
 
 @IFMLLoadingPlugin.MCVersion("1.12.2")
+@SuppressWarnings("deprecation")
 public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader {
     private static final LinkedHashMap<String, IClassTransformer> transformerCache = new LinkedHashMap<>();
     

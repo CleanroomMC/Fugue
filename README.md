@@ -20,6 +20,7 @@ Also check [The Fugue Plane](https://forgottenrealms.fandom.com/wiki/Fugue_Plane
 * Entity Distance
 * FoamFix
 * Shoulder Surfing Reloaded
+* SplashAnimation
 
 ## Note
 Add ! to start of the file name to fix Lag Goggles.
