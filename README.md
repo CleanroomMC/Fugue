@@ -22,6 +22,8 @@ Also check [The Fugue Plane](https://forgottenrealms.fandom.com/wiki/Fugue_Plane
 * Shoulder Surfing Reloaded
 * SplashAnimation
 * Logistics Pipes
+* OpenDisks
+* OpenSecurity
 
 ## Note
 Add ! to start of the file name to fix Lag Goggles.

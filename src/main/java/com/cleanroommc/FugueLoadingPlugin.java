@@ -9,6 +9,9 @@ import zone.rong.mixinbooter.IEarlyMixinLoader;
 
 import javax.annotation.Nullable;
 import java.lang.reflect.Array;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -29,7 +32,9 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
                 "com.cleanroommc.transformer.EntityPlayerRayTraceTransformer",
                 "com.cleanroommc.transformer.SplashProgressTransformerTransformer",
                 "com.cleanroommc.transformer.InitializerTransformer",
-                "com.cleanroommc.transformer.ClassBlockMultipartContainerHandlerTransformer"
+                "com.cleanroommc.transformer.ClassBlockMultipartContainerHandlerTransformer",
+                "com.cleanroommc.transformer.OpenDisksUnpackTransformer",
+                "com.cleanroommc.transformer.SoundUnpackTransformer"
         );
 
         for(String str : transformers) {
