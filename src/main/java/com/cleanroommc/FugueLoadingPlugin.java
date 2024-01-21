@@ -26,21 +26,21 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
     
     static {
         List<String> transformers = asList(
-                "com.cleanroommc.transformer.EnderCoreTransformerTransformer",
-                "com.cleanroommc.transformer.ClassTransformerTransformer",
-                "com.cleanroommc.transformer.FoamFixTransformer",
-                "com.cleanroommc.transformer.EntityPlayerRayTraceTransformer",
-                "com.cleanroommc.transformer.SplashProgressTransformerTransformer",
-                "com.cleanroommc.transformer.InitializerTransformer",
-                "com.cleanroommc.transformer.ClassBlockMultipartContainerHandlerTransformer",
-                "com.cleanroommc.transformer.OpenDisksUnpackTransformer",
-                "com.cleanroommc.transformer.SoundUnpackTransformer",
-                "com.cleanroommc.transformer.EnumInputClassTransformer"
+                "EnderCoreTransformerTransformer",
+                "ClassTransformerTransformer",
+                "FoamFixTransformer",
+                "EntityPlayerRayTraceTransformer",
+                "SplashProgressTransformerTransformer",
+                "InitializerTransformer",
+                "ClassBlockMultipartContainerHandlerTransformer",
+                "OpenDisksUnpackTransformer",
+                "SoundUnpackTransformer",
+                "EnumInputClassTransformer"
         );
 
         for(String str : transformers) {
             Fugue.LOGGER.info("Registering " + str);
-            Launch.classLoader.registerSuperTransformer(str);
+            Launch.classLoader.registerSuperTransformer("com.cleanroommc.transformer." + str);
         }
     }
 
