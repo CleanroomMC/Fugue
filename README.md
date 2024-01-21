@@ -24,6 +24,7 @@ Also check [The Fugue Plane](https://forgottenrealms.fandom.com/wiki/Fugue_Plane
 * Logistics Pipes
 * OpenDisks
 * OpenSecurity
+* Enchantments Control
 
 ## Note
 Add ! to start of the file name to fix Lag Goggles.
