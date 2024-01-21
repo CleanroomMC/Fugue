@@ -167,6 +167,10 @@ dependencies {
     //Shoulder Surfing Reloaded
     compileOnly(fg.deobf("curse.maven:shoulder-surfing-243190:5009912"))
     //runtimeOnly(fg.deobf("curse.maven:shoulder-surfing-243190:5009912"))
+    
+    //Logistics Pipes
+    compileOnly(fg.deobf("curse.maven:logistics-pipes-232838:4849512"))
+    //runtimeOnly(fg.deobf("curse.maven:logistics-pipes-232838:4849512"))
 
     // Common:
     

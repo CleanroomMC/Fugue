@@ -28,7 +28,8 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
                 "com.cleanroommc.transformer.FoamFixTransformer",
                 "com.cleanroommc.transformer.EntityPlayerRayTraceTransformer",
                 "com.cleanroommc.transformer.SplashProgressTransformerTransformer",
-                "com.cleanroommc.transformer.InitializerTransformer"
+                "com.cleanroommc.transformer.InitializerTransformer",
+                "com.cleanroommc.transformer.ClassBlockMultipartContainerHandlerTransformer"
         );
 
         for(String str : transformers) {
