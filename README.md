@@ -25,6 +25,7 @@ Also check [The Fugue Plane](https://forgottenrealms.fandom.com/wiki/Fugue_Plane
 * OpenDisks
 * OpenSecurity
 * Enchantments Control
+* GregTech CE Unofficial (Temporary)
 
 ## Note
 Add ! to start of the file name to fix Lag Goggles.
