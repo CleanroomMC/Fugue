@@ -23,6 +23,7 @@ import static java.util.Arrays.asList;
 @SuppressWarnings("deprecation")
 public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader {
     private static final LinkedHashMap<String, IClassTransformer> transformerCache = new LinkedHashMap<>();
+    private static final String prefix = "com.cleanroommc.transformer.";
     
     static {
         List<String> transformers = asList(
@@ -40,7 +41,7 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
 
         for(String str : transformers) {
             Fugue.LOGGER.info("Registering " + str);
-            Launch.classLoader.registerSuperTransformer("com.cleanroommc.transformer." + str);
+            Launch.classLoader.registerSuperTransformer(prefix + str);
         }
     }
 
@@ -74,7 +75,7 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
     
     @Override
     public String[] getASMTransformerClass() {
-        return new String[0];
+        return new String[]{prefix + "CommonRegistrar$Transformer"};
     }
 
     @Override
