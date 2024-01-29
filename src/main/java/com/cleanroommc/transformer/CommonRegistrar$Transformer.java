@@ -12,7 +12,11 @@ import org.objectweb.asm.tree.MethodInsnNode;
 import org.objectweb.asm.tree.MethodNode;
 
 public class CommonRegistrar$Transformer implements IClassTransformer {
-    private static boolean hit = false;
+    private static int hit = 3;
+    
+    public static void halt() {
+        hit = 0;
+    }
     @Override
     public byte[] transform(String s, String s1, byte[] bytes) {
         if (bytes == null)
@@ -20,7 +24,13 @@ public class CommonRegistrar$Transformer implements IClassTransformer {
             return null;
         }
 
-        if (hit || !s1.equals("com.lumintorious.tfcmedicinal.CommonRegistrar$"))
+        if (hit == 0 || 
+                (
+                        !s1.equals("com.lumintorious.tfcmedicinal.CommonRegistrar$") && 
+                        !s1.equals("com.lumintorious.tfcmedicinal.object.mpestle.MPestleRecipe$") &&
+                        !s1.equals("com.lumintorious.tfcmedicinal.object.heater.HeaterRecipe")
+                )
+        )
         {
             return bytes;
         }
@@ -45,7 +55,7 @@ public class CommonRegistrar$Transformer implements IClassTransformer {
         {
             for (MethodNode methodNode : classNode.methods)
             {
-                if (methodNode.name.equals("registerBarrelRecipes")) {
+                if (methodNode.name.equals("registerBarrelRecipes") || methodNode.name.equals("<init>")) {
                     InsnList instructions = methodNode.instructions;
                     if (instructions != null)
                     {
@@ -53,7 +63,7 @@ public class CommonRegistrar$Transformer implements IClassTransformer {
                         {
                             if (insnNode.getOpcode() == Opcodes.INVOKESTATIC && insnNode instanceof MethodInsnNode methodInsnNode)
                             {
-                                if (methodInsnNode.owner.equals("net/dries007/tfc/objects/inventory/ingredient/IIngredient") && methodInsnNode.name.equals("of"))
+                                if (methodInsnNode.owner.equals("net/dries007/tfc/objects/inventory/ingredient/IIngredient") && (methodInsnNode.name.equals("of") || methodInsnNode.name.equals("empty")))
                                 {
                                     methodInsnNode.itf = true;
                                     modified = true;
@@ -66,7 +76,7 @@ public class CommonRegistrar$Transformer implements IClassTransformer {
         }
         if (modified)
         {
-            hit = true;
+            hit--;
             ClassWriter classWriter = new ClassWriter(0);
 
             classNode.accept(classWriter);

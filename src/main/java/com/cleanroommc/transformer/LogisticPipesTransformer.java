@@ -8,22 +8,35 @@ import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;
 
-public class ClassBlockMultipartContainerHandlerTransformer implements IClassTransformer {
-    public ClassBlockMultipartContainerHandlerTransformer(){
+public class LogisticPipesTransformer implements IClassTransformer {
+    public LogisticPipesTransformer(){
         FugueLoadingPlugin.registerToKnownTransformer("logisticspipes", this);
     }
+    private static int hit = 0;
     @Override
     public byte[] transform(String s, String s1, byte[] bytes) {
         if (bytes == null)
         {
             return null;
         }
-
-        if (!s1.equals("logisticspipes.asm.mcmp.ClassBlockMultipartContainerHandler"))
+        
+        int match = 0;
+        if (s1.equals("logisticspipes.asm.mcmp.ClassBlockMultipartContainerHandler"))
+        {
+            match = 1;
+        }
+        if (s1.equals("logisticspipes.asm.td.ClassRenderDuctItemsHandler"))
+        {
+            match = 1;
+        }
+        if (s1.equals("logisticspipes.asm.td.ClassTravelingItemHandler"))
+        {
+            match = 3;
+        }
+        if (match == 0)
         {
             return bytes;
         }
-
 
         ClassNode classNode = new ClassNode();
         ClassReader classReader = new ClassReader(bytes);
@@ -33,7 +46,7 @@ public class ClassBlockMultipartContainerHandlerTransformer implements IClassTra
         {
             for (MethodNode methodNode : classNode.methods)
             {
-                if (methodNode.name.equals("handleClass")) {
+                if (methodNode.name.equals("handleClass") || methodNode.name.equals("handleRenderDuctItemsClass")) {
                     InsnList instructions = methodNode.instructions;
                     if (instructions != null)
                     {
@@ -43,7 +56,11 @@ public class ClassBlockMultipartContainerHandlerTransformer implements IClassTra
                             {
                                 instructions.insert(iConstNode, new InsnNode(Opcodes.ICONST_0));
                                 instructions.remove(iConstNode);
-                                modified = true;
+                                match--;
+                                if (match == 0) {
+                                    modified = true;
+                                    break;
+                                }
                             }
                         }
                     }
@@ -52,7 +69,10 @@ public class ClassBlockMultipartContainerHandlerTransformer implements IClassTra
         }
         if (modified)
         {
-            Launch.classLoader.unRegisterSuperTransformer(this);
+            hit++;
+            if (hit == 3) {
+                Launch.classLoader.unRegisterSuperTransformer(this);
+            }
             ClassWriter classWriter = new ClassWriter(0);
 
             classNode.accept(classWriter);

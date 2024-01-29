@@ -1,5 +1,6 @@
 package com.cleanroommc;
 
+import com.cleanroommc.transformer.CommonRegistrar$Transformer;
 import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraftforge.fml.common.Loader;
@@ -33,7 +34,7 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
                 "EntityPlayerRayTraceTransformer",
                 "SplashProgressTransformerTransformer",
                 "InitializerTransformer",
-                "ClassBlockMultipartContainerHandlerTransformer",
+                "LogisticPipesTransformer",
                 "OpenDisksUnpackTransformer",
                 "SoundUnpackTransformer",
                 "EnumInputClassTransformer"
@@ -70,6 +71,9 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
                     Launch.classLoader.unRegisterSuperTransformer(transformerCache.get(key));
                 }
             }
+        }
+        if (!Loader.isModLoaded("tfcmedicinal")) {
+            CommonRegistrar$Transformer.halt();
         }
     }
     
