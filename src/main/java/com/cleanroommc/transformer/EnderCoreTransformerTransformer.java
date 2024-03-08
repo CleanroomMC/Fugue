@@ -1,31 +1,18 @@
 package com.cleanroommc.transformer;
 
-import com.cleanroommc.FugueLoadingPlugin;
-import net.minecraft.launchwrapper.IClassTransformer;
-import net.minecraft.launchwrapper.Launch;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;
+import top.outlands.foundation.IExplicitTransformer;
 
-public class EnderCoreTransformerTransformer implements IClassTransformer {
-
-    public EnderCoreTransformerTransformer(){
-        FugueLoadingPlugin.registerToKnownTransformer("endercore", this);
-    }
+public class EnderCoreTransformerTransformer implements IExplicitTransformer {
     @Override
-    public byte[] transform(String s, String s1, byte[] bytes) {
+    public byte[] transform(String s1, byte[] bytes) {
         if (bytes == null)
         {
             return null;
         }
-
-        if (!s1.equals("com.enderio.core.common.transform.EnderCoreTransformer"))
-        {
-            return bytes;
-        }
-
-
         ClassNode classNode = new ClassNode();
         ClassReader classReader = new ClassReader(bytes);
         classReader.accept(classNode, 0);
@@ -85,7 +72,6 @@ public class EnderCoreTransformerTransformer implements IClassTransformer {
         }
         if (modified)
         {
-            Launch.classLoader.unRegisterSuperTransformer(this);
             ClassWriter classWriter = new ClassWriter(0);
 
             classNode.accept(classWriter);

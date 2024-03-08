@@ -1,27 +1,17 @@
 package com.cleanroommc.transformer;
 
-import com.cleanroommc.FugueLoadingPlugin;
-import net.minecraft.launchwrapper.IClassTransformer;
-import net.minecraft.launchwrapper.Launch;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;
+import top.outlands.foundation.IExplicitTransformer;
 
-public class EnumInputClassTransformer implements IClassTransformer {
-    public EnumInputClassTransformer() {
-        FugueLoadingPlugin.registerToKnownTransformer("enchcontrol", this);
-    }
+public class EnumInputClassTransformer implements IExplicitTransformer {
     @Override
-    public byte[] transform(String s, String s1, byte[] bytes) {
+    public byte[] transform(String s1, byte[] bytes) {
         if (bytes == null)
         {
             return null;
-        }
-
-        if (!s1.equals("austeretony.enchcontrol.common.core.EnumInputClass"))
-        {
-            return bytes;
         }
 
         ClassNode classNode = new ClassNode();
@@ -60,7 +50,6 @@ public class EnumInputClassTransformer implements IClassTransformer {
         }
         if (modified)
         {
-            Launch.classLoader.unRegisterSuperTransformer(this);
             ClassWriter classWriter = new ClassWriter(0);
 
             classNode.accept(classWriter);

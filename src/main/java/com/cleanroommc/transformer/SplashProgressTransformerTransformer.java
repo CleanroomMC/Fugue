@@ -8,22 +8,15 @@ import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;
+import top.outlands.foundation.IExplicitTransformer;
 
-public class SplashProgressTransformerTransformer implements IClassTransformer {
-    
-    public SplashProgressTransformerTransformer() {
-        FugueLoadingPlugin.registerToKnownTransformer("pl.asie.splashanimation.SplashAnimationRenderer", this);
-    }
+public class SplashProgressTransformerTransformer implements IExplicitTransformer {
+
     @Override
-    public byte[] transform(String s, String s1, byte[] bytes) {
+    public byte[] transform(String s1, byte[] bytes) {
         if (bytes == null)
         {
             return null;
-        }
-
-        if (!s1.equals("pl.asie.splashanimation.core.SplashProgressTransformer"))
-        {
-            return bytes;
         }
 
         ClassNode classNode = new ClassNode();
@@ -55,7 +48,6 @@ public class SplashProgressTransformerTransformer implements IClassTransformer {
         }
         if (modified)
         {
-            Launch.classLoader.unRegisterSuperTransformer(this);
             ClassWriter classWriter = new ClassWriter(0);
 
             classNode.accept(classWriter);

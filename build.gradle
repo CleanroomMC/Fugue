@@ -7,7 +7,7 @@ buildscript {
         gradlePluginPortal()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '6.10.9', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '6.10.+', changing: true
         classpath "org.spongepowered:mixingradle:0.7.+"
         classpath "net.kyori:blossom:2.1.0"
     }
@@ -21,7 +21,7 @@ apply plugin: 'net.kyori.blossom'
 
 version = "${minecraft_version}-${mod_version}"
 group = mod_base_package
-archivesBaseName = "!" + mod_name
+archivesBaseName = "+" + mod_name
 
 
 
@@ -116,7 +116,10 @@ repositories {
 }
 
 dependencies {
-    minecraft "com.cleanroommc:cleanroom:15.24.0.3028"
+    minecraft "com.cleanroommc:cleanroom:15.24.0.3030"
+    implementation "top.outlands:foundation:0.7.2"
+    implementation 'org.javassist:javassist:3.30.2-GA'
+
     //Charset Lib
     compileOnly(fg.deobf("curse.maven:charset-284523:3656492"))
     runtimeOnly(fg.deobf("curse.maven:charset-284523:3656492"))
@@ -181,7 +184,10 @@ dependencies {
     annotationProcessor 'com.google.guava:guava:33.0.0-jre'
     annotationProcessor 'com.google.code.gson:gson:2.10.1'
 
-    annotationProcessor ('com.cleanroommc:sponge-mixin:0.16.0+mixin.0.8.5')
+    annotationProcessor ('com.cleanroommc:sponge-mixin:0.17.2+mixin.0.8.5')
+    implementation 'com.cleanroommc:sponge-mixin:0.17.2+mixin.0.8.5'
+    annotationProcessor ("io.github.llamalad7:mixinextras-common:0.3.5")
+    implementation "io.github.llamalad7:mixinextras-common:0.3.5"
 }
 
 

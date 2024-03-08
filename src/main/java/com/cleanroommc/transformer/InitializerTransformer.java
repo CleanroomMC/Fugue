@@ -1,29 +1,19 @@
 package com.cleanroommc.transformer;
 
-import com.cleanroommc.FugueLoadingPlugin;
-import net.minecraft.launchwrapper.IClassTransformer;
-import net.minecraft.launchwrapper.Launch;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;
+import top.outlands.foundation.IExplicitTransformer;
 
-public class InitializerTransformer implements IClassTransformer {
+public class InitializerTransformer implements IExplicitTransformer {
 
-    public InitializerTransformer() {
-        FugueLoadingPlugin.registerToKnownTransformer("laggoggles", this);
-    }
     @Override
-    public byte[] transform(String s, String s1, byte[] bytes) {
+    public byte[] transform(String s1, byte[] bytes) {
         
         if (bytes == null)
         {
             return null;
-        }
-
-        if (!s1.equals("com.github.terminatornl.laggoggles.tickcentral.Initializer"))
-        {
-            return bytes;
         }
         ClassNode classNode = new ClassNode();
         ClassReader classReader = new ClassReader(bytes);
@@ -60,7 +50,6 @@ public class InitializerTransformer implements IClassTransformer {
         }
         if (modified)
         {
-            Launch.classLoader.unRegisterSuperTransformer(this);
             ClassWriter classWriter = new ClassWriter(0);
 
             classNode.accept(classWriter);

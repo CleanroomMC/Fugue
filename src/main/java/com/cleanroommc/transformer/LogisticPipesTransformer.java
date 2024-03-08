@@ -1,38 +1,18 @@
 package com.cleanroommc.transformer;
 
-import com.cleanroommc.FugueLoadingPlugin;
-import net.minecraft.launchwrapper.IClassTransformer;
-import net.minecraft.launchwrapper.Launch;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;
+import top.outlands.foundation.IExplicitTransformer;
 
-public class LogisticPipesTransformer implements IClassTransformer {
-    public LogisticPipesTransformer(){
-        FugueLoadingPlugin.registerToKnownTransformer("logisticspipes", this);
+public class LogisticPipesTransformer implements IExplicitTransformer {
+    private int match;
+    public LogisticPipesTransformer(int match) {
+        this.match = match;
     }
-    private static int hit = 0;
     @Override
-    public byte[] transform(String s, String s1, byte[] bytes) {
-        if (bytes == null)
-        {
-            return null;
-        }
-        
-        int match = 0;
-        if (s1.equals("logisticspipes.asm.mcmp.ClassBlockMultipartContainerHandler"))
-        {
-            match = 1;
-        }
-        if (s1.equals("logisticspipes.asm.td.ClassRenderDuctItemsHandler"))
-        {
-            match = 1;
-        }
-        if (s1.equals("logisticspipes.asm.td.ClassTravelingItemHandler"))
-        {
-            match = 3;
-        }
+    public byte[] transform(String s1, byte[] bytes) {
         if (match == 0)
         {
             return bytes;
@@ -69,10 +49,6 @@ public class LogisticPipesTransformer implements IClassTransformer {
         }
         if (modified)
         {
-            hit++;
-            if (hit == 3) {
-                Launch.classLoader.unRegisterSuperTransformer(this);
-            }
             ClassWriter classWriter = new ClassWriter(0);
 
             classNode.accept(classWriter);

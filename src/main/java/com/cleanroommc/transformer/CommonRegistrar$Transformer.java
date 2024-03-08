@@ -10,29 +10,15 @@ import org.objectweb.asm.tree.FieldNode;
 import org.objectweb.asm.tree.InsnList;
 import org.objectweb.asm.tree.MethodInsnNode;
 import org.objectweb.asm.tree.MethodNode;
+import top.outlands.foundation.IExplicitTransformer;
 
-public class CommonRegistrar$Transformer implements IClassTransformer {
-    private static int hit = 3;
-    
-    public static void halt() {
-        hit = 0;
-    }
+public class CommonRegistrar$Transformer implements IExplicitTransformer {
+
     @Override
-    public byte[] transform(String s, String s1, byte[] bytes) {
+    public byte[] transform(String s1, byte[] bytes) {
         if (bytes == null)
         {
             return null;
-        }
-
-        if (hit == 0 || 
-                (
-                        !s1.equals("com.lumintorious.tfcmedicinal.CommonRegistrar$") && 
-                        !s1.equals("com.lumintorious.tfcmedicinal.object.mpestle.MPestleRecipe$") &&
-                        !s1.equals("com.lumintorious.tfcmedicinal.object.heater.HeaterRecipe")
-                )
-        )
-        {
-            return bytes;
         }
 
 
@@ -76,7 +62,6 @@ public class CommonRegistrar$Transformer implements IClassTransformer {
         }
         if (modified)
         {
-            hit--;
             ClassWriter classWriter = new ClassWriter(0);
 
             classNode.accept(classWriter);

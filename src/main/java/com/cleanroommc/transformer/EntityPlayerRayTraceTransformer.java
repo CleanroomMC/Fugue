@@ -7,30 +7,20 @@ import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;
+import top.outlands.foundation.IExplicitTransformer;
 
-public class EntityPlayerRayTraceTransformer implements IClassTransformer {
-    
-    public EntityPlayerRayTraceTransformer() {
-        FugueLoadingPlugin.registerToKnownTransformer("shouldersurfing", this);
-    }
+public class EntityPlayerRayTraceTransformer implements IExplicitTransformer {
+
     @Override
-    public byte[] transform(String s, String s1, byte[] bytes) {
+    public byte[] transform(String s1, byte[] bytes) {
         if (bytes == null)
         {
             return null;
         }
-
-        if (!s1.equals("com.teamderpy.shouldersurfing.asm.transformers.EntityPlayerRayTrace"))
-        {
-            return bytes;
-        }
-
-
         ClassNode classNode = new ClassNode();
         ClassReader classReader = new ClassReader(bytes);
         classReader.accept(classNode, 0);
         boolean modified = false;
-        AbstractInsnNode prevLine = null;
         if (classNode.methods != null)
         {
             for (MethodNode methodNode : classNode.methods)
@@ -56,7 +46,6 @@ public class EntityPlayerRayTraceTransformer implements IClassTransformer {
         }
         if (modified)
         {
-            Launch.classLoader.unRegisterSuperTransformer(this);
             ClassWriter classWriter = new ClassWriter(0);
 
             classNode.accept(classWriter);

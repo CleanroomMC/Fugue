@@ -24,7 +24,6 @@ public class Fugue {
         
     @EventHandler
     public static void preInit(FMLPreInitializationEvent event) {
-        FugueLoadingPlugin.unRegisterUselessTransformer();
     }
 
     @EventHandler
