@@ -16,25 +16,19 @@ public class LogisticsClassTransformerTransformer implements IExplicitTransforme
         this.newTarget = newTarget;
     }
     @Override
-    public byte[] transform(String s, byte[] bytes) {
+    public byte[] transform(byte[] bytes) {
         ClassNode classNode = new ClassNode();
         ClassReader classReader = new ClassReader(bytes);
         classReader.accept(classNode, 0);
-        AtomicBoolean modified = new AtomicBoolean(false);
         classNode.methods.stream().filter(methodNode -> methodNode.name.equals("<init>")).forEach(methodNode -> methodNode.instructions.iterator().forEachRemaining(abstractInsnNode -> {
             if (abstractInsnNode instanceof LdcInsnNode ldcInsnNode) {
                 if (ldcInsnNode.cst instanceof Type && ((Type) ldcInsnNode.cst).getDescriptor().equals("Lnet/minecraft/launchwrapper/LaunchClassLoader;")) {
                     ldcInsnNode.cst = Type.getType(newTarget);
-                    modified.set(true);
                 }
             }
         }));
-        if (modified.get())
-        {
-            ClassWriter classWriter = new ClassWriter(0);
-            classNode.accept(classWriter);
-            return classWriter.toByteArray();
-        }
-        return bytes;
+        ClassWriter classWriter = new ClassWriter(0);
+        classNode.accept(classWriter);
+        return classWriter.toByteArray();
     }
 }

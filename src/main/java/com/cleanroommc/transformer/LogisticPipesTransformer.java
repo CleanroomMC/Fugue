@@ -12,7 +12,7 @@ public class LogisticPipesTransformer implements IExplicitTransformer {
         this.match = match;
     }
     @Override
-    public byte[] transform(String s1, byte[] bytes) {
+    public byte[] transform(byte[] bytes) {
         if (match == 0)
         {
             return bytes;
@@ -21,7 +21,6 @@ public class LogisticPipesTransformer implements IExplicitTransformer {
         ClassNode classNode = new ClassNode();
         ClassReader classReader = new ClassReader(bytes);
         classReader.accept(classNode, 0);
-        boolean modified = false;
         if (classNode.methods != null)
         {
             for (MethodNode methodNode : classNode.methods)
@@ -38,7 +37,6 @@ public class LogisticPipesTransformer implements IExplicitTransformer {
                                 instructions.remove(iConstNode);
                                 match--;
                                 if (match == 0) {
-                                    modified = true;
                                     break;
                                 }
                             }
@@ -47,13 +45,9 @@ public class LogisticPipesTransformer implements IExplicitTransformer {
                 }
             }
         }
-        if (modified)
-        {
-            ClassWriter classWriter = new ClassWriter(0);
+        ClassWriter classWriter = new ClassWriter(0);
 
-            classNode.accept(classWriter);
-            return classWriter.toByteArray();
-        }
-        return bytes;
+        classNode.accept(classWriter);
+        return classWriter.toByteArray();
     }
 }

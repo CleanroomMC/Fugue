@@ -8,7 +8,7 @@ import top.outlands.foundation.IExplicitTransformer;
 
 public class EnderCoreTransformerTransformer implements IExplicitTransformer {
     @Override
-    public byte[] transform(String s1, byte[] bytes) {
+    public byte[] transform(byte[] bytes) {
         if (bytes == null)
         {
             return null;
@@ -16,7 +16,6 @@ public class EnderCoreTransformerTransformer implements IExplicitTransformer {
         ClassNode classNode = new ClassNode();
         ClassReader classReader = new ClassReader(bytes);
         classReader.accept(classNode, 0);
-        boolean modified = false;
         AbstractInsnNode prevLine = null;
         if (classNode.methods != null)
         {
@@ -62,7 +61,6 @@ public class EnderCoreTransformerTransformer implements IExplicitTransformer {
                                     } else {
                                         return bytes;
                                     }
-                                    modified = true;
                                 }
                             }
                         }
@@ -70,13 +68,9 @@ public class EnderCoreTransformerTransformer implements IExplicitTransformer {
                 }
             }
         }
-        if (modified)
-        {
-            ClassWriter classWriter = new ClassWriter(0);
+        ClassWriter classWriter = new ClassWriter(0);
 
-            classNode.accept(classWriter);
-            return classWriter.toByteArray();
-        }
-        return bytes;
+        classNode.accept(classWriter);
+        return classWriter.toByteArray();
     }
 }

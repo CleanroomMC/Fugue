@@ -9,12 +9,8 @@ import top.outlands.foundation.IExplicitTransformer;
 public class InitializerTransformer implements IExplicitTransformer {
 
     @Override
-    public byte[] transform(String s1, byte[] bytes) {
-        
-        if (bytes == null)
-        {
-            return null;
-        }
+    public byte[] transform(byte[] bytes) {
+
         ClassNode classNode = new ClassNode();
         ClassReader classReader = new ClassReader(bytes);
         classReader.accept(classNode, 0);

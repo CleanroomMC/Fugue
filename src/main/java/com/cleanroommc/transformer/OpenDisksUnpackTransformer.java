@@ -8,17 +8,10 @@ import top.outlands.foundation.IExplicitTransformer;
 
 public class OpenDisksUnpackTransformer implements IExplicitTransformer {
     @Override
-    public byte[] transform(String s1, byte[] bytes) {
-        if (bytes == null)
-        {
-            return null;
-        }
-
-
+    public byte[] transform(byte[] bytes) {
         ClassNode classNode = new ClassNode();
         ClassReader classReader = new ClassReader(bytes);
         classReader.accept(classNode, 0);
-        boolean modified = false;
         if (classNode.methods != null)
         {
             for (MethodNode methodNode : classNode.methods)
@@ -35,7 +28,6 @@ public class OpenDisksUnpackTransformer implements IExplicitTransformer {
                                 {
                                     instructions.insert(methodInsnNode, new MethodInsnNode(Opcodes.INVOKESTATIC, "com/cleanroommc/helper/HookHelper", "byGetResource", "()Ljava/lang/String;", false));
                                     instructions.insert(methodInsnNode, new InsnNode(Opcodes.POP));
-                                    modified = true;
                                 }
                             }
                         }
@@ -43,13 +35,9 @@ public class OpenDisksUnpackTransformer implements IExplicitTransformer {
                 }
             }
         }
-        if (modified)
-        {
-            ClassWriter classWriter = new ClassWriter(0);
+        ClassWriter classWriter = new ClassWriter(0);
 
-            classNode.accept(classWriter);
-            return classWriter.toByteArray();
-        }
-        return bytes;
+        classNode.accept(classWriter);
+        return classWriter.toByteArray();
     }
 }

@@ -13,16 +13,10 @@ import top.outlands.foundation.IExplicitTransformer;
 public class SplashProgressTransformerTransformer implements IExplicitTransformer {
 
     @Override
-    public byte[] transform(String s1, byte[] bytes) {
-        if (bytes == null)
-        {
-            return null;
-        }
-
+    public byte[] transform(byte[] bytes) {
         ClassNode classNode = new ClassNode();
         ClassReader classReader = new ClassReader(bytes);
         classReader.accept(classNode, 0);
-        boolean modified = false;
         if (classNode.methods != null)
         {
             for (MethodNode methodNode : classNode.methods)
@@ -38,7 +32,6 @@ public class SplashProgressTransformerTransformer implements IExplicitTransforme
                                 if (intInsnNode.operand == Opcodes.INVOKESPECIAL)
                                 {
                                     intInsnNode.operand = Opcodes.INVOKEVIRTUAL;
-                                    modified = true;
                                 }
                             }
                         }
@@ -46,13 +39,9 @@ public class SplashProgressTransformerTransformer implements IExplicitTransforme
                 }
             }
         }
-        if (modified)
-        {
-            ClassWriter classWriter = new ClassWriter(0);
+        ClassWriter classWriter = new ClassWriter(0);
 
-            classNode.accept(classWriter);
-            return classWriter.toByteArray();
-        }
-        return bytes;
+        classNode.accept(classWriter);
+        return classWriter.toByteArray();
     }
 }

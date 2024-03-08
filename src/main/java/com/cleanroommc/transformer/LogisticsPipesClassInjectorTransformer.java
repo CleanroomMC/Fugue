@@ -11,7 +11,7 @@ import java.io.ByteArrayInputStream;
 
 public class LogisticsPipesClassInjectorTransformer implements IExplicitTransformer {
     @Override
-    public byte[] transform(String s, byte[] bytes) {
+    public byte[] transform(byte[] bytes) {
         try {
             CtClass cc = ClassPool.getDefault().makeClass(new ByteArrayInputStream(bytes));
             cc.addMethod(CtMethod.make(
