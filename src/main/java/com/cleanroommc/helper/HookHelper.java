@@ -1,10 +1,15 @@
 package com.cleanroommc.helper;
 
+import com.cleanroommc.Fugue;
 import net.minecraft.launchwrapper.IClassTransformer;
 import org.objectweb.asm.Opcodes;
 import top.outlands.foundation.TransformerDelegate;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.List;
@@ -36,5 +41,19 @@ public class HookHelper {
 
     public static List<IClassTransformer> getTransformers() {
         return TransformerDelegate.getTransformers();
+    }
+    public static final URL deadLink;
+
+    static {
+        try {
+            deadLink = new URI("file:/dev/noupdate$").toURL();
+        } catch (MalformedURLException | URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static InputStream open(URL instance) throws IOException {
+        Fugue.LOGGER.info("Blocking connection to {}", instance.toString());
+        return deadLink.openStream();
     }
 }

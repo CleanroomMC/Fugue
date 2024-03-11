@@ -25,24 +25,4 @@ public class ColorspacesMixin {
         return instance.edgeValue(object1, object2).get();
     }
 
-    /*@Inject(method = "buildConversionTable", at = @At(value = "JUMP", opcode = Opcodes.IF_ICMPGE, ordinal = 3), cancellable = true)
-    private static void buildConversionTable(ValueGraph<Colorspace, Function<float[], float[]>> conversionGraph, 
-                                             CallbackInfo ci, 
-                                             @Local(ordinal = 3) Colorspace[] path,
-                                             @Local(ordinal = 0) Colorspace from,
-                                             @Local(ordinal = 1) Colorspace to) {
-        Function<float[], float[]> function = null;
-        for(int i = 0; i < path.length - 1; ++i) {
-            if (function == null) {
-                function = (Function)conversionGraph.edgeValue(path[i], path[i + 1]).get();
-            } else {
-                function = ((Function)conversionGraph.edgeValue(path[i], path[i + 1]).get()).compose(function);
-            }
-        }
-
-        if (function != null) {
-            conversionTable.put(from, to, function);
-        }
-        ci.cancel();
-    } */
 }

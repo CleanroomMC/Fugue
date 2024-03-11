@@ -117,7 +117,7 @@ repositories {
 
 dependencies {
     minecraft "com.cleanroommc:cleanroom:15.24.0.3030"
-    implementation "top.outlands:foundation:0.8.0"
+    implementation "top.outlands:foundation:0.8.2"
     implementation 'org.javassist:javassist:3.30.2-GA'
 
     //Charset Lib
