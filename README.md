@@ -29,4 +29,4 @@ Also check [The Fugue Plane](https://forgottenrealms.fandom.com/wiki/Fugue_Plane
 * TFC Medicinal
 
 ## Note
-Add ! to start of the file name to fix Lag Goggles.
+Add + to start of the file if it's not there.
