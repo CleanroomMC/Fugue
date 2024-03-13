@@ -3,7 +3,6 @@ package com.cleanroommc;
 import com.cleanroommc.config.FugueConfig;
 import com.cleanroommc.transformer.*;
 import com.cleanroommc.transformer.universal.*;
-import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 import top.outlands.foundation.IExplicitTransformer;
@@ -12,7 +11,6 @@ import top.outlands.foundation.boot.ActualClassLoader;
 import zone.rong.mixinbooter.IEarlyMixinLoader;
 
 import javax.annotation.Nullable;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -109,29 +107,29 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
                     new EnumInputClassTransformer()
             );
         }
-        IExplicitTransformer instance = new ReflectFieldTransformer();
         if (FugueConfig.reflectionPatchTargets.length > 0) {
-            TransformerDelegate.registerExplicitTransformerByInstance(FugueConfig.reflectionPatchTargets, instance);
+            TransformerDelegate.registerExplicitTransformerByInstance(FugueConfig.reflectionPatchTargets, new ReflectFieldTransformer());
         }
-        instance = new URLClassLoaderTransformer();
         if (FugueConfig.getURLPatchTargets.length > 0) {
-            TransformerDelegate.registerExplicitTransformerByInstance(FugueConfig.getURLPatchTargets, instance);
+            TransformerDelegate.registerExplicitTransformerByInstance(FugueConfig.getURLPatchTargets, new URLClassLoaderTransformer());
         }
-        instance = new ScriptEngineTransformer();
         if (FugueConfig.scriptEngineTargets.length > 0) {
-            TransformerDelegate.registerExplicitTransformerByInstance(FugueConfig.scriptEngineTargets, instance);
+            TransformerDelegate.registerExplicitTransformerByInstance(FugueConfig.scriptEngineTargets, new ScriptEngineTransformer());
         }
-        instance = new MalformedUUIDTransformer();
         if (FugueConfig.UUIDTargets.length > 0) {
-            TransformerDelegate.registerExplicitTransformerByInstance(FugueConfig.UUIDTargets, instance);
+            TransformerDelegate.registerExplicitTransformerByInstance(FugueConfig.UUIDTargets, new MalformedUUIDTransformer());
         }
-        instance = new ReflectionTransformer();
         if (FugueConfig.remapTargets.length > 0) {
-            TransformerDelegate.registerExplicitTransformerByInstance(FugueConfig.remapTargets, instance);
+            TransformerDelegate.registerExplicitTransformerByInstance(FugueConfig.remapTargets, new RemapTransformer());
         }
-        instance = new ConnectionBlockingTransformer();
         if (FugueConfig.nonUpdateTargets.length > 0) {
-            TransformerDelegate.registerExplicitTransformerByInstance(FugueConfig.nonUpdateTargets, instance);
+            TransformerDelegate.registerExplicitTransformerByInstance(FugueConfig.nonUpdateTargets, new ConnectionBlockingTransformer());
+        }
+        if (FugueConfig.remapLWTargets.length > 0) {
+            TransformerDelegate.registerExplicitTransformerByInstance(FugueConfig.remapLWTargets, new RemapLegacyLWTransformer());
+        }
+        if (FugueConfig.remapReflectionTargets.length > 0) {
+            TransformerDelegate.registerExplicitTransformerByInstance(FugueConfig.remapReflectionTargets, new RemapSunReflectionTransformer());
         }
 
     }

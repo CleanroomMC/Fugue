@@ -104,21 +104,43 @@ public class FugueConfig {
     };
     @Config.Comment(
             """
-            Javax (Java EE) & sun.misc.Reflection redirect targets.
+            Javax (Java EE) redirect targets.
             They are gone in newer Java, so we are redirecting them to a replacement.""")
     public static String[] remapTargets = new String[] {
-            "quaternary.botaniatweaks.modules.botania.config.BotaniaConfig",
-            "quaternary.botaniatweaks.modules.shared.lib.GeneratingFlowers",
-            "quaternary.botaniatweaks.modules.shared.lib.NiceTryMap",
             "com.ldtteam.structurize.util.StructureUtils",
+            "git.jbredwards.fluidlogged_api.api.asm.IASMPlugin",
     };
 
     @Config.Comment(
             """
             Non-Update was gone with Security Manager.
-            As a workaround, These targets will be banned from making connections.""")
+            As a workaround, These targets will be banned from making connections with URL.openStream().
+            This may block more connection than update checks, so if anything gone wrong please open an issue.""")
     public static String[] nonUpdateTargets = new String[] {
             "xxrexraptorxx.customizeddungeonloot.util.UpdateChecker$1",
+            "com.nekokittygames.mffs.common.Versioninfo",
+            "me.ichun.mods.ichunutil.common.thread.ThreadGetResources",
+            "com.buuz135.industrial.proxy.CommonProxy",
+    };
+
+    @Config.Comment(
+            """
+            Foundation comes with some ABI changes.
+            If you got a crash says some methods/fields in LaunchClassLoader not found, that's the remapper you want.
+            As a workaround, These targets will be redirected to new API.""")
+    public static String[] remapLWTargets = new String[] {
+            "zone.rong.loliasm.common.crashes.ModIdentifier",
+            "zone.rong.loliasm.LoliReflector"
+    };
+
+    @Config.Comment(
+            """
+            sun.reflect.Reflection has moved to jdk.internal, and most of its features have replacements.
+            As a workaround, These targets will be redirected to new dummy class.""")
+    public static String[] remapReflectionTargets = new String[] {
+            "quaternary.botaniatweaks.modules.botania.config.BotaniaConfig",
+            "quaternary.botaniatweaks.modules.shared.lib.GeneratingFlowers",
+            "quaternary.botaniatweaks.modules.shared.lib.NiceTryMap",
     };
 
 }

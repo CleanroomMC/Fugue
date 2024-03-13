@@ -8,7 +8,7 @@ import org.objectweb.asm.commons.ClassRemapper;
 import org.objectweb.asm.commons.Remapper;
 import top.outlands.foundation.IExplicitTransformer;
 
-public class ReflectionTransformer implements IExplicitTransformer {
+public class RemapTransformer implements IExplicitTransformer {
 
 
     @Override
@@ -19,7 +19,7 @@ public class ReflectionTransformer implements IExplicitTransformer {
         }
         ClassReader reader = new ClassReader(bytes);
         ClassWriter writer = new ClassWriter(0);
-        ClassVisitor visitor = new ClassRemapper(writer, new ReflectionTransformer.JavaxRemapper());
+        ClassVisitor visitor = new ClassRemapper(writer, new RemapTransformer.JavaxRemapper());
         try {
             reader.accept(visitor, ClassReader.EXPAND_FRAMES);
         } catch (Exception e) {
@@ -30,9 +30,9 @@ public class ReflectionTransformer implements IExplicitTransformer {
     }
 
     static class JavaxRemapper extends Remapper {
-        final String[] fromPrefixes = new String[] { "javax/xml/bind/", "javax/xml/ws/", "javax/ws/", "javax/activation/", "javax/soap/", "javax/jws/" , "sun/reflect/Reflection"};
+        final String[] fromPrefixes = new String[] { "javax/xml/bind/", "javax/xml/ws/", "javax/ws/", "javax/activation/", "javax/soap/", "javax/jws/"};
 
-        final String[] toPrefixes = new String[] { "jakarta/xml/bind/", "jakarta/xml/ws/", "jakarta/ws/", "jakarta/activation/", "jakarta/soap/", "jakarta/jws/", "com/cleanroommc/hackery/Reflection"};
+        final String[] toPrefixes = new String[] { "jakarta/xml/bind/", "jakarta/xml/ws/", "jakarta/ws/", "jakarta/activation/", "jakarta/soap/", "jakarta/jws/"};
 
         @Override
         public String map(String typeName) {

@@ -53,7 +53,6 @@ public class HookHelper {
     }
 
     public static InputStream open(URL instance) throws IOException {
-        Fugue.LOGGER.info("Blocking connection to {}", instance.toString());
-        return deadLink.openStream();
+        throw new IOException("Connection blocked by Fugue!");
     }
 }
