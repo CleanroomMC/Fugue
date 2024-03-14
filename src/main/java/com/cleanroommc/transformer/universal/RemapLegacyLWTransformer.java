@@ -23,7 +23,7 @@ public class RemapLegacyLWTransformer implements IExplicitTransformer {
                 if (methodInsnNode.owner.equals("net/minecraft/launchwrapper/LaunchClassLoader")) {
                     if (methodInsnNode.name.equals("getTransformers")) {
                         methodNode.instructions.insert(abstractInsnNode, new MethodInsnNode(Opcodes.INVOKESTATIC, "top/outlands/foundation/TransformerDelegate", "getTransformers", "()Ljava/util/List;"));
-                        methodNode.instructions.insert(new InsnNode(Opcodes.POP));
+                        methodNode.instructions.insert(abstractInsnNode, new InsnNode(Opcodes.POP));
                         methodNode.instructions.remove(abstractInsnNode);
                     } else {
                         methodNode.instructions.insert(abstractInsnNode, new MethodInsnNode(methodInsnNode.getOpcode(), "top/outlands/foundation/boot/ActualClassLoader", methodInsnNode.name, methodInsnNode.desc));

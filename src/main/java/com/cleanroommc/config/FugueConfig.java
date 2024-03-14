@@ -163,8 +163,8 @@ public class FugueConfig {
             //EntityDistance
             {"net.minecraft.client.gui.GuiOptions", "field_146441_g|field_146443_h"}, //lastScreen|settings
             {"net.minecraft.entity.EntityTracker", "field_72793_b|field_72794_c|field_72795_a"}, //entries|trackedEntityHashTable|world
-            {"net.minecraft.entity.EntityTrackerEntry", "field_73130_b|field_73132_a|field_187262_f|field_73131_c|field_73143_t"}, //range|trackedEntity|maxRange|updateFrequency|sendVelocityUpdates|loadedEntityList
-            {"net.minecraft.world.World", "field_72996_f",}, //
+            {"net.minecraft.entity.EntityTrackerEntry", "field_73130_b|field_73132_a|field_187262_f|field_73131_c|field_73143_t"}, //range|trackedEntity|maxRange|updateFrequency|sendVelocityUpdates
+            {"net.minecraft.world.World", "field_72996_f",}, //loadedEntityList
     }).collect(Collectors.toMap(data -> data[0], data -> data[1]));
 
 }
