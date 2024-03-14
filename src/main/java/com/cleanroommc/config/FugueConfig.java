@@ -1,7 +1,13 @@
 package com.cleanroommc.config;
 
 import com.cleanroommc.Reference;
+import com.google.common.collect.Maps;
 import net.minecraftforge.common.config.Config;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Config(modid = Reference.MOD_ID, name = Reference.MOD_ID)
 @Config.RequiresMcRestart
@@ -130,7 +136,8 @@ public class FugueConfig {
             As a workaround, These targets will be redirected to new API.""")
     public static String[] remapLWTargets = new String[] {
             "zone.rong.loliasm.common.crashes.ModIdentifier",
-            "zone.rong.loliasm.LoliReflector"
+            "zone.rong.loliasm.LoliReflector",
+            "com.github.terminatornl.tickcentral.asm.Compatibility"
     };
 
     @Config.Comment(
@@ -142,5 +149,29 @@ public class FugueConfig {
             "quaternary.botaniatweaks.modules.shared.lib.GeneratingFlowers",
             "quaternary.botaniatweaks.modules.shared.lib.NiceTryMap",
     };
+
+    @Config.Comment(
+            """
+            Target field's final modifier will be removed. No checks will be preformed before removal.
+            All fields with same name will be targeted.
+            Format: S:"foo.bar.classname"=field1|filed2""")
+    public static Map<String, String> finalRemovingTargets = Stream.of(new String[][] {
+            //VintageFix
+            {"net.minecraftforge.event.terraingen.BiomeEvent$BiomeColor", "originalColor"},
+            //Snow Real Magic
+            {"net.minecraft.item.ItemBlock", "field_150939_a"}, //block
+            //EntityDistance
+            {"net.minecraft.client.gui.GuiOptions", "field_146441_g"}, //lastScreen
+            {"net.minecraft.client.gui.GuiOptions", "field_146443_h"}, //settings
+            {"net.minecraft.entity.EntityTracker", "field_72793_b"}, //entries
+            {"net.minecraft.entity.EntityTracker", "field_72794_c"}, //trackedEntityHashTable
+            {"net.minecraft.entity.EntityTracker", "field_72795_a"}, //world
+            {"net.minecraft.entity.EntityTrackerEntry", "field_73130_b"}, //range
+            {"net.minecraft.entity.EntityTrackerEntry", "field_73132_a"}, //trackedEntity
+            {"net.minecraft.entity.EntityTrackerEntry", "field_187262_f"}, //maxRange
+            {"net.minecraft.entity.EntityTrackerEntry", "field_73131_c"}, //updateFrequency
+            {"net.minecraft.entity.EntityTrackerEntry", "field_73143_t"}, //sendVelocityUpdates
+            {"net.minecraft.world.World", "field_72996_f",}, //loadedEntityList
+    }).collect(Collectors.toMap(data -> data[0], data -> data[1]));
 
 }

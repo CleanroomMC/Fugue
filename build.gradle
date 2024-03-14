@@ -31,7 +31,7 @@ minecraft {
 
     mappings channel: mappings_channel, version: mappings_version
 
-    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+    //accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
     legacy {
         fixClasspath = true
@@ -116,9 +116,9 @@ repositories {
 }
 
 dependencies {
-    minecraft "com.cleanroommc:cleanroom:15.24.0.3030"
-    implementation "top.outlands:foundation:0.10.0"
-    implementation 'org.javassist:javassist:3.30.2-GA'
+    minecraft "com.cleanroommc:cleanroom:15.24.0.3031"
+    //implementation "top.outlands:foundation:0.10.0"
+    //implementation 'org.javassist:javassist:3.30.2-GA'
 
     //Charset Lib
     compileOnly(fg.deobf("curse.maven:charset-284523:3656492"))
@@ -162,7 +162,11 @@ dependencies {
     //EnderCore
     compileOnly(fg.deobf("com.enderio.core:EnderCore:1.12.2-0.5.78:core"))
     //runtimeOnly(fg.deobf("com.enderio.core:EnderCore:1.12.2-0.5.78:core"))
-    
+
+    //TickCentral
+    compileOnly(fg.deobf("curse.maven:tickcentral-377201:3140670"))
+    //runtimeOnly(fg.deobf("curse.maven:lag-goggles-283525:4493884"))
+
     //Lag Goggles
     compileOnly(fg.deobf("curse.maven:lag-goggles-283525:4493884"))
     //runtimeOnly(fg.deobf("curse.maven:lag-goggles-283525:4493884"))
@@ -184,10 +188,10 @@ dependencies {
     annotationProcessor 'com.google.guava:guava:33.0.0-jre'
     annotationProcessor 'com.google.code.gson:gson:2.10.1'
 
-    annotationProcessor ('com.cleanroommc:sponge-mixin:0.17.2+mixin.0.8.5')
-    implementation 'com.cleanroommc:sponge-mixin:0.17.6+mixin.0.8.5'
+    annotationProcessor ('com.cleanroommc:sponge-mixin:0.17.6+mixin.0.8.5')
+    //implementation 'com.cleanroommc:sponge-mixin:0.17.6+mixin.0.8.5'
     annotationProcessor ("io.github.llamalad7:mixinextras-common:0.3.5")
-    implementation "io.github.llamalad7:mixinextras-common:0.3.5"
+    //implementation "io.github.llamalad7:mixinextras-common:0.3.5"
 }
 
 
@@ -201,7 +205,7 @@ jar {
                 //'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
                 'FMLCorePlugin': 'com.cleanroommc.FugueLoadingPlugin',
                 'ForceLoadAsMod': true,
-                'FMLAT': 'accesstransformer.cfg',
+                //'FMLAT': 'accesstransformer.cfg',
                 'Implementation-Title': project.name,
                 'Implementation-Version': mod_version,
                 'Implementation-Vendor': mod_authors,

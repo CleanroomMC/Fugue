@@ -1,5 +1,6 @@
 package com.cleanroommc.transformer.universal;
 
+import com.cleanroommc.Fugue;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
@@ -28,10 +29,11 @@ public class RemapLegacyLWTransformer implements IExplicitTransformer {
                         methodNode.instructions.insert(abstractInsnNode, new MethodInsnNode(methodInsnNode.getOpcode(), "top/outlands/foundation/boot/ActualClassLoader", methodInsnNode.name, methodInsnNode.desc));
                         methodNode.instructions.remove(abstractInsnNode);
                     }
-                }
-            } else if (abstractInsnNode instanceof LdcInsnNode ldcInsnNode) {
-                if (ldcInsnNode.cst instanceof Type && ((Type) ldcInsnNode.cst).getDescriptor().equals("Lnet/minecraft/launchwrapper/LaunchClassLoader;")) {
-                    ldcInsnNode.cst = Type.getType(ActualClassLoader.class);
+                } else if (methodInsnNode.getOpcode() == Opcodes.INVOKEVIRTUAL &&
+                        methodInsnNode.owner.equals("java/lang/Class") && (methodInsnNode.name.equals("getDeclaredField") || methodInsnNode.name.equals("getField"))) {
+
+                    methodNode.instructions.insert(abstractInsnNode, new MethodInsnNode(Opcodes.INVOKESTATIC, "com/cleanroommc/helper/HookHelper", "getField", "(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/reflect/Field;"));
+                    methodNode.instructions.remove(abstractInsnNode);
                 }
             }
         }));

@@ -3,6 +3,8 @@ package com.cleanroommc;
 import com.cleanroommc.config.FugueConfig;
 import com.cleanroommc.transformer.*;
 import com.cleanroommc.transformer.universal.*;
+import net.minecraft.launchwrapper.IClassNameTransformer;
+import net.minecraft.launchwrapper.Launch;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 import top.outlands.foundation.IExplicitTransformer;
@@ -14,6 +16,7 @@ import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @IFMLLoadingPlugin.MCVersion("1.12.2")
 @SuppressWarnings("deprecation")
@@ -59,6 +62,12 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
                             "com.github.terminatornl.laggoggles.tickcentral.Initializer"
                     },
                     new InitializerTransformer()
+            );
+            TransformerDelegate.registerExplicitTransformerByInstance(
+                    new String[]{
+                            "com.github.terminatornl.tickcentral.api.ClassSniffer",
+                    },
+                    new ClassSnifferTransformer()
             );
         }
         if (FugueConfig.enableLP){
@@ -130,6 +139,9 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
         }
         if (FugueConfig.remapReflectionTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformerByInstance(FugueConfig.remapReflectionTargets, new RemapSunReflectionTransformer());
+        }
+        if (!FugueConfig.finalRemovingTargets.isEmpty()) {
+            TransformerDelegate.registerExplicitTransformerByInstance(FugueConfig.finalRemovingTargets.keySet().toArray(new String[0]), new FinalStripperTransformer(FugueConfig.finalRemovingTargets));
         }
 
     }

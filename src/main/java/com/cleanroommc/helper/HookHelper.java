@@ -2,11 +2,15 @@ package com.cleanroommc.helper;
 
 import com.cleanroommc.Fugue;
 import net.minecraft.launchwrapper.IClassTransformer;
+import net.minecraft.launchwrapper.LaunchClassLoader;
 import org.objectweb.asm.Opcodes;
 import top.outlands.foundation.TransformerDelegate;
+import top.outlands.foundation.boot.ActualClassLoader;
+import top.outlands.foundation.boot.TransformerHolder;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Field;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -18,6 +22,8 @@ public class HookHelper {
     public static boolean isInterface (int opcode) {
         return opcode == Opcodes.INVOKEINTERFACE;
     }
+
+    public static List<IClassTransformer> transformers;
 
     @SuppressWarnings("deprecation")
     public static String byGetResource() {
@@ -54,5 +60,30 @@ public class HookHelper {
 
     public static InputStream open(URL instance) throws IOException {
         throw new IOException("Connection blocked by Fugue!");
+    }
+
+    public static Field getField(Class<?> clazz, String name) throws NoSuchFieldException {
+        if (!clazz.equals(LaunchClassLoader.class)) return clazz.getField(name);
+        if (name.equals("transformers") || name.equals("renameTransformer")) {
+            HookHelper.transformers = TransformerDelegate.getTransformers();
+            return HookHelper.class.getDeclaredField(name);
+        } else {
+            return ActualClassLoader.class.getDeclaredField(name);
+        }
+    }
+
+
+    public static byte[] redirectGetClassByte(LaunchClassLoader instance, String s) throws IOException {
+        byte[] bytes = null;
+        boolean failed = false;
+        try {
+            bytes = instance.getClassBytes(s);
+        } catch (IOException e) {
+            failed = true;
+        }
+        if (failed || bytes == null) {
+            bytes = instance.findResource(s.replace(".", "/")).openStream().readAllBytes();
+        }
+        return bytes;
     }
 }
