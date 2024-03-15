@@ -2,12 +2,17 @@ package com.cleanroommc;
 
 import com.cleanroommc.config.FugueConfig;
 import com.cleanroommc.transformer.*;
+import com.cleanroommc.transformer.logisticpipes.LogisticPipesTransformer;
+import com.cleanroommc.transformer.logisticpipes.LogisticsClassTransformerTransformer;
+import com.cleanroommc.transformer.logisticpipes.LogisticsPipesClassInjectorTransformer;
+import com.cleanroommc.transformer.loliasm.JavaFixesTransformer;
+import com.cleanroommc.transformer.loliasm.LoliReflectorTransformer;
+import com.cleanroommc.transformer.tickcentral.ClassSnifferTransformer;
+import com.cleanroommc.transformer.tickcentral.InitializerTransformer;
 import com.cleanroommc.transformer.universal.*;
-import net.minecraft.launchwrapper.IClassNameTransformer;
-import net.minecraft.launchwrapper.Launch;
+import com.google.common.collect.ImmutableSet;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
-import top.outlands.foundation.IExplicitTransformer;
 import top.outlands.foundation.TransformerDelegate;
 import top.outlands.foundation.boot.ActualClassLoader;
 import zone.rong.mixinbooter.IEarlyMixinLoader;
@@ -16,7 +21,6 @@ import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 @IFMLLoadingPlugin.MCVersion("1.12.2")
 @SuppressWarnings("deprecation")
@@ -115,6 +119,18 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
                     },
                     new EnumInputClassTransformer()
             );
+        }
+        if (FugueConfig.enableTheASM){
+            TransformerDelegate.registerExplicitTransformerByInstance(
+                    new String[]{
+                            "zone.rong.loliasm.LoliReflector"
+                    },
+                    new LoliReflectorTransformer());
+            TransformerDelegate.registerExplicitTransformerByInstance(
+                    new String[]{
+                            "zone.rong.loliasm.common.java.JavaFixes"
+                    },
+                    new JavaFixesTransformer());
         }
         if (FugueConfig.reflectionPatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformerByInstance(FugueConfig.reflectionPatchTargets, new ReflectFieldTransformer());

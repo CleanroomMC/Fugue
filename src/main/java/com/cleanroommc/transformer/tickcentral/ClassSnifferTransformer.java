@@ -1,4 +1,4 @@
-package com.cleanroommc.transformer;
+package com.cleanroommc.transformer.tickcentral;
 
 import com.cleanroommc.Fugue;
 import javassist.CannotCompileException;

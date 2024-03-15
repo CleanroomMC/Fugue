@@ -1,4 +1,4 @@
-package com.cleanroommc.transformer;
+package com.cleanroommc.transformer.logisticpipes;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;

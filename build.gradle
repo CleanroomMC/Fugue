@@ -116,7 +116,7 @@ repositories {
 }
 
 dependencies {
-    minecraft "com.cleanroommc:cleanroom:15.24.0.3031"
+    minecraft "com.cleanroommc:cleanroom:15.24.0.3032"
     //implementation "top.outlands:foundation:0.10.0"
     //implementation 'org.javassist:javassist:3.30.2-GA'
 

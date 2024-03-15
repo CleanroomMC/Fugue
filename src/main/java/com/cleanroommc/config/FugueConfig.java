@@ -54,8 +54,11 @@ public class FugueConfig {
     public static boolean enableXP = true;
     @Config.Name("Enable TFC Medical Patch")
     public static boolean enableTFCMedical = true;
+    @Config.Name("Enable Censored ASM Patch")
+    public static boolean enableTheASM = true;
 
     @Config.Comment("""
+            About *static final field has no write access*
             Field.set() and Field.get() may throw exceptions in newer Java when trying to handle final fields.
             The few options remain are Unsafe or JNI.
             Classes in this list will be used as transform targets.
@@ -70,6 +73,12 @@ public class FugueConfig {
             "com.tmtravlr.potioncore.PotionCoreEffects",
             "lumien.randomthings.recipes.ModRecipes",
             "net.malisis.core.renderer.font.MinecraftFont",
+            "com.latmod.mods.projectex.ProjectEX",
+            "org.cyclops.evilcraft.core.helper.obfuscation.ObfuscationHelpers",
+            "xyz.phanta.tconevo.integration.IntegrationManager",
+            "xyz.phanta.tconevo.util.JReflect",
+            "xyz.phanta.tconevo.integration.astralsorcery.AstralHooksImpl",
+            "xyz.phanta.tconevo.integration.draconicevolution.client.DraconicShieldHudHandler",
     };
 
     @Config.Comment(
@@ -137,7 +146,8 @@ public class FugueConfig {
     public static String[] remapLWTargets = new String[] {
             "zone.rong.loliasm.common.crashes.ModIdentifier",
             "zone.rong.loliasm.LoliReflector",
-            "com.github.terminatornl.tickcentral.asm.Compatibility"
+            "com.github.terminatornl.tickcentral.asm.Compatibility",
+            "com.charles445.rltweaker.asm.RLTweakerASM"
     };
 
     @Config.Comment(
@@ -146,7 +156,7 @@ public class FugueConfig {
             As a workaround, These targets will be redirected to new dummy class.""")
     public static String[] remapReflectionTargets = new String[] {
             "quaternary.botaniatweaks.modules.botania.config.BotaniaConfig",
-            "quaternary.botaniatweaks.modules.shared.lib.GeneratingFlowers",
+            "quaternary.botaniatweaks.modules.shared.lib.GeneratingFlowers$FlowerData",
             "quaternary.botaniatweaks.modules.shared.lib.NiceTryMap",
     };
 

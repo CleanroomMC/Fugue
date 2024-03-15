@@ -1,12 +1,11 @@
 package com.cleanroommc.helper;
 
-import com.cleanroommc.Fugue;
 import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraft.launchwrapper.LaunchClassLoader;
 import org.objectweb.asm.Opcodes;
 import top.outlands.foundation.TransformerDelegate;
 import top.outlands.foundation.boot.ActualClassLoader;
-import top.outlands.foundation.boot.TransformerHolder;
+import top.outlands.foundation.boot.JVMDriverHolder;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -63,7 +62,7 @@ public class HookHelper {
     }
 
     public static Field getField(Class<?> clazz, String name) throws NoSuchFieldException {
-        if (!clazz.equals(LaunchClassLoader.class)) return clazz.getField(name);
+        if (!clazz.equals(LaunchClassLoader.class)) return JVMDriverHolder.findField(clazz, name);
         if (name.equals("transformers") || name.equals("renameTransformer")) {
             HookHelper.transformers = TransformerDelegate.getTransformers();
             return HookHelper.class.getDeclaredField(name);
