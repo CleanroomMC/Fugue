@@ -3,10 +3,10 @@ package com.cleanroommc.fugue.transformer.universal;
 import com.cleanroommc.fugue.Fugue;
 import javassist.ClassPool;
 import javassist.CtClass;
+import javassist.Modifier;
 import top.outlands.foundation.IExplicitTransformer;
 
 import java.io.ByteArrayInputStream;
-import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.Map;
 

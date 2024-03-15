@@ -130,12 +130,15 @@ public class FugueConfig {
             """
             Non-Update was gone with Security Manager.
             As a workaround, These targets will be banned from making connections with URL.openStream().
+            If you don't need a proxy to access github, you could empty this setting. 
             This may block more connection than update checks, so if anything gone wrong please open an issue.""")
     public static String[] nonUpdateTargets = new String[] {
             "xxrexraptorxx.customizeddungeonloot.util.UpdateChecker$1",
             "com.nekokittygames.mffs.common.Versioninfo",
             "me.ichun.mods.ichunutil.common.thread.ThreadGetResources",
             "com.buuz135.industrial.proxy.CommonProxy",
+            "micdoodle8.mods.galacticraft.core.proxy.ClientProxyCore",
+            "vazkii.quark.base.client.ContributorRewardHandler$ThreadContributorListLoader",
     };
 
     @Config.Comment(
