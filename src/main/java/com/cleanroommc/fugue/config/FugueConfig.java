@@ -105,6 +105,7 @@ public class FugueConfig {
     public static String[] scriptEngineTargets = new String[] {
             "tk.zeitheron.solarflux.api.SolarScriptEngine",
             "com.github.tartaricacid.touhoulittlemaid.proxy.CommonProxy",
+            "tk.zeitheron.expequiv.api.js.JSExpansion",
     };
 
     @Config.Comment(
