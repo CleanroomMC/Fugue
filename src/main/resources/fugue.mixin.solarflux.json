@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "com.cleanroommc.mixin.solarflux",
+  "package": "com.cleanroommc.fugue.mixin.solarflux",
   "compatibilityLevel": "JAVA_8",
   "refmap": "fugue.mixin.refmap.json",
   "mixins": [

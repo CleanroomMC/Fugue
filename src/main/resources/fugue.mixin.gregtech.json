@@ -1,6 +1,6 @@
 {
   "required": false,
-  "package": "com.cleanroommc.mixin.gregtech",
+  "package": "com.cleanroommc.fugue.mixin.gregtech",
   "compatibilityLevel": "JAVA_8",
   "refmap": "fugue.mixin.refmap.json",
   "mixins": [

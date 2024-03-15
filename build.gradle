@@ -203,7 +203,7 @@ jar {
                 'Specification-Version': '1', // We are version 1 of ourselves
                 'FMLCorePluginContainsFMLMod': true,
                 //'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
-                'FMLCorePlugin': 'com.cleanroommc.FugueLoadingPlugin',
+                'FMLCorePlugin': 'com.cleanroommc.fugue.FugueLoadingPlugin',
                 'ForceLoadAsMod': true,
                 //'FMLAT': 'accesstransformer.cfg',
                 'Implementation-Title': project.name,
