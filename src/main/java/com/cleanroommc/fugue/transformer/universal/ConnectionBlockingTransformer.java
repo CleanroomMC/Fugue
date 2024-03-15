@@ -15,7 +15,7 @@ public class ConnectionBlockingTransformer implements IExplicitTransformer {
         classNode.methods.forEach(m -> m.instructions.forEach(n -> {
             if (n.getOpcode() == Opcodes.INVOKEVIRTUAL && n instanceof MethodInsnNode methodInsnNode) {
                 if (methodInsnNode.owner.equals("java/net/URL") && methodInsnNode.name.equals("openStream")) {
-                    m.instructions.insert(methodInsnNode, new MethodInsnNode(Opcodes.INVOKESTATIC, "com/cleanroommc/helper/HookHelper", "open", "(Ljava/net/URL;)Ljava/io/InputStream;", false));
+                    m.instructions.insert(methodInsnNode, new MethodInsnNode(Opcodes.INVOKESTATIC, "com/cleanroommc/fugue/helper/HookHelper", "open", "(Ljava/net/URL;)Ljava/io/InputStream;", false));
                     m.instructions.remove(methodInsnNode);
                 }
             }

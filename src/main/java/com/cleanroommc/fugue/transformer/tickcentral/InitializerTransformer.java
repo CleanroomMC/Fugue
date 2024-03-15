@@ -32,7 +32,7 @@ public class InitializerTransformer implements IExplicitTransformer {
                                     InsnList toInsert = new InsnList();
                                     toInsert.add(new VarInsnNode(Opcodes.ALOAD, 10));
                                     toInsert.add(new VarInsnNode(Opcodes.ILOAD, 6));
-                                    toInsert.add(new MethodInsnNode(Opcodes.INVOKESTATIC, "com/cleanroommc/helper/HookHelper", "isInterface", "(I)Z"));
+                                    toInsert.add(new MethodInsnNode(Opcodes.INVOKESTATIC, "com/cleanroommc/fugue/helper/HookHelper", "isInterface", "(I)Z"));
                                     toInsert.add(new FieldInsnNode(Opcodes.PUTFIELD, "org/objectweb/asm/tree/MethodInsnNode", "itf", "Z"));
                                     instructions.insert(fieldInsnNode, toInsert);
                                     modified = true;

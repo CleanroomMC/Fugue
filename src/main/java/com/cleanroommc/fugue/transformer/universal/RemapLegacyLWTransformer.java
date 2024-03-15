@@ -32,7 +32,7 @@ public class RemapLegacyLWTransformer implements IExplicitTransformer {
                 } else if (methodInsnNode.getOpcode() == Opcodes.INVOKEVIRTUAL &&
                         methodInsnNode.owner.equals("java/lang/Class") && (methodInsnNode.name.equals("getDeclaredField") || methodInsnNode.name.equals("getField"))) {
 
-                    methodNode.instructions.insert(abstractInsnNode, new MethodInsnNode(Opcodes.INVOKESTATIC, "com/cleanroommc/helper/HookHelper", "getField", "(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/reflect/Field;"));
+                    methodNode.instructions.insert(abstractInsnNode, new MethodInsnNode(Opcodes.INVOKESTATIC, "com/cleanroommc/fugue/helper/HookHelper", "getField", "(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/reflect/Field;"));
                     methodNode.instructions.remove(abstractInsnNode);
                 }
             }

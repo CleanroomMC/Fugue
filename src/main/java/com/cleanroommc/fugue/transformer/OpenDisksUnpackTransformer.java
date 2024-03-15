@@ -26,7 +26,7 @@ public class OpenDisksUnpackTransformer implements IExplicitTransformer {
                             {
                                 if (methodInsnNode.name.equals("getPath") && methodInsnNode.owner.equals("java/net/URI"))
                                 {
-                                    instructions.insert(methodInsnNode, new MethodInsnNode(Opcodes.INVOKESTATIC, "com/cleanroommc/helper/HookHelper", "byGetResource", "()Ljava/lang/String;", false));
+                                    instructions.insert(methodInsnNode, new MethodInsnNode(Opcodes.INVOKESTATIC, "com/cleanroommc/fugue/helper/HookHelper", "byGetResource", "()Ljava/lang/String;", false));
                                     instructions.insert(methodInsnNode, new InsnNode(Opcodes.POP));
                                 }
                             }
