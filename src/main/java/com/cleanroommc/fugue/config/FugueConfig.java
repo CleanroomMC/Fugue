@@ -79,6 +79,8 @@ public class FugueConfig {
             "xyz.phanta.tconevo.util.JReflect",
             "xyz.phanta.tconevo.integration.astralsorcery.AstralHooksImpl",
             "xyz.phanta.tconevo.integration.draconicevolution.client.DraconicShieldHudHandler",
+            "com.codetaylor.mc.athenaeum.util.Injector",
+            "lumien.custombackgrounds.CustomBackgrounds",
     };
 
     @Config.Comment(
@@ -125,6 +127,7 @@ public class FugueConfig {
     public static String[] remapTargets = new String[] {
             "com.ldtteam.structurize.util.StructureUtils",
             "git.jbredwards.fluidlogged_api.api.asm.IASMPlugin",
+            "net.silentchaos512.scalinghealth.proxy.ScalingHealthCommonProxy",
     };
 
     @Config.Comment(
@@ -151,7 +154,9 @@ public class FugueConfig {
             "zone.rong.loliasm.common.crashes.ModIdentifier",
             "zone.rong.loliasm.LoliReflector",
             "com.github.terminatornl.tickcentral.asm.Compatibility",
-            "com.charles445.rltweaker.asm.RLTweakerASM"
+            "com.charles445.rltweaker.asm.RLTweakerASM",
+            "com.cleanroommc.groovyscript.sandbox.transformer.AsmDecompileHelper",
+            "com.cleanroommc.modularui.core.ModularUICore",
     };
 
     @Config.Comment(
