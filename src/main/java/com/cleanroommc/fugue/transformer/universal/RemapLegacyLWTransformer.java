@@ -16,6 +16,7 @@ public class RemapLegacyLWTransformer implements IExplicitTransformer {
     @Override
     public byte[] transform(byte[] bytes) {
         ClassReader reader = new ClassReader(bytes);
+        Fugue.LOGGER.info(reader.getClassName());
         ClassNode classNode = new ClassNode();
         reader.accept(classNode, 0);
         classNode.methods.forEach(methodNode -> methodNode.instructions.forEach(abstractInsnNode -> {
@@ -34,6 +35,10 @@ public class RemapLegacyLWTransformer implements IExplicitTransformer {
 
                     methodNode.instructions.insert(abstractInsnNode, new MethodInsnNode(Opcodes.INVOKESTATIC, "com/cleanroommc/fugue/helper/HookHelper", "getField", "(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/reflect/Field;"));
                     methodNode.instructions.remove(abstractInsnNode);
+                }
+            } else if (abstractInsnNode instanceof LdcInsnNode ldcInsnNode) {
+                if (ldcInsnNode.cst instanceof Type && ((Type) ldcInsnNode.cst).getClassName().equals("net.minecraft.launchwrapper.LaunchClassLoader")) {
+                    ldcInsnNode.cst = Type.getType(ActualClassLoader.class);
                 }
             }
         }));

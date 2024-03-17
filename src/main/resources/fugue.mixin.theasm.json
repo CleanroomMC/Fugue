@@ -1,11 +1,10 @@
 {
   "required": true,
-  "package": "com.cleanroommc.fugue.mixin.solarflux",
+  "package": "com.cleanroommc.fugue.mixin.theasm",
   "compatibilityLevel": "JAVA_8",
   "refmap": "fugue.mixin.refmap.json",
   "mixins": [
-    "SolarFluxMixin",
-    "INetworkSFMixin"
+    "ModIdentifierMixin"
   ],
   "client": [
   ],

@@ -83,8 +83,6 @@ public class FugueConfig {
             "xyz.phanta.tconevo.util.JReflect",
             "xyz.phanta.tconevo.integration.astralsorcery.AstralHooksImpl",
             "xyz.phanta.tconevo.integration.draconicevolution.client.DraconicShieldHudHandler",
-            "com.codetaylor.mc.athenaeum.util.Injector",
-            "lumien.custombackgrounds.CustomBackgrounds",
             "com.noobanidus.variegated.compat.vanilla.handlers.MansionBiomeTypesHandler",
     };
 
@@ -124,7 +122,9 @@ public class FugueConfig {
     @Config.Name("UUID Patch Target List")
     public static String[] UUIDTargets = new String[] {
             "com.Shultrea.Rin.Utility_Sector.HurtPatchHandler",
-            "tk.zeitheron.solarflux.init.ItemsSF",
+            "tk.zeitheron.solarflux.items.ItemEfficiencyUpgrade",
+            "tk.zeitheron.solarflux.items.ItemTransferRateUpgrade",
+            "tk.zeitheron.solarflux.items.ItemCapacityUpgrade",
     };
     @Config.Comment(
             """

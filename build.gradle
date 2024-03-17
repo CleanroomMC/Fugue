@@ -179,10 +179,14 @@ dependencies {
     compileOnly(fg.deobf("curse.maven:logistics-pipes-232838:4849512"))
     //runtimeOnly(fg.deobf("curse.maven:logistics-pipes-232838:4849512"))
 
-    //Logistics Pipes
+    //GTCEU
     compileOnly(fg.deobf("curse.maven:gtceu-557242:5050979"))
     //runtimeOnly(fg.deobf("curse.maven:gtceu-557242:5050979"))
-    
+
+    //The ASM
+    compileOnly(fg.deobf("curse.maven:the-asm-460609:5120166"))
+    //runtimeOnly(fg.deobf("curse.maven:gtceu-557242:5050979"))
+
     // Mixin and it's common libraries
     annotationProcessor 'org.ow2.asm:asm:9.6'
     annotationProcessor 'com.google.guava:guava:33.0.0-jre'

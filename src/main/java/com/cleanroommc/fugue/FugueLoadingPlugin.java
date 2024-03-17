@@ -2,6 +2,7 @@ package com.cleanroommc.fugue;
 
 import com.cleanroommc.fugue.config.FugueConfig;
 import com.cleanroommc.fugue.transformer.*;
+import com.cleanroommc.fugue.transformer.loliasm.LoliFMLCallHookTransformer;
 import com.cleanroommc.fugue.transformer.universal.*;
 import com.cleanroommc.fugue.transformer.logisticpipes.LogisticPipesTransformer;
 import com.cleanroommc.fugue.transformer.logisticpipes.LogisticsClassTransformerTransformer;
@@ -10,6 +11,7 @@ import com.cleanroommc.fugue.transformer.loliasm.JavaFixesTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.LoliReflectorTransformer;
 import com.cleanroommc.fugue.transformer.tickcentral.ClassSnifferTransformer;
 import com.cleanroommc.fugue.transformer.tickcentral.InitializerTransformer;
+import net.minecraft.launchwrapper.Launch;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 import top.outlands.foundation.TransformerDelegate;
@@ -130,6 +132,12 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
                             "zone.rong.loliasm.common.java.JavaFixes"
                     },
                     new JavaFixesTransformer());
+            TransformerDelegate.registerExplicitTransformerByInstance(
+                    new String[]{
+                            "zone.rong.loliasm.core.LoliFMLCallHook"
+                    },
+                    new LoliFMLCallHookTransformer()
+            );
         }
         if (FugueConfig.reflectionPatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformerByInstance(FugueConfig.reflectionPatchTargets, new ReflectFieldTransformer());
@@ -199,6 +207,14 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
 
     @Override
     public List<String> getMixinConfigs() {
-        return Collections.emptyList();
+        return Collections.singletonList("fugue.mixin.theasm.json");
+    }
+
+    @Override
+    public boolean shouldMixinConfigQueue(String mixinConfig) {
+        return switch (mixinConfig) {
+            case "fugue.mixin.theasm.json" -> Launch.classLoader.isClassExist("zone.rong.loliasm.common.crashes.ModIdentifier") && FugueConfig.enableTheASM;
+            default -> true;
+        };
     }
 }
