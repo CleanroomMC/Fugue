@@ -66,6 +66,10 @@ public class FugueConfig {
     )
     @Config.Name("Reflection Patch Target List")
     public static String[] reflectionPatchTargets = new String[] {
+            "com.fantasticsource.tools.ReflectionTool",
+            "lumien.custombackgrounds.CustomBackgrounds",
+            "com.fantasticsource.noadvancements.NoAdvancements",
+            "com.codetaylor.mc.athenaeum.util.Injector",
             "epicsquid.mysticallib.hax.Hax",
             "vazkii.quark.world.feature.TreeVariants",
             "vazkii.quark.base.handler.OverrideRegistryHandler",
