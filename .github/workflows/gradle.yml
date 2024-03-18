@@ -27,7 +27,7 @@ jobs:
         distribution: 'temurin'
     - uses: gradle/gradle-build-action@v2.9.0
       with:
-        gradle-version: 8.5
+        gradle-version: 8.6
       name: Set up Gradle
     - name: Add permission
       run: chmod +x ./gradlew
