@@ -19,7 +19,8 @@ public class LateMixinLoader implements ILateMixinLoader {
                 "fugue.mixin.solarflux.json",
                 "fugue.mixin.custommainmenu.json",
                 "fugue.mixin.hammercore.json",
-                "fugue.mixin.gregtech.json"
+                "fugue.mixin.gregtech.json",
+                "fugue.mixin.mcjty.json"
         );
     }
 
@@ -35,6 +36,7 @@ public class LateMixinLoader implements ILateMixinLoader {
             case "fugue.mixin.custommainmenu.json" -> Loader.isModLoaded("custommainmenu") && FugueConfig.enableCMM;
             case "fugue.mixin.hammercore.json" -> Loader.isModLoaded("hammercore") && FugueConfig.enableHammerCore;
             case "fugue.mixin.gregtech.json" -> Loader.isModLoaded("gregtech") && FugueConfig.enableGTCEU;
+            case "fugue.mixin.mcjty.json" -> Loader.isModLoaded("mcjtylib_ng") && FugueConfig.enableMcjty;
             default -> ILateMixinLoader.super.shouldMixinConfigQueue(mixinConfig);
         };
     }

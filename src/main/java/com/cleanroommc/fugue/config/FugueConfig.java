@@ -56,6 +56,8 @@ public class FugueConfig {
     public static boolean enableTFCMedical = true;
     @Config.Name("Enable Censored ASM Patch")
     public static boolean enableTheASM = true;
+    @Config.Name("Enable mcjtylib Patch")
+    public static boolean enableMcjty = true;
 
     @Config.Comment("""
             About *static final field has no write access*
