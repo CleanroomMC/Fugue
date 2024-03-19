@@ -138,7 +138,8 @@ public class FugueConfig {
     public static String[] remapTargets = new String[] {
             "com.ldtteam.structurize.util.StructureUtils",
             "git.jbredwards.fluidlogged_api.api.asm.IASMPlugin",
-            "net.silentchaos512.scalinghealth.proxy.ScalingHealthCommonProxy",
+            "net.silentchaos512.lib.config.ConfigBaseNew",
+            "net.silentchaos512.lib.tile.SyncVariable",
             "appeng.me.GridStorage",
             "net.creeperhost.minetogether.misc.Callbacks",
     };
