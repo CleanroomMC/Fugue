@@ -177,6 +177,7 @@ public class FugueConfig {
             "quaternary.botaniatweaks.modules.shared.lib.GeneratingFlowers$FlowerData",
             "quaternary.botaniatweaks.modules.shared.lib.NiceTryMap",
             "thedarkcolour.futuremc.compat.quark.QuarkCompat",
+            "thedarkcolour.futuremc.world.gen.feature.BeeNestGenerator",
     };
 
     @Config.Comment(
