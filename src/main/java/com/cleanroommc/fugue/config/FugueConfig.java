@@ -58,6 +58,8 @@ public class FugueConfig {
     public static boolean enableTheASM = true;
     @Config.Name("Enable mcjtylib Patch")
     public static boolean enableMcjty = true;
+    @Config.Name("Enable ZeroCore (used by ExtremeReactor) Patch")
+    public static boolean enableZeroCore = true;
 
     @Config.Comment("""
             About *static final field has no write access*
@@ -132,19 +134,22 @@ public class FugueConfig {
             """
             Javax (Java EE) redirect targets.
             They are gone in newer Java, so we are redirecting them to a replacement.""")
+    @Config.Name("Javax Patch Target List")
     public static String[] remapTargets = new String[] {
             "com.ldtteam.structurize.util.StructureUtils",
             "git.jbredwards.fluidlogged_api.api.asm.IASMPlugin",
             "net.silentchaos512.scalinghealth.proxy.ScalingHealthCommonProxy",
             "appeng.me.GridStorage",
+            "net.creeperhost.minetogether.misc.Callbacks",
     };
 
     @Config.Comment(
             """
             Non-Update was gone with Security Manager.
             As a workaround, These targets will be banned from making connections with URL.openStream().
-            If you don't need a proxy to access github, you could empty this setting. 
+            If you don't need a proxy to access github, you could empty this setting.
             This may block more connection than update checks, so if anything gone wrong please open an issue.""")
+    @Config.Name("Connection Blocking List")
     public static String[] nonUpdateTargets = new String[] {
             "xxrexraptorxx.customizeddungeonloot.util.UpdateChecker$1",
             "com.nekokittygames.mffs.common.Versioninfo",
@@ -159,6 +164,7 @@ public class FugueConfig {
             Foundation comes with some ABI changes.
             If you got a crash says some methods/fields in LaunchClassLoader not found, that's the remapper you want.
             As a workaround, These targets will be redirected to new API.""")
+    @Config.Name("Launch Wrapper API Change Patching List")
     public static String[] remapLWTargets = new String[] {
             "zone.rong.loliasm.common.crashes.ModIdentifier",
             "zone.rong.loliasm.LoliReflector",
@@ -172,6 +178,7 @@ public class FugueConfig {
             """
             sun.reflect.Reflection has moved to jdk.internal, and most of its features have replacements.
             As a workaround, These targets will be redirected to new dummy class.""")
+    @Config.Name("sun.misc.Reflection Patching List")
     public static String[] remapReflectionTargets = new String[] {
             "quaternary.botaniatweaks.modules.botania.config.BotaniaConfig",
             "quaternary.botaniatweaks.modules.shared.lib.GeneratingFlowers$FlowerData",
@@ -185,6 +192,7 @@ public class FugueConfig {
             Target field's final modifier will be removed. No checks will be preformed before removal.
             All fields with same name will be targeted.
             Format: S:"foo.bar.classname"=field1|filed2""")
+    @Config.Name("Final Fields Patching List")
     public static Map<String, String> finalRemovingTargets = Stream.of(new String[][] {
             //VintageFix
             {"net.minecraftforge.event.terraingen.BiomeEvent$BiomeColor", "originalColor"},

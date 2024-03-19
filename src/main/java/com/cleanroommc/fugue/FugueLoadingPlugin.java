@@ -139,6 +139,14 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
                     new LoliFMLCallHookTransformer()
             );
         }
+        if (FugueConfig.enableZeroCore) {
+            TransformerDelegate.registerExplicitTransformerByInstance(
+                    new String[]{
+                            "it.zerono.mods.zerocore.lib.client.render.DisplayList"
+                    },
+                    new DisplayListTransformer()
+            );
+        }
         if (FugueConfig.reflectionPatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformerByInstance(FugueConfig.reflectionPatchTargets, new ReflectFieldTransformer());
         }

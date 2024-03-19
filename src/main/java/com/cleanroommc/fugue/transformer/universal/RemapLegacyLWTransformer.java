@@ -16,7 +16,6 @@ public class RemapLegacyLWTransformer implements IExplicitTransformer {
     @Override
     public byte[] transform(byte[] bytes) {
         ClassReader reader = new ClassReader(bytes);
-        Fugue.LOGGER.info(reader.getClassName());
         ClassNode classNode = new ClassNode();
         reader.accept(classNode, 0);
         classNode.methods.forEach(methodNode -> methodNode.instructions.forEach(abstractInsnNode -> {
