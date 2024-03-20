@@ -75,7 +75,7 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
             TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"customskinloader.forge.ForgeTweaker"}, new ForgeTweakerTransformer());
         }
         if (FugueConfig.getCodeSourcePatchTargets.length > 0) {
-            TransformerDelegate.registerExplicitTransformerByInstance(FugueConfig.getCodeSourcePatchTargets, new MixinLoadingTweakerTransformer());
+            TransformerDelegate.registerExplicitTransformerByInstance(FugueConfig.getCodeSourcePatchTargets, new ITweakerTransformer());
         }
         if (FugueConfig.reflectionPatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformerByInstance(FugueConfig.reflectionPatchTargets, new ReflectFieldTransformer());

@@ -1,4 +1,4 @@
-package com.cleanroommc.fugue.transformer;
+package com.cleanroommc.fugue.transformer.universal;
 
 import com.cleanroommc.fugue.Fugue;
 import javassist.CannotCompileException;
@@ -10,9 +10,8 @@ import javassist.expr.MethodCall;
 import top.outlands.foundation.IExplicitTransformer;
 
 import java.io.ByteArrayInputStream;
-import java.util.Arrays;
 
-public class MixinLoadingTweakerTransformer implements IExplicitTransformer {
+public class ITweakerTransformer implements IExplicitTransformer {
     @Override
     public byte[] transform(byte[] bytes) {
         try {
