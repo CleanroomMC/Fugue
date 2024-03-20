@@ -63,8 +63,8 @@ public class FugueConfig {
     @Config.Name("Enable SmoothFont Patch")
     @Config.Comment("It failed to patch FontRenderer for no fxxking reason")
     public static boolean enableSmoothFont = false;
-    @Config.Name("Enable Perspective Mod Redux Patch")
-    public static boolean enablePMR = true;
+    @Config.Name("Enable Custom Skin Loader Patch")
+    public static boolean enableCSL = true;
 
     @Config.Comment("""
             About *static final field has no write access*
@@ -191,6 +191,19 @@ public class FugueConfig {
             "quaternary.botaniatweaks.modules.shared.lib.NiceTryMap",
             "thedarkcolour.futuremc.compat.quark.QuarkCompat",
             "thedarkcolour.futuremc.world.gen.feature.BeeNestGenerator",
+    };
+    @Config.Comment(
+            """
+            ITweaker classes loaded in LCL will be defined in a different code source like file:jar:.
+            Add them to list could redirect their toURI() to a decent jar URL.
+            """)
+    @Config.Name("getCodeSource() Patch List")
+    public static String[] getCodeSourcePatchTargets = new String[] {
+            "pm.c7.pmr.tweaker.MixinLoadingTweaker",
+            "customskinloader.forge.platform.IFMLPlatform$FMLPlatformInitializer",
+            "pcl.opendisks.OpenDisksUnpack",
+            "pcl.opensecurity.util.SoundUnpack",
+            "pcl.OpenFM.misc.DepLoader",
     };
 
     @Config.Comment(

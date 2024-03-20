@@ -22,7 +22,7 @@ public class HookHelper {
     public static List<IClassTransformer> transformers;
 
     @SuppressWarnings("deprecation")
-    public static String byGetResource() {
+    private static String byGetResource() {
         Class<?> clazz = StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE).getCallerClass();
         URL classResource = clazz.getResource(clazz.getSimpleName() + ".class");
         if (classResource == null) {

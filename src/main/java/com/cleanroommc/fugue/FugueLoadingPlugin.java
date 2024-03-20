@@ -30,114 +30,40 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
     static {
         ConfigManager.register(FugueConfig.class);
         if (FugueConfig.enableEnderCore) {
-            TransformerDelegate.registerExplicitTransformerByInstance(
-                    new String[]{
-                            "com.enderio.core.common.transform.EnderCoreTransformer"
-                    },
-                    new EnderCoreTransformerTransformer()
-            );
+            TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"com.enderio.core.common.transform.EnderCoreTransformer"},new EnderCoreTransformerTransformer());
         }
         if (FugueConfig.enableAR) {
-            TransformerDelegate.registerExplicitTransformerByInstance(
-                    new String[]{
-                            "zmaster587.advancedRocketry.asm.ClassTransformer"
-                    },
-                    new ClassTransformerTransformer()
-            );
+            TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"zmaster587.advancedRocketry.asm.ClassTransformer"},new ClassTransformerTransformer());
         }
         if (FugueConfig.enableShoulderSurfing) {
-            TransformerDelegate.registerExplicitTransformerByInstance(
-                    new String[]{
-                            "com.teamderpy.shouldersurfing.asm.transformers.EntityPlayerRayTrace"
-                    },
-                    new EntityPlayerRayTraceTransformer()
-            );
+            TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"com.teamderpy.shouldersurfing.asm.transformers.EntityPlayerRayTrace"},new EntityPlayerRayTraceTransformer());
         }
         if (FugueConfig.enableSA){
-            TransformerDelegate.registerExplicitTransformerByInstance(
-                    new String[]{
-                            "pl.asie.splashanimation.core.SplashProgressTransformer"
-                    },
-                    new SplashProgressTransformerTransformer()
-            );
+            TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"pl.asie.splashanimation.core.SplashProgressTransformer"},new SplashProgressTransformerTransformer());
         }
         if (FugueConfig.enableTickCentral){
-            TransformerDelegate.registerExplicitTransformerByInstance(
-                    new String[]{
-                            "com.github.terminatornl.laggoggles.tickcentral.Initializer"
-                    },
-                    new InitializerTransformer()
-            );
-            TransformerDelegate.registerExplicitTransformerByInstance(
-                    new String[]{
-                            "com.github.terminatornl.tickcentral.api.ClassSniffer",
-                    },
-                    new ClassSnifferTransformer()
-            );
+            TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"com.github.terminatornl.laggoggles.tickcentral.Initializer"},new InitializerTransformer());
+            TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"com.github.terminatornl.tickcentral.api.ClassSniffer",},new ClassSnifferTransformer());
         }
         if (FugueConfig.enableLP){
-            TransformerDelegate.registerExplicitTransformerByInstance(
-                    new String[]{
-                            "logisticspipes.asm.mcmp.ClassBlockMultipartContainerHandler",
-                            "logisticspipes.asm.td.ClassRenderDuctItemsHandler"
-                    },
-                    new LogisticPipesTransformer(1)
-            );
-            TransformerDelegate.registerExplicitTransformerByInstance(
-                    new String[]{
-                            "logisticspipes.asm.td.ClassTravelingItemHandler"
-                    },
-                    new LogisticPipesTransformer(3)
-            );
-            TransformerDelegate.registerExplicitTransformerByInstance(
-                    new String[]{
-                            "logisticspipes.asm.LogisticsClassTransformer",
-                            "logisticspipes.asm.LogisticsPipesClassInjector"
-                    },
-                    new LogisticsClassTransformerTransformer(ActualClassLoader.class)
-            );
-            TransformerDelegate.registerExplicitTransformerByInstance(
-                    new String[]{
-                            "logisticspipes.asm.LogisticsPipesClassInjector"
-                    },
-                    new LogisticsPipesClassInjectorTransformer()
-            );
-        }
-        if (FugueConfig.enableOpenAddons){
-            TransformerDelegate.registerExplicitTransformerByInstance(
-                    new String[]{
-                            "pcl.opendisks.OpenDisksUnpack",
-                            "pcl.opensecurity.util.SoundUnpack",
-                            "pcl.OpenFM.misc.DepLoader"
-                    },
-                    new OpenDisksUnpackTransformer()
-            );
+            TransformerDelegate.registerExplicitTransformerByInstance(new String[]{
+                    "logisticspipes.asm.mcmp.ClassBlockMultipartContainerHandler",
+                    "logisticspipes.asm.td.ClassRenderDuctItemsHandler"
+            },new LogisticPipesTransformer(1));
+            TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"logisticspipes.asm.td.ClassTravelingItemHandler"},new LogisticPipesTransformer(3));
+            TransformerDelegate.registerExplicitTransformerByInstance(new String[]{
+                    "logisticspipes.asm.LogisticsClassTransformer",
+                    "logisticspipes.asm.LogisticsPipesClassInjector"
+            },new LogisticsClassTransformerTransformer(ActualClassLoader.class));
+            TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"logisticspipes.asm.LogisticsPipesClassInjector"}, new LogisticsPipesClassInjectorTransformer());
         }
         if (FugueConfig.enableEC){
-            TransformerDelegate.registerExplicitTransformerByInstance(
-                    new String[]{
-                            "austeretony.enchcontrol.common.core.EnumInputClass"
-                    },
-                    new EnumInputClassTransformer()
-            );
+            TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"austeretony.enchcontrol.common.core.EnumInputClass"},new EnumInputClassTransformer());
         }
-        if (FugueConfig.enableTheASM){
-            TransformerDelegate.registerExplicitTransformerByInstance(
-                    new String[]{
-                            "zone.rong.loliasm.LoliReflector"
-                    },
-                    new LoliReflectorTransformer());
-            TransformerDelegate.registerExplicitTransformerByInstance(
-                    new String[]{
-                            "zone.rong.loliasm.common.java.JavaFixes"
-                    },
-                    new JavaFixesTransformer());
-            TransformerDelegate.registerExplicitTransformerByInstance(
-                    new String[]{
-                            "zone.rong.loliasm.core.LoliFMLCallHook"
-                    },
-                    new LoliFMLCallHookTransformer()
-            );
+        if (FugueConfig.enableTheASM) {
+            TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"zone.rong.loliasm.LoliReflector"},new LoliReflectorTransformer());
+            TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"zone.rong.loliasm.common.java.JavaFixes"},new JavaFixesTransformer());
+            TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"zone.rong.loliasm.core.LoliFMLCallHook"},new LoliFMLCallHookTransformer());
         }
         if (FugueConfig.enableZeroCore) {
             TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"it.zerono.mods.zerocore.lib.client.render.DisplayList"}, new DisplayListTransformer());
@@ -145,8 +71,11 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
         if (FugueConfig.enableSmoothFont) {
             TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"net.minecraft.client.gui.FontRenderer"}, new FontRendererTransformer());
         }
-        if (FugueConfig.enablePMR) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"pm.c7.pmr.tweaker.MixinLoadingTweaker"}, new MixinLoadingTweakerTransformer());
+        if (FugueConfig.enableCSL) {
+            TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"customskinloader.forge.ForgeTweaker"}, new ForgeTweakerTransformer());
+        }
+        if (FugueConfig.getCodeSourcePatchTargets.length > 0) {
+            TransformerDelegate.registerExplicitTransformerByInstance(FugueConfig.getCodeSourcePatchTargets, new MixinLoadingTweakerTransformer());
         }
         if (FugueConfig.reflectionPatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformerByInstance(FugueConfig.reflectionPatchTargets, new ReflectFieldTransformer());
