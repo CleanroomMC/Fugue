@@ -145,6 +145,9 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
         if (FugueConfig.enableSmoothFont) {
             TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"net.minecraft.client.gui.FontRenderer"}, new FontRendererTransformer());
         }
+        if (FugueConfig.enablePMR) {
+            TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"pm.c7.pmr.tweaker.MixinLoadingTweaker"}, new MixinLoadingTweakerTransformer());
+        }
         if (FugueConfig.reflectionPatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformerByInstance(FugueConfig.reflectionPatchTargets, new ReflectFieldTransformer());
         }

@@ -62,7 +62,9 @@ public class FugueConfig {
     public static boolean enableZeroCore = true;
     @Config.Name("Enable SmoothFont Patch")
     @Config.Comment("It failed to patch FontRenderer for no fxxking reason")
-    public static boolean enableSmoothFont = true;
+    public static boolean enableSmoothFont = false;
+    @Config.Name("Enable Perspective Mod Redux Patch")
+    public static boolean enablePMR = true;
 
     @Config.Comment("""
             About *static final field has no write access*

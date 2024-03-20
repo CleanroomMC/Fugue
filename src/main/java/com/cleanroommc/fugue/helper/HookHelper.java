@@ -10,10 +10,7 @@ import top.outlands.foundation.boot.JVMDriverHolder;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
+import java.net.*;
 import java.nio.file.Paths;
 import java.util.List;
 
@@ -42,6 +39,10 @@ public class HookHelper {
             }
         }
         throw new RuntimeException("Invalid Jar File URL String");
+    }
+
+    public static URI toURI(URL url) throws IOException, URISyntaxException {
+        return  ((JarURLConnection)url.openConnection()).getJarFileURL().toURI();
     }
 
     public static List<IClassTransformer> getTransformers() {
