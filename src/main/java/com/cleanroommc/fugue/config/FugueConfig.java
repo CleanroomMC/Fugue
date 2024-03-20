@@ -60,6 +60,9 @@ public class FugueConfig {
     public static boolean enableMcjty = true;
     @Config.Name("Enable ZeroCore (used by ExtremeReactor) Patch")
     public static boolean enableZeroCore = true;
+    @Config.Name("Enable SmoothFont Patch")
+    @Config.Comment("It failed to patch FontRenderer for no fxxking reason")
+    public static boolean enableSmoothFont = true;
 
     @Config.Comment("""
             About *static final field has no write access*

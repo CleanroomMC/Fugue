@@ -140,12 +140,10 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
             );
         }
         if (FugueConfig.enableZeroCore) {
-            TransformerDelegate.registerExplicitTransformerByInstance(
-                    new String[]{
-                            "it.zerono.mods.zerocore.lib.client.render.DisplayList"
-                    },
-                    new DisplayListTransformer()
-            );
+            TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"it.zerono.mods.zerocore.lib.client.render.DisplayList"}, new DisplayListTransformer());
+        }
+        if (FugueConfig.enableSmoothFont) {
+            TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"net.minecraft.client.gui.FontRenderer"}, new FontRendererTransformer());
         }
         if (FugueConfig.reflectionPatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformerByInstance(FugueConfig.reflectionPatchTargets, new ReflectFieldTransformer());
