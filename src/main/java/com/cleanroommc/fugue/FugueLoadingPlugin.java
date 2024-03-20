@@ -1,17 +1,16 @@
 package com.cleanroommc.fugue;
 
 import com.cleanroommc.fugue.config.FugueConfig;
-import com.cleanroommc.fugue.config.FugueConfig.modPatchConfig;
 import com.cleanroommc.fugue.transformer.*;
-import com.cleanroommc.fugue.transformer.loliasm.LoliFMLCallHookTransformer;
-import com.cleanroommc.fugue.transformer.universal.*;
 import com.cleanroommc.fugue.transformer.logisticpipes.LogisticPipesTransformer;
 import com.cleanroommc.fugue.transformer.logisticpipes.LogisticsClassTransformerTransformer;
 import com.cleanroommc.fugue.transformer.logisticpipes.LogisticsPipesClassInjectorTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.JavaFixesTransformer;
+import com.cleanroommc.fugue.transformer.loliasm.LoliFMLCallHookTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.LoliReflectorTransformer;
 import com.cleanroommc.fugue.transformer.tickcentral.ClassSnifferTransformer;
 import com.cleanroommc.fugue.transformer.tickcentral.InitializerTransformer;
+import com.cleanroommc.fugue.transformer.universal.*;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
