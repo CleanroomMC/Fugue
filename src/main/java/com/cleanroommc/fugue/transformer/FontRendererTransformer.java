@@ -1,5 +1,6 @@
 package com.cleanroommc.fugue.transformer;
 
+import net.minecraft.launchwrapper.Launch;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
@@ -10,9 +11,11 @@ import top.outlands.foundation.IExplicitTransformer;
 public class FontRendererTransformer implements IExplicitTransformer {
     @Override
     public byte[] transform(byte[] bytes) {
+        if (!Launch.classLoader.isClassLoaded("bre.smoothfont.asm.CorePlugin")) return bytes; // Don't transform if smooth font doesn't exist
         ClassNode classNode = new ClassNode();
         ClassReader classReader = new ClassReader(bytes);
         classReader.accept(classNode, 0);
+        // Everything below is srg name only! I don't think anyone is installing smooth font in dev
         var m1 = classNode.methods.stream().filter(methodNode -> methodNode.name.equals("func_181559_a")).findFirst().get();
         m1.instructions.forEach(n -> {
             if (n.getOpcode() == Opcodes.INVOKEVIRTUAL && n instanceof MethodInsnNode methodInsnNode) {

@@ -52,8 +52,8 @@ public class ModPatchConfig {
     @Config.Name("Enable ZeroCore (used by ExtremeReactor) Patch")
     public boolean enableZeroCore = true;
     @Config.Name("Enable SmoothFont Patch")
-    @Config.Comment("It failed to patch FontRenderer for no fxxking reason. DO NOT enable if you DIDN'T install SmoothFont cause it will crash.")
-    public boolean enableSmoothFont = false;
+    @Config.Comment("It failed to patch FontRenderer for no fxxking reason.")
+    public boolean enableSmoothFont = true;
     @Config.Name("Enable Custom Skin Loader Patch")
     public boolean enableCSL = true;
 }

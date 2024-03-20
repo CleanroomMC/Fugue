@@ -16,7 +16,6 @@ public class ITweakerTransformer implements IExplicitTransformer {
     public byte[] transform(byte[] bytes) {
         try {
             CtClass cc = ClassPool.getDefault().makeClass(new ByteArrayInputStream(bytes));
-            Fugue.LOGGER.info(cc.getName());
             for (CtMethod ctMethod : cc.getDeclaredMethods()) {
                 ctMethod.instrument(new ExprEditor() {
                     @Override
