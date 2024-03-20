@@ -1,6 +1,7 @@
 package com.cleanroommc.fugue;
 
 import com.cleanroommc.fugue.config.FugueConfig;
+import com.cleanroommc.fugue.config.FugueConfig.modPatchConfig;
 import com.cleanroommc.fugue.transformer.*;
 import com.cleanroommc.fugue.transformer.loliasm.LoliFMLCallHookTransformer;
 import com.cleanroommc.fugue.transformer.universal.*;
@@ -29,23 +30,23 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
 
     static {
         ConfigManager.register(FugueConfig.class);
-        if (FugueConfig.enableEnderCore) {
+        if (FugueConfig.modPatchConfig.enableEnderCore) {
             TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"com.enderio.core.common.transform.EnderCoreTransformer"},new EnderCoreTransformerTransformer());
         }
-        if (FugueConfig.enableAR) {
+        if (FugueConfig.modPatchConfig.enableAR) {
             TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"zmaster587.advancedRocketry.asm.ClassTransformer"},new ClassTransformerTransformer());
         }
-        if (FugueConfig.enableShoulderSurfing) {
+        if (FugueConfig.modPatchConfig.enableShoulderSurfing) {
             TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"com.teamderpy.shouldersurfing.asm.transformers.EntityPlayerRayTrace"},new EntityPlayerRayTraceTransformer());
         }
-        if (FugueConfig.enableSA){
+        if (FugueConfig.modPatchConfig.enableSA){
             TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"pl.asie.splashanimation.core.SplashProgressTransformer"},new SplashProgressTransformerTransformer());
         }
-        if (FugueConfig.enableTickCentral){
+        if (FugueConfig.modPatchConfig.enableTickCentral){
             TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"com.github.terminatornl.laggoggles.tickcentral.Initializer"},new InitializerTransformer());
             TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"com.github.terminatornl.tickcentral.api.ClassSniffer",},new ClassSnifferTransformer());
         }
-        if (FugueConfig.enableLP){
+        if (FugueConfig.modPatchConfig.enableLP){
             TransformerDelegate.registerExplicitTransformerByInstance(new String[]{
                     "logisticspipes.asm.mcmp.ClassBlockMultipartContainerHandler",
                     "logisticspipes.asm.td.ClassRenderDuctItemsHandler"
@@ -57,21 +58,21 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
             },new LogisticsClassTransformerTransformer(ActualClassLoader.class));
             TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"logisticspipes.asm.LogisticsPipesClassInjector"}, new LogisticsPipesClassInjectorTransformer());
         }
-        if (FugueConfig.enableEC){
+        if (FugueConfig.modPatchConfig.enableEC){
             TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"austeretony.enchcontrol.common.core.EnumInputClass"},new EnumInputClassTransformer());
         }
-        if (FugueConfig.enableTheASM) {
+        if (FugueConfig.modPatchConfig.enableTheASM) {
             TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"zone.rong.loliasm.LoliReflector"},new LoliReflectorTransformer());
             TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"zone.rong.loliasm.common.java.JavaFixes"},new JavaFixesTransformer());
             TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"zone.rong.loliasm.core.LoliFMLCallHook"},new LoliFMLCallHookTransformer());
         }
-        if (FugueConfig.enableZeroCore) {
+        if (FugueConfig.modPatchConfig.enableZeroCore) {
             TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"it.zerono.mods.zerocore.lib.client.render.DisplayList"}, new DisplayListTransformer());
         }
-        if (FugueConfig.enableSmoothFont) {
+        if (FugueConfig.modPatchConfig.enableSmoothFont) {
             TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"net.minecraft.client.gui.FontRenderer"}, new FontRendererTransformer());
         }
-        if (FugueConfig.enableCSL) {
+        if (FugueConfig.modPatchConfig.enableCSL) {
             TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"customskinloader.forge.ForgeTweaker"}, new ForgeTweakerTransformer());
         }
         if (FugueConfig.getCodeSourcePatchTargets.length > 0) {
@@ -109,7 +110,7 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
     
     @Override
     public String[] getASMTransformerClass() {
-        if (FugueConfig.enableTFCMedical) {
+        if (FugueConfig.modPatchConfig.enableTFCMedical) {
             TransformerDelegate.registerExplicitTransformerByInstance(
                     new String[]{
                             "com.lumintorious.tfcmedicinal.CommonRegistrar$",
@@ -151,7 +152,7 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
     @Override
     public boolean shouldMixinConfigQueue(String mixinConfig) {
         return switch (mixinConfig) {
-            case "fugue.mixin.theasm.json" -> Launch.classLoader.isClassExist("zone.rong.loliasm.common.crashes.ModIdentifier") && FugueConfig.enableTheASM;
+            case "fugue.mixin.theasm.json" -> Launch.classLoader.isClassExist("zone.rong.loliasm.common.crashes.ModIdentifier") && FugueConfig.modPatchConfig.enableTheASM;
             default -> true;
         };
     }

@@ -1,10 +1,8 @@
 package com.cleanroommc.fugue.config;
 
 import com.cleanroommc.fugue.Reference;
-import com.google.common.collect.Maps;
 import net.minecraftforge.common.config.Config;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -12,59 +10,8 @@ import java.util.stream.Stream;
 @Config(modid = Reference.MOD_ID, name = Reference.MOD_ID)
 @Config.RequiresMcRestart
 public class FugueConfig {
-    @Config.Name("Enable Ender Core Patch")
-    public static boolean enableEnderCore = true;
-    @Config.Name("Enable Advanced Rocketry Patch")
-    public static boolean enableAR = true;
-    @Config.Name("Enable Shoulder Surfing Reloaded Patch")
-    public static boolean enableShoulderSurfing = true;
-    @Config.Name("Enable Splash Animation Patch")
-    public static boolean enableSA = true;
-    @Config.Name("Enable TickCentral Patch")
-    public static boolean enableTickCentral = true;
-    @Config.Name("Enable Logistics Pipes Patch")
-    public static boolean enableLP = true;
-    @Config.Name("Enable Patch For OpenFM/OpenDisks/OpenSecurity")
-    public static boolean enableOpenAddons = true;
-    @Config.Name("Enable Enchantment Control Patch")
-    public static boolean enableEC = true;
-    @Config.Name("Enable Charset lib Patch")
-    public static boolean enableCharset = true;
-    @Config.Name("Enable Code Chicken Lib Patch")
-    public static boolean enableCCL = true;
-    @Config.Name("Enable Custom Main Menu Patch")
-    public static boolean enableCMM = true;
-    @Config.Comment("This gtceu patch is temporary. An official fix is pending.")
-    @Config.Name("Enable GregTechCE Unofficial Patch")
-    public static boolean enableGTCEU = true;
-    @Config.Comment("From author of Fugue: I hate this mod.")
-    @Config.Name("Enable HammerCore Patch")
-    public static boolean enableHammerCore = true;
-    @Config.Comment({
-            "This patch is for CB Multipart (previously ForgeMultiPart) from covers1624, MrTJP and ChickenBones.",
-            "MCMultiPart is another different mod!"
-    })
-    @Config.Name("Enable CB Multipart Patch")
-    public static boolean enableMultiPart = true;
-    @Config.Name("Enable Project Red Patch")
-    public static boolean enablePR = true;
-    @Config.Name("Enable Solar Flux Reborn Patch")
-    public static boolean enableSolarFlux = true;
-    @Config.Name("Enable XaeroPlus Patch")
-    public static boolean enableXP = true;
-    @Config.Name("Enable TFC Medical Patch")
-    public static boolean enableTFCMedical = true;
-    @Config.Name("Enable Censored ASM Patch")
-    public static boolean enableTheASM = true;
-    @Config.Name("Enable mcjtylib Patch")
-    public static boolean enableMcjty = true;
-    @Config.Name("Enable ZeroCore (used by ExtremeReactor) Patch")
-    public static boolean enableZeroCore = true;
-    @Config.Name("Enable SmoothFont Patch")
-    @Config.Comment("It failed to patch FontRenderer for no fxxking reason")
-    public static boolean enableSmoothFont = false;
-    @Config.Name("Enable Custom Skin Loader Patch")
-    public static boolean enableCSL = true;
+    @Config.Comment("Fix and patches for certain mods.")
+    public static ModPatchConfig modPatchConfig = new ModPatchConfig();
 
     @Config.Comment("""
             About *static final field has no write access*

@@ -1,6 +1,6 @@
 package com.cleanroommc.fugue;
 
-import com.cleanroommc.fugue.config.FugueConfig;
+import com.cleanroommc.fugue.config.ModPatchConfig;
 import net.minecraftforge.fml.common.Loader;
 import zone.rong.mixinbooter.ILateMixinLoader;
 
@@ -27,16 +27,16 @@ public class LateMixinLoader implements ILateMixinLoader {
     @Override
     public boolean shouldMixinConfigQueue(String mixinConfig) {
         return switch (mixinConfig) {
-            case "fugue.mixin.charset.json" -> Loader.isModLoaded("charset") && FugueConfig.enableCharset;
-            case "fugue.mixin.xaeroplus.json" -> Loader.isModLoaded("xaeroplus") && FugueConfig.enableXP;
-            case "fugue.mixin.codechickenlib.json" -> Loader.isModLoaded("codechickenlib") && FugueConfig.enableCCL;
-            case "fugue.mixin.minecraftmultipartcbe.json" -> Loader.isModLoaded("minecraftmultipartcbe") && FugueConfig.enableMultiPart;
-            case "fugue.mixin.projectred-core.json" -> Loader.isModLoaded("projectred-core") && FugueConfig.enablePR;
-            case "fugue.mixin.solarflux.json" -> Loader.isModLoaded("solarflux") && FugueConfig.enableSolarFlux;
-            case "fugue.mixin.custommainmenu.json" -> Loader.isModLoaded("custommainmenu") && FugueConfig.enableCMM;
-            case "fugue.mixin.hammercore.json" -> Loader.isModLoaded("hammercore") && FugueConfig.enableHammerCore;
-            case "fugue.mixin.gregtech.json" -> Loader.isModLoaded("gregtech") && FugueConfig.enableGTCEU;
-            case "fugue.mixin.mcjty.json" -> Loader.isModLoaded("mcjtylib_ng") && FugueConfig.enableMcjty;
+            case "fugue.mixin.charset.json" -> Loader.isModLoaded("charset") && ModPatchConfig.enableCharset;
+            case "fugue.mixin.xaeroplus.json" -> Loader.isModLoaded("xaeroplus") && ModPatchConfig.enableXP;
+            case "fugue.mixin.codechickenlib.json" -> Loader.isModLoaded("codechickenlib") && ModPatchConfig.enableCCL;
+            case "fugue.mixin.minecraftmultipartcbe.json" -> Loader.isModLoaded("minecraftmultipartcbe") && ModPatchConfig.enableMultiPart;
+            case "fugue.mixin.projectred-core.json" -> Loader.isModLoaded("projectred-core") && ModPatchConfig.enablePR;
+            case "fugue.mixin.solarflux.json" -> Loader.isModLoaded("solarflux") && ModPatchConfig.enableSolarFlux;
+            case "fugue.mixin.custommainmenu.json" -> Loader.isModLoaded("custommainmenu") && ModPatchConfig.enableCMM;
+            case "fugue.mixin.hammercore.json" -> Loader.isModLoaded("hammercore") && ModPatchConfig.enableHammerCore;
+            case "fugue.mixin.gregtech.json" -> Loader.isModLoaded("gregtech") && ModPatchConfig.enableGTCEU;
+            case "fugue.mixin.mcjty.json" -> Loader.isModLoaded("mcjtylib_ng") && ModPatchConfig.enableMcjty;
             default -> ILateMixinLoader.super.shouldMixinConfigQueue(mixinConfig);
         };
     }
