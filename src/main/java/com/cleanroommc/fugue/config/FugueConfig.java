@@ -22,6 +22,8 @@ public class FugueConfig {
     )
     @Config.Name("Reflection Patch Target List")
     public static String[] reflectionPatchTargets = new String[] {
+            "quaternary.botaniatweaks.modules.botania.block.BotaniaRegistryReplacements",
+            "pl.asie.foamfix.client.deduplicator.Deduplicator",
             "com.fantasticsource.tools.ReflectionTool",
             "lumien.custombackgrounds.CustomBackgrounds",
             "com.fantasticsource.noadvancements.NoAdvancements",
@@ -64,6 +66,7 @@ public class FugueConfig {
     )
     @Config.Name("New Script Engine Patch Target List")
     public static String[] scriptEngineTargets = new String[] {
+            "nc.util.I18nHelper",
             "tk.zeitheron.solarflux.api.SolarScriptEngine",
             "com.github.tartaricacid.touhoulittlemaid.proxy.CommonProxy",
             "tk.zeitheron.expequiv.api.js.JSExpansion",
