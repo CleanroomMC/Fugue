@@ -124,7 +124,6 @@ public class FugueConfig {
     public static String[] remapLWTargets = new String[] {
             "zone.rong.loliasm.common.crashes.ModIdentifier",
             "zone.rong.loliasm.LoliReflector",
-            "com.github.terminatornl.tickcentral.asm.Compatibility",
             "com.charles445.rltweaker.asm.RLTweakerASM",
             "com.cleanroommc.groovyscript.sandbox.transformer.AsmDecompileHelper",
             "com.cleanroommc.modularui.core.ModularUICore",

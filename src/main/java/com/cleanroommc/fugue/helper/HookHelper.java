@@ -1,6 +1,7 @@
 package com.cleanroommc.fugue.helper;
 
 import net.minecraft.launchwrapper.IClassTransformer;
+import net.minecraft.launchwrapper.Launch;
 import net.minecraft.launchwrapper.LaunchClassLoader;
 import org.objectweb.asm.Opcodes;
 import top.outlands.foundation.TransformerDelegate;
@@ -12,10 +13,12 @@ import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.net.*;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class HookHelper {
-    public static boolean isInterface (int opcode) {
+    public static boolean isInterface(int opcode) {
         return opcode == Opcodes.INVOKEINTERFACE;
     }
 
@@ -42,12 +45,13 @@ public class HookHelper {
     }
 
     public static URI toURI(URL url) throws IOException, URISyntaxException {
-        return  ((JarURLConnection)url.openConnection()).getJarFileURL().toURI();
+        return ((JarURLConnection) url.openConnection()).getJarFileURL().toURI();
     }
 
     public static List<IClassTransformer> getTransformers() {
         return TransformerDelegate.getTransformers();
     }
+
     public static final URL deadLink;
 
     static {
@@ -85,5 +89,32 @@ public class HookHelper {
             bytes = instance.findResource(s.replace(".", "/")).openStream().readAllBytes();
         }
         return bytes;
+    }
+
+    public static byte[] transformAsPureFML(String name, String transformedName, byte[] basicClass) {
+        for (IClassTransformer transformer : TransformerDelegate.getTransformers()) {
+            boolean allowed = (transformer instanceof net.minecraftforge.fml.common.asm.transformers.PatchingTransformer || transformer instanceof net.minecraftforge.fml.common.asm.transformers.SideTransformer || transformer instanceof net.minecraftforge.fml.common.asm.transformers.SoundEngineFixTransformer || transformer instanceof net.minecraftforge.fml.common.asm.transformers.DeobfuscationTransformer || transformer instanceof net.minecraftforge.fml.common.asm.transformers.AccessTransformer || transformer instanceof net.minecraftforge.fml.common.asm.transformers.FieldRedirectTransformer || transformer instanceof net.minecraftforge.fml.common.asm.transformers.TerminalTransformer || transformer instanceof net.minecraftforge.fml.common.asm.transformers.ModAPITransformer);
+            if (!allowed)
+                continue;
+            basicClass = transformer.transform(name, transformedName, basicClass);
+        }
+        return basicClass;
+    }
+
+    public static void TickCentralPreLoad() {
+        List<String> list = new ArrayList<>() {{
+            add("com.github.terminatornl.tickcentral.asm.BlockTransformer");
+            add("com.github.terminatornl.tickcentral.asm.ITickableTransformer");
+            add("com.github.terminatornl.tickcentral.asm.EntityTransformer");
+            add("com.github.terminatornl.tickcentral.asm.HubAPITransformer");
+            add("net.minecraftforge.fml.common.asm.transformers.ModAPITransformer");
+            add("com.github.terminatornl.tickcentral.api.ClassSniffer");
+        }};
+        try {
+            for (var s : list) {
+                Launch.classLoader.findClass(s);
+            }
+        } catch (ClassNotFoundException ignored) {
+        }
     }
 }

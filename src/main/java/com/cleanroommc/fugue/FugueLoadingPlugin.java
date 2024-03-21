@@ -8,8 +8,7 @@ import com.cleanroommc.fugue.transformer.logisticpipes.LogisticsPipesClassInject
 import com.cleanroommc.fugue.transformer.loliasm.JavaFixesTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.LoliFMLCallHookTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.LoliReflectorTransformer;
-import com.cleanroommc.fugue.transformer.tickcentral.ClassSnifferTransformer;
-import com.cleanroommc.fugue.transformer.tickcentral.InitializerTransformer;
+import com.cleanroommc.fugue.transformer.tickcentral.*;
 import com.cleanroommc.fugue.transformer.universal.*;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraftforge.common.config.ConfigManager;
@@ -42,8 +41,17 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
             TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"pl.asie.splashanimation.core.SplashProgressTransformer"},new SplashProgressTransformerTransformer());
         }
         if (FugueConfig.modPatchConfig.enableTickCentral){
-            TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"com.github.terminatornl.laggoggles.tickcentral.Initializer"},new InitializerTransformer());
+            TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"com.github.terminatornl.laggoggles.tickcentral.Initializer",},new InitializerTransformer());
             TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"com.github.terminatornl.tickcentral.api.ClassSniffer",},new ClassSnifferTransformer());
+            TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"com.github.terminatornl.tickcentral.asm.Compatibility",},new CompatibilityTransformer());
+            TransformerDelegate.registerExplicitTransformerByInstance(new String[]{"com.github.terminatornl.tickcentral.TickCentral"}, new TickCentralTransformer());
+            TransformerDelegate.registerExplicitTransformerByInstance(new String[]{
+                    "com.github.terminatornl.tickcentral.asm.BlockTransformer",
+                    "com.github.terminatornl.tickcentral.asm.ITickableTransformer",
+                    "com.github.terminatornl.tickcentral.asm.EntityTransformer",
+                    "com.github.terminatornl.tickcentral.asm.HubAPITransformer",
+                    "net.minecraftforge.fml.common.asm.transformers.ModAPITransformer"
+            }, new PriorityAppendTransformer());
         }
         if (FugueConfig.modPatchConfig.enableLP){
             TransformerDelegate.registerExplicitTransformerByInstance(new String[]{
