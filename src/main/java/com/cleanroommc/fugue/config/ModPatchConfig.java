@@ -56,4 +56,7 @@ public class ModPatchConfig {
     public boolean enableSmoothFont = true;
     @Config.Name("Enable Custom Skin Loader Patch")
     public boolean enableCSL = true;
+    @Config.Name("Enable Compat Patch between AquaAcrobatics and SledgeHammer")
+    @Config.Comment("Use a very dumb way to handle incompat comes from Sledgehammer. Only enable this when needed.")
+    public boolean enable_AquaAcrobatics_SledgeHammer_Compat = false;
 }
