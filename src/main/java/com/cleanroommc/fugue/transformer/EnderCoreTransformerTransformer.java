@@ -9,10 +9,6 @@ import top.outlands.foundation.IExplicitTransformer;
 public class EnderCoreTransformerTransformer implements IExplicitTransformer {
     @Override
     public byte[] transform(byte[] bytes) {
-        if (bytes == null)
-        {
-            return null;
-        }
         ClassNode classNode = new ClassNode();
         ClassReader classReader = new ClassReader(bytes);
         classReader.accept(classNode, 0);

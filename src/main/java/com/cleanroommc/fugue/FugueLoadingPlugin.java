@@ -80,7 +80,6 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
         if (FugueConfig.modPatchConfig.enableSmoothFont) {
             TransformerDelegate.registerExplicitTransformerByInstance(new FontRendererTransformer(), "net.minecraft.client.gui.FontRenderer");
         }
-        TransformerDelegate.registerExplicitTransformerByInstance(new AquaAcrobaticsCoreTransformer(), "com.fuzs.aquaacrobatics.core.AquaAcrobaticsCore");
         if (FugueConfig.modPatchConfig.enableCSL) {
             TransformerDelegate.registerExplicitTransformerByInstance(new ForgeTweakerTransformer(), "customskinloader.forge.ForgeTweaker");
         }
@@ -152,17 +151,13 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
 
     @Override
     public List<String> getMixinConfigs() {
-        return Arrays.asList("fugue.mixin.theasm.json", "META-INF/mixins.aquaacrobatics.json");
+        return Arrays.asList("fugue.mixin.theasm.json");
     }
 
     @Override
     public boolean shouldMixinConfigQueue(String mixinConfig) {
         return switch (mixinConfig) {
             case "fugue.mixin.theasm.json" -> Launch.classLoader.isClassExist("zone.rong.loliasm.common.crashes.ModIdentifier") && FugueConfig.modPatchConfig.enableTheASM;
-            case "META-INF/mixins.aquaacrobatics.json" ->
-                    FugueConfig.modPatchConfig.enable_AquaAcrobatics_SledgeHammer_Compat &&
-                            Launch.classLoader.isClassExist("com.fuzs.aquaacrobatics.core.AquaAcrobaticsCore") &&
-                            Launch.classLoader.isClassExist("io.github.lxgaming.sledgehammer.launch.SledgehammerLoadingPlugin");
             default -> true;
         };
     }
