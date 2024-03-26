@@ -13,6 +13,7 @@ import com.cleanroommc.fugue.transformer.universal.*;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
+import org.spongepowered.asm.mixin.Mixins;
 import top.outlands.foundation.TransformerDelegate;
 import top.outlands.foundation.boot.ActualClassLoader;
 import zone.rong.mixinbooter.IEarlyMixinLoader;
@@ -25,7 +26,7 @@ import java.util.Map;
 
 @IFMLLoadingPlugin.MCVersion("1.12.2")
 @SuppressWarnings("deprecation")
-public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader {
+public class FugueLoadingPlugin implements IFMLLoadingPlugin {
 
     static {
         ConfigManager.register(FugueConfig.class);
@@ -115,6 +116,10 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
         }
 
     }
+
+    public FugueLoadingPlugin() {
+        //Mixins.addConfiguration("fugue.mixin.json");
+    }
     
     @Override
     public String[] getASMTransformerClass() {
@@ -147,7 +152,7 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
     @Override
     public String getAccessTransformerClass() {
         return null;
-    }
+    }/*
 
     @Override
     public List<String> getMixinConfigs() {
@@ -160,5 +165,5 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader 
             case "fugue.mixin.theasm.json" -> Launch.classLoader.isClassExist("zone.rong.loliasm.common.crashes.ModIdentifier") && FugueConfig.modPatchConfig.enableTheASM;
             default -> true;
         };
-    }
+    }*/
 }

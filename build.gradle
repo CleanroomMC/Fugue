@@ -116,7 +116,7 @@ repositories {
 }
 
 dependencies {
-    minecraft "com.cleanroommc:cleanroom:15.24.0.3033"
+    minecraft "com.cleanroommc:cleanroom:15.24.0.3034"
     //implementation "top.outlands:foundation:0.10.0"
     //implementation 'org.javassist:javassist:3.30.2-GA'
 
@@ -213,6 +213,7 @@ jar {
                 //'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
                 'FMLCorePlugin': 'com.cleanroommc.fugue.FugueLoadingPlugin',
                 'ForceLoadAsMod': true,
+                'MixinConfigs': 'fugue.mixin.json',
                 //'FMLAT': 'accesstransformer.cfg',
                 'Implementation-Title': project.name,
                 'Implementation-Version': mod_version,

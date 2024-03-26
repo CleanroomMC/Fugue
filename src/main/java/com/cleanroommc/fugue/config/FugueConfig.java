@@ -127,6 +127,7 @@ public class FugueConfig {
             "com.charles445.rltweaker.asm.RLTweakerASM",
             "com.cleanroommc.groovyscript.sandbox.transformer.AsmDecompileHelper",
             "com.cleanroommc.modularui.core.ModularUICore",
+            "openeye.logic.ModMetaCollector",
     };
 
     @Config.Comment(

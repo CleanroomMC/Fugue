@@ -1,0 +1,28 @@
+{
+  "required": true,
+  "package": "com.cleanroommc.fugue.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "fugue.mixin.refmap.json",
+  "target": "@env(MOD)",
+  "plugin": "com.cleanroommc.fugue.FugueMixinConfigPlugin",
+  "mixins": [
+    "charset.ColorspacesMixin",
+    "codechickenlib.ReflectionManagerMixin",
+    "gregtech.GTRecipeInputCacheMixin",
+    "hammercore.ReflectionUtilMixin",
+    "minecraftmultipartcbe.ASMMixinCompilerMixin",
+    "minecraftmultipartcbe.StackAnalyserMixin",
+    "projectred_core.WirePropagatorMixin",
+    "solarflux.INetworkSFMixin",
+    "solarflux.SolarFluxMixin",
+    "theasm.ModIdentifierMixin",
+    "xaeroplus.ChunkHighlightSavingCacheMixin",
+    "xaeroplus.XaeroPlusSettingsReflectionHaxMixin"
+  ],
+  "client": [
+    "mcjty.SliderMixin",
+    "mcjty.AbstractContainerWidgetMixin",
+    "custommainmenu.SlideshowMixin"
+  ],
+  "minVersion": "0.8"
+}
