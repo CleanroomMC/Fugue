@@ -117,9 +117,6 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
 
     }
 
-    public FugueLoadingPlugin() {
-        //Mixins.addConfiguration("fugue.mixin.json");
-    }
     
     @Override
     public String[] getASMTransformerClass() {
@@ -152,18 +149,5 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
     @Override
     public String getAccessTransformerClass() {
         return null;
-    }/*
-
-    @Override
-    public List<String> getMixinConfigs() {
-        return Arrays.asList("fugue.mixin.theasm.json");
     }
-
-    @Override
-    public boolean shouldMixinConfigQueue(String mixinConfig) {
-        return switch (mixinConfig) {
-            case "fugue.mixin.theasm.json" -> Launch.classLoader.isClassExist("zone.rong.loliasm.common.crashes.ModIdentifier") && FugueConfig.modPatchConfig.enableTheASM;
-            default -> true;
-        };
-    }*/
 }

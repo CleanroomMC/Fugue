@@ -15,7 +15,6 @@
     "projectred_core.WirePropagatorMixin",
     "solarflux.INetworkSFMixin",
     "solarflux.SolarFluxMixin",
-    "theasm.ModIdentifierMixin",
     "xaeroplus.ChunkHighlightSavingCacheMixin",
     "xaeroplus.XaeroPlusSettingsReflectionHaxMixin"
   ],
