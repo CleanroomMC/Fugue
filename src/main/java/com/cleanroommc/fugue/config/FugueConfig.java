@@ -154,6 +154,8 @@ public class FugueConfig {
             "pcl.opendisks.OpenDisksUnpack",
             "pcl.opensecurity.util.SoundUnpack",
             "pcl.OpenFM.misc.DepLoader",
+            "optifine.OptiFineClassTransformer",
+            "snownee.minieffects.core.CoreMod"
     };
 
     @Config.Comment(
