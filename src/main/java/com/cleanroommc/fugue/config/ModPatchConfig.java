@@ -56,4 +56,7 @@ public class ModPatchConfig {
     public boolean enableSmoothFont = true;
     @Config.Name("Enable Custom Skin Loader Patch")
     public boolean enableCSL = true;
+
+    @Config.Name("Enable XNet Patch")
+    public boolean enableXNet = true;
 }

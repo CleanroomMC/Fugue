@@ -25,7 +25,6 @@ import java.util.List;
 import java.util.Map;
 
 @IFMLLoadingPlugin.MCVersion("1.12.2")
-@SuppressWarnings("deprecation")
 public class FugueLoadingPlugin implements IFMLLoadingPlugin {
 
     static {
@@ -83,6 +82,9 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
         }
         if (FugueConfig.modPatchConfig.enableCSL) {
             TransformerDelegate.registerExplicitTransformerByInstance(new ForgeTweakerTransformer(), "customskinloader.forge.ForgeTweaker");
+        }
+        if (FugueConfig.modPatchConfig.enableXNet) {
+            TransformerDelegate.registerExplicitTransformerByInstance(new EnergyConnectorSettingsTransformer(), "mcjty.xnet.apiimpl.energy.EnergyConnectorSettings");
         }
         if (FugueConfig.getCodeSourcePatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformerByInstance(new ITweakerTransformer(), FugueConfig.getCodeSourcePatchTargets);
