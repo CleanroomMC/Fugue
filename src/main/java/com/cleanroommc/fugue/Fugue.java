@@ -31,28 +31,5 @@ public class Fugue {
     public boolean checker(Map<String, String> mods, Side side) {
         return true;
     }
-    /*
-    @EventHandler
-    public static void preInit(FMLPreInitializationEvent event) {
-    }
 
-    @EventHandler
-    public static void init(FMLInitializationEvent event) {
-    }
-    
-    @EventHandler
-    public static void postInit(FMLPostInitializationEvent event) {
-    }
-    
-    @EventHandler
-    public void onServerStarting(FMLServerStartingEvent event) {
-    }
-
-    @EventHandler
-    public void onServerStarted(FMLServerStartedEvent event) {
-    }
-
-    @EventHandler
-    public void onServerStopping(FMLServerStoppingEvent event) {
-    }*/
 }
