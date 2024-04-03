@@ -44,6 +44,16 @@ public class FontRendererTransformer implements IExplicitTransformer {
                 }
             }
         });
+
+        classNode.methods.stream().filter(methodNode -> methodNode.name.equals("func_78263_a")).findFirst().ifPresent(m4 ->
+                m4.instructions.forEach(n -> {
+                    if (n.getOpcode() == Opcodes.INVOKEVIRTUAL && n instanceof MethodInsnNode methodInsnNode) {
+                        if (methodInsnNode.owner.equals("java/lang/String") && methodInsnNode.name.equals("indexOf")) {
+                            m4.instructions.insert(methodInsnNode, new MethodInsnNode(Opcodes.INVOKEVIRTUAL, "bre/smoothfont/FontRendererHook", "getCharWidthFloatGetCharIndexHook", "(C)I", false));
+                            m4.instructions.remove(methodInsnNode);
+                        }
+                    }
+        }));
         ClassWriter classWriter = new ClassWriter(0);
 
         classNode.accept(classWriter);
