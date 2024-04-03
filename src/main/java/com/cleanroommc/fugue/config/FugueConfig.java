@@ -42,6 +42,8 @@ public class FugueConfig {
             "xyz.phanta.tconevo.integration.astralsorcery.AstralHooksImpl",
             "xyz.phanta.tconevo.integration.draconicevolution.client.DraconicShieldHudHandler",
             "com.noobanidus.variegated.compat.vanilla.handlers.MansionBiomeTypesHandler",
+            "youyihj.zenutils.ZenUtils",
+            "com.codetaylor.mc.athenaeum.util.Injector",
     };
 
     @Config.Comment(
