@@ -45,7 +45,7 @@ public class FontRendererTransformer implements IExplicitTransformer {
             }
         });
 
-        classNode.methods.stream().filter(methodNode -> methodNode.name.equals("func_78263_a")).findFirst().ifPresent(m4 ->
+        classNode.methods.stream().filter(methodNode -> methodNode.name.equals("getCharWidthFloat")).findFirst().ifPresent(m4 ->
                 m4.instructions.forEach(n -> {
                     if (n.getOpcode() == Opcodes.INVOKEVIRTUAL && n instanceof MethodInsnNode methodInsnNode) {
                         if (methodInsnNode.owner.equals("java/lang/String") && methodInsnNode.name.equals("indexOf")) {
