@@ -8,6 +8,7 @@
   "mixins": [
     "charset.ColorspacesMixin",
     "codechickenlib.ReflectionManagerMixin",
+    "codechickenlib.ClassHierarchyManagerMixin",
     "gregtech.GTRecipeInputCacheMixin",
     "hammercore.ReflectionUtilMixin",
     "minecraftmultipartcbe.ASMMixinCompilerMixin",
@@ -16,7 +17,8 @@
     "solarflux.INetworkSFMixin",
     "solarflux.SolarFluxMixin",
     "xaeroplus.ChunkHighlightSavingCacheMixin",
-    "xaeroplus.XaeroPlusSettingsReflectionHaxMixin"
+    "xaeroplus.XaeroPlusSettingsReflectionHaxMixin",
+    "howlingmoon.WerewolfCapabilityMixin"
   ],
   "client": [
     "mcjty.SliderMixin",

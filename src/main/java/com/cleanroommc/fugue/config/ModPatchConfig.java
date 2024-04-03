@@ -59,4 +59,6 @@ public class ModPatchConfig {
 
     @Config.Name("Enable XNet Patch")
     public boolean enableXNet = true;
+    @Config.Name("Howling Moon")
+    public boolean enableHowlingMoon = true;
 }
