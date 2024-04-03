@@ -8,7 +8,6 @@
   "mixins": [
     "charset.ColorspacesMixin",
     "codechickenlib.ReflectionManagerMixin",
-    "codechickenlib.ClassHierarchyManagerMixin",
     "gregtech.GTRecipeInputCacheMixin",
     "hammercore.ReflectionUtilMixin",
     "minecraftmultipartcbe.ASMMixinCompilerMixin",

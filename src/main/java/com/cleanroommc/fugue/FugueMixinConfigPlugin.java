@@ -3,14 +3,12 @@ package com.cleanroommc.fugue;
 import com.cleanroommc.fugue.config.FugueConfig;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraftforge.fml.common.Loader;
-import org.objectweb.asm.tree.*;
+import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 import org.spongepowered.asm.mixin.transformer.Config;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 public class FugueMixinConfigPlugin implements IMixinConfigPlugin {
@@ -35,7 +33,7 @@ public class FugueMixinConfigPlugin implements IMixinConfigPlugin {
         return switch (mixinClassName.split("\\.")[4]) {
             case "charset" -> Loader.isModLoaded("charset") && FugueConfig.modPatchConfig.enableCharset;
             case "xaeroplus" -> Loader.isModLoaded("xaeroplus") && FugueConfig.modPatchConfig.enableXP;
-            case "codechickenlib" -> Loader.isModLoaded("codechickenlib") && FugueConfig.modPatchConfig.enableCCL;
+            case "codechickenlib" -> Launch.classLoader.isClassExist("codechicken.lib.CodeChickenLib") && FugueConfig.modPatchConfig.enableCCL;
             case "minecraftmultipartcbe" -> Loader.isModLoaded("minecraftmultipartcbe") && FugueConfig.modPatchConfig.enableMultiPart;
             case "projectred_core" -> Loader.isModLoaded("projectred-core") && FugueConfig.modPatchConfig.enablePR;
             case "solarflux" -> Loader.isModLoaded("solarflux") && FugueConfig.modPatchConfig.enableSolarFlux;
