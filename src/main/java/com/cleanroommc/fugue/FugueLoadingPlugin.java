@@ -86,6 +86,9 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
         if (FugueConfig.modPatchConfig.enableXNet) {
             TransformerDelegate.registerExplicitTransformerByInstance(new EnergyConnectorSettingsTransformer(), "mcjty.xnet.apiimpl.energy.EnergyConnectorSettings");
         }
+        if (FugueConfig.modPatchConfig.enableCCL) {
+            TransformerDelegate.registerExplicitTransformerByInstance(new ClassHierarchyManagerTransformer(), "codechicken.asm.ClassHierarchyManager");
+        }
         if (FugueConfig.getCodeSourcePatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformerByInstance(new ITweakerTransformer(), FugueConfig.getCodeSourcePatchTargets);
         }
