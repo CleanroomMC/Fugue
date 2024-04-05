@@ -1,6 +1,6 @@
 package com.cleanroommc.fugue.transformer;
 
-import com.cleanroommc.fugue.Fugue;
+import com.cleanroommc.fugue.common.Fugue;
 import javassist.CannotCompileException;
 import javassist.ClassPool;
 import javassist.CtClass;

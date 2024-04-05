@@ -59,6 +59,8 @@ public class ModPatchConfig {
 
     @Config.Name("Enable XNet Patch")
     public boolean enableXNet = true;
-    @Config.Name("Howling Moon")
+    @Config.Name("Enable Howling Moon")
     public boolean enableHowlingMoon = true;
+    @Config.Name("Enable Custom NPCs")
+    public boolean enableCustomNPC = true;
 }

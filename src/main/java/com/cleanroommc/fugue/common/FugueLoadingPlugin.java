@@ -1,4 +1,4 @@
-package com.cleanroommc.fugue;
+package com.cleanroommc.fugue.common;
 
 import com.cleanroommc.fugue.config.FugueConfig;
 import com.cleanroommc.fugue.transformer.*;
@@ -13,21 +13,17 @@ import com.cleanroommc.fugue.transformer.universal.*;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
-import org.spongepowered.asm.mixin.Mixins;
 import top.outlands.foundation.TransformerDelegate;
 import top.outlands.foundation.boot.ActualClassLoader;
-import zone.rong.mixinbooter.IEarlyMixinLoader;
 
 import javax.annotation.Nullable;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 
 @IFMLLoadingPlugin.MCVersion("1.12.2")
 public class FugueLoadingPlugin implements IFMLLoadingPlugin {
 
     static {
+        Launch.classLoader.addTransformerExclusion("com.cleanroommc.fugue.common.");
         ConfigManager.register(FugueConfig.class);
         if (FugueConfig.modPatchConfig.enableEnderCore) {
             TransformerDelegate.registerExplicitTransformerByInstance(new EnderCoreTransformerTransformer(), "com.enderio.core.common.transform.EnderCoreTransformer");

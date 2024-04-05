@@ -1,4 +1,4 @@
-package com.cleanroommc.fugue;
+package com.cleanroommc.fugue.common;
 
 import com.cleanroommc.fugue.config.FugueConfig;
 import net.minecraft.launchwrapper.Launch;
@@ -43,6 +43,7 @@ public class FugueMixinConfigPlugin implements IMixinConfigPlugin {
             case "mcjty" -> Loader.isModLoaded("mcjtylib_ng") && FugueConfig.modPatchConfig.enableMcjty;
             case "theasm" -> Launch.classLoader.isClassExist("zone.rong.loliasm.common.crashes.ModIdentifier") && FugueConfig.modPatchConfig.enableTheASM;
             case "howlingmoon" -> Loader.isModLoaded("howlingmoon") && FugueConfig.modPatchConfig.enableHowlingMoon;
+            case "customnpcs" -> Loader.isModLoaded("customnpcs") && FugueConfig.modPatchConfig.enableCustomNPC;
             default -> true;
         };
     }

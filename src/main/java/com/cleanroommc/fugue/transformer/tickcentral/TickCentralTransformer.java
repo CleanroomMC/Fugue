@@ -1,11 +1,8 @@
 package com.cleanroommc.fugue.transformer.tickcentral;
 
-import com.cleanroommc.fugue.Fugue;
+import com.cleanroommc.fugue.common.Fugue;
 import javassist.ClassPool;
 import javassist.CtClass;
-import javassist.CtMethod;
-import javassist.expr.ExprEditor;
-import net.minecraft.launchwrapper.Launch;
 import top.outlands.foundation.IExplicitTransformer;
 
 import java.io.ByteArrayInputStream;

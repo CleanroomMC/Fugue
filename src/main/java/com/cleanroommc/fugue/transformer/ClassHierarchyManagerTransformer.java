@@ -1,6 +1,6 @@
 package com.cleanroommc.fugue.transformer;
 
-import com.cleanroommc.fugue.Fugue;
+import com.cleanroommc.fugue.common.Fugue;
 import javassist.ClassPool;
 import javassist.CtClass;
 import top.outlands.foundation.IExplicitTransformer;
@@ -12,8 +12,6 @@ public class ClassHierarchyManagerTransformer implements IExplicitTransformer {
     public byte[] transform(byte[] bytes) {
         try {
             ClassPool pool = ClassPool.getDefault();
-            pool.importPackage("codechicken.asm.ClassHierarchyManager.SuperCache");
-            pool.importPackage("codechicken.asm.ClassHierarchyManager");
             CtClass cc = pool.makeClass(new ByteArrayInputStream(bytes));
             cc.getMethod("getOrCreateCache", "(Ljava/lang/String;)Lcodechicken/asm/ClassHierarchyManager$SuperCache;").setBody(
                     """
@@ -25,7 +23,7 @@ public class ClassHierarchyManagerTransformer implements IExplicitTransformer {
                      } else {
                          cache = superclasses.get($1);
                      }
-                     return cache;
+                     return (codechicken.asm.ClassHierarchyManager.SuperCache)cache;
                     }
                     """);
             bytes = cc.toBytecode();

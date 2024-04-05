@@ -4,7 +4,7 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "fugue.mixin.refmap.json",
   "target": "@env(INIT)",
-  "plugin": "com.cleanroommc.fugue.FugueMixinConfigPlugin",
+  "plugin": "com.cleanroommc.fugue.common.FugueMixinConfigPlugin",
   "mixins": [
     "theasm.ModIdentifierMixin"
   ],

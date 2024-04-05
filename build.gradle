@@ -117,84 +117,66 @@ repositories {
 
 dependencies {
     minecraft "com.cleanroommc:cleanroom:15.24.0.3034"
-    //implementation "top.outlands:foundation:0.10.0"
-    //implementation 'org.javassist:javassist:3.30.2-GA'
 
     //Charset Lib
     compileOnly(fg.deobf("curse.maven:charset-284523:3656492"))
-    runtimeOnly(fg.deobf("curse.maven:charset-284523:3656492"))
     
     //Xaero's Minimap
     compileOnly(fg.deobf("curse.maven:xaero-263420:4911777"))
     compileOnly(fg.deobf("curse.maven:xaero-map-317780:4911823"))
-    runtimeOnly(fg.deobf("curse.maven:xaero-263420:4911777"))
+
     compileOnly(fg.deobf("curse.maven:xaero-plus-866084:4912433"))
-    //runtimeOnly(fg.deobf("curse.maven:xaero-plus-866084:4912433")) 
     
     //CodeChickenASM
     compileOnly("codechicken:ChickenASM:3.2.0.17")
-    //runtimeOnly("codechicken:ChickenASM:3.2.0.17")
     
     //CodeChickenLib
     compileOnly(fg.deobf("codechicken:CodeChickenLib:1.12-3.1.5.330:universal"))
-    //runtimeOnly(fg.deobf("codechicken:CodeChickenLib:1.12-3.1.5.330:universal"))
     
     //ForgeMultipart
     compileOnly(fg.deobf("codechicken:ForgeMultipart:1.12-2.3.0.51:universal"))
-    //runtimeOnly(fg.deobf("codechicken:ForgeMultipart:1.12-2.3.0.51:universal")) //Don't uncomment it or you will crash, a Scala 2.12 is somehow resolved in the path
     
     //Project Red Core
     compileOnly(fg.deobf("curse.maven:pr-core-228702:2745545"))
-    //runtimeOnly(fg.deobf("curse.maven:pr-core-228702:2745545"))
     
     //Solar Flux Reborne
     compileOnly(fg.deobf("curse.maven:solarflux-246974:3050838"))
-    //runtimeOnly(fg.deobf("curse.maven:pr-core-228702:2745545"))
     
     //Custom Main Menu
     compileOnly(fg.deobf("curse.maven:cmm-226406:2857869"))
-    //runtimeOnly(fg.deobf("curse.maven:cmm-226406:2857869"))
 
     //HammerLib
     compileOnly(fg.deobf("curse.maven:hammer-247401:4878669"))
-    //runtimeOnly(fg.deobf("curse.maven:hammer-247401:4878669"))
 
     //EnderCore
     compileOnly(fg.deobf("com.enderio.core:EnderCore:1.12.2-0.5.78:core"))
-    //runtimeOnly(fg.deobf("com.enderio.core:EnderCore:1.12.2-0.5.78:core"))
 
     //TickCentral
     compileOnly(fg.deobf("curse.maven:tickcentral-377201:3140670"))
-    //runtimeOnly(fg.deobf("curse.maven:lag-goggles-283525:4493884"))
 
     //Lag Goggles
     compileOnly(fg.deobf("curse.maven:lag-goggles-283525:4493884"))
-    //runtimeOnly(fg.deobf("curse.maven:lag-goggles-283525:4493884"))
 
     //Shoulder Surfing Reloaded
     compileOnly(fg.deobf("curse.maven:shoulder-surfing-243190:5009912"))
-    //runtimeOnly(fg.deobf("curse.maven:shoulder-surfing-243190:5009912"))
     
     //Logistics Pipes
     compileOnly(fg.deobf("curse.maven:logistics-pipes-232838:4849512"))
-    //runtimeOnly(fg.deobf("curse.maven:logistics-pipes-232838:4849512"))
 
     //GTCEU
     compileOnly(fg.deobf("curse.maven:gtceu-557242:5050979"))
-    //runtimeOnly(fg.deobf("curse.maven:gtceu-557242:5050979"))
 
     //The ASM
     compileOnly(fg.deobf("curse.maven:the-asm-460609:5120166"))
-    //runtimeOnly(fg.deobf("curse.maven:gtceu-557242:5050979"))
 
     //mcjty
     compileOnly(fg.deobf("curse.maven:mcjty-233105:2745846"))
-    //runtimeOnly(fg.deobf("curse.maven:gtceu-557242:5050979"))
 
-
-    //mcjty
+    //howlingmoon
     compileOnly(fg.deobf("curse.maven:howlingmoon-236149:2567452"))
-    //runtimeOnly(fg.deobf("curse.maven:gtceu-557242:5050979"))
+
+    //customNPCs
+    compileOnly(fg.deobf("curse.maven:customnpc-221826:2996912"))
 
     // Mixin and it's common libraries
     annotationProcessor 'org.ow2.asm:asm:9.6'
@@ -216,7 +198,7 @@ jar {
                 'Specification-Version': '1', // We are version 1 of ourselves
                 'FMLCorePluginContainsFMLMod': true,
                 //'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
-                'FMLCorePlugin': 'com.cleanroommc.fugue.FugueLoadingPlugin',
+                'FMLCorePlugin': 'com.cleanroommc.fugue.common.FugueLoadingPlugin',
                 'ForceLoadAsMod': true,
                 'MixinConfigs': 'fugue.mixin.mod.json,fugue.mixin.init.json',
                 //'FMLAT': 'accesstransformer.cfg',

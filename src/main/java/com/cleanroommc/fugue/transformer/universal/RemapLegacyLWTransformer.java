@@ -1,6 +1,5 @@
 package com.cleanroommc.fugue.transformer.universal;
 
-import com.cleanroommc.fugue.Fugue;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;

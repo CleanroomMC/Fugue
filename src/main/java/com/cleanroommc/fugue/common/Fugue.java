@@ -1,9 +1,8 @@
-package com.cleanroommc.fugue;
+package com.cleanroommc.fugue.common;
 
+import com.cleanroommc.fugue.Reference;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
-import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.network.NetworkCheckHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.LogManager;
