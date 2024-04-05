@@ -15,9 +15,9 @@ public class ClassHierarchyManagerTransformer implements IExplicitTransformer {
             cc.getMethod("getOrCreateCache", "(Ljava/lang/String;)Lcodechicken/asm/ClassHierarchyManager$SuperCache;").setBody(
                     """
                     {
-                     SuperCache cache;
+                     codechicken.asm.ClassHierarchyManager.SuperCache cache;
                      if (!superclasses.containsKey(name)) {
-                         cache = new SuperCache();
+                         cache = new codechicken.asm.ClassHierarchyManager.SuperCache();
                          superclasses.put(name, cache);
                      } else {
                          cache = superclasses.get(name);
