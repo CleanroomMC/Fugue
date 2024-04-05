@@ -11,16 +11,19 @@ public class ClassHierarchyManagerTransformer implements IExplicitTransformer {
     @Override
     public byte[] transform(byte[] bytes) {
         try {
-            CtClass cc = ClassPool.getDefault().makeClass(new ByteArrayInputStream(bytes));
+            ClassPool pool = ClassPool.getDefault();
+            pool.importPackage("codechicken.asm.ClassHierarchyManager.SuperCache");
+            pool.importPackage("codechicken.asm.ClassHierarchyManager");
+            CtClass cc = pool.makeClass(new ByteArrayInputStream(bytes));
             cc.getMethod("getOrCreateCache", "(Ljava/lang/String;)Lcodechicken/asm/ClassHierarchyManager$SuperCache;").setBody(
                     """
                     {
-                     codechicken.asm.ClassHierarchyManager.SuperCache cache;
-                     if (!superclasses.containsKey(name)) {
-                         cache = new codechicken.asm.ClassHierarchyManager.SuperCache();
-                         superclasses.put(name, cache);
+                     SuperCache cache;
+                     if (!superclasses.containsKey($1)) {
+                         cache = new SuperCache();
+                         superclasses.put($1, cache);
                      } else {
-                         cache = superclasses.get(name);
+                         cache = superclasses.get($1);
                      }
                      return cache;
                     }
