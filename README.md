@@ -2,6 +2,11 @@
 Fix dead mods. [Explain](https://www.etymonline.com/cn/word/fugue)
 
 Also check [The Fugue Plane](https://forgottenrealms.fandom.com/wiki/Fugue_Plane).
+## Stable
+https://github.com/CleanroomMC/Fugue/releases/tag/0.5.4
+
+## Unstable
+https://github.com/CleanroomMC/Fugue/releases/latest
 
 ## List
 * Charset
@@ -27,6 +32,13 @@ Also check [The Fugue Plane](https://forgottenrealms.fandom.com/wiki/Fugue_Plane
 * Enchantments Control
 * GregTech CE Unofficial (Temporary)
 * TFC Medicinal
+* Mcjty Core
+* LoliASM
+* Howling Moon
+* Custom NPCs
+* XNet
+* ZeroCore (ExtremeReactor)
+* Smooth Font
 
 ## Note
 Add + to start of the file if it's not there.
