@@ -18,7 +18,8 @@
     "solarflux.INetworkSFMixin",
     "solarflux.SolarFluxMixin",
     "xaeroplus.ChunkHighlightSavingCacheMixin",
-    "xaeroplus.XaeroPlusSettingsReflectionHaxMixin"
+    "xaeroplus.XaeroPlusSettingsReflectionHaxMixin",
+    "waterpower.ClassEngineMixin"
   ],
   "client": [
     "custommainmenu.SlideshowMixin",

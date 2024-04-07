@@ -85,6 +85,9 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
         if (FugueConfig.modPatchConfig.enableCCL) {
             TransformerDelegate.registerExplicitTransformerByInstance(new ClassHierarchyManagerTransformer(), "codechicken.asm.ClassHierarchyManager");
         }
+        if (FugueConfig.modPatchConfig.enableSurvivialInc) {
+            TransformerDelegate.registerExplicitTransformerByInstance(new ForgeASMInjectorTransformer(), "enginecrafter77.survivalinc.util.ForgeASMInjector");
+        }
         if (FugueConfig.getCodeSourcePatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformerByInstance(new ITweakerTransformer(), FugueConfig.getCodeSourcePatchTargets);
         }

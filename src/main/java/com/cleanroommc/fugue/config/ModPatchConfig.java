@@ -59,8 +59,12 @@ public class ModPatchConfig {
 
     @Config.Name("Enable XNet Patch")
     public boolean enableXNet = true;
-    @Config.Name("Enable Howling Moon")
+    @Config.Name("Enable Howling Moon Patch")
     public boolean enableHowlingMoon = true;
-    @Config.Name("Enable Custom NPCs")
+    @Config.Name("Enable Custom NPCs Patch")
     public boolean enableCustomNPC = true;
+    @Config.Name("Enabel Survivial Inc. Patch")
+    public boolean enableSurvivialInc = true;
+    @Config.Name("Enable Water Power Patch")
+    public boolean enableWaterPower = true;
 }

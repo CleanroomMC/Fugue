@@ -39,6 +39,8 @@ https://github.com/CleanroomMC/Fugue/releases/latest
 * XNet
 * ZeroCore (ExtremeReactor)
 * Smooth Font
+* Water Power
+* Survival Inc.
 
 ## Note
 Add + to start of the file if it's not there.

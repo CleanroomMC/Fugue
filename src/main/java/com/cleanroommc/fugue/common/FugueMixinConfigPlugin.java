@@ -44,6 +44,7 @@ public class FugueMixinConfigPlugin implements IMixinConfigPlugin {
             case "theasm" -> Launch.classLoader.isClassExist("zone.rong.loliasm.common.crashes.ModIdentifier") && FugueConfig.modPatchConfig.enableTheASM;
             case "howlingmoon" -> Loader.isModLoaded("howlingmoon") && FugueConfig.modPatchConfig.enableHowlingMoon;
             case "customnpcs" -> Loader.isModLoaded("customnpcs") && FugueConfig.modPatchConfig.enableCustomNPC;
+            case "waterpower" -> Loader.isModLoaded("waterpower") && FugueConfig.modPatchConfig.enableWaterPower;
             default -> true;
         };
     }
