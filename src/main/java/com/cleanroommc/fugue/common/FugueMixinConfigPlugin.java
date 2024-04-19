@@ -45,6 +45,7 @@ public class FugueMixinConfigPlugin implements IMixinConfigPlugin {
             case "howlingmoon" -> Loader.isModLoaded("howlingmoon") && FugueConfig.modPatchConfig.enableHowlingMoon;
             case "customnpcs" -> Loader.isModLoaded("customnpcs") && FugueConfig.modPatchConfig.enableCustomNPC;
             case "waterpower" -> Loader.isModLoaded("waterpower") && FugueConfig.modPatchConfig.enableWaterPower;
+            case "subaquatic" -> Loader.isModLoaded("subaquatic") && FugueConfig.modPatchConfig.enableSubaquatic;
             default -> true;
         };
     }

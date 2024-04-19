@@ -67,4 +67,6 @@ public class ModPatchConfig {
     public boolean enableSurvivialInc = true;
     @Config.Name("Enable Water Power Patch")
     public boolean enableWaterPower = true;
+    @Config.Name("Enable Subaquatic Patch")
+    public boolean enableSubaquatic = true;
 }

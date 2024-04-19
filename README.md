@@ -41,6 +41,7 @@ https://github.com/CleanroomMC/Fugue/releases/latest
 * Smooth Font
 * Water Power
 * Survival Inc.
+* Subauqatic (Temporary)
 
 ## Note
 Add + to start of the file if it's not there.

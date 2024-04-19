@@ -112,6 +112,18 @@ repositories {
         name "tterrag" //EnderCore
         url "https://maven.tterrag.com/"
     }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Modrinth"
+                url = "https://api.modrinth.com/maven"
+            }
+        }
+        forRepositories(fg.repository) // Only add this if you're using ForgeGradle, otherwise remove this line
+        filter {
+            includeGroup "maven.modrinth"
+        }
+    }
     mavenCentral()
 }
 
@@ -180,8 +192,12 @@ dependencies {
 
     //Water Power
     compileOnly(fg.deobf("curse.maven:waterpower-224579:2464789"))
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.23'
 
+    // Subaquatic
+    compileOnly(fg.deobf("maven.modrinth:subaquatic:8I38sNEh"))
+
+
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.23'
 
     // Mixin and it's common libraries
     annotationProcessor 'org.ow2.asm:asm:9.6'
@@ -206,6 +222,7 @@ jar {
                 'FMLCorePlugin': 'com.cleanroommc.fugue.common.FugueLoadingPlugin',
                 'ForceLoadAsMod': true,
                 'MixinConfigs': 'fugue.mixin.mod.json,fugue.mixin.init.json',
+                'ModType': 'CRL',
                 //'FMLAT': 'accesstransformer.cfg',
                 'Implementation-Title': project.name,
                 'Implementation-Version': mod_version,

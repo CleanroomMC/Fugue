@@ -8,6 +8,7 @@ import com.cleanroommc.fugue.transformer.logisticpipes.LogisticsPipesClassInject
 import com.cleanroommc.fugue.transformer.loliasm.JavaFixesTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.LoliFMLCallHookTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.LoliReflectorTransformer;
+import com.cleanroommc.fugue.transformer.subaquatic.PluginEntityTransformer;
 import com.cleanroommc.fugue.transformer.tickcentral.*;
 import com.cleanroommc.fugue.transformer.universal.*;
 import net.minecraft.launchwrapper.Launch;
@@ -87,6 +88,10 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
         }
         if (FugueConfig.modPatchConfig.enableSurvivialInc) {
             TransformerDelegate.registerExplicitTransformerByInstance(new ForgeASMInjectorTransformer(), "enginecrafter77.survivalinc.util.ForgeASMInjector");
+        }
+        if (FugueConfig.modPatchConfig.enableSubaquatic) {
+            TransformerDelegate.registerExplicitTransformerByInstance(new PluginEntityTransformer(), "git.jbredwards.subaquatic.mod.asm.plugin.vanilla.entity.PluginEntity");
+            TransformerDelegate.registerExplicitTransformerByInstance(new SubaquaticIMTransformer(), "net.minecraft.world.gen.layer.GenLayer");
         }
         if (FugueConfig.getCodeSourcePatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformerByInstance(new ITweakerTransformer(), FugueConfig.getCodeSourcePatchTargets);

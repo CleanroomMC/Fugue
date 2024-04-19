@@ -19,7 +19,8 @@
     "solarflux.SolarFluxMixin",
     "xaeroplus.ChunkHighlightSavingCacheMixin",
     "xaeroplus.XaeroPlusSettingsReflectionHaxMixin",
-    "waterpower.ClassEngineMixin"
+    "waterpower.ClassEngineMixin",
+    "subaquatic.IBubbleColumnMixin"
   ],
   "client": [
     "custommainmenu.SlideshowMixin",
