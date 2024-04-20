@@ -8,6 +8,10 @@ import com.cleanroommc.fugue.transformer.logisticpipes.LogisticsPipesClassInject
 import com.cleanroommc.fugue.transformer.loliasm.JavaFixesTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.LoliFMLCallHookTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.LoliReflectorTransformer;
+import com.cleanroommc.fugue.transformer.nothirium.BufferBuilderTransformer;
+import com.cleanroommc.fugue.transformer.nothirium.FreeSectorManagerTransformer;
+import com.cleanroommc.fugue.transformer.nothirium.MixinBufferBuilderTransformer;
+import com.cleanroommc.fugue.transformer.nothirium.NothiriumClassTransformerTransformer;
 import com.cleanroommc.fugue.transformer.subaquatic.PluginEntityTransformer;
 import com.cleanroommc.fugue.transformer.tickcentral.*;
 import com.cleanroommc.fugue.transformer.universal.*;
@@ -92,6 +96,12 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
         if (FugueConfig.modPatchConfig.enableSubaquatic) {
             TransformerDelegate.registerExplicitTransformerByInstance(new PluginEntityTransformer(), "git.jbredwards.subaquatic.mod.asm.plugin.vanilla.entity.PluginEntity");
             TransformerDelegate.registerExplicitTransformerByInstance(new SubaquaticIMTransformer(), "net.minecraft.world.gen.layer.GenLayer");
+        }
+        if (FugueConfig.modPatchConfig.enableNothirium){
+            TransformerDelegate.registerExplicitTransformerByInstance(new NothiriumClassTransformerTransformer(), "meldexun.nothirium.mc.asm.NothiriumClassTransformer");
+            TransformerDelegate.registerTransformerByInstance(new MixinBufferBuilderTransformer());
+            TransformerDelegate.registerExplicitTransformerByInstance(new BufferBuilderTransformer(), "net.minecraft.client.renderer.BufferBuilder");
+            TransformerDelegate.registerExplicitTransformerByInstance(new FreeSectorManagerTransformer(), "meldexun.nothirium.util.FreeSectorManager$AVL", "meldexun.nothirium.util.FreeSectorManager$RB");
         }
         if (FugueConfig.getCodeSourcePatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformerByInstance(new ITweakerTransformer(), FugueConfig.getCodeSourcePatchTargets);

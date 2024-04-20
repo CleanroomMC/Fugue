@@ -193,9 +193,11 @@ dependencies {
     //Water Power
     compileOnly(fg.deobf("curse.maven:waterpower-224579:2464789"))
 
-    // Subaquatic
+    //Subaquatic
     compileOnly(fg.deobf("maven.modrinth:subaquatic:8I38sNEh"))
 
+    //Nothirium
+    compileOnly(fg.deobf("curse.maven:nothirium-624960:4710696"))
 
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.23'
 

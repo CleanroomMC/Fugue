@@ -42,6 +42,7 @@ https://github.com/CleanroomMC/Fugue/releases/latest
 * Water Power
 * Survival Inc.
 * Subauqatic (Temporary)
+* Nothirium
 
 ## Note
 Add + to start of the file if it's not there.

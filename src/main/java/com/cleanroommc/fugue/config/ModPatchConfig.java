@@ -69,4 +69,6 @@ public class ModPatchConfig {
     public boolean enableWaterPower = true;
     @Config.Name("Enable Subaquatic Patch")
     public boolean enableSubaquatic = true;
+    @Config.Name("Enable Nothirium Patch")
+    public boolean enableNothirium = true;
 }
