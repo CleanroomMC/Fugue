@@ -22,7 +22,8 @@ public class ITweakerTransformer implements IExplicitTransformer {
                                         {
                                             $_ = com.cleanroommc.fugue.helper.HookHelper#toURI($0);
                                         }
-                                        """);
+                                        """
+                        );
                     }
                 }
             };
