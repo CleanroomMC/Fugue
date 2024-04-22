@@ -2,6 +2,7 @@ package com.cleanroommc.fugue.common;
 
 import com.cleanroommc.fugue.config.FugueConfig;
 import com.cleanroommc.fugue.transformer.*;
+import com.cleanroommc.fugue.transformer.groovyscript.GroovyClassLoaderTransformer;
 import com.cleanroommc.fugue.transformer.logisticpipes.LogisticPipesTransformer;
 import com.cleanroommc.fugue.transformer.logisticpipes.LogisticsClassTransformerTransformer;
 import com.cleanroommc.fugue.transformer.logisticpipes.LogisticsPipesClassInjectorTransformer;
@@ -102,6 +103,9 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
             TransformerDelegate.registerTransformerByInstance(new MixinBufferBuilderTransformer());
             TransformerDelegate.registerExplicitTransformerByInstance(new BufferBuilderTransformer(), "net.minecraft.client.renderer.BufferBuilder");
             TransformerDelegate.registerExplicitTransformerByInstance(new FreeSectorManagerTransformer(), "meldexun.nothirium.util.FreeSectorManager$AVL", "meldexun.nothirium.util.FreeSectorManager$RB");
+        }
+        if (FugueConfig.modPatchConfig.enableGroovyScript) {
+            TransformerDelegate.registerExplicitTransformerByInstance(new GroovyClassLoaderTransformer(), "groovy.lang.GroovyClassLoader$ClassCollector");
         }
         if (FugueConfig.getCodeSourcePatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformerByInstance(new ITweakerTransformer(), FugueConfig.getCodeSourcePatchTargets);

@@ -1,5 +1,6 @@
 package com.cleanroommc.fugue.helper;
 
+import com.cleanroommc.fugue.common.Fugue;
 import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.launchwrapper.LaunchClassLoader;
@@ -14,9 +15,8 @@ import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.net.*;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.security.CodeSource;
+import java.util.*;
 
 public class HookHelper {
     public static boolean isInterface(int opcode) {
@@ -24,6 +24,7 @@ public class HookHelper {
     }
 
     public static List<IClassTransformer> transformers;
+    private static final Map<String, Class<?>> grsMap = new HashMap<>();
 
     @SuppressWarnings("deprecation")
     private static String byGetResource() {
@@ -79,6 +80,13 @@ public class HookHelper {
         }
     }
 
+    public static Class<?> defineClass(String name, byte[] bytes, int off, int len, CodeSource codeSource) {
+        if (grsMap.containsKey(name)) {
+            return grsMap.get(name);
+        } else {
+            return grsMap.computeIfAbsent(name, k -> Launch.classLoader.defineClass(k, bytes, codeSource));
+        }
+    }
 
     public static byte[] redirectGetClassByte(LaunchClassLoader instance, String s) throws IOException {
         byte[] bytes = null;

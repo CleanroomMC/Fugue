@@ -71,4 +71,6 @@ public class ModPatchConfig {
     public boolean enableSubaquatic = true;
     @Config.Name("Enable Nothirium Patch")
     public boolean enableNothirium = true;
+    @Config.Name("Enable GroovyScript Patch")
+    public boolean enableGroovyScript = true;
 }
