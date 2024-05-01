@@ -44,6 +44,8 @@ public class FugueConfig {
             "com.noobanidus.variegated.compat.vanilla.handlers.MansionBiomeTypesHandler",
             "youyihj.zenutils.ZenUtils",
             "com.codetaylor.mc.athenaeum.util.Injector",
+            "org.valkyrienskies.mod.common.ValkyrienSkiesMod",
+            "com.legacy.lostaether.client.LostClientEvents",
     };
 
     @Config.Comment(
@@ -99,6 +101,9 @@ public class FugueConfig {
             "net.silentchaos512.lib.tile.SyncVariable",
             "appeng.me.GridStorage",
             "net.creeperhost.minetogether.misc.Callbacks",
+            "com.matez.wildnature.util.IProxy",
+            "com.matez.wildnature.proxy.ClientProxy",
+            "com.matez.wildnature.proxy.ServerProxy",
     };
 
     @Config.Comment(

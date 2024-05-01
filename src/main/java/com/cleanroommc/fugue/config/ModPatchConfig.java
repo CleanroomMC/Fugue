@@ -73,4 +73,8 @@ public class ModPatchConfig {
     public boolean enableNothirium = true;
     @Config.Name("Enable GroovyScript Patch")
     public boolean enableGroovyScript = true;
+    @Config.Name("Enable IC2C Extra Patch")
+    public boolean enableIC2CE = true;
+    @Config.Name("Enable SimplyHotSpring Patch")
+    public boolean enableSimplyHotSpring = true;
 }

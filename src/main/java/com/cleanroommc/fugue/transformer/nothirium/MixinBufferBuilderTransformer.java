@@ -4,21 +4,20 @@ import com.cleanroommc.fugue.common.Fugue;
 import javassist.ClassPool;
 import javassist.CtClass;
 import net.minecraft.launchwrapper.IClassTransformer;
+import top.outlands.foundation.IExplicitTransformer;
 
 import java.io.ByteArrayInputStream;
 
-public class MixinBufferBuilderTransformer implements IClassTransformer {
+public class MixinBufferBuilderTransformer implements IExplicitTransformer {
 
     @Override
-    public byte[] transform(String s, String s1, byte[] bytes) {
-        if (s1.equals("meldexun.nothirium.mc.mixin.vertex.MixinBufferBuilder")) {
-            try {
-                CtClass cc = ClassPool.getDefault().makeClass(new ByteArrayInputStream(bytes));
-                cc.removeMethod(cc.getDeclaredMethod("growBuffer"));
-                bytes = cc.toBytecode();
-            } catch (Throwable t) {
-                Fugue.LOGGER.error(t);
-            }
+    public byte[] transform(byte[] bytes) {
+        try {
+            CtClass cc = ClassPool.getDefault().makeClass(new ByteArrayInputStream(bytes));
+            cc.removeMethod(cc.getDeclaredMethod("growBuffer"));
+            bytes = cc.toBytecode();
+        } catch (Throwable t) {
+            Fugue.LOGGER.error(t);
         }
         return bytes;
     }

@@ -128,7 +128,7 @@ repositories {
 }
 
 dependencies {
-    minecraft "com.cleanroommc:cleanroom:15.24.0.3038"
+    minecraft "com.cleanroommc:cleanroom:15.24.0.3039"
 
     //Charset Lib
     compileOnly(fg.deobf("curse.maven:charset-284523:3656492"))

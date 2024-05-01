@@ -43,6 +43,8 @@ https://github.com/CleanroomMC/Fugue/releases/latest
 * Survival Inc.
 * Subauqatic (Temporary)
 * Nothirium
+* IC2C Extra
+* Simply Hot Spring
 
 ## Note
 Add + to start of the file if it's not there.

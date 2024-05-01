@@ -1,6 +1,7 @@
 package com.cleanroommc.fugue.common;
 
 import com.cleanroommc.fugue.config.FugueConfig;
+import com.cleanroommc.fugue.modifiers.IC2ExtraFixer;
 import com.cleanroommc.fugue.transformer.*;
 import com.cleanroommc.fugue.transformer.groovyscript.GroovyClassLoaderTransformer;
 import com.cleanroommc.fugue.transformer.logisticpipes.LogisticPipesTransformer;
@@ -19,6 +20,8 @@ import com.cleanroommc.fugue.transformer.universal.*;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
+import org.spongepowered.asm.mixin.transformer.Config;
+import org.spongepowered.asm.service.mojang.MixinServiceLaunchWrapper;
 import top.outlands.foundation.TransformerDelegate;
 import top.outlands.foundation.boot.ActualClassLoader;
 
@@ -26,6 +29,7 @@ import javax.annotation.Nullable;
 import java.util.Map;
 
 @IFMLLoadingPlugin.MCVersion("1.12.2")
+@IFMLLoadingPlugin.Name("Fugue")
 public class FugueLoadingPlugin implements IFMLLoadingPlugin {
 
     static {
@@ -100,12 +104,19 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
         }
         if (FugueConfig.modPatchConfig.enableNothirium){
             TransformerDelegate.registerExplicitTransformerByInstance(new NothiriumClassTransformerTransformer(), "meldexun.nothirium.mc.asm.NothiriumClassTransformer");
-            TransformerDelegate.registerTransformerByInstance(new MixinBufferBuilderTransformer());
+            MixinServiceLaunchWrapper.registerMixinClassTransformer(new MixinBufferBuilderTransformer(), "meldexun.nothirium.mc.mixin.vertex.MixinBufferBuilder");
             TransformerDelegate.registerExplicitTransformerByInstance(new BufferBuilderTransformer(), "net.minecraft.client.renderer.BufferBuilder");
             TransformerDelegate.registerExplicitTransformerByInstance(new FreeSectorManagerTransformer(), "meldexun.nothirium.util.FreeSectorManager$AVL", "meldexun.nothirium.util.FreeSectorManager$RB");
         }
         if (FugueConfig.modPatchConfig.enableGroovyScript) {
             TransformerDelegate.registerExplicitTransformerByInstance(new GroovyClassLoaderTransformer(), "groovy.lang.GroovyClassLoader$ClassCollector");
+        }
+        if (FugueConfig.modPatchConfig.enableIC2CE) {
+            Config.registerConfigModifier(new IC2ExtraFixer(), "mixins.ic2c_extras.json");
+            TransformerDelegate.registerExplicitTransformerByInstance(new Ic2cExtrasLoadingPluginTransformer(), "trinsdar.ic2c_extras.asm.Ic2cExtrasLoadingPlugin");
+        }
+        if (FugueConfig.modPatchConfig.enableSimplyHotSpring) {
+            TransformerDelegate.registerExplicitTransformerByInstance(new SimplyHotSpringsConfigTransformer(), "connor135246.simplyhotsprings.util.SimplyHotSpringsConfig");
         }
         if (FugueConfig.getCodeSourcePatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformerByInstance(new ITweakerTransformer(), FugueConfig.getCodeSourcePatchTargets);
