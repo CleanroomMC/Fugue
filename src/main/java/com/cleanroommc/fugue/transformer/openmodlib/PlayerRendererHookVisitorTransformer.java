@@ -12,7 +12,7 @@ public class PlayerRendererHookVisitorTransformer implements IExplicitTransforme
     public byte[] transform(byte[] bytes) {
         ClassNode classNode = new ClassNode();
         ClassReader classReader = new ClassReader(bytes);
-        classReader.accept(classNode, 0);
+        classReader.accept(classNode, ClassReader.SKIP_DEBUG);
         if (classNode.methods != null)
         {
             for (MethodNode methodNode : classNode.methods)
@@ -37,7 +37,7 @@ public class PlayerRendererHookVisitorTransformer implements IExplicitTransforme
                 }
             }
         }
-        ClassWriter classWriter = new ClassWriter(0);
+        ClassWriter classWriter = new ClassWriter(ClassWriter.COMPUTE_FRAMES);
 
         classNode.accept(classWriter);
         return classWriter.toByteArray();
