@@ -45,6 +45,8 @@ https://github.com/CleanroomMC/Fugue/releases/latest
 * Nothirium
 * IC2C Extra
 * Simply Hot Spring
+* OpenModsLib
+* Valkyrie (Temporary)
 
 ## Note
 Add + to start of the file if it's not there.
