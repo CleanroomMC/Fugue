@@ -77,4 +77,8 @@ public class ModPatchConfig {
     public boolean enableIC2CE = true;
     @Config.Name("Enable SimplyHotSpring Patch")
     public boolean enableSimplyHotSpring = true;
+    @Config.Name("Enable Valkyrie Patch")
+    public boolean enableValkyrie = true;
+    @Config.Name("Enable OpenModsLib Patch")
+    public boolean enableOpenModsLib = true;
 }

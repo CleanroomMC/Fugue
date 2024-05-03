@@ -14,6 +14,8 @@ import com.cleanroommc.fugue.transformer.nothirium.BufferBuilderTransformer;
 import com.cleanroommc.fugue.transformer.nothirium.FreeSectorManagerTransformer;
 import com.cleanroommc.fugue.transformer.nothirium.MixinBufferBuilderTransformer;
 import com.cleanroommc.fugue.transformer.nothirium.NothiriumClassTransformerTransformer;
+import com.cleanroommc.fugue.transformer.openmodlib.InjectorMethodVisitorTransformer;
+import com.cleanroommc.fugue.transformer.openmodlib.PlayerRendererHookVisitorTransformer;
 import com.cleanroommc.fugue.transformer.subaquatic.PluginEntityTransformer;
 import com.cleanroommc.fugue.transformer.tickcentral.*;
 import com.cleanroommc.fugue.transformer.universal.*;
@@ -117,6 +119,13 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
         }
         if (FugueConfig.modPatchConfig.enableSimplyHotSpring) {
             TransformerDelegate.registerExplicitTransformerByInstance(new SimplyHotSpringsConfigTransformer(), "connor135246.simplyhotsprings.util.SimplyHotSpringsConfig");
+        }
+        if (FugueConfig.modPatchConfig.enableOpenModsLib) {
+            TransformerDelegate.registerExplicitTransformerByInstance(new PlayerRendererHookVisitorTransformer(), "openmods.renderer.PlayerRendererHookVisitor");
+            TransformerDelegate.registerExplicitTransformerByInstance(new InjectorMethodVisitorTransformer(), "openmods.renderer.PlayerRendererHookVisitor$InjectorMethodVisitor");
+        }
+        if (FugueConfig.modPatchConfig.enableValkyrie) {
+            MixinServiceLaunchWrapper.registerMixinClassTransformer(new MinecraftMixinTransformer(), "dev.redstudio.valkyrie.mixin.MinecraftMixin");
         }
         if (FugueConfig.getCodeSourcePatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformerByInstance(new ITweakerTransformer(), FugueConfig.getCodeSourcePatchTargets);
