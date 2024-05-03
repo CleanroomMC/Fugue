@@ -27,7 +27,7 @@ public class InjectorMethodVisitorTransformer implements IExplicitTransformer {
                             visitVarInsn(25, 1);
                             visitVarInsn(23, 4);
                             visitMethodInsn(184, "openmods/renderer/PlayerRendererHookVisitor", "post", "(Lnet/minecraft/client/entity/AbstractClientPlayer;F)V", false);
-                            openmods.renderer.PlayerRendererHookVisitor$InjectorMethodVisitor.this$0.listener.onSuccess();
+                            openmods.renderer.PlayerRendererHookVisitor.this.listener.onSuccess();
                         }
                         super.visitInsn($1);
                     }
