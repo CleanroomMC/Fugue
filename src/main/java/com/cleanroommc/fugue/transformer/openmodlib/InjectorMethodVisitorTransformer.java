@@ -22,13 +22,15 @@ public class InjectorMethodVisitorTransformer implements IExplicitTransformer {
             );
             cc.getDeclaredMethod("visitInsn").setBody(
                     """
-                    if ($2 == 177) {
-                        visitVarInsn(25, 1);
-                        visitVarInsn(23, 4);
-                        visitMethodInsn(184, "openmods/renderer/PlayerRendererHookVisitor", "post", "(Lnet/minecraft/client/entity/AbstractClientPlayer;F)V", false);
-                        $1.listener.onSuccess();
+                    {
+                        if ($2 == 177) {
+                            visitVarInsn(25, 1);
+                            visitVarInsn(23, 4);
+                            visitMethodInsn(184, "openmods/renderer/PlayerRendererHookVisitor", "post", "(Lnet/minecraft/client/entity/AbstractClientPlayer;F)V", false);
+                            $1.listener.onSuccess();
+                        }
+                        super.visitInsn($2);
                     }
-                    super.visitInsn($2);
                     """
             );
             bytes = cc.toBytecode();
