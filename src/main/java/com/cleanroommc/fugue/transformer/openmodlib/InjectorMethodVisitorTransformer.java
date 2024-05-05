@@ -30,7 +30,7 @@ public class InjectorMethodVisitorTransformer implements IExplicitTransformer {
                         instructions.add(new VarInsnNode(Opcodes.ALOAD, 1));
                         instructions.add(new FieldInsnNode(Opcodes.PUTFIELD, "openmods/renderer/PlayerRendererHookVisitor$InjectorMethodVisitor", "this$0", "Lopenmods/renderer/PlayerRendererHookVisitor;"));
                         instructions.add(new VarInsnNode(Opcodes.ALOAD, 0));
-                        instructions.add(new LdcInsnNode(589824));
+                        instructions.add(new LdcInsnNode(Opcodes.ASM9));
                         instructions.add(new VarInsnNode(Opcodes.ALOAD, 2));
                         instructions.add(new MethodInsnNode(Opcodes.INVOKESPECIAL, "org/objectweb/asm/MethodVisitor", "<init>", "(ILorg/objectweb/asm/MethodVisitor;)V", false));
                         instructions.add(new InsnNode(Opcodes.RETURN));
