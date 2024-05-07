@@ -223,7 +223,7 @@ jar {
                 //'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
                 'FMLCorePlugin': 'com.cleanroommc.fugue.common.FugueLoadingPlugin',
                 'ForceLoadAsMod': true,
-                'MixinConfigs': 'fugue.mixin.mod.json,fugue.mixin.init.json',
+                'MixinConfigs': 'fugue.mixin.mod.json',
                 'ModType': 'CRL',
                 //'FMLAT': 'accesstransformer.cfg',
                 'Implementation-Title': project.name,
