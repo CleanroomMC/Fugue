@@ -39,7 +39,7 @@ public class FugueMixinConfigPlugin implements IMixinConfigPlugin {
             case "solarflux" -> Loader.isModLoaded("solarflux") && FugueConfig.modPatchConfig.enableSolarFlux;
             case "custommainmenu" -> Loader.isModLoaded("custommainmenu") && FugueConfig.modPatchConfig.enableCMM;
             case "hammercore" -> Loader.isModLoaded("hammercore") && FugueConfig.modPatchConfig.enableHammerCore;
-            case "gregtech" -> Loader.isModLoaded("gregtech") && FugueConfig.modPatchConfig.enableGTCEU;
+            case "gregtech" -> Loader.isModLoaded("gregtech") && FugueConfig.modPatchConfig.enableGTCEU && !Fugue.isModNewerThan("gregtech", "2.8.7");
             case "mcjty" -> Loader.isModLoaded("mcjtylib_ng") && FugueConfig.modPatchConfig.enableMcjty;
             case "howlingmoon" -> Loader.isModLoaded("howlingmoon") && FugueConfig.modPatchConfig.enableHowlingMoon;
             case "customnpcs" -> Loader.isModLoaded("customnpcs") && FugueConfig.modPatchConfig.enableCustomNPC;
