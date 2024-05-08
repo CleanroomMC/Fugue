@@ -81,4 +81,6 @@ public class ModPatchConfig {
     public boolean enableValkyrie = true;
     @Config.Name("Enable OpenModsLib Patch")
     public boolean enableOpenModsLib = true;
+    @Config.Name("Enable ReplayMod Patch")
+    public boolean enableReplayMod = true;
 }

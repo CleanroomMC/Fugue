@@ -162,7 +162,9 @@ public class FugueConfig {
             "pcl.opensecurity.util.SoundUnpack",
             "pcl.OpenFM.misc.DepLoader",
             "optifine.OptiFineClassTransformer",
-            "snownee.minieffects.core.CoreMod"
+            "snownee.minieffects.core.CoreMod",
+            "com.replaymod.core.tweaker.ReplayModTweaker",
+            "com.replaymod.core.LoadingPlugin",
     };
 
     @Config.Comment(

@@ -28,6 +28,7 @@ import top.outlands.foundation.TransformerDelegate;
 import top.outlands.foundation.boot.ActualClassLoader;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Map;
 
 @IFMLLoadingPlugin.MCVersion("1.12.2")
@@ -127,6 +128,9 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
         if (FugueConfig.modPatchConfig.enableValkyrie) {
             MixinServiceLaunchWrapper.registerMixinClassTransformer(new MinecraftMixinTransformer(), "dev.redstudio.valkyrie.mixin.MinecraftMixin");
         }
+        if (FugueConfig.modPatchConfig.enableReplayMod) {
+            injectCascadingTweak(LateBootstrapTweaker.class.getName());
+        }
         if (FugueConfig.getCodeSourcePatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformerByInstance(new ITweakerTransformer(), FugueConfig.getCodeSourcePatchTargets);
         }
@@ -192,5 +196,12 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
     @Override
     public String getAccessTransformerClass() {
         return null;
+    }
+
+    public static void injectCascadingTweak(String tweakClassName)
+    {
+        @SuppressWarnings("unchecked")
+        List<String> tweakClasses = (List<String>) Launch.blackboard.get("TweakClasses");
+        tweakClasses.add(tweakClassName);
     }
 }
