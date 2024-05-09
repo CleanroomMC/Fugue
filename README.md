@@ -30,7 +30,7 @@ https://github.com/CleanroomMC/Fugue/releases/latest
 * OpenDisks
 * OpenSecurity
 * Enchantments Control
-* GregTech CE Unofficial (Temporary)
+* GregTech CE Unofficial (Before 2.8.8)
 * TFC Medicinal
 * Mcjty Core
 * LoliASM
@@ -47,6 +47,8 @@ https://github.com/CleanroomMC/Fugue/releases/latest
 * Simply Hot Spring
 * OpenModsLib
 * Valkyrie (Temporary)
+* ReplayMod
+* Thaumic Speedup (Temporary)
 
 ## Note
 Add + to start of the file if it's not there.

@@ -83,4 +83,6 @@ public class ModPatchConfig {
     public boolean enableOpenModsLib = true;
     @Config.Name("Enable ReplayMod Patch")
     public boolean enableReplayMod = true;
+    @Config.Name("Fix Tahumic Speedup Loader")
+    public boolean fixTahumicSpeedup = true;
 }
