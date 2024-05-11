@@ -2,11 +2,11 @@
 Fix dead mods. [Explain](https://www.etymonline.com/cn/word/fugue)
 
 Also check [The Fugue Plane](https://forgottenrealms.fandom.com/wiki/Fugue_Plane).
-## Stable
-https://github.com/CleanroomMC/Fugue/releases/tag/0.5.4
 
-## Unstable
+## Download
 https://github.com/CleanroomMC/Fugue/releases/latest
+
+If you are still using 0.1.0 Cleanroom, use 0.5.4. But that's not recommended.
 
 ## List
 * Charset
