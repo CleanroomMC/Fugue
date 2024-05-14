@@ -199,7 +199,10 @@ dependencies {
     //Nothirium
     compileOnly(fg.deobf("curse.maven:nothirium-624960:4710696"))
 
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.23'
+    //Astral Sorcery
+    compileOnly(fg.deobf("curse.maven:as-241721:3044416"))
+
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.24'
 
     // Mixin and it's common libraries
     annotationProcessor 'org.ow2.asm:asm:9.6'

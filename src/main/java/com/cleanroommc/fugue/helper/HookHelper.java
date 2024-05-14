@@ -88,6 +88,10 @@ public class HookHelper {
         }
     }
 
+    public static Class<?> defineClass(byte[] bytes, String name) {
+        return Launch.classLoader.defineClass(name, bytes);
+    }
+
     public static byte[] redirectGetClassByte(LaunchClassLoader instance, String s) throws IOException {
         byte[] bytes = null;
         boolean failed = false;

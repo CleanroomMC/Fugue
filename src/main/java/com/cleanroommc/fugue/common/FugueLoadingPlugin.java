@@ -4,9 +4,7 @@ import com.cleanroommc.fugue.config.FugueConfig;
 import com.cleanroommc.fugue.modifiers.IC2ExtraFixer;
 import com.cleanroommc.fugue.transformer.*;
 import com.cleanroommc.fugue.transformer.groovyscript.GroovyClassLoaderTransformer;
-import com.cleanroommc.fugue.transformer.logisticpipes.LogisticPipesTransformer;
-import com.cleanroommc.fugue.transformer.logisticpipes.LogisticsClassTransformerTransformer;
-import com.cleanroommc.fugue.transformer.logisticpipes.LogisticsPipesClassInjectorTransformer;
+import com.cleanroommc.fugue.transformer.logisticpipes.*;
 import com.cleanroommc.fugue.transformer.loliasm.JavaFixesTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.LoliFMLCallHookTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.LoliReflectorTransformer;
@@ -74,6 +72,13 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
                     "logisticspipes.asm.LogisticsClassTransformer",
                     "logisticspipes.asm.LogisticsPipesClassInjector");
             TransformerDelegate.registerExplicitTransformerByInstance(new LogisticsPipesClassInjectorTransformer(), "logisticspipes.asm.LogisticsPipesClassInjector");
+            TransformerDelegate.registerExplicitTransformerByInstance(new defineClassTransformer(),
+                    "logisticspipes.asm.wrapper.LogisticsWrapperHandler",
+                    "logisticspipes.proxy.opencomputers.asm.ClassCreator"
+            );
+            TransformerDelegate.registerExplicitTransformerByInstance(new LoadClassTransformer(),
+                    "network.rs485.debug.OpenGLDebugger",
+                    "logisticspipes.utils.StaticResolverUtil");
         }
         if (FugueConfig.modPatchConfig.enableEC){
             TransformerDelegate.registerExplicitTransformerByInstance(new EnumInputClassTransformer(), "austeretony.enchcontrol.common.core.EnumInputClass");

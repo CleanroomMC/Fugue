@@ -6,6 +6,7 @@
   "target": "@env(MOD)",
   "plugin": "com.cleanroommc.fugue.common.FugueMixinConfigPlugin",
   "mixins": [
+    "astralsorcery.PerkAttributeTypeMixin",
     "charset.ColorspacesMixin",
     "codechickenlib.ReflectionManagerMixin",
     "customnpcs.ScriptPlayerEventHandlerMixin",
@@ -17,10 +18,10 @@
     "projectred_core.WirePropagatorMixin",
     "solarflux.INetworkSFMixin",
     "solarflux.SolarFluxMixin",
-    "xaeroplus.ChunkHighlightSavingCacheMixin",
-    "xaeroplus.XaeroPlusSettingsReflectionHaxMixin",
+    "subaquatic.IBubbleColumnMixin",
     "waterpower.ClassEngineMixin",
-    "subaquatic.IBubbleColumnMixin"
+    "xaeroplus.ChunkHighlightSavingCacheMixin",
+    "xaeroplus.XaeroPlusSettingsReflectionHaxMixin"
   ],
   "client": [
     "custommainmenu.SlideshowMixin",
