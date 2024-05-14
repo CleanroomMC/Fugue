@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.function.Function;
 
-@Mixin(PerkAttributeType.class)
+@Mixin(value = PerkAttributeType.class, remap = false)
 public class PerkAttributeTypeMixin {
     @Redirect(method = {"onApply", "onRemove", "hasTypeApplied"}, at = @At(value = "INVOKE", target = "Ljava/util/Map;computeIfAbsent(Ljava/lang/Object;Ljava/util/function/Function;)Ljava/lang/Object;"))
     private Object redirectComputeIfAbsent(Map<Object, Object> map, Object key, Function<Object, Object> function) {
