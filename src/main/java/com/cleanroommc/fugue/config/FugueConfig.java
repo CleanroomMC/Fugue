@@ -46,6 +46,7 @@ public class FugueConfig {
             "com.codetaylor.mc.athenaeum.util.Injector",
             "org.valkyrienskies.mod.common.ValkyrienSkiesMod",
             "com.legacy.lostaether.client.LostClientEvents",
+            "com.noobanidus.variegated.compat.bloodmagic.handlers.HellfireSpeed",
     };
 
     @Config.Comment(
