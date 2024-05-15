@@ -63,10 +63,10 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
         }
         if (FugueConfig.modPatchConfig.enableLP){
             TransformerDelegate.registerExplicitTransformerByInstance(
-                    new LogisticPipesTransformer(1),
+                    new LogisticPipesHandlerTransformer(),
                     "logisticspipes.asm.mcmp.ClassBlockMultipartContainerHandler",
-                    "logisticspipes.asm.td.ClassRenderDuctItemsHandler");
-            TransformerDelegate.registerExplicitTransformerByInstance(new LogisticPipesTransformer(3), "logisticspipes.asm.td.ClassTravelingItemHandler");
+                    "logisticspipes.asm.td.ClassRenderDuctItemsHandler",
+                    "logisticspipes.asm.td.ClassTravelingItemHandler");
             TransformerDelegate.registerExplicitTransformerByInstance(
                     new LogisticsClassTransformerTransformer(ActualClassLoader.class),
                     "logisticspipes.asm.LogisticsClassTransformer",
