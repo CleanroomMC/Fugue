@@ -13,7 +13,7 @@ public class defineClassTransformer implements IExplicitTransformer {
     public byte[] transform(byte[] bytes) {
         try {
             CtClass cc = ClassPool.getDefault().makeClass(new ByteArrayInputStream(bytes));
-            cc.getDeclaredMethod("loadClass").setBody("return com.cleanroommc.fugue.helper.HookHelper#defineClass($$);");
+            cc.getDeclaredMethod("loadClass").setBody("return net.minecraft.launchwrapper.Launch#classLoader.loadClass($2);");
             bytes = cc.toBytecode();
         }catch (Throwable t) {
             Fugue.LOGGER.error(t);
