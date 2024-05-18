@@ -15,8 +15,6 @@ public class ModPatchConfig {
     public boolean enableTickCentral = true;
     @Config.Name("Enable Logistics Pipes Patch")
     public boolean enableLP = true;
-    @Config.Name("Enable Patch For OpenFM/OpenDisks/OpenSecurity")
-    public boolean enableOpenAddons = true;
     @Config.Name("Enable Enchantment Control Patch")
     public boolean enableEC = true;
     @Config.Name("Enable Charset lib Patch")
@@ -89,4 +87,6 @@ public class ModPatchConfig {
     public boolean enableAstralSorcery = true;
     @Config.Name("Enable Armourer's Workshop Patch")
     public boolean enableArmourersWorkshop = true;
+    @Config.Name("Enable Vampirism Patch")
+    public boolean enableVampirism = true;
 }

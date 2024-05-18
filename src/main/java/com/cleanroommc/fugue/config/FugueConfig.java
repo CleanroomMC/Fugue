@@ -48,6 +48,7 @@ public class FugueConfig {
             "com.legacy.lostaether.client.LostClientEvents",
             "com.noobanidus.variegated.compat.bloodmagic.handlers.HellfireSpeed",
             "ic2.core.util.ReflectionUtil",
+            "net.arsenalnetwork.betterhud.h",
     };
 
     @Config.Comment(
@@ -113,6 +114,7 @@ public class FugueConfig {
             Non-Update was gone with Security Manager.
             As a workaround, These targets will be banned from making connections with URL.openStream().
             If you don't need a proxy to access github, you could empty this setting.
+            The Secret Room entry should be kept - the url now points to an 404 page which will crash the game.
             This may block more connection than update checks, so if anything gone wrong please open an issue.""")
     @Config.Name("Connection Blocking List")
     public static String[] nonUpdateTargets = new String[] {
@@ -122,6 +124,7 @@ public class FugueConfig {
             "com.buuz135.industrial.proxy.CommonProxy",
             "micdoodle8.mods.galacticraft.core.proxy.ClientProxyCore",
             "vazkii.quark.base.client.ContributorRewardHandler$ThreadContributorListLoader",
+            "com.wynprice.secretroomsmod.handler.HandlerUpdateChecker",
     };
 
     @Config.Comment(

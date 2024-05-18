@@ -136,6 +136,9 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
         if (FugueConfig.modPatchConfig.enableReplayMod) {
             injectCascadingTweak(LateBootstrapTweaker.class.getName());
         }
+        if (FugueConfig.modPatchConfig.enableVampirism) {
+            TransformerDelegate.registerExplicitTransformerByInstance(new WorldGenVampireOrchidTransformer(), "de.teamlapen.vampirism.biome.BiomeGenVampireForest$WorldGenVampireOrchid");
+        }
         if (FugueConfig.getCodeSourcePatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformerByInstance(new ITweakerTransformer(), FugueConfig.getCodeSourcePatchTargets);
         }
