@@ -170,6 +170,7 @@ public class FugueConfig {
             "snownee.minieffects.core.CoreMod",
             "com.replaymod.core.tweaker.ReplayModTweaker",
             "com.replaymod.core.LoadingPlugin",
+            "com.someguyssoftware.dungeonsengine.config.DungeonConfigLoader",
     };
 
     @Config.Comment(

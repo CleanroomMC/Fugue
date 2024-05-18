@@ -14,6 +14,7 @@ public class WorldGenVampireOrchidTransformer implements IExplicitTransformer {
     public byte[] transform(byte[] bytes) {
         try {
             CtClass cc = ClassPool.getDefault().makeClass(new ByteArrayInputStream(bytes));
+            cc.setModifiers(cc.getModifiers() - Modifier.PRIVATE + Modifier.PUBLIC);
             CtField flower = cc.getField("flower");
             flower.setModifiers((flower.getModifiers() | Modifier.FINAL | Modifier.PUBLIC) - Modifier.PRIVATE);
             bytes = cc.toBytecode();
