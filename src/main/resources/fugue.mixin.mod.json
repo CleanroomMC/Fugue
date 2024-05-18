@@ -15,6 +15,7 @@
     "gregtech.GTRecipeInputCacheMixin",
     "hammercore.ReflectionUtilMixin",
     "howlingmoon.WerewolfCapabilityMixin",
+    "mage.ColorspacesMixin",
     "minecraftmultipartcbe.ASMMixinCompilerMixin",
     "minecraftmultipartcbe.StackAnalyserMixin",
     "projectred_core.WirePropagatorMixin",

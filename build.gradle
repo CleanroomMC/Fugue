@@ -205,6 +205,9 @@ dependencies {
     //Armourer's Workshop
     compileOnly(fg.deobf("curse.maven:aw-229523:3101995"))
 
+    //MAGE
+    compileOnly(fg.deobf("curse.maven:mage-287471:2625223"))
+
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.24'
 
     // Mixin and it's common libraries

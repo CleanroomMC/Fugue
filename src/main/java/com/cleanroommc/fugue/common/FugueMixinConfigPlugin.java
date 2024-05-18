@@ -47,6 +47,7 @@ public class FugueMixinConfigPlugin implements IMixinConfigPlugin {
             case "subaquatic" -> Loader.isModLoaded("subaquatic") && FugueConfig.modPatchConfig.enableSubaquatic;
             case "astralsorcery" -> Loader.isModLoaded("astralsorcery") && FugueConfig.modPatchConfig.enableAstralSorcery;
             case "armourers_workshop" -> Loader.isModLoaded("armourers_workshop") && FugueConfig.modPatchConfig.enableArmourersWorkshop;
+            case "mage" -> Loader.isModLoaded("mage") && FugueConfig.modPatchConfig.enableMage;
             default -> true;
         };
     }

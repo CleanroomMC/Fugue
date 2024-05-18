@@ -89,4 +89,6 @@ public class ModPatchConfig {
     public boolean enableArmourersWorkshop = true;
     @Config.Name("Enable Vampirism Patch")
     public boolean enableVampirism = true;
+    @Config.Name("Enable MAGE (Graphical Tweaks) Patch")
+    public boolean enableMage = true;
 }
