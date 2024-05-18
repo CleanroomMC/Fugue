@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.concurrent.FutureTask;
 
-@Mixin(GlobalTask.class)
+@Mixin(value = GlobalTask.class, remap = false)
 public class GlobalTaskMixin {
     @Redirect(
             method =

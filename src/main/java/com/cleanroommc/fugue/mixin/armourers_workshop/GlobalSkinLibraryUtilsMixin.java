@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(GlobalSkinLibraryUtils.class)
+@Mixin(value = GlobalSkinLibraryUtils.class, remap = false)
 public class GlobalSkinLibraryUtilsMixin {
     @Redirect(method = "getUserInfo", at = @At(value = "INVOKE", target = "Lcom/google/common/util/concurrent/Futures;addCallback(Lcom/google/common/util/concurrent/ListenableFuture;Lcom/google/common/util/concurrent/FutureCallback;)V"))
     private static void redirectAddCallback(ListenableFuture future, FutureCallback callback) {
