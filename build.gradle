@@ -202,6 +202,9 @@ dependencies {
     //Astral Sorcery
     compileOnly(fg.deobf("curse.maven:as-241721:3044416"))
 
+    //Armourer's Workshop
+    compileOnly(fg.deobf("curse.maven:aw-229523:3101995"))
+
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.24'
 
     // Mixin and it's common libraries

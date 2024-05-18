@@ -6,6 +6,8 @@
   "target": "@env(MOD)",
   "plugin": "com.cleanroommc.fugue.common.FugueMixinConfigPlugin",
   "mixins": [
+    "armourers_workshop.GlobalSkinLibraryUtilsMixin",
+    "armourers_workshop.GlobalTaskMixin",
     "astralsorcery.PerkAttributeTypeMixin",
     "charset.ColorspacesMixin",
     "codechickenlib.ReflectionManagerMixin",

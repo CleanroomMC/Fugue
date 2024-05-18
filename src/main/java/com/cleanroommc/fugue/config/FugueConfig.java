@@ -47,6 +47,7 @@ public class FugueConfig {
             "org.valkyrienskies.mod.common.ValkyrienSkiesMod",
             "com.legacy.lostaether.client.LostClientEvents",
             "com.noobanidus.variegated.compat.bloodmagic.handlers.HellfireSpeed",
+            "ic2.core.util.ReflectionUtil",
     };
 
     @Config.Comment(

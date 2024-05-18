@@ -87,4 +87,6 @@ public class ModPatchConfig {
     public boolean fixTahumicSpeedup = true;
     @Config.Name("Enable Astral Sorcery Patch")
     public boolean enableAstralSorcery = true;
+    @Config.Name("Enable Armourer's Workshop Patch")
+    public boolean enableArmourersWorkshop = true;
 }
