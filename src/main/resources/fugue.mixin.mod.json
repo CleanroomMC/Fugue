@@ -12,6 +12,7 @@
     "charset.ColorspacesMixin",
     "codechickenlib.ReflectionManagerMixin",
     "customnpcs.ScriptPlayerEventHandlerMixin",
+    "extrautils2.XUBlockStaticMixin",
     "gregtech.GTRecipeInputCacheMixin",
     "hammercore.ReflectionUtilMixin",
     "howlingmoon.WerewolfCapabilityMixin",

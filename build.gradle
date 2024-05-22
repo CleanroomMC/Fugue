@@ -208,6 +208,10 @@ dependencies {
     //MAGE
     compileOnly(fg.deobf("curse.maven:mage-287471:2625223"))
 
+    //Extra Utilities
+    compileOnly(fg.deobf("curse.maven:exu2-225561:2678374"))
+
+
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.24'
 
     // Mixin and it's common libraries

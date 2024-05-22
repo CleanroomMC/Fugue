@@ -171,6 +171,7 @@ public class FugueConfig {
             "com.replaymod.core.tweaker.ReplayModTweaker",
             "com.replaymod.core.LoadingPlugin",
             "com.someguyssoftware.dungeonsengine.config.DungeonConfigLoader",
+            "zone.rong.loliasm.common.crashes.ModIdentifier",
     };
 
     @Config.Comment(
