@@ -48,6 +48,7 @@ public class FugueMixinConfigPlugin implements IMixinConfigPlugin {
             case "astralsorcery" -> Loader.isModLoaded("astralsorcery") && FugueConfig.modPatchConfig.enableAstralSorcery;
             case "armourers_workshop" -> Loader.isModLoaded("armourers_workshop") && FugueConfig.modPatchConfig.enableArmourersWorkshop;
             case "mage" -> Loader.isModLoaded("mage") && FugueConfig.modPatchConfig.enableMage;
+            case "extrautils2" -> Loader.isModLoaded("extrautils2") && FugueConfig.modPatchConfig.enableExtraUtilities;
             default -> true;
         };
     }

@@ -10,7 +10,12 @@ import java.util.stream.Stream;
 @Config(modid = Reference.MOD_ID, name = Reference.MOD_ID)
 @Config.RequiresMcRestart
 public class FugueConfig {
-    @Config.Comment("Fix and patches for certain mods.")
+    @Config.Comment("""
+            Fix and patches for certain mods.
+            WARNING: Enable too much patches may lower performance.
+            If you are a pack maker, just enable what you need.
+            """
+    )
     public static ModPatchConfig modPatchConfig = new ModPatchConfig();
 
     @Config.Comment("""
