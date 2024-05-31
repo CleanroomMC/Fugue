@@ -93,4 +93,6 @@ public class ModPatchConfig {
     public boolean enableMage = true;
     @Config.Name("Enable Extra Utilities Patch")
     public boolean enableExtraUtilities = true;
+    @Config.Name("Enable In Control! Patch")
+    public boolean enableInControl = true;
 }

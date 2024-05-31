@@ -128,7 +128,7 @@ repositories {
 }
 
 dependencies {
-    minecraft "com.cleanroommc:cleanroom:0.2.0-alpha+"
+    minecraft "com.cleanroommc:cleanroom:0.2.1-alpha+"
 
     //Charset Lib
     compileOnly(fg.deobf("curse.maven:charset-284523:3656492"))
@@ -211,6 +211,8 @@ dependencies {
     //Extra Utilities
     compileOnly(fg.deobf("curse.maven:exu2-225561:2678374"))
 
+    //In Control!
+    compileOnly(fg.deobf("curse.maven:incontrol-257356:3101719"))
 
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.24'
 
