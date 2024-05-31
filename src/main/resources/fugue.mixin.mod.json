@@ -8,6 +8,7 @@
   "mixins": [
     "armourers_workshop.GlobalSkinLibraryUtilsMixin",
     "armourers_workshop.GlobalTaskMixin",
+    "armourers_workshop.SkinTextureMixin",
     "astralsorcery.PerkAttributeTypeMixin",
     "charset.ColorspacesMixin",
     "codechickenlib.ReflectionManagerMixin",
