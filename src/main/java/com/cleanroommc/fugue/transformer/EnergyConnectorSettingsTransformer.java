@@ -16,7 +16,7 @@ public class EnergyConnectorSettingsTransformer implements IExplicitTransformer 
         {
             for (MethodNode methodNode : classNode.methods)
             {
-                if (methodNode.name.equals("<cinit>")) {
+                if (methodNode.name.equals("<clinit>")) {
                     InsnList instructions = methodNode.instructions;
                     if (instructions != null)
                     {
