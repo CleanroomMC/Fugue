@@ -12,11 +12,7 @@ public class Ic2cExtrasLoadingPluginTransformer implements IExplicitTransformer 
         ClassNode classNode = new ClassNode();
         ClassReader classReader = new ClassReader(bytes);
         classReader.accept(classNode, 0);
-        for (AnnotationNode anno : classNode.visibleAnnotations) {
-            if (anno.desc.equals("Lnet/minecraftforge/fml/relauncher/IFMLLoadingPlugin$TransformerExclusions;")) {
-                classNode.visibleAnnotations.remove(anno);
-            }
-        }
+        classNode.visibleAnnotations.removeIf(anno -> anno.desc.equals("Lnet/minecraftforge/fml/relauncher/IFMLLoadingPlugin$TransformerExclusions;"));
         ClassWriter classWriter = new ClassWriter(0);
 
         classNode.accept(classWriter);

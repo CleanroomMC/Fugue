@@ -19,7 +19,6 @@ public class LiteLoaderCoreAPIClientTransformer implements IExplicitTransformer 
             cc.getClassInitializer().instrument(new ExprEditor(){
                 @Override
                 public void edit(NewArray a) throws CannotCompileException {
-                    Foundation.LOGGER.info(a.getLineNumber());
                     if (a.getLineNumber() == 48) {
                         a.where().setBody(
                                 """
