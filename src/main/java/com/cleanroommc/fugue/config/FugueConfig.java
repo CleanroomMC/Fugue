@@ -179,6 +179,15 @@ public class FugueConfig {
             "zone.rong.loliasm.common.crashes.ModIdentifier",
     };
 
+    public static String[] mouseWheelPatchTargets = new String[] {
+            "mekanism.client.ClientTickHandler",
+            "journeymap.client.ui.fullscreen.Fullscreen",
+            "xaero.map.gui.ScreenBase",
+            "xaero.map.gui.GuiMap",
+            "betterquesting.api2.client.gui.GuiContainerCanvas",
+            "betterquesting.api2.client.gui.GuiScreenCanvas",
+    };
+
     @Config.Comment(
             """
             Target field's final modifier will be removed. No checks will be preformed before removal.

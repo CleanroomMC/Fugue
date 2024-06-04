@@ -169,6 +169,9 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
         if (FugueConfig.remapReflectionTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformerByInstance(new RemapSunReflectionTransformer(), FugueConfig.remapReflectionTargets);
         }
+        if (FugueConfig.mouseWheelPatchTargets.length > 0) {
+            TransformerDelegate.registerExplicitTransformerByInstance(new DWheelTransformer(), FugueConfig.mouseWheelPatchTargets);
+        }
         if (!FugueConfig.finalRemovingTargets.isEmpty()) {
             TransformerDelegate.registerExplicitTransformerByInstance(new FinalStripperTransformer(FugueConfig.finalRemovingTargets), FugueConfig.finalRemovingTargets.keySet().toArray(new String[0]));
         }
