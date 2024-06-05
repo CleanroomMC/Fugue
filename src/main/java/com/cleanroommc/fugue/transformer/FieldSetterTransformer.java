@@ -16,7 +16,7 @@ public class FieldSetterTransformer implements IExplicitTransformer {
             cc.getConstructors()[0].setBody(
                     """
                     {
-                        this.field = net.minecraftforge.fml.relauncher.ReflectionHelper#findField(clazz, fieldNames);
+                        this.field = net.minecraftforge.fml.relauncher.ReflectionHelper#findField($$);
                         this.field.setAccessible(true);
                     }
                     """);
