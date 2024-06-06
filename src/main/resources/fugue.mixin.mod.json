@@ -33,6 +33,7 @@
   ],
   "client": [
     "custommainmenu.SlideshowMixin",
+    "jei.RecipesGuiMixin",
     "mcjty.AbstractContainerWidgetMixin",
     "mcjty.SliderMixin"
   ],

@@ -217,6 +217,9 @@ dependencies {
     //MoreRefinedStorage
     compileOnly(fg.deobf("curse.maven:mrs-631058:3818846"))
 
+    //HEI
+    compileOnly(fg.deobf("curse.maven:hei-557549:5229422"))
+
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.24'
 
     // Mixin and it's common libraries
