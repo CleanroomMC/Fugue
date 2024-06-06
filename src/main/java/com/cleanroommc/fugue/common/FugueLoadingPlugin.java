@@ -8,6 +8,7 @@ import com.cleanroommc.fugue.transformer.logisticpipes.*;
 import com.cleanroommc.fugue.transformer.loliasm.JavaFixesTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.LoliFMLCallHookTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.LoliReflectorTransformer;
+import com.cleanroommc.fugue.transformer.loliasm.ModIdentifierTransformer;
 import com.cleanroommc.fugue.transformer.nothirium.BufferBuilderTransformer;
 import com.cleanroommc.fugue.transformer.nothirium.FreeSectorManagerTransformer;
 import com.cleanroommc.fugue.transformer.nothirium.MixinBufferBuilderTransformer;
@@ -87,6 +88,7 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
             TransformerDelegate.registerExplicitTransformerByInstance(new LoliReflectorTransformer(), "zone.rong.loliasm.LoliReflector");
             TransformerDelegate.registerExplicitTransformerByInstance(new JavaFixesTransformer(), "zone.rong.loliasm.common.java.JavaFixes");
             TransformerDelegate.registerExplicitTransformerByInstance(new LoliFMLCallHookTransformer(), "zone.rong.loliasm.core.LoliFMLCallHook");
+            TransformerDelegate.registerExplicitTransformerByInstance(new ModIdentifierTransformer(), "zone.rong.loliasm.common.crashes.ModIdentifier");
         }
         if (FugueConfig.modPatchConfig.enableZeroCore) {
             TransformerDelegate.registerExplicitTransformerByInstance(new DisplayListTransformer(), "it.zerono.mods.zerocore.lib.client.render.DisplayList");

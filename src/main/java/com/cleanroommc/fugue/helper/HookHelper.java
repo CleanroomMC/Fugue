@@ -1,14 +1,11 @@
 package com.cleanroommc.fugue.helper;
 
-import com.cleanroommc.fugue.common.Fugue;
 import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.launchwrapper.LaunchClassLoader;
 import org.objectweb.asm.Opcodes;
 import top.outlands.foundation.TransformerDelegate;
 import top.outlands.foundation.boot.ActualClassLoader;
-import top.outlands.foundation.boot.JVMDriverHolder;
-import top.outlands.foundation.boot.UnsafeHolder;
 
 import java.io.IOException;
 import java.io.InputStream;
