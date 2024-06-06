@@ -177,6 +177,7 @@ public class FugueConfig {
             "com.replaymod.core.LoadingPlugin",
             "com.someguyssoftware.dungeonsengine.config.DungeonConfigLoader",
             "zone.rong.loliasm.common.crashes.ModIdentifier",
+            "online.flowerinsnow.greatscrollabletooltips.tweaker.GreatScrollableTooltipsTweaker",
     };
 
     public static String[] mouseWheelPatchTargets = new String[] {
