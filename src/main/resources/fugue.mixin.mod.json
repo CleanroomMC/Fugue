@@ -23,6 +23,7 @@
     "minecraftmultipartcbe.ASMMixinCompilerMixin",
     "minecraftmultipartcbe.StackAnalyserMixin",
     "projectred_core.WirePropagatorMixin",
+    "refinedstorage.OperatorMixin",
     "solarflux.INetworkSFMixin",
     "solarflux.SolarFluxMixin",
     "subaquatic.IBubbleColumnMixin",

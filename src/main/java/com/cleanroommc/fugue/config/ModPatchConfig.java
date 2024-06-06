@@ -95,4 +95,6 @@ public class ModPatchConfig {
     public boolean enableExtraUtilities = true;
     @Config.Name("Enable In Control! Patch")
     public boolean enableInControl = true;
+    @Config.Name("Enable More Refined Storage Patch")
+    public boolean enableMoreRefinedStorage = true;
 }
