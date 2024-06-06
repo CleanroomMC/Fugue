@@ -97,4 +97,6 @@ public class ModPatchConfig {
     public boolean enableInControl = true;
     @Config.Name("Enable More Refined Storage Patch")
     public boolean enableMoreRefinedStorage = true;
+    @Config.Name("Enable HEI Patch (temporary)")
+    public boolean enableHEI = true;
 }
