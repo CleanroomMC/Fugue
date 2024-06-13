@@ -164,7 +164,7 @@ public class FugueConfig {
             ITweaker classes loaded in LCL will be defined in a different code source like file:jar:.
             Add them to list could redirect their toURI() to a decent jar URL.
             """)
-    @Config.Name("getCodeSource() Patch List")
+    @Config.Name("getCodeSource() Patching List")
     public static String[] getCodeSourcePatchTargets = new String[] {
             "pm.c7.pmr.tweaker.MixinLoadingTweaker",
             "customskinloader.forge.platform.IFMLPlatform$FMLPlatformInitializer",
@@ -180,6 +180,8 @@ public class FugueConfig {
             "online.flowerinsnow.greatscrollabletooltips.tweaker.GreatScrollableTooltipsTweaker",
     };
 
+    @Config.Comment("Used when mouse wheel related operation being weird.\nConsult in Claenroom before using!")
+    @Config.Name("Mouse.getEventDWheel() Patching List")
     public static String[] mouseWheelPatchTargets = new String[] {
             "mekanism.client.ClientTickHandler",
             "journeymap.client.ui.fullscreen.Fullscreen",
