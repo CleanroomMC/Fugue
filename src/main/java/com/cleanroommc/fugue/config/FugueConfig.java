@@ -180,7 +180,11 @@ public class FugueConfig {
             "online.flowerinsnow.greatscrollabletooltips.tweaker.GreatScrollableTooltipsTweaker",
     };
 
-    @Config.Comment("Used when mouse wheel related operation being weird.\nConsult in Claenroom before using!")
+    @Config.Comment(
+            """
+            Used when mouse wheel related operation being weird.
+            Consult Cleanroom developers before using it!
+            """)
     @Config.Name("Mouse.getEventDWheel() Patching List")
     public static String[] mouseWheelPatchTargets = new String[] {
             "mekanism.client.ClientTickHandler",
