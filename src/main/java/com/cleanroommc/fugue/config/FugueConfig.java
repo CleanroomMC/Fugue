@@ -183,6 +183,7 @@ public class FugueConfig {
     @Config.Comment(
             """
             Used when mouse wheel related operation being weird.
+            Classes in this list will get their Mouse.getDWheel() and Mouse.getEventDWheel() redirected.
             Consult Cleanroom developers before using it!
             """)
     @Config.Name("Mouse.getEventDWheel() Patching List")
@@ -193,6 +194,8 @@ public class FugueConfig {
             "xaero.map.gui.GuiMap",
             "betterquesting.api2.client.gui.GuiContainerCanvas",
             "betterquesting.api2.client.gui.GuiScreenCanvas",
+            "yalter.mousetweaks.MouseState",
+            "yalter.mousetweaks.SimpleMouseState",
     };
 
     @Config.Comment(

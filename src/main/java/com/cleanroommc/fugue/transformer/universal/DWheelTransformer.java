@@ -20,7 +20,10 @@ public class DWheelTransformer implements IExplicitTransformer {
                 @Override
                 public void edit(MethodCall m) throws CannotCompileException {
                     if (m.getMethodName().equals("getEventDWheel") && m.getClassName().equals("org.lwjgl.input.Mouse")) {
-                        m.replace("$_ = $proceed($$) * 120.0;");
+                        m.replace("$_ = $proceed($$) * 120;");
+                    }
+                    if (m.getMethodName().equals("getDWheel") && m.getClassName().equals("org.lwjgl.input.Mouse")) {
+                        m.replace("$_ = $proceed($$) * 120;");
                     }
                 }
             });
