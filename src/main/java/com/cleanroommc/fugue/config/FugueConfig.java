@@ -86,7 +86,7 @@ public class FugueConfig {
 
     @Config.Comment(
             """
-            Java 8's UUID creation if flawed. It allow invalid UUIDs to be created.
+            Java 8's UUID creation is flawed. It allow invalid UUIDs to be created.
             This was fixed in later Java, but old mods still need a solution.
             Target classes here will be patched to use a helper method we provide."""
     )

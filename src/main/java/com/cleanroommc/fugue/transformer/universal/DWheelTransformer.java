@@ -1,36 +1,29 @@
 package com.cleanroommc.fugue.transformer.universal;
 
-import com.cleanroommc.fugue.common.Fugue;
-import javassist.CannotCompileException;
-import javassist.ClassPool;
-import javassist.CtClass;
-import javassist.expr.ExprEditor;
-import javassist.expr.MethodCall;
+import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.tree.ClassNode;
+import org.objectweb.asm.tree.MethodInsnNode;
 import top.outlands.foundation.IExplicitTransformer;
-
-import java.io.ByteArrayInputStream;
 
 public class DWheelTransformer implements IExplicitTransformer {
 
     @Override
     public byte[] transform(byte[] bytes) {
-        try {
-            CtClass cc = ClassPool.getDefault().makeClass(new ByteArrayInputStream(bytes));
-            cc.instrument(new ExprEditor() {
-                @Override
-                public void edit(MethodCall m) throws CannotCompileException {
-                    if (m.getMethodName().equals("getEventDWheel") && m.getClassName().equals("org.lwjgl.input.Mouse")) {
-                        m.replace("$_ = $proceed($$) * 120;");
-                    }
-                    if (m.getMethodName().equals("getDWheel") && m.getClassName().equals("org.lwjgl.input.Mouse")) {
-                        m.replace("$_ = $proceed($$) * 120;");
+        ClassReader reader = new ClassReader(bytes);
+        ClassNode classNode = new ClassNode();
+        reader.accept(classNode, 0);
+        classNode.methods.forEach(methodNode -> methodNode.instructions.forEach(abstractInsnNode -> {
+            if (abstractInsnNode instanceof MethodInsnNode methodInsnNode) {
+                if (methodInsnNode.owner.equals("org/lwjgl/input/Mouse")) {
+                    if (methodInsnNode.name.equals("getEventDWheel") || methodInsnNode.name.equals("getDWheel")) {
+                        methodInsnNode.owner = "com/cleanroommc/fugue/helper/Mouse";
                     }
                 }
-            });
-            bytes = cc.toBytecode();
-        } catch (Throwable t) {
-            Fugue.LOGGER.error(t);
-        }
-        return bytes;
+            }
+        }));
+        ClassWriter writer = new ClassWriter(0);
+        classNode.accept(writer);
+        return writer.toByteArray();
     }
 }
