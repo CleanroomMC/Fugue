@@ -14,6 +14,8 @@
     "codechickenlib.ReflectionManagerMixin",
     "customnpcs.ScriptPlayerEventHandlerMixin",
     "extrautils2.FieldSetterMixin",
+    "extrautils2.TileIndexerMixin",
+    "extrautils2.TransferNodeEnergyMixin",
     "extrautils2.XUBlockStaticMixin",
     "gregtech.GTRecipeInputCacheMixin",
     "hammercore.ReflectionUtilMixin",
