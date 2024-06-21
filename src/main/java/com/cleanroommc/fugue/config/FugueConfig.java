@@ -54,6 +54,7 @@ public class FugueConfig {
             "com.noobanidus.variegated.compat.bloodmagic.handlers.HellfireSpeed",
             "ic2.core.util.ReflectionUtil",
             "net.arsenalnetwork.betterhud.h",
+            "com.github.alexthe666.iceandfire.entity.EntitySnowVillager",
     };
 
     @Config.Comment(

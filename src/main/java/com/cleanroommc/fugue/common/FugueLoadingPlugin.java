@@ -144,6 +144,10 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
         if (FugueConfig.modPatchConfig.enableExtraUtilities) {
             TransformerDelegate.registerExplicitTransformerByInstance(new FieldSetterTransformer(), "com.rwtema.extrautils2.utils.datastructures.FieldSetter");
         }
+        if (FugueConfig.modPatchConfig.enableBetterFC) {
+            TransformerDelegate.registerExplicitTransformerByInstance(new HK_LoaderTransformer(), "kpan.better_fc.asm.hook.HK_Loader");
+        }
+
         if (FugueConfig.getCodeSourcePatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformerByInstance(new ITweakerTransformer(), FugueConfig.getCodeSourcePatchTargets);
         }

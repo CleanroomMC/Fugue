@@ -99,4 +99,6 @@ public class ModPatchConfig {
     public boolean enableMoreRefinedStorage = true;
     @Config.Name("Enable HEI Patch (temporary)")
     public boolean enableHEI = true;
+    @Config.Name("Enable Better Formatting Code Patch")
+    public boolean enableBetterFC = true;
 }
