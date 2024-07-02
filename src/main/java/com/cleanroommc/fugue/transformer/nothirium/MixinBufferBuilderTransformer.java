@@ -17,7 +17,7 @@ public class MixinBufferBuilderTransformer implements IExplicitTransformer {
             cc.removeMethod(cc.getDeclaredMethod("growBuffer"));
             bytes = cc.toBytecode();
         } catch (Throwable t) {
-            Fugue.LOGGER.error(t);
+            Fugue.LOGGER.error("Exception {} on {}", t, this.getClass().getSimpleName());
         }
         return bytes;
     }

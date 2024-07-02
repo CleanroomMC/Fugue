@@ -26,7 +26,7 @@ public class LateBootstrapTweaker implements ITweaker {
                 CoreModManager.getIgnoredMods().remove(path);
                 CoreModManager.getReparseableCoremods().add(path);
             } catch (Throwable t){
-                Fugue.LOGGER.error(t);
+                Fugue.LOGGER.error("Exception {} on {}", t, this.getClass().getSimpleName());
             }
         }
     }

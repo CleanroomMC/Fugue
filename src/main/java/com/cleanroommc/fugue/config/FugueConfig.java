@@ -55,6 +55,7 @@ public class FugueConfig {
             "ic2.core.util.ReflectionUtil",
             "net.arsenalnetwork.betterhud.h",
             "com.github.alexthe666.iceandfire.entity.EntitySnowVillager",
+            "betterwithmods.util.ReflectionLib",
     };
 
     @Config.Comment(
@@ -97,6 +98,7 @@ public class FugueConfig {
             "tk.zeitheron.solarflux.items.ItemEfficiencyUpgrade",
             "tk.zeitheron.solarflux.items.ItemTransferRateUpgrade",
             "tk.zeitheron.solarflux.items.ItemCapacityUpgrade",
+            "iblis.player.SharedIblisAttributes",
     };
     @Config.Comment(
             """

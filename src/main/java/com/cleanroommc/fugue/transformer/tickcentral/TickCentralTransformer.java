@@ -15,7 +15,7 @@ public class TickCentralTransformer implements IExplicitTransformer {
             cc.getDeclaredMethod("getASMTransformerClass").insertAfter("{com.cleanroommc.fugue.helper.HookHelper#TickCentralPreLoad();}");
             bytes = cc.toBytecode();
         }catch (Throwable t) {
-            Fugue.LOGGER.error(t);
+            Fugue.LOGGER.error("Exception {} on {}", t, this.getClass().getSimpleName());
         }
         return bytes;
     }

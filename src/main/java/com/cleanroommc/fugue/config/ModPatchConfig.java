@@ -101,4 +101,6 @@ public class ModPatchConfig {
     public boolean enableHEI = true;
     @Config.Name("Enable Better Formatting Code Patch")
     public boolean enableBetterFC = true;
+    @Config.Name("Enable 5zig Patch")
+    public boolean enable5zig = true;
 }

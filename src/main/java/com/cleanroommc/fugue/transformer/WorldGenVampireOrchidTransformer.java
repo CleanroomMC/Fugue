@@ -19,7 +19,7 @@ public class WorldGenVampireOrchidTransformer implements IExplicitTransformer {
             flower.setModifiers((flower.getModifiers() | Modifier.FINAL | Modifier.PUBLIC) - Modifier.PRIVATE);
             bytes = cc.toBytecode();
         } catch (Throwable t) {
-            Fugue.LOGGER.error(t);
+            Fugue.LOGGER.error("Exception {} on {}", t, this.getClass().getSimpleName());
         }
         return bytes;
     }

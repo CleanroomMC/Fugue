@@ -16,7 +16,7 @@ public class JavaFixesTransformer implements IExplicitTransformer {
             cc.getDeclaredMethod("run").setBody("{}");
             bytes = cc.toBytecode();
         } catch (Throwable t) {
-            Fugue.LOGGER.error(t);
+            Fugue.LOGGER.error("Exception {} on {}", t, this.getClass().getSimpleName());
         }
         return bytes;
     }

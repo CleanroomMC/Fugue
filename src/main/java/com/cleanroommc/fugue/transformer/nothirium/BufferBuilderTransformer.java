@@ -17,7 +17,7 @@ public class BufferBuilderTransformer implements IExplicitTransformer {
                 cc.getDeclaredMethod("func_181670_b").insertAfter("$0.address = meldexun.matrixutil.MemoryUtil.getAddress($0.field_179001_a);");
                 bytes = cc.toBytecode();
             } catch (Throwable t) {
-                Fugue.LOGGER.error(t);
+                Fugue.LOGGER.error("Exception {} on {}", t, this.getClass().getSimpleName());
             }
         }
         return bytes;

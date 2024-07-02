@@ -147,7 +147,9 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
         if (FugueConfig.modPatchConfig.enableBetterFC) {
             TransformerDelegate.registerExplicitTransformerByInstance(new HK_LoaderTransformer(), "kpan.better_fc.asm.hook.HK_Loader");
         }
-
+        if (FugueConfig.modPatchConfig.enable5zig) {
+            TransformerDelegate.registerExplicitTransformerByInstance(new ClassTweakerTransformer(), "eu.the5zig.mod.asm.ClassTweaker");
+        }
         if (FugueConfig.getCodeSourcePatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformerByInstance(new ITweakerTransformer(), FugueConfig.getCodeSourcePatchTargets);
         }

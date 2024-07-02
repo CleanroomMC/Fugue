@@ -4,6 +4,8 @@ import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.launchwrapper.LaunchClassLoader;
 import org.objectweb.asm.Opcodes;
+import org.spongepowered.asm.mixin.MixinEnvironment;
+import org.spongepowered.asm.mixin.Mixins;
 import top.outlands.foundation.TransformerDelegate;
 import top.outlands.foundation.boot.ActualClassLoader;
 
@@ -137,5 +139,9 @@ public class HookHelper {
             }
         } catch (ClassNotFoundException ignored) {
         }
+    }
+
+    public static boolean isClassExist(String clazz) {
+        return Launch.classLoader.isClassExist(clazz);
     }
 }
