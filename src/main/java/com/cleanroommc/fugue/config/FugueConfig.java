@@ -199,6 +199,8 @@ public class FugueConfig {
             "betterquesting.api2.client.gui.GuiScreenCanvas",
             "yalter.mousetweaks.MouseState",
             "yalter.mousetweaks.SimpleMouseState",
+            "com.feed_the_beast.ftblib.lib.gui.GuiWrapper",
+            "com.feed_the_beast.ftblib.lib.gui.GuiContainerWrapper",
     };
 
     @Config.Comment(
