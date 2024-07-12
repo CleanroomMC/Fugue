@@ -3,6 +3,7 @@ package com.cleanroommc.fugue.common;
 import com.cleanroommc.fugue.config.FugueConfig;
 import com.cleanroommc.fugue.modifiers.IC2ExtraFixer;
 import com.cleanroommc.fugue.transformer.*;
+import com.cleanroommc.fugue.transformer.groovyscript.ExceptionMessageTransformer;
 import com.cleanroommc.fugue.transformer.groovyscript.GroovyClassLoaderTransformer;
 import com.cleanroommc.fugue.transformer.logisticpipes.*;
 import com.cleanroommc.fugue.transformer.loliasm.JavaFixesTransformer;
@@ -120,6 +121,7 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
         }
         if (FugueConfig.modPatchConfig.enableGroovyScript) {
             TransformerDelegate.registerExplicitTransformerByInstance(new GroovyClassLoaderTransformer(), "groovy.lang.GroovyClassLoader$ClassCollector");
+            TransformerDelegate.registerExplicitTransformerByInstance(new ExceptionMessageTransformer(), "org.codehaus.groovy.control.messages.ExceptionMessage");
         }
         if (FugueConfig.modPatchConfig.enableIC2CE) {
             Config.registerConfigModifier(new IC2ExtraFixer(), "mixins.ic2c_extras.json");
@@ -149,6 +151,17 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
         }
         if (FugueConfig.modPatchConfig.enable5zig) {
             TransformerDelegate.registerExplicitTransformerByInstance(new ClassTweakerTransformer(), "eu.the5zig.mod.asm.ClassTweaker");
+        }
+        if (FugueConfig.modPatchConfig.enableEars) {
+            TransformerDelegate.registerExplicitTransformerByInstance(new EarsASMTransformer(),
+                    "com.unascribed.ears.asm.ImageBufferDownloadTransformer",
+                    "com.unascribed.ears.asm.LayerElytraTransformer",
+                    "com.unascribed.ears.asm.RenderPlayerTransformer",
+                    "com.unascribed.ears.asm.ThreadDownloadImageDataTransformer",
+                    "com.unascribed.ears.common.agent.mini.MiniTransformer",
+                    "com.unascribed.ears.common.agent.mini.PatchContext",
+                    "com.unascribed.ears.common.agent.mini.PatchContext$SearchResult"
+            );
         }
         if (FugueConfig.getCodeSourcePatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformerByInstance(new ITweakerTransformer(), FugueConfig.getCodeSourcePatchTargets);

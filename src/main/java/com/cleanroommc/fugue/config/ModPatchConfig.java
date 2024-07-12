@@ -103,4 +103,7 @@ public class ModPatchConfig {
     public boolean enableBetterFC = true;
     @Config.Name("Enable 5zig Patch")
     public boolean enable5zig = true;
+    @Config.Name("Enable Ears Patch")
+    @Config.Comment("This mod is packing a copy of ASM itself")
+    public boolean enableEars = true;
 }
