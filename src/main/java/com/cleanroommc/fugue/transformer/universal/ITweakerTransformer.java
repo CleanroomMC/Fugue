@@ -4,6 +4,10 @@ import com.cleanroommc.fugue.common.Fugue;
 import javassist.*;
 import javassist.expr.ExprEditor;
 import javassist.expr.MethodCall;
+import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.Opcodes;
+import org.objectweb.asm.tree.*;
 import top.outlands.foundation.IExplicitTransformer;
 
 import java.io.ByteArrayInputStream;
@@ -11,27 +15,33 @@ import java.io.ByteArrayInputStream;
 public class ITweakerTransformer implements IExplicitTransformer {
     @Override
     public byte[] transform(byte[] bytes) {
-        try {
-            CtClass cc = ClassPool.getDefault().makeClass(new ByteArrayInputStream(bytes));
-            ExprEditor editor = new ExprEditor() {
-                @Override
-                public void edit(MethodCall m) throws CannotCompileException {
-                    if (m.getMethodName().equals("toURI")) {
-                        m.replace(
-                                """
-                                        {
-                                            $_ = com.cleanroommc.fugue.helper.HookHelper#toURI($0);
-                                        }
-                                        """
-                        );
+        ClassNode classNode = new ClassNode();
+        ClassReader classReader = new ClassReader(bytes);
+        classReader.accept(classNode, 0);
+        if (classNode.methods != null)
+        {
+            for (MethodNode methodNode : classNode.methods)
+            {
+                InsnList instructions = methodNode.instructions;
+                if (instructions != null)
+                {
+                    for (AbstractInsnNode insnNode : instructions)
+                    {
+                        if (insnNode.getOpcode() == Opcodes.INVOKEVIRTUAL && insnNode instanceof MethodInsnNode methodInsnNode)
+                        {
+                            if ("java/net/URL".equals(methodInsnNode.owner) && "toURI".equalsIgnoreCase(methodInsnNode.name))
+                            {
+                                instructions.insertBefore(methodInsnNode, new MethodInsnNode(Opcodes.INVOKESTATIC, "com/cleanroommc/fugue/helper/HookHelper", "toURI", "(Ljava/net/URL;)Ljava/net/URI;", false));
+                                instructions.remove(methodInsnNode);
+                            }
+                        }
                     }
                 }
-            };
-            cc.instrument(editor);
-            bytes = cc.toBytecode();
-        } catch (Throwable t) {
-            Fugue.LOGGER.error("Exception {} on {}", t, this.getClass().getSimpleName());
+            }
         }
-        return bytes;
+        ClassWriter classWriter = new ClassWriter(0);
+
+        classNode.accept(classWriter);
+        return classWriter.toByteArray();
     }
 }

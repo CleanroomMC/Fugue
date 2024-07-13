@@ -45,7 +45,12 @@ public class HookHelper {
     }
 
     public static URI toURI(URL url) throws IOException, URISyntaxException {
-        return ((JarURLConnection) url.openConnection()).getJarFileURL().toURI();
+        URLConnection connection = url.openConnection();
+        if (connection instanceof JarURLConnection jarURLConnection) {
+            return jarURLConnection.getJarFileURL().toURI();
+        } else  {
+            return url.toURI();
+        }
     }
 
     public static List<IClassTransformer> getTransformers() {
