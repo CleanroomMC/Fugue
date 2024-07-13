@@ -4,8 +4,6 @@ import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.launchwrapper.LaunchClassLoader;
 import org.objectweb.asm.Opcodes;
-import org.spongepowered.asm.mixin.MixinEnvironment;
-import org.spongepowered.asm.mixin.Mixins;
 import top.outlands.foundation.TransformerDelegate;
 import top.outlands.foundation.boot.ActualClassLoader;
 
@@ -16,6 +14,7 @@ import java.net.*;
 import java.nio.file.Paths;
 import java.security.CodeSource;
 import java.util.*;
+import java.util.function.Function;
 
 public class HookHelper {
     public static boolean isInterface(int opcode) {
@@ -143,5 +142,15 @@ public class HookHelper {
 
     public static boolean isClassExist(String clazz) {
         return Launch.classLoader.isClassExist(clazz);
+    }
+
+    public static Object computeIfAbsent(Map<Object, Object> map, Object key, Function<Object, Object> function) {
+        if (map.containsKey(key)) {
+            return map.get(key);
+        } else {
+            Object value = function.apply(key);
+            map.put(key, value);
+            return value;
+        }
     }
 }
