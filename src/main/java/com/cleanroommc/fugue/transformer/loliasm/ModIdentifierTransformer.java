@@ -13,7 +13,6 @@ public class ModIdentifierTransformer implements IExplicitTransformer {
         try {
             var cp = ClassPool.getDefault();
             CtClass cc = cp.makeClass(new ByteArrayInputStream(bytes));
-            cc.defrost();
             var ifc = cc.getMethod("identifyFromClass", "(Ljava/lang/String;Ljava/util/Map;)Ljava/util/Set;");
             ifc.insertAt(64, """
                     {
@@ -23,6 +22,7 @@ public class ModIdentifierTransformer implements IExplicitTransformer {
                     }
                     """);
             bytes = cc.toBytecode();
+            cc.defrost();
         } catch (Throwable t) {
             Fugue.LOGGER.error("Exception {} on {}", t, this.getClass().getSimpleName());
         }

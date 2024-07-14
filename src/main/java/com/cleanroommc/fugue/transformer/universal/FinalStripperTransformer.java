@@ -19,7 +19,6 @@ public class FinalStripperTransformer implements IExplicitTransformer {
     public byte[] transform(byte[] bytes) {
         try {
             CtClass cc = ClassPool.getDefault().makeClass(new ByteArrayInputStream(bytes));
-            cc.defrost();
             String[] fields = targets.get(cc.getName()).split("\\|");
             Arrays.stream(cc.getFields()).filter(ctField ->
                     Arrays.stream(fields).anyMatch(f ->
@@ -30,8 +29,8 @@ public class FinalStripperTransformer implements IExplicitTransformer {
                 ctField2.setModifiers(ctField2.getModifiers() & ~Modifier.FINAL);
                 Fugue.LOGGER.debug("Stripping final modifier of {} from {}", ctField2.getName(), ctField2.getDeclaringClass().getName());
             });
-            cc.defrost();
             bytes = cc.toBytecode();
+            cc.defrost();
         } catch (Throwable t) {
             Fugue.LOGGER.error("Exception {} on {}", t, this.getClass().getSimpleName());
         }
