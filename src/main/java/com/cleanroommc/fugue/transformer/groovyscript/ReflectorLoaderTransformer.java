@@ -6,22 +6,19 @@ import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.expr.ExprEditor;
 import javassist.expr.MethodCall;
-import net.minecraft.launchwrapper.Launch;
 import top.outlands.foundation.IExplicitTransformer;
 
 import java.io.ByteArrayInputStream;
 
-public class GroovyClassLoaderTransformer implements IExplicitTransformer {
+public class ReflectorLoaderTransformer implements IExplicitTransformer {
     @Override
     public byte[] transform(byte[] bytes) {
         try {
             CtClass cc = ClassPool.getDefault().makeClass(new ByteArrayInputStream(bytes));
-            cc.getDeclaredMethod("access$400").instrument(new ExprEditor(){
-                @Override
+            cc.getDeclaredMethod("defineClass").instrument(new ExprEditor() {
                 public void edit(MethodCall m) throws CannotCompileException {
-                    //Fugue.LOGGER.info("Transforming Groovy class method: {}", m.getMethodName());
                     if (m.getMethodName().equals("defineClass")) {
-                        m.replace("$_ = com.cleanroommc.fugue.helper.HookHelper#defineClass($2, $3, $4, $5, $6);");
+                        m.replace("$_ = com.cleanroommc.fugue.helper.HookHelper#defineClass($$);");
                     }
                 }
             });

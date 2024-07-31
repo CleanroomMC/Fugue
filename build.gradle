@@ -128,7 +128,7 @@ repositories {
 }
 
 dependencies {
-    minecraft "com.cleanroommc:cleanroom:0.2.1-alpha+"
+    minecraft "com.cleanroommc:cleanroom:0.2.2-alpha"
 
     //Charset Lib
     compileOnly(fg.deobf("curse.maven:charset-284523:3656492"))
@@ -219,6 +219,10 @@ dependencies {
 
     //HEI
     compileOnly(fg.deobf("curse.maven:hei-557549:5229422"))
+
+    implementation("com.cleanroommc:groovyscript:1.1.1") {
+        transitive = false
+    }
 
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.24'
 

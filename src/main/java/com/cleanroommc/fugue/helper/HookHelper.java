@@ -1,8 +1,10 @@
 package com.cleanroommc.fugue.helper;
 
+import com.cleanroommc.fugue.common.Fugue;
 import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.launchwrapper.LaunchClassLoader;
+import org.codehaus.groovy.ast.AnnotationNode;
 import org.objectweb.asm.Opcodes;
 import top.outlands.foundation.TransformerDelegate;
 import top.outlands.foundation.boot.ActualClassLoader;
@@ -13,6 +15,7 @@ import java.lang.reflect.Field;
 import java.net.*;
 import java.nio.file.Paths;
 import java.security.CodeSource;
+import java.security.ProtectionDomain;
 import java.util.*;
 import java.util.function.Function;
 
@@ -84,6 +87,7 @@ public class HookHelper {
     }
 
     public static Class<?> defineClass(String name, byte[] bytes, int off, int len, CodeSource codeSource) {
+        Fugue.LOGGER.info("Defining class: {}", name);
         if (grsMap.containsKey(name)) {
             return grsMap.get(name);
         } else {
@@ -91,18 +95,44 @@ public class HookHelper {
         }
     }
 
+    public static Class<?> defineClass(String name, byte[] bytes, int off, int len, ProtectionDomain domain) {
+        Fugue.LOGGER.info("Defining class: {}", name);
+        if (grsMap.containsKey(name)) {
+            return grsMap.get(name);
+        } else {
+            return grsMap.computeIfAbsent(name, k -> Launch.classLoader.defineClass(k, bytes));
+        }
+    }
+
+    public static Class<?> defineClass(String name, byte[] bytes) {
+        Fugue.LOGGER.info("Defining class: {}", name);
+        if (grsMap.containsKey(name)) {
+            return grsMap.get(name);
+        } else {
+            return grsMap.computeIfAbsent(name, k -> Launch.classLoader.defineClass(k, bytes));
+        }
+    }
+
     public static Class<?> defineClass(byte[] bytes, String name) {
-        try {
-            if (Launch.classLoader.isClassLoaded(name)) {
-                return Launch.classLoader.findClass(name);
-            } else {
-                return Launch.classLoader.defineClass(name, bytes);
-            }
-        } catch (ClassNotFoundException e) {
-            return null;
+        Fugue.LOGGER.info("Defining class: {}", name);
+        if (grsMap.containsKey(name)) {
+            return grsMap.get(name);
+        } else {
+            return grsMap.computeIfAbsent(name, k -> Launch.classLoader.defineClass(k, bytes));
         }
 
     }
+
+    public static void logCL(ClassLoader parent) {
+        Fugue.LOGGER.info("ClassLoader: {}", parent);
+    }
+
+     public static void verifyAndAddTransform(AnnotationNode annotation, Class<?> transformClass) {
+        Fugue.LOGGER.info("ClassLoader1: {} {}", transformClass, transformClass.getClassLoader());
+
+         Arrays.stream(transformClass.getAnnotations()).forEach(annotationNode -> {Fugue.LOGGER.info("ClassLoader2: {} {}", annotationNode.getClass(), annotationNode.annotationType().getClassLoader());});
+
+     }
 
     public static byte[] redirectGetClassByte(LaunchClassLoader instance, String s) throws IOException {
         byte[] bytes = null;
