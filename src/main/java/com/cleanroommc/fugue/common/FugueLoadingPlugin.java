@@ -36,6 +36,8 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
 
     static {
         Launch.classLoader.addTransformerExclusion("com.cleanroommc.fugue.common.");
+        Launch.classLoader.addTransformerExclusion("com.cleanroommc.fugue.helper.");
+
         ConfigManager.register(FugueConfig.class);
         if (FugueConfig.modPatchConfig.enableEnderCore) {
             TransformerDelegate.registerExplicitTransformerByInstance(new EnderCoreTransformerTransformer(), "com.enderio.core.common.transform.EnderCoreTransformer");
