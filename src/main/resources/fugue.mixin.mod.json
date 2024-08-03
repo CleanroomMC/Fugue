@@ -16,7 +16,6 @@
     "extrautils2.FieldSetterMixin",
     "extrautils2.TileIndexerMixin",
     "extrautils2.TransferNodeEnergyMixin",
-    "extrautils2.XUBlockStaticMixin",
     "gregtech.GTRecipeInputCacheMixin",
     "hammercore.ReflectionUtilMixin",
     "howlingmoon.WerewolfCapabilityMixin",
@@ -35,6 +34,7 @@
   ],
   "client": [
     "custommainmenu.SlideshowMixin",
+    "extrautils2.XUBlockStatic$3Mixin",
     "jei.RecipesGuiMixin",
     "mcjty.AbstractContainerWidgetMixin",
     "mcjty.SliderMixin"
