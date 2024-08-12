@@ -123,7 +123,7 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
         if (FugueConfig.modPatchConfig.enableGroovyScript) {
             //TransformerDelegate.registerExplicitTransformerByInstance(new GroovyClassLoaderTransformer(), "groovy.lang.GroovyClassLoader");
 
-            //TransformerDelegate.registerExplicitTransformerByInstance(new GroovyClassLoaderTransformer(), "groovy.lang.GroovyClassLoader");
+            TransformerDelegate.registerExplicitTransformerByInstance(new GroovyClassLoaderTransformer(), "groovy.lang.GroovyClassLoader");
             //TransformerDelegate.registerExplicitTransformerByInstance(new ExceptionMessageTransformer(), "org.codehaus.groovy.control.messages.ExceptionMessage");
             TransformerDelegate.registerExplicitTransformerByInstance(new GroovyRunnerRegistryTransformer(), "org.apache.groovy.plugin.GroovyRunnerRegistry");
             TransformerDelegate.registerExplicitTransformerByInstance(new ASTTransformationCollectorCodeVisitorTransformer(), "org.codehaus.groovy.transform.ASTTransformationCollectorCodeVisitor");
