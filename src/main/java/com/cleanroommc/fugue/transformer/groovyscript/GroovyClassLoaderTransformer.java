@@ -15,7 +15,7 @@ public class GroovyClassLoaderTransformer implements IExplicitTransformer {
     public byte[] transform(byte[] bytes) {
         try {
             CtClass cc = ClassPool.getDefault().makeClass(new ByteArrayInputStream(bytes));
-            cc.getDeclaredMethod("loadClass").instrument(new ExprEditor(){
+            cc.getMethod("loadClass", "(Ljava/lang/String;ZZZ)Ljava/lang/Class;").instrument(new ExprEditor(){
                 @Override
                 public void edit(MethodCall m) throws CannotCompileException {
                     //Fugue.LOGGER.info("Transforming Groovy class method: {}", m.getMethodName());
