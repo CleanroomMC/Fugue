@@ -20,7 +20,14 @@ public class GroovyClassLoaderTransformer implements IExplicitTransformer {
                 public void edit(MethodCall m) throws CannotCompileException {
                     //Fugue.LOGGER.info("Transforming Groovy class method: {}", m.getMethodName());
                     if (m.getMethodName().equals("loadClass")) {
-                        m.replace("$_ = net.minecraft.launchwrapper.Launch#classLoader.loadClass($1);");
+                        m.replace("""
+                                Class c = com.cleanroommc.fugue.helper.HookHelper#loadClass($1);
+                                if (c != null) {
+                                    $_ = c;
+                                } else {
+                                    $_ = $proceed($$);
+                                }
+                                """);
                     }
                 }
             });

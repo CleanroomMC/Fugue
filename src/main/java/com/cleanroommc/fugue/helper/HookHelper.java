@@ -4,7 +4,6 @@ import com.cleanroommc.fugue.common.Fugue;
 import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.launchwrapper.LaunchClassLoader;
-import org.codehaus.groovy.ast.AnnotationNode;
 import org.objectweb.asm.Opcodes;
 import top.outlands.foundation.TransformerDelegate;
 import top.outlands.foundation.boot.ActualClassLoader;
@@ -127,12 +126,14 @@ public class HookHelper {
         Fugue.LOGGER.info("ClassLoader: {}", parent);
     }
 
-     public static void verifyAndAddTransform(AnnotationNode annotation, Class<?> transformClass) {
-        Fugue.LOGGER.info("ClassLoader1: {} {}", transformClass, transformClass.getClassLoader());
+    public static Class<?> loadClass(String name) {
+        Class<?> c = null;
+        try {
+            c = Launch.classLoader.findClass(name);
+        } catch (ClassNotFoundException | NoClassDefFoundError ignored) {}
+        return c;
+    }
 
-         Arrays.stream(transformClass.getAnnotations()).forEach(annotationNode -> {Fugue.LOGGER.info("ClassLoader2: {} {}", annotationNode.getClass(), annotationNode.annotationType().getClassLoader());});
-
-     }
 
     public static byte[] redirectGetClassByte(LaunchClassLoader instance, String s) throws IOException {
         byte[] bytes = null;

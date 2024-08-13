@@ -121,18 +121,9 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
             TransformerDelegate.registerExplicitTransformerByInstance(new FreeSectorManagerTransformer(), "meldexun.nothirium.util.FreeSectorManager$AVL", "meldexun.nothirium.util.FreeSectorManager$RB");
         }
         if (FugueConfig.modPatchConfig.enableGroovyScript) {
-            //TransformerDelegate.registerExplicitTransformerByInstance(new GroovyClassLoaderTransformer(), "groovy.lang.GroovyClassLoader");
-
             TransformerDelegate.registerExplicitTransformerByInstance(new GroovyClassLoaderTransformer(), "groovy.lang.GroovyClassLoader");
-            //TransformerDelegate.registerExplicitTransformerByInstance(new ExceptionMessageTransformer(), "org.codehaus.groovy.control.messages.ExceptionMessage");
             TransformerDelegate.registerExplicitTransformerByInstance(new GroovyRunnerRegistryTransformer(), "org.apache.groovy.plugin.GroovyRunnerRegistry");
             TransformerDelegate.registerExplicitTransformerByInstance(new ASTTransformationCollectorCodeVisitorTransformer(), "org.codehaus.groovy.transform.ASTTransformationCollectorCodeVisitor");
-
-
-            /*TransformerDelegate.registerExplicitTransformerByInstance(new ProxyGeneratorAdapterTransformer(), "org.codehaus.groovy.runtime.ProxyGeneratorAdapter$InnerLoader");
-            TransformerDelegate.registerExplicitTransformerByInstance(new SunClassLoaderTransformer(), "org.codehaus.groovy.reflection.SunClassLoader");
-            TransformerDelegate.registerExplicitTransformerByInstance(new ClassLoaderForClassArtifactsTransformer(), "org.codehaus.groovy.reflection.ClassLoaderForClassArtifacts");
-            TransformerDelegate.registerExplicitTransformerByInstance(new ReflectorLoaderTransformer(), "org.codehaus.groovy.runtime.metaclass.ReflectorLoader");*/
         }
         if (FugueConfig.modPatchConfig.enableIC2CE) {
             Config.registerConfigModifier(new IC2ExtraFixer(), "mixins.ic2c_extras.json");
