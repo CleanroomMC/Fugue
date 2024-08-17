@@ -56,6 +56,7 @@ public class FugueConfig {
             "net.arsenalnetwork.betterhud.h",
             "com.github.alexthe666.iceandfire.entity.EntitySnowVillager",
             "betterwithmods.util.ReflectionLib",
+            "sedridor.B3M.ClientProxy",
     };
 
     @Config.Comment(
