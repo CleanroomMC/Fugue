@@ -106,4 +106,6 @@ public class ModPatchConfig {
     @Config.Name("Enable Ears Patch")
     @Config.Comment("This mod is packing a copy of ASM itself")
     public boolean enableEars = true;
+    @Config.Name("Enable Colytra Patch")
+    public boolean enableColytra = true;
 }
