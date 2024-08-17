@@ -13,12 +13,6 @@ public class ASTTransformationCollectorCodeVisitorTransformer implements IExplic
     public byte[] transform(byte[] bytes) {
         try {
             CtClass cc = ClassPool.getDefault().makeClass(new ByteArrayInputStream(bytes));
-            /*cc.getDeclaredMethod("verifyAndAddTransform").insertBefore(
-                    """
-                    {
-                        com.cleanroommc.fugue.helper.HookHelper#verifyAndAddTransform($$);
-                    }
-                    """);*/
             cc.getDeclaredMethod("loadTransformClass").setBody("{return net.minecraft.launchwrapper.Launch#classLoader.loadClass($1);}");
             bytes = cc.toBytecode();
         } catch (Throwable t) {
