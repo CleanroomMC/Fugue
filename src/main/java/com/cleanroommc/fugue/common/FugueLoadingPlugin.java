@@ -165,7 +165,7 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
                     "com.unascribed.ears.common.agent.mini.PatchContext$SearchResult"
             );
         }
-        if (FugueConfig.modPatchConfig.enableColytra && Launch.classLoader.isClassExist("c4.colytra.asm.ASMHooks")) {
+        if (FugueConfig.modPatchConfig.enableColytra) {
             TransformerDelegate.registerExplicitTransformerByInstance(new EntityLivingBaseTransformer(), "net.minecraft.entity.EntityLivingBase");
         }
         if (FugueConfig.getCodeSourcePatchTargets.length > 0) {
