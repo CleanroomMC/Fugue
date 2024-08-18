@@ -201,6 +201,7 @@ public class FugueConfig {
             "yalter.mousetweaks.SimpleMouseState",
             "com.feed_the_beast.ftblib.lib.gui.GuiWrapper",
             "com.feed_the_beast.ftblib.lib.gui.GuiContainerWrapper",
+            "com.github.terminatornl.laggoggles.client.gui.GuiProfile",
     };
 
     @Config.Comment(
