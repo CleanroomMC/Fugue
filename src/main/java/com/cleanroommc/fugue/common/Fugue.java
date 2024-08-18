@@ -1,6 +1,8 @@
 package com.cleanroommc.fugue.common;
 
 import com.cleanroommc.fugue.Reference;
+import com.cleanroommc.fugue.handler.PlayerJoinHandler;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -31,7 +33,9 @@ public class Fugue {
 	
 	@Instance(Reference.MOD_ID)
 	public static Fugue _instance;
-    public Fugue() {}
+    public Fugue() {
+
+    }
 
     @NetworkCheckHandler
     public boolean checker(Map<String, String> mods, Side side) {

@@ -104,9 +104,8 @@ public class ModPatchConfig {
     @Config.Name("Enable 5zig Patch")
     public boolean enable5zig = true;
     @Config.Name("Enable Ears Patch")
-    @Config.Comment("This mod is packing a copy of ASM itself")
+    @Config.Comment("This mod is packing a copy of ASM itself, wtf")
     public boolean enableEars = true;
     @Config.Name("Enable Colytra Patch")
-    @Config.Comment("Do NOT enable this if you don't have Colytra installed")
-    public boolean enableColytra = false;
+    public boolean enableColytra = true;
 }

@@ -1,5 +1,6 @@
 package com.cleanroommc.fugue.transformer;
 
+import net.minecraft.launchwrapper.Launch;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
@@ -9,6 +10,7 @@ import top.outlands.foundation.IExplicitTransformer;
 public class EntityLivingBaseTransformer implements IExplicitTransformer {
     @Override
     public byte[] transform(byte[] bytes) {
+        if (!Launch.classLoader.isClassLoaded("c4.colytra.asm.ColytraLoadingPlugin")) return bytes;
         ClassNode classNode = new ClassNode();
         ClassReader classReader = new ClassReader(bytes);
         classReader.accept(classNode, 0);
