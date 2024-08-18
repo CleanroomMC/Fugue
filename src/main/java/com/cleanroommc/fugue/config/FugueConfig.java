@@ -179,7 +179,6 @@ public class FugueConfig {
             "snownee.minieffects.core.CoreMod",
             "com.replaymod.core.tweaker.ReplayModTweaker",
             "com.replaymod.core.LoadingPlugin",
-            "com.someguyssoftware.dungeonsengine.config.DungeonConfigLoader",
             "zone.rong.loliasm.common.crashes.ModIdentifier",
             "online.flowerinsnow.greatscrollabletooltips.tweaker.GreatScrollableTooltipsTweaker",
     };

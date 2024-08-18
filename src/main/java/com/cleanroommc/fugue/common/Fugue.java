@@ -1,8 +1,6 @@
 package com.cleanroommc.fugue.common;
 
 import com.cleanroommc.fugue.Reference;
-import com.cleanroommc.fugue.handler.PlayerJoinHandler;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
