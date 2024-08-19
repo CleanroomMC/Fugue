@@ -52,6 +52,7 @@ public class FugueMixinConfigPlugin implements IMixinConfigPlugin {
             case "incontrol" -> Loader.isModLoaded("incontrol") && FugueConfig.modPatchConfig.enableInControl;
             case "refinedstorage" -> Loader.isModLoaded("refinedstorage") && FugueConfig.modPatchConfig.enableMoreRefinedStorage && Fugue.isModNewerThan("refinedstorage", "2.0.0");
             case "jei" -> Loader.isModLoaded("jei") && FugueConfig.modPatchConfig.enableHEI && Fugue.isModNewerThan("jei", "4.17.0");
+            case "infinitylib" -> Loader.isModLoaded("infinitylib") && FugueConfig.modPatchConfig.enableInfLib;
             default -> true;
         };
     }

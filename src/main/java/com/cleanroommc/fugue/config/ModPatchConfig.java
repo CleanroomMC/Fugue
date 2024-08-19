@@ -108,4 +108,6 @@ public class ModPatchConfig {
     public boolean enableEars = true;
     @Config.Name("Enable Colytra Patch")
     public boolean enableColytra = true;
+    @Config.Name("Enable InfinityLib Patch")
+    public boolean enableInfLib = true;
 }

@@ -220,6 +220,10 @@ dependencies {
     //HEI
     compileOnly(fg.deobf("curse.maven:hei-557549:5229422"))
 
+    //InfinityLib
+    compileOnly(fg.deobf("curse.maven:inflib-251396:3317119"))
+
+
     implementation("com.cleanroommc:groovyscript:1.1.1") {
         transitive = false
     }

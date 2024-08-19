@@ -20,6 +20,7 @@
     "hammercore.ReflectionUtilMixin",
     "howlingmoon.WerewolfCapabilityMixin",
     "incontrol.CachePerWorldMixin",
+    "infinitylib.BakedInfBlockModelMixin",
     "mage.ColorspacesMixin",
     "minecraftmultipartcbe.ASMMixinCompilerMixin",
     "minecraftmultipartcbe.StackAnalyserMixin",
