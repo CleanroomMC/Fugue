@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import java.util.Map;
 import java.util.function.Function;
 
-@Mixin(BakedInfBlockModel.class)
+@Mixin(value = BakedInfBlockModel.class, remap = false)
 public class BakedInfBlockModelMixin {
     @Redirect(method = "getQuads(Lnet/minecraft/block/state/IBlockState;Lnet/minecraft/util/EnumFacing;J)Lcom/google/common/collect/ImmutableList;", at = @At(value = "INVOKE", target = "Ljava/util/Map;computeIfAbsent(Ljava/lang/Object;Ljava/util/function/Function;)Ljava/lang/Object;"))
     private Object hackCIA(Map instance, Object n, Function<Object, Object> k) {
