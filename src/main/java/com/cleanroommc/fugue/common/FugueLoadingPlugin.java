@@ -82,6 +82,7 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
             TransformerDelegate.registerExplicitTransformerByInstance(new LoadClassTransformer(),
                     "network.rs485.debug.OpenGLDebugger",
                     "logisticspipes.utils.StaticResolverUtil");
+            TransformerDelegate.registerExplicitTransformerByInstance(new LogisticsPipesTrigger(), "logisticspipes.asm.LogisticsPipesCoreLoader");
         }
         if (FugueConfig.modPatchConfig.enableEC){
             TransformerDelegate.registerExplicitTransformerByInstance(new EnumInputClassTransformer(), "austeretony.enchcontrol.common.core.EnumInputClass");
