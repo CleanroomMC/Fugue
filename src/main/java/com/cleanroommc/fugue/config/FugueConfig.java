@@ -204,6 +204,12 @@ public class FugueConfig {
             "com.github.terminatornl.laggoggles.client.gui.GuiProfile",
     };
 
+    @Config.Comment("Use this when you encountered ClassCircularityError.")
+    @Config.Name("Extra Transform Exclusion")
+    public static String[] extraTransformExclusions = new String[] {
+            "org.vivecraft.",
+    };
+
     @Config.Comment(
             """
             Target field's final modifier will be removed. No checks will be preformed before removal.
