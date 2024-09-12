@@ -57,6 +57,9 @@ public class FugueConfig {
             "com.github.alexthe666.iceandfire.entity.EntitySnowVillager",
             "betterwithmods.util.ReflectionLib",
             "sedridor.B3M.ClientProxy",
+            "com.ferreusveritas.unifine.ThermalDynamicsActive",
+            "com.kirdow.itemlocks.util.reflect.ReflectClass",
+            "eos.moe.dragoncore.za",
     };
 
     @Config.Comment(
@@ -181,6 +184,8 @@ public class FugueConfig {
             "com.replaymod.core.LoadingPlugin",
             "zone.rong.loliasm.common.crashes.ModIdentifier",
             "online.flowerinsnow.greatscrollabletooltips.tweaker.GreatScrollableTooltipsTweaker",
+            "com.wjx.kablade.mixin.KabladeMixinTweak",
+            "eos.moe.dragoncore.tweaker.ForgePlugin",
     };
 
     @Config.Comment(
