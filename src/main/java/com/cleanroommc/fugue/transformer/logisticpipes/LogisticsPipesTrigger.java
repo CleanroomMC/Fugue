@@ -1,14 +1,17 @@
 package com.cleanroommc.fugue.transformer.logisticpipes;
 
+import com.cleanroommc.fugue.common.Fugue;
 import net.minecraft.launchwrapper.Launch;
 import top.outlands.foundation.IExplicitTransformer;
 
 public class LogisticsPipesTrigger implements IExplicitTransformer {
     @Override
     public byte[] transform(byte[] bytes) {
+        Fugue.LOGGER.info("Loading LP classes...");
         try {
             Launch.classLoader.findClass("logisticspipes.network.packets.routingdebug.RoutingUpdateUntrace");
             Launch.classLoader.findClass("logisticspipes.network.packets.modules.SupplierPipeMode");
+            Launch.classLoader.findClass("logisticspipes.network.packets.module.ModuleBasedItemSinkList");
             Launch.classLoader.findClass("logisticspipes.network.packets.pipe.FluidSupplierMinMode");
             Launch.classLoader.findClass("logisticspipes.network.abstractguis.ModuleCoordinatesGuiProvider");
             Launch.classLoader.findClass("logisticspipes.network.guis.upgrade.SneakyUpgradeConfigGuiProvider");

@@ -8,6 +8,7 @@ import org.objectweb.asm.Opcodes;
 import top.outlands.foundation.TransformerDelegate;
 import top.outlands.foundation.boot.ActualClassLoader;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
@@ -188,5 +189,19 @@ public class HookHelper {
             map.put(key, value);
             return value;
         }
+    }
+
+    public static boolean isInitialized(File file) {
+        try {
+            return Arrays.asList(Launch.classLoader.getURLs()).contains(file.toURI().toURL());
+        } catch (MalformedURLException e) {
+            return false;
+        }
+    }
+
+    public static void addToClasspath(File file) {
+        try {
+            Launch.classLoader.addURL(file.toURI().toURL());
+        } catch (MalformedURLException ignored) {}
     }
 }

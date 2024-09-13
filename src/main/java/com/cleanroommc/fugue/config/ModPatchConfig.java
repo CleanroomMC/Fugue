@@ -112,4 +112,6 @@ public class ModPatchConfig {
     public boolean enableInfLib = true;
     @Config.Name("Enable Crossbow(jbredwards) Patch")
     public boolean enableCrossbow = true;
+    @Config.Name("Enable Patch to PolyForst mods")
+    public boolean enablePolyForst = true;
 }

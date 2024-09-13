@@ -175,6 +175,13 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
         if (FugueConfig.modPatchConfig.enableCrossbow) {
             TransformerDelegate.registerExplicitTransformerByInstance(new TransformerEntityArrowTransformer(), "git.jbredwards.crossbow.mod.asm.transformer.TransformerEntityArrow");
         }
+        if (FugueConfig.modPatchConfig.enablePolyForst) {
+            TransformerDelegate.registerExplicitTransformerByInstance(
+                    new LaunchWrapperTweakerTransformer(),
+                    "cc.polyfrost.oneconfig.loader.stage0.LaunchWrapperTweaker",
+                    "cc.polyfrost.oneconfig.loader.OneConfigLoader"
+            );
+        }
         if (FugueConfig.getCodeSourcePatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformerByInstance(new ITweakerTransformer(), FugueConfig.getCodeSourcePatchTargets);
         }
