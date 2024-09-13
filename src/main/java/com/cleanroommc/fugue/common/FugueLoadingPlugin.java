@@ -182,6 +182,9 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
                     "cc.polyfrost.oneconfig.loader.OneConfigLoader"
             );
         }
+        if (FugueConfig.modPatchConfig.enableDropt) {
+            TransformerDelegate.registerExplicitTransformerByInstance(new ValidatorAdapterFactoryTransformer(), "com.codetaylor.mc.dropt.modules.dropt.rule.RuleLoader$ValidatorAdapterFactory");
+        }
         if (FugueConfig.getCodeSourcePatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformerByInstance(new ITweakerTransformer(), FugueConfig.getCodeSourcePatchTargets);
         }

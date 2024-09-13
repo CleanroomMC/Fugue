@@ -114,4 +114,6 @@ public class ModPatchConfig {
     public boolean enableCrossbow = true;
     @Config.Name("Enable Patch to PolyForst mods")
     public boolean enablePolyForst = true;
+    @Config.Name("Enable Dropt Patch")
+    public boolean enableDropt = true;
 }
