@@ -142,7 +142,7 @@ public class FugueConfig {
 
     @Config.Comment(
             """
-            Foundation comes with some ABI changes.
+            Foundation (the LaunchWrapper under Java 21+) comes with some ABI changes.
             If you got a crash says some methods/fields in LaunchClassLoader not found, that's the remapper you want.
             As a workaround, These targets will be redirected to new API.""")
     @Config.Name("Launch Wrapper API Change Patching List")
@@ -153,6 +153,7 @@ public class FugueConfig {
             "com.cleanroommc.groovyscript.sandbox.transformer.AsmDecompileHelper",
             "com.cleanroommc.modularui.core.ModularUICore",
             "openeye.logic.ModMetaCollector",
+            "com.forgeessentials.core.preloader.asminjector.ASMUtil",
     };
 
     @Config.Comment(
@@ -189,6 +190,7 @@ public class FugueConfig {
             "com.wjx.kablade.mixin.KabladeMixinTweak",
             "eos.moe.dragoncore.tweaker.ForgePlugin",
             "advancedshader.core.Core",
+            "com.forgeessentials.core.preloader.FELaunchHandler",
     };
 
     @Config.Comment(
