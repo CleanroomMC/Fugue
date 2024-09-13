@@ -110,4 +110,6 @@ public class ModPatchConfig {
     public boolean enableColytra = true;
     @Config.Name("Enable InfinityLib Patch")
     public boolean enableInfLib = true;
+    @Config.Name("Enable Crossbow(jbredwards) Patch")
+    public boolean enableCrossbow = true;
 }

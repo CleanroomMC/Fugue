@@ -57,6 +57,10 @@ If you are still using 0.1.0 Cleanroom, use 0.5.4. But that's not recommended.
 * In Control!
 * More Refined Storage
 * Better Formatting Code
+* 5zig
+* Ears
+* Colytra
+* Crossbow
 
 ## Note
 Add + to start of the file if it's not there.

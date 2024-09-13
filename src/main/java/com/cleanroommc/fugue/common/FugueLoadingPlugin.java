@@ -172,6 +172,9 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
         if (FugueConfig.modPatchConfig.enableColytra) {
             TransformerDelegate.registerExplicitTransformerByInstance(new EntityLivingBaseTransformer(), "net.minecraft.entity.EntityLivingBase");
         }
+        if (FugueConfig.modPatchConfig.enableCrossbow) {
+            TransformerDelegate.registerExplicitTransformerByInstance(new TransformerEntityArrowTransformer(), "git.jbredwards.crossbow.mod.asm.transformer.TransformerEntityArrow");
+        }
         if (FugueConfig.getCodeSourcePatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformerByInstance(new ITweakerTransformer(), FugueConfig.getCodeSourcePatchTargets);
         }
