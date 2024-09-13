@@ -60,6 +60,7 @@ public class FugueConfig {
             "com.ferreusveritas.unifine.ThermalDynamicsActive",
             "com.kirdow.itemlocks.util.reflect.ReflectClass",
             "eos.moe.dragoncore.za",
+            "com.mcmoddev.lib.init.Items",
     };
 
     @Config.Comment(
