@@ -170,6 +170,7 @@ public class FugueConfig {
     @Config.Comment(
             """
             ITweaker classes loaded in LCL will be defined in a different code source like file:jar:.
+            This will cause errors like java.lang.IllegalArgumentException: URI is not hierarchical
             Add them to list could redirect their toURI() to a decent jar URL.
             """)
     @Config.Name("getCodeSource() Patching List")
@@ -187,6 +188,7 @@ public class FugueConfig {
             "online.flowerinsnow.greatscrollabletooltips.tweaker.GreatScrollableTooltipsTweaker",
             "com.wjx.kablade.mixin.KabladeMixinTweak",
             "eos.moe.dragoncore.tweaker.ForgePlugin",
+            "advancedshader.core.Core",
     };
 
     @Config.Comment(
