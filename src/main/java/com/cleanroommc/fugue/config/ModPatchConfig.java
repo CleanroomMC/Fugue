@@ -116,4 +116,6 @@ public class ModPatchConfig {
     public boolean enablePolyForst = true;
     @Config.Name("Enable Dropt Patch")
     public boolean enableDropt = true;
+    @Config.Name("Enable Carryon Patch")
+    public boolean enableCarryon = true;
 }

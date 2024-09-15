@@ -223,6 +223,9 @@ dependencies {
     //InfinityLib
     compileOnly(fg.deobf("curse.maven:inflib-251396:3317119"))
 
+    //Carry on
+    compileOnly(fg.deobf("curse.maven:carry-274259:4507139"))
+
 
     implementation("com.cleanroommc:groovyscript:1.1.1") {
         transitive = false
