@@ -5,6 +5,10 @@ import net.minecraftforge.common.config.Config;
 public class ModPatchConfig {
     @Config.Name("Enable Ender Core Patch")
     public boolean enableEnderCore = true;
+    @Config.Comment({
+            "This patch is only for Advanced Rocketry by zmaster587.",
+            "Advanced Rocketry - Reworked by MarvinEckhardt doesn't need this!"
+    })
     @Config.Name("Enable Advanced Rocketry Patch")
     public boolean enableAR = true;
     @Config.Name("Enable Shoulder Surfing Reloaded Patch")
