@@ -122,4 +122,6 @@ public class ModPatchConfig {
     public boolean enableDropt = true;
     @Config.Name("Enable Carryon Patch")
     public boolean enableCarryon = true;
+    @Config.Name("Enable Litematica Patch")
+    public boolean enableLitematica = true;
 }

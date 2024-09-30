@@ -22,6 +22,7 @@
     "howlingmoon.WerewolfCapabilityMixin",
     "incontrol.CachePerWorldMixin",
     "infinitylib.BakedInfBlockModelMixin",
+    "litematica.ChunkRenderWorkerLitematicaMixin",
     "mage.ColorspacesMixin",
     "minecraftmultipartcbe.ASMMixinCompilerMixin",
     "minecraftmultipartcbe.StackAnalyserMixin",
