@@ -10,6 +10,7 @@
     "armourers_workshop.GlobalTaskMixin",
     "armourers_workshop.SkinTextureMixin",
     "astralsorcery.PerkAttributeTypeMixin",
+    "betterrecords.SoundManagerMixin",
     "carryon.ItemTileMixin",
     "charset.ColorspacesMixin",
     "codechickenlib.ReflectionManagerMixin",

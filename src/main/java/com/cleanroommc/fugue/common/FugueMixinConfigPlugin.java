@@ -55,6 +55,7 @@ public class FugueMixinConfigPlugin implements IMixinConfigPlugin {
             case "infinitylib" -> Loader.isModLoaded("infinitylib") && FugueConfig.modPatchConfig.enableInfLib;
             case "carryon" -> Loader.isModLoaded("carryon") && FugueConfig.modPatchConfig.enableCarryon;
             case "litematica" -> Loader.isModLoaded("litematica") && FugueConfig.modPatchConfig.enableLitematica;
+            case "betterrecords" -> Loader.isModLoaded("betterrecords") && FugueConfig.modPatchConfig.enableBetterRecords;
             default -> true;
         };
     }
