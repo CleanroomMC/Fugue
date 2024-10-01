@@ -31,8 +31,9 @@ public class SoundManagerMixin {
     @Inject(method = "queueSongsAt", at = @At(value = "INVOKE", target = "Ljava/util/Map;put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;"))
     private void hackThread(BlockPos pos, int dimension, List<Sound> sounds, boolean shuffle, boolean repeat, CallbackInfo ci, @Local LocalRef<Thread> job) {
         AtomicBoolean interrupted = new AtomicBoolean(false);
-        job.set(new SoundThread(interrupted, sounds, pos, dimension, repeat));
-        threads.put(Thread.currentThread(), interrupted);
+        Thread thread = new SoundThread(interrupted, sounds, pos, dimension, repeat);
+        job.set(thread);
+        threads.put(thread, interrupted);
     }
 
 }
