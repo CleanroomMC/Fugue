@@ -15,6 +15,7 @@ import tech.feldman.betterrecords.client.sound.SoundManager;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -24,8 +25,9 @@ public class SoundManagerMixin {
     private static final Map<Thread, AtomicBoolean> threads = new ConcurrentHashMap<>();
     @Redirect(method = "stopQueueAt", at = @At(value = "INVOKE", target = "Ljava/lang/Thread;stop()V"))
     private void stopQueueAt(Thread thread) {
-        threads.get(thread).set(Boolean.FALSE);
+        Optional.ofNullable(threads.get(thread)).ifPresent(t -> t.set(false));
         thread.interrupt();
+        threads.remove(thread);
     }
 
     @Inject(method = "queueSongsAt", at = @At(value = "INVOKE", target = "Ljava/util/Map;put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;"))
