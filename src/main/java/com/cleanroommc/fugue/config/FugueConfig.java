@@ -104,6 +104,7 @@ public class FugueConfig {
             "tk.zeitheron.solarflux.items.ItemTransferRateUpgrade",
             "tk.zeitheron.solarflux.items.ItemCapacityUpgrade",
             "iblis.player.SharedIblisAttributes",
+            "com.Shultrea.Rin.Utility_Sector.LivingAttackFixerHandler",
     };
     @Config.Comment(
             """
