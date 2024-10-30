@@ -238,6 +238,9 @@ dependencies {
     //Better Records
     compileOnly(fg.deobf("curse.maven:br-222722:2930159"))
 
+    //Aqua Acrobatics
+    compileOnly(fg.deobf("curse.maven:aqua-321792:5225456"))
+
     implementation("com.cleanroommc:groovyscript:1.1.1") {
         transitive = false
     }

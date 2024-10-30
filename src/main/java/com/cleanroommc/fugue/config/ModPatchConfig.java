@@ -126,4 +126,6 @@ public class ModPatchConfig {
     public boolean enableLitematica = true;
     @Config.Name("Enable Better Records Patch")
     public boolean enableBetterRecords = true;
+    @Config.Name("Enable Aqua Acrobatics Patch")
+    public boolean enableAquaAcrobatics = true;
 }
