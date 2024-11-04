@@ -34,6 +34,7 @@ public class FugueConfig {
             "com.fantasticsource.noadvancements.NoAdvancements",
             "com.codetaylor.mc.athenaeum.util.Injector",
             "epicsquid.mysticallib.hax.Hax",
+            "epicsquid.gadgetry.core.hax.Hax",
             "vazkii.quark.world.feature.TreeVariants",
             "vazkii.quark.base.handler.OverrideRegistryHandler",
             "codechicken.lib.reflect.ReflectionManager",
