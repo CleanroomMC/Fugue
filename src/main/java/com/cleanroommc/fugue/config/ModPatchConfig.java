@@ -128,4 +128,6 @@ public class ModPatchConfig {
     public boolean enableBetterRecords = true;
     @Config.Name("Enable Aqua Acrobatics Patch")
     public boolean enableAquaAcrobatics = true;
+    @Config.Name("Enable Refined Relocation 2 Patach")
+    public boolean enableRefinedRelocation2Patach = true;
 }

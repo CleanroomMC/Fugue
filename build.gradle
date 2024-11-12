@@ -241,6 +241,9 @@ dependencies {
     //Aqua Acrobatics
     compileOnly(fg.deobf("curse.maven:aqua-321792:5225456"))
 
+    //Refined Relocation 2
+    compileOnly(fg.deobf("curse.maven:rr2-247135:2863241"))
+
     implementation("com.cleanroommc:groovyscript:1.1.1") {
         transitive = false
     }
