@@ -85,7 +85,7 @@ public class ModPatchConfig {
     public boolean enableOpenModsLib = true;
     @Config.Name("Enable ReplayMod Patch")
     public boolean enableReplayMod = true;
-    @Config.Name("Fix Tahumic Speedup Loader")
+    @Config.Name("Fix Thaumic Speedup Loader")
     public boolean fixTahumicSpeedup = true;
     @Config.Name("Enable Astral Sorcery Patch")
     public boolean enableAstralSorcery = true;

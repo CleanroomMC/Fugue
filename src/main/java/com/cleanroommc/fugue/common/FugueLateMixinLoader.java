@@ -19,7 +19,7 @@ public class FugueLateMixinLoader implements ILateMixinLoader {
     @Override
     public List<String> getMixinConfigs() {
         List<String> configs = new ArrayList<>();
-        if (FugueConfig.modPatchConfig.fixTahumicSpeedup && Loader.isModLoaded("thaumicspeedup")) {
+        if (FugueConfig.modPatchConfig.fixTahumicSpeedup && Loader.isModLoaded("thaumicspeedup") && !Fugue.isModNewerThan("thaumicspeedup", "4.0")) {
             configs.add("mixins.thaumicspeedup.json");
             if (Loader.isModLoaded("betterwithmods")) {
                 configs.add("mixins.thaumicspeedup_bwmcompat.json");
