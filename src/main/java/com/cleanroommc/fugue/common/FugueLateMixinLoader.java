@@ -51,6 +51,9 @@ public class FugueLateMixinLoader implements ILateMixinLoader {
             }
             AquaAcrobaticsCore.isModCompatLoaded = true;
         }
+        if (FugueConfig.modPatchConfig.enableIntegratedProxyPatch && Loader.isModLoaded("integrated_proxy")) {
+            configs.add("mixins.integrated_proxy.mod.json");
+        }
         return configs;
     }
 }

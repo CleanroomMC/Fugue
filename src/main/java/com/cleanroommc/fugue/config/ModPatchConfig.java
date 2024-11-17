@@ -58,7 +58,6 @@ public class ModPatchConfig {
     public boolean enableSmoothFont = true;
     @Config.Name("Enable Custom Skin Loader Patch")
     public boolean enableCSL = true;
-
     @Config.Name("Enable XNet Patch")
     public boolean enableXNet = true;
     @Config.Name("Enable Howling Moon Patch")
@@ -129,5 +128,7 @@ public class ModPatchConfig {
     @Config.Name("Enable Aqua Acrobatics Patch")
     public boolean enableAquaAcrobatics = true;
     @Config.Name("Enable Refined Relocation 2 Patach")
-    public boolean enableRefinedRelocation2Patach = true;
+    public boolean enableRefinedRelocation2Patch = true;
+    @Config.Name("Enable Integrated Proxy Patch")
+    public boolean enableIntegratedProxyPatch = true;
 }
