@@ -176,6 +176,9 @@ public class TransformerHelper {
         if (FugueConfig.modPatchConfig.enableThaumicFixesPatch) {
             TransformerDelegate.registerExplicitTransformerByInstance(new ThaumicFixesLoadingPluginTransformer(), "com.seriouscreeper.thaumicfixes.core.ThaumicFixesLoadingPlugin");
         }
+        if (FugueConfig.modPatchConfig.enableErebusFixPatch) {
+            TransformerDelegate.registerExplicitTransformerByInstance(new ThaumicFixesLoadingPluginTransformer(), "noobanidus.mods.erebusfix.core.EFLoadingPlugin");
+        }
 
         if (FugueConfig.getCodeSourcePatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformerByInstance(new ITweakerTransformer(), FugueConfig.getCodeSourcePatchTargets);

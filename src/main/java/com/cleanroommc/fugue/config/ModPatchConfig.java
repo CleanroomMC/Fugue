@@ -133,4 +133,6 @@ public class ModPatchConfig {
     public boolean enableIntegratedProxyPatch = true;
     @Config.Name("Enable Thaumic Fixes Patch")
     public boolean enableThaumicFixesPatch = true;
+    @Config.Name("Enable Erebus Fix Patch")
+    public boolean enableErebusFixPatch = true;
 }

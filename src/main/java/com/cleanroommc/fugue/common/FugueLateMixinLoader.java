@@ -57,6 +57,9 @@ public class FugueLateMixinLoader implements ILateMixinLoader {
         if (FugueConfig.modPatchConfig.enableThaumicFixesPatch && Loader.isModLoaded("thaumicfixes")) {
             configs.add("mixins.thaumicfixes.modsupport.json");
         }
+        if (FugueConfig.modPatchConfig.enableErebusFixPatch && Loader.isModLoaded("erebusfix")) {
+            configs.add("mixins.erebusfix.json");
+        }
         return configs;
     }
 }
