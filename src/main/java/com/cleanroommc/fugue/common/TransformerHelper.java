@@ -19,7 +19,7 @@ import com.cleanroommc.fugue.transformer.nothirium.NothiriumClassTransformerTran
 import com.cleanroommc.fugue.transformer.openmodlib.InjectorMethodVisitorTransformer;
 import com.cleanroommc.fugue.transformer.openmodlib.PlayerRendererHookVisitorTransformer;
 import com.cleanroommc.fugue.transformer.subaquatic.PluginEntityTransformer;
-import com.cleanroommc.fugue.transformer.thaumicfixes.ThaumicFixesLoadingPluginTransformer;
+import com.cleanroommc.fugue.transformer.universal.RemoveMixinInitFromCotrTransformer;
 import com.cleanroommc.fugue.transformer.tickcentral.*;
 import com.cleanroommc.fugue.transformer.universal.*;
 import org.spongepowered.asm.mixin.transformer.Config;
@@ -173,11 +173,15 @@ public class TransformerHelper {
         if (FugueConfig.modPatchConfig.enableIntegratedProxyPatch) {
             TransformerDelegate.registerExplicitTransformerByInstance(new MixinLoaderTransformer(), "com.shblock.integrated_proxy.mixin.MixinLoader");
         }
+        RemoveMixinInitFromCotrTransformer instance = new RemoveMixinInitFromCotrTransformer();
         if (FugueConfig.modPatchConfig.enableThaumicFixesPatch) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new ThaumicFixesLoadingPluginTransformer(), "com.seriouscreeper.thaumicfixes.core.ThaumicFixesLoadingPlugin");
+            TransformerDelegate.registerExplicitTransformerByInstance(instance, "com.seriouscreeper.thaumicfixes.core.ThaumicFixesLoadingPlugin");
         }
         if (FugueConfig.modPatchConfig.enableErebusFixPatch) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new ThaumicFixesLoadingPluginTransformer(), "noobanidus.mods.erebusfix.core.EFLoadingPlugin");
+            TransformerDelegate.registerExplicitTransformerByInstance(instance, "noobanidus.mods.erebusfix.core.EFLoadingPlugin");
+        }
+        if (FugueConfig.modPatchConfig.enableUncraftingBlacklist) {
+            TransformerDelegate.registerExplicitTransformerByInstance(instance, "doomanidus.mods.uncraftingblacklist.core.UBLoadingPlugin");
         }
 
         if (FugueConfig.getCodeSourcePatchTargets.length > 0) {

@@ -1,4 +1,4 @@
-package com.cleanroommc.fugue.transformer.thaumicfixes;
+package com.cleanroommc.fugue.transformer.universal;
 
 import com.cleanroommc.fugue.common.Fugue;
 import javassist.CannotCompileException;
@@ -10,7 +10,7 @@ import top.outlands.foundation.IExplicitTransformer;
 
 import java.io.ByteArrayInputStream;
 
-public class ThaumicFixesLoadingPluginTransformer implements IExplicitTransformer {
+public class RemoveMixinInitFromCotrTransformer implements IExplicitTransformer {
     @Override
     public byte[] transform(byte[] bytes) {
         try {

@@ -135,4 +135,6 @@ public class ModPatchConfig {
     public boolean enableThaumicFixesPatch = true;
     @Config.Name("Enable Erebus Fix Patch")
     public boolean enableErebusFixPatch = true;
+    @Config.Name("Enable Uncrafting Blacklist Patch")
+    public boolean enableUncraftingBlacklist = true;
 }

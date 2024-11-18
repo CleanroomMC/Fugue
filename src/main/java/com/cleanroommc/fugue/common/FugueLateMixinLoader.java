@@ -60,6 +60,9 @@ public class FugueLateMixinLoader implements ILateMixinLoader {
         if (FugueConfig.modPatchConfig.enableErebusFixPatch && Loader.isModLoaded("erebusfix")) {
             configs.add("mixins.erebusfix.json");
         }
+        if (FugueConfig.modPatchConfig.enableUncraftingBlacklist && Loader.isModLoaded("uncrafting_blacklist")) {
+            configs.add("mixins.uncraftingblacklist.json");
+        }
         return configs;
     }
 }
