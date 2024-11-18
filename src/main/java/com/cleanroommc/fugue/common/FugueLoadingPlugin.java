@@ -1,7 +1,7 @@
 package com.cleanroommc.fugue.common;
 
 import com.cleanroommc.fugue.config.FugueConfig;
-import com.cleanroommc.fugue.transformer.*;
+import com.cleanroommc.fugue.transformer.tfcmedical.CommonRegistrar$Transformer;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
