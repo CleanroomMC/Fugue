@@ -54,6 +54,9 @@ public class FugueLateMixinLoader implements ILateMixinLoader {
         if (FugueConfig.modPatchConfig.enableIntegratedProxyPatch && Loader.isModLoaded("integrated_proxy")) {
             configs.add("mixins.integrated_proxy.mod.json");
         }
+        if (FugueConfig.modPatchConfig.enableThaumicFixesPatch && Loader.isModLoaded("thaumicfixes")) {
+            configs.add("mixins.thaumicfixes.modsupport.json");
+        }
         return configs;
     }
 }

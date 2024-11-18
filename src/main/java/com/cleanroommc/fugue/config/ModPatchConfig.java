@@ -131,4 +131,6 @@ public class ModPatchConfig {
     public boolean enableRefinedRelocation2Patch = true;
     @Config.Name("Enable Integrated Proxy Patch")
     public boolean enableIntegratedProxyPatch = true;
+    @Config.Name("Enable Thaumic Fixes Patch")
+    public boolean enableThaumicFixesPatch = true;
 }

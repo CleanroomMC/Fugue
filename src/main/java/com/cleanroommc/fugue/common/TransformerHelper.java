@@ -19,6 +19,7 @@ import com.cleanroommc.fugue.transformer.nothirium.NothiriumClassTransformerTran
 import com.cleanroommc.fugue.transformer.openmodlib.InjectorMethodVisitorTransformer;
 import com.cleanroommc.fugue.transformer.openmodlib.PlayerRendererHookVisitorTransformer;
 import com.cleanroommc.fugue.transformer.subaquatic.PluginEntityTransformer;
+import com.cleanroommc.fugue.transformer.thaumicfixes.ThaumicFixesLoadingPluginTransformer;
 import com.cleanroommc.fugue.transformer.tickcentral.*;
 import com.cleanroommc.fugue.transformer.universal.*;
 import org.spongepowered.asm.mixin.transformer.Config;
@@ -172,6 +173,10 @@ public class TransformerHelper {
         if (FugueConfig.modPatchConfig.enableIntegratedProxyPatch) {
             TransformerDelegate.registerExplicitTransformerByInstance(new MixinLoaderTransformer(), "com.shblock.integrated_proxy.mixin.MixinLoader");
         }
+        if (FugueConfig.modPatchConfig.enableThaumicFixesPatch) {
+            TransformerDelegate.registerExplicitTransformerByInstance(new ThaumicFixesLoadingPluginTransformer(), "com.seriouscreeper.thaumicfixes.core.ThaumicFixesLoadingPlugin");
+        }
+
         if (FugueConfig.getCodeSourcePatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformerByInstance(new ITweakerTransformer(), FugueConfig.getCodeSourcePatchTargets);
         }
