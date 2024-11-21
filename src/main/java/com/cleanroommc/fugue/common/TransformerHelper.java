@@ -54,23 +54,23 @@ public class TransformerHelper {
     public static void registerTransformers() {
 
         if (FugueConfig.modPatchConfig.enableEnderCore) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new EnderCoreTransformerTransformer(), "com.enderio.core.common.transform.EnderCoreTransformer");
+            TransformerDelegate.registerExplicitTransformer(new EnderCoreTransformerTransformer(), "com.enderio.core.common.transform.EnderCoreTransformer");
         }
         if (FugueConfig.modPatchConfig.enableAR) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new ClassTransformerTransformer(), "zmaster587.advancedRocketry.asm.ClassTransformer");
+            TransformerDelegate.registerExplicitTransformer(new ClassTransformerTransformer(), "zmaster587.advancedRocketry.asm.ClassTransformer");
         }
         if (FugueConfig.modPatchConfig.enableShoulderSurfing) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new EntityPlayerRayTraceTransformer(),"com.teamderpy.shouldersurfing.asm.transformers.EntityPlayerRayTrace");
+            TransformerDelegate.registerExplicitTransformer(new EntityPlayerRayTraceTransformer(),"com.teamderpy.shouldersurfing.asm.transformers.EntityPlayerRayTrace");
         }
         if (FugueConfig.modPatchConfig.enableSA){
-            TransformerDelegate.registerExplicitTransformerByInstance(new SplashProgressTransformerTransformer(), "pl.asie.splashanimation.core.SplashProgressTransformer");
+            TransformerDelegate.registerExplicitTransformer(new SplashProgressTransformerTransformer(), "pl.asie.splashanimation.core.SplashProgressTransformer");
         }
         if (FugueConfig.modPatchConfig.enableTickCentral){
-            TransformerDelegate.registerExplicitTransformerByInstance(new InitializerTransformer(), "com.github.terminatornl.laggoggles.tickcentral.Initializer");
-            TransformerDelegate.registerExplicitTransformerByInstance(new ClassSnifferTransformer(), "com.github.terminatornl.tickcentral.api.ClassSniffer");
-            TransformerDelegate.registerExplicitTransformerByInstance(new CompatibilityTransformer(), "com.github.terminatornl.tickcentral.asm.Compatibility");
-            TransformerDelegate.registerExplicitTransformerByInstance(new TickCentralTransformer(), "com.github.terminatornl.tickcentral.TickCentral");
-            TransformerDelegate.registerExplicitTransformerByInstance(
+            TransformerDelegate.registerExplicitTransformer(new InitializerTransformer(), "com.github.terminatornl.laggoggles.tickcentral.Initializer");
+            TransformerDelegate.registerExplicitTransformer(new ClassSnifferTransformer(), "com.github.terminatornl.tickcentral.api.ClassSniffer");
+            TransformerDelegate.registerExplicitTransformer(new CompatibilityTransformer(), "com.github.terminatornl.tickcentral.asm.Compatibility");
+            TransformerDelegate.registerExplicitTransformer(new TickCentralTransformer(), "com.github.terminatornl.tickcentral.TickCentral");
+            TransformerDelegate.registerExplicitTransformer(
                     new PriorityAppendTransformer(),
                     "com.github.terminatornl.tickcentral.asm.BlockTransformer",
                     "com.github.terminatornl.tickcentral.asm.ITickableTransformer",
@@ -79,95 +79,95 @@ public class TransformerHelper {
                     "net.minecraftforge.fml.common.asm.transformers.ModAPITransformer");
         }
         if (FugueConfig.modPatchConfig.enableLP){
-            TransformerDelegate.registerExplicitTransformerByInstance(
+            TransformerDelegate.registerExplicitTransformer(
                     new LogisticPipesHandlerTransformer(),
                     "logisticspipes.asm.mcmp.ClassBlockMultipartContainerHandler",
                     "logisticspipes.asm.td.ClassRenderDuctItemsHandler",
                     "logisticspipes.asm.td.ClassTravelingItemHandler");
-            TransformerDelegate.registerExplicitTransformerByInstance(
+            TransformerDelegate.registerExplicitTransformer(
                     new LogisticsClassTransformerTransformer(ActualClassLoader.class),
                     "logisticspipes.asm.LogisticsClassTransformer",
                     "logisticspipes.asm.LogisticsPipesClassInjector");
-            TransformerDelegate.registerExplicitTransformerByInstance(new LogisticsPipesClassInjectorTransformer(), "logisticspipes.asm.LogisticsPipesClassInjector");
-            TransformerDelegate.registerExplicitTransformerByInstance(new defineClassTransformer(),
+            TransformerDelegate.registerExplicitTransformer(new LogisticsPipesClassInjectorTransformer(), "logisticspipes.asm.LogisticsPipesClassInjector");
+            TransformerDelegate.registerExplicitTransformer(new defineClassTransformer(),
                     "logisticspipes.asm.wrapper.LogisticsWrapperHandler",
                     "logisticspipes.proxy.opencomputers.asm.ClassCreator"
             );
-            TransformerDelegate.registerExplicitTransformerByInstance(new LoadClassTransformer(),
+            TransformerDelegate.registerExplicitTransformer(new LoadClassTransformer(),
                     "network.rs485.debug.OpenGLDebugger",
                     "logisticspipes.utils.StaticResolverUtil");
-            TransformerDelegate.registerExplicitTransformerByInstance(new LogisticsPipesTrigger(), "logisticspipes.asm.LogisticsPipesCoreLoader");
+            TransformerDelegate.registerExplicitTransformer(new LogisticsPipesTrigger(), "logisticspipes.asm.LogisticsPipesCoreLoader");
         }
         if (FugueConfig.modPatchConfig.enableEC){
-            TransformerDelegate.registerExplicitTransformerByInstance(new EnumInputClassTransformer(), "austeretony.enchcontrol.common.core.EnumInputClass");
+            TransformerDelegate.registerExplicitTransformer(new EnumInputClassTransformer(), "austeretony.enchcontrol.common.core.EnumInputClass");
         }
         if (FugueConfig.modPatchConfig.enableTheASM) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new LoliReflectorTransformer(), "zone.rong.loliasm.LoliReflector");
-            TransformerDelegate.registerExplicitTransformerByInstance(new JavaFixesTransformer(), "zone.rong.loliasm.common.java.JavaFixes");
-            TransformerDelegate.registerExplicitTransformerByInstance(new LoliFMLCallHookTransformer(), "zone.rong.loliasm.core.LoliFMLCallHook");
-            TransformerDelegate.registerExplicitTransformerByInstance(new ModIdentifierTransformer(), "zone.rong.loliasm.common.crashes.ModIdentifier");
+            TransformerDelegate.registerExplicitTransformer(new LoliReflectorTransformer(), "zone.rong.loliasm.LoliReflector");
+            TransformerDelegate.registerExplicitTransformer(new JavaFixesTransformer(), "zone.rong.loliasm.common.java.JavaFixes");
+            TransformerDelegate.registerExplicitTransformer(new LoliFMLCallHookTransformer(), "zone.rong.loliasm.core.LoliFMLCallHook");
+            TransformerDelegate.registerExplicitTransformer(new ModIdentifierTransformer(), "zone.rong.loliasm.common.crashes.ModIdentifier");
         }
         if (FugueConfig.modPatchConfig.enableZeroCore) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new DisplayListTransformer(), "it.zerono.mods.zerocore.lib.client.render.DisplayList");
+            TransformerDelegate.registerExplicitTransformer(new DisplayListTransformer(), "it.zerono.mods.zerocore.lib.client.render.DisplayList");
         }
         if (FugueConfig.modPatchConfig.enableSmoothFont) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new FontRendererTransformer(), "net.minecraft.client.gui.FontRenderer");
+            TransformerDelegate.registerExplicitTransformer(new FontRendererTransformer(), "net.minecraft.client.gui.FontRenderer");
         }
         if (FugueConfig.modPatchConfig.enableCSL) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new ForgeTweakerTransformer(), "customskinloader.forge.ForgeTweaker");
+            TransformerDelegate.registerExplicitTransformer(new ForgeTweakerTransformer(), "customskinloader.forge.ForgeTweaker");
         }
         if (FugueConfig.modPatchConfig.enableXNet) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new EnergyConnectorSettingsTransformer(), "mcjty.xnet.apiimpl.energy.EnergyConnectorSettings");
+            TransformerDelegate.registerExplicitTransformer(new EnergyConnectorSettingsTransformer(), "mcjty.xnet.apiimpl.energy.EnergyConnectorSettings");
         }
         if (FugueConfig.modPatchConfig.enableCCL) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new ClassHierarchyManagerTransformer(), "codechicken.asm.ClassHierarchyManager");
+            TransformerDelegate.registerExplicitTransformer(new ClassHierarchyManagerTransformer(), "codechicken.asm.ClassHierarchyManager");
         }
         if (FugueConfig.modPatchConfig.enableSurvivialInc) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new ForgeASMInjectorTransformer(), "enginecrafter77.survivalinc.util.ForgeASMInjector");
+            TransformerDelegate.registerExplicitTransformer(new ForgeASMInjectorTransformer(), "enginecrafter77.survivalinc.util.ForgeASMInjector");
         }
         if (FugueConfig.modPatchConfig.enableSubaquatic) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new PluginEntityTransformer(), "git.jbredwards.subaquatic.mod.asm.plugin.vanilla.entity.PluginEntity");
-            TransformerDelegate.registerExplicitTransformerByInstance(new SubaquaticIMTransformer(), "net.minecraft.world.gen.layer.GenLayer");
+            TransformerDelegate.registerExplicitTransformer(new PluginEntityTransformer(), "git.jbredwards.subaquatic.mod.asm.plugin.vanilla.entity.PluginEntity");
+            TransformerDelegate.registerExplicitTransformer(new SubaquaticIMTransformer(), "net.minecraft.world.gen.layer.GenLayer");
         }
         if (FugueConfig.modPatchConfig.enableNothirium){
-            TransformerDelegate.registerExplicitTransformerByInstance(new NothiriumClassTransformerTransformer(), "meldexun.nothirium.mc.asm.NothiriumClassTransformer");
+            TransformerDelegate.registerExplicitTransformer(new NothiriumClassTransformerTransformer(), "meldexun.nothirium.mc.asm.NothiriumClassTransformer");
             MixinServiceLaunchWrapper.registerMixinClassTransformer(new MixinBufferBuilderTransformer(), "meldexun.nothirium.mc.mixin.vertex.MixinBufferBuilder");
-            TransformerDelegate.registerExplicitTransformerByInstance(new BufferBuilderTransformer(), "net.minecraft.client.renderer.BufferBuilder");
-            TransformerDelegate.registerExplicitTransformerByInstance(new FreeSectorManagerTransformer(), "meldexun.nothirium.util.FreeSectorManager$AVL", "meldexun.nothirium.util.FreeSectorManager$RB");
+            TransformerDelegate.registerExplicitTransformer(new BufferBuilderTransformer(), "net.minecraft.client.renderer.BufferBuilder");
+            TransformerDelegate.registerExplicitTransformer(new FreeSectorManagerTransformer(), "meldexun.nothirium.util.FreeSectorManager$AVL", "meldexun.nothirium.util.FreeSectorManager$RB");
         }
         if (FugueConfig.modPatchConfig.enableGroovyScript) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new GroovyClassLoaderTransformer(), "groovy.lang.GroovyClassLoader");
-            TransformerDelegate.registerExplicitTransformerByInstance(new GroovyRunnerRegistryTransformer(), "org.apache.groovy.plugin.GroovyRunnerRegistry");
-            TransformerDelegate.registerExplicitTransformerByInstance(new ASTTransformationCollectorCodeVisitorTransformer(), "org.codehaus.groovy.transform.ASTTransformationCollectorCodeVisitor");
+            TransformerDelegate.registerExplicitTransformer(new GroovyClassLoaderTransformer(), "groovy.lang.GroovyClassLoader");
+            TransformerDelegate.registerExplicitTransformer(new GroovyRunnerRegistryTransformer(), "org.apache.groovy.plugin.GroovyRunnerRegistry");
+            TransformerDelegate.registerExplicitTransformer(new ASTTransformationCollectorCodeVisitorTransformer(), "org.codehaus.groovy.transform.ASTTransformationCollectorCodeVisitor");
         }
         if (FugueConfig.modPatchConfig.enableIC2CE) {
             Config.registerConfigModifier(new IC2ExtraFixer(), "mixins.ic2c_extras.json");
-            TransformerDelegate.registerExplicitTransformerByInstance(new Ic2cExtrasLoadingPluginTransformer(), "trinsdar.ic2c_extras.asm.Ic2cExtrasLoadingPlugin");
+            TransformerDelegate.registerExplicitTransformer(new Ic2cExtrasLoadingPluginTransformer(), "trinsdar.ic2c_extras.asm.Ic2cExtrasLoadingPlugin");
         }
         if (FugueConfig.modPatchConfig.enableSimplyHotSpring) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new SimplyHotSpringsConfigTransformer(), "connor135246.simplyhotsprings.util.SimplyHotSpringsConfig");
+            TransformerDelegate.registerExplicitTransformer(new SimplyHotSpringsConfigTransformer(), "connor135246.simplyhotsprings.util.SimplyHotSpringsConfig");
         }
         if (FugueConfig.modPatchConfig.enableOpenModsLib) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new PlayerRendererHookVisitorTransformer(), "openmods.renderer.PlayerRendererHookVisitor");
-            TransformerDelegate.registerExplicitTransformerByInstance(new InjectorMethodVisitorTransformer(), "openmods.renderer.PlayerRendererHookVisitor$InjectorMethodVisitor");
+            TransformerDelegate.registerExplicitTransformer(new PlayerRendererHookVisitorTransformer(), "openmods.renderer.PlayerRendererHookVisitor");
+            TransformerDelegate.registerExplicitTransformer(new InjectorMethodVisitorTransformer(), "openmods.renderer.PlayerRendererHookVisitor$InjectorMethodVisitor");
         }
         if (FugueConfig.modPatchConfig.enableValkyrie) {
             MixinServiceLaunchWrapper.registerMixinClassTransformer(new MinecraftMixinTransformer(), "dev.redstudio.valkyrie.mixin.MinecraftMixin");
         }
         if (FugueConfig.modPatchConfig.enableVampirism) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new WorldGenVampireOrchidTransformer(), "de.teamlapen.vampirism.biome.BiomeGenVampireForest$WorldGenVampireOrchid");
+            TransformerDelegate.registerExplicitTransformer(new WorldGenVampireOrchidTransformer(), "de.teamlapen.vampirism.biome.BiomeGenVampireForest$WorldGenVampireOrchid");
         }
         if (FugueConfig.modPatchConfig.enableExtraUtilities) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new FieldSetterTransformer(), "com.rwtema.extrautils2.utils.datastructures.FieldSetter");
+            TransformerDelegate.registerExplicitTransformer(new FieldSetterTransformer(), "com.rwtema.extrautils2.utils.datastructures.FieldSetter");
         }
         if (FugueConfig.modPatchConfig.enableBetterFC) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new HK_LoaderTransformer(), "kpan.better_fc.asm.hook.HK_Loader");
+            TransformerDelegate.registerExplicitTransformer(new HK_LoaderTransformer(), "kpan.better_fc.asm.hook.HK_Loader");
         }
         if (FugueConfig.modPatchConfig.enable5zig) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new ClassTweakerTransformer(), "eu.the5zig.mod.asm.ClassTweaker");
+            TransformerDelegate.registerExplicitTransformer(new ClassTweakerTransformer(), "eu.the5zig.mod.asm.ClassTweaker");
         }
         if (FugueConfig.modPatchConfig.enableEars) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new EarsASMTransformer(),
+            TransformerDelegate.registerExplicitTransformer(new EarsASMTransformer(),
                     "com.unascribed.ears.asm.ImageBufferDownloadTransformer",
                     "com.unascribed.ears.asm.LayerElytraTransformer",
                     "com.unascribed.ears.asm.RenderPlayerTransformer",
@@ -178,67 +178,67 @@ public class TransformerHelper {
             );
         }
         if (FugueConfig.modPatchConfig.enableColytra) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new EntityLivingBaseTransformer(), "net.minecraft.entity.EntityLivingBase");
+            TransformerDelegate.registerExplicitTransformer(new EntityLivingBaseTransformer(), "net.minecraft.entity.EntityLivingBase");
         }
         if (FugueConfig.modPatchConfig.enableCrossbow) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new TransformerEntityArrowTransformer(), "git.jbredwards.crossbow.mod.asm.transformer.TransformerEntityArrow");
+            TransformerDelegate.registerExplicitTransformer(new TransformerEntityArrowTransformer(), "git.jbredwards.crossbow.mod.asm.transformer.TransformerEntityArrow");
         }
         if (FugueConfig.modPatchConfig.enablePolyForst) {
-            TransformerDelegate.registerExplicitTransformerByInstance(
+            TransformerDelegate.registerExplicitTransformer(
                     new LaunchWrapperTweakerTransformer(),
                     "cc.polyfrost.oneconfig.loader.stage0.LaunchWrapperTweaker",
                     "cc.polyfrost.oneconfig.loader.OneConfigLoader"
             );
         }
         if (FugueConfig.modPatchConfig.enableDropt) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new ValidatorAdapterFactoryTransformer(), "com.codetaylor.mc.dropt.modules.dropt.rule.RuleLoader$ValidatorAdapterFactory");
+            TransformerDelegate.registerExplicitTransformer(new ValidatorAdapterFactoryTransformer(), "com.codetaylor.mc.dropt.modules.dropt.rule.RuleLoader$ValidatorAdapterFactory");
         }
         if (FugueConfig.modPatchConfig.enableIntegratedProxyPatch) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new MixinLoaderTransformer(), "com.shblock.integrated_proxy.mixin.MixinLoader");
+            TransformerDelegate.registerExplicitTransformer(new MixinLoaderTransformer(), "com.shblock.integrated_proxy.mixin.MixinLoader");
         }
         RemoveMixinInitFromCotrTransformer instance = new RemoveMixinInitFromCotrTransformer();
         if (FugueConfig.modPatchConfig.enableThaumicFixesPatch) {
-            TransformerDelegate.registerExplicitTransformerByInstance(instance, "com.seriouscreeper.thaumicfixes.core.ThaumicFixesLoadingPlugin");
+            TransformerDelegate.registerExplicitTransformer(instance, "com.seriouscreeper.thaumicfixes.core.ThaumicFixesLoadingPlugin");
         }
         if (FugueConfig.modPatchConfig.enableErebusFixPatch) {
-            TransformerDelegate.registerExplicitTransformerByInstance(instance, "noobanidus.mods.erebusfix.core.EFLoadingPlugin");
+            TransformerDelegate.registerExplicitTransformer(instance, "noobanidus.mods.erebusfix.core.EFLoadingPlugin");
         }
         if (FugueConfig.modPatchConfig.enableUncraftingBlacklist) {
-            TransformerDelegate.registerExplicitTransformerByInstance(instance, "doomanidus.mods.uncraftingblacklist.core.UBLoadingPlugin");
+            TransformerDelegate.registerExplicitTransformer(instance, "doomanidus.mods.uncraftingblacklist.core.UBLoadingPlugin");
         }
 
         if (FugueConfig.getCodeSourcePatchTargets.length > 0) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new ITweakerTransformer(), FugueConfig.getCodeSourcePatchTargets);
+            TransformerDelegate.registerExplicitTransformer(new ITweakerTransformer(), FugueConfig.getCodeSourcePatchTargets);
         }
         if (FugueConfig.reflectionPatchTargets.length > 0) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new ReflectFieldTransformer(), FugueConfig.reflectionPatchTargets);
+            TransformerDelegate.registerExplicitTransformer(new ReflectFieldTransformer(), FugueConfig.reflectionPatchTargets);
         }
         if (FugueConfig.getURLPatchTargets.length > 0) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new URLClassLoaderTransformer(), FugueConfig.getURLPatchTargets);
+            TransformerDelegate.registerExplicitTransformer(new URLClassLoaderTransformer(), FugueConfig.getURLPatchTargets);
         }
         if (FugueConfig.scriptEngineTargets.length > 0) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new ScriptEngineTransformer(), FugueConfig.scriptEngineTargets);
+            TransformerDelegate.registerExplicitTransformer(new ScriptEngineTransformer(), FugueConfig.scriptEngineTargets);
         }
         if (FugueConfig.UUIDTargets.length > 0) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new MalformedUUIDTransformer(), FugueConfig.UUIDTargets);
+            TransformerDelegate.registerExplicitTransformer(new MalformedUUIDTransformer(), FugueConfig.UUIDTargets);
         }
         if (FugueConfig.remapTargets.length > 0) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new RemapTransformer(), FugueConfig.remapTargets);
+            TransformerDelegate.registerExplicitTransformer(new RemapTransformer(), FugueConfig.remapTargets);
         }
         if (FugueConfig.nonUpdateTargets.length > 0) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new ConnectionBlockingTransformer(), FugueConfig.nonUpdateTargets);
+            TransformerDelegate.registerExplicitTransformer(new ConnectionBlockingTransformer(), FugueConfig.nonUpdateTargets);
         }
         if (FugueConfig.remapLWTargets.length > 0) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new RemapLegacyLWTransformer(), FugueConfig.remapLWTargets);
+            TransformerDelegate.registerExplicitTransformer(new RemapLegacyLWTransformer(), FugueConfig.remapLWTargets);
         }
         if (FugueConfig.remapReflectionTargets.length > 0) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new RemapSunReflectionTransformer(), FugueConfig.remapReflectionTargets);
+            TransformerDelegate.registerExplicitTransformer(new RemapSunReflectionTransformer(), FugueConfig.remapReflectionTargets);
         }
         if (FugueConfig.mouseWheelPatchTargets.length > 0) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new DWheelTransformer(), FugueConfig.mouseWheelPatchTargets);
+            TransformerDelegate.registerExplicitTransformer(new DWheelTransformer(), FugueConfig.mouseWheelPatchTargets);
         }
         if (!FugueConfig.finalRemovingTargets.isEmpty()) {
-            TransformerDelegate.registerExplicitTransformerByInstance(new FinalStripperTransformer(FugueConfig.finalRemovingTargets), FugueConfig.finalRemovingTargets.keySet().toArray(new String[0]));
+            TransformerDelegate.registerExplicitTransformer(new FinalStripperTransformer(FugueConfig.finalRemovingTargets), FugueConfig.finalRemovingTargets.keySet().toArray(new String[0]));
         }
 
     }

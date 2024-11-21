@@ -135,7 +135,7 @@ repositories {
 }
 
 dependencies {
-    minecraft "com.cleanroommc:cleanroom:0.2.3-alpha"
+    minecraft "com.cleanroommc:cleanroom:0.2.4-alpha"
 
     compileOnly fileTree('libs') { include '*.jar' }
 

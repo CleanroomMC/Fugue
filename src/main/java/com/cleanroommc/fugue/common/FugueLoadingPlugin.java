@@ -32,7 +32,7 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
     @Override
     public String[] getASMTransformerClass() {
         if (FugueConfig.modPatchConfig.enableTFCMedical) {
-            TransformerDelegate.registerExplicitTransformerByInstance(
+            TransformerDelegate.registerExplicitTransformer(
                     new CommonRegistrar$Transformer(),
                     "com.lumintorious.tfcmedicinal.CommonRegistrar$",
                     "com.lumintorious.tfcmedicinal.object.mpestle.MPestleRecipe$",
