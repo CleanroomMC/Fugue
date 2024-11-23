@@ -18,7 +18,7 @@ public class RemoveMixinInitFromCotrTransformer implements IExplicitTransformer 
             cc.getConstructors()[0].instrument(new ExprEditor(){
                 @Override
                 public void edit(MethodCall m) throws CannotCompileException {
-                    if (m.getMethodName().equals("addConfiguration") && m.getMethodName().equals("init")) {
+                    if (m.getMethodName().equals("addConfiguration") || m.getMethodName().equals("init")) {
                         m.where().setBody("{}");
                     }
                 }
