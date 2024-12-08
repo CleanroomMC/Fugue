@@ -27,6 +27,7 @@ public class LogisticsPipesTrigger implements IExplicitTransformer {
             Launch.classLoader.findClass("logisticspipes.network.guis.pipe.InvSysConSelectChannelPopupGUIProvider");
             Launch.classLoader.findClass("logisticspipes.network.packets.debuggui.DebugPanelOpen");
             Launch.classLoader.findClass("logisticspipes.network.packets.upgrade.SneakyUpgradeSidePacket");
+            Launch.classLoader.findClass("logisticspipes.network.packets.hud.ChestContent");
         } catch (ClassNotFoundException ignored) {}
         return bytes;
     }
