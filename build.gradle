@@ -244,6 +244,9 @@ dependencies {
     //Refined Relocation 2
     compileOnly(fg.deobf("curse.maven:rr2-247135:2863241"))
 
+    //Calculator
+    compileOnly(fg.deobf("curse.maven:calculator-225104:2847174"))
+
     implementation("com.cleanroommc:groovyscript:1.1.1") {
         transitive = false
     }

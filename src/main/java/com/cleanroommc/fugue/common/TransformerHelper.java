@@ -4,6 +4,7 @@ import com.cleanroommc.fugue.config.FugueConfig;
 import com.cleanroommc.fugue.modifiers.IC2ExtraFixer;
 import com.cleanroommc.fugue.transformer.advancedrocket.ClassTransformerTransformer;
 import com.cleanroommc.fugue.transformer.betterfc.HK_LoaderTransformer;
+import com.cleanroommc.fugue.transformer.calculator.GuiInfoCalculatorTransformer;
 import com.cleanroommc.fugue.transformer.codechickenlib.ClassHierarchyManagerTransformer;
 import com.cleanroommc.fugue.transformer.colytra.EntityLivingBaseTransformer;
 import com.cleanroommc.fugue.transformer.crossbow.TransformerEntityArrowTransformer;
@@ -205,6 +206,9 @@ public class TransformerHelper {
         }
         if (FugueConfig.modPatchConfig.enableUncraftingBlacklist) {
             TransformerDelegate.registerExplicitTransformer(instance, "doomanidus.mods.uncraftingblacklist.core.UBLoadingPlugin");
+        }
+        if (FugueConfig.modPatchConfig.enableCalculator) {
+            TransformerDelegate.registerExplicitTransformer(new GuiInfoCalculatorTransformer(), "sonar.calculator.mod.client.gui.calculators.GuiInfoCalculator");
         }
 
         if (FugueConfig.getCodeSourcePatchTargets.length > 0) {

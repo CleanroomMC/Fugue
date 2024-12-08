@@ -208,4 +208,8 @@ public class HookHelper {
             Launch.classLoader.addURL(file.toURI().toURL());
         } catch (MalformedURLException ignored) {}
     }
+
+    public static String[] listToArray(List<String> list) {
+        return list.toArray(new String[0]);
+    }
 }

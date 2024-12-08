@@ -137,4 +137,6 @@ public class ModPatchConfig {
     public boolean enableErebusFixPatch = true;
     @Config.Name("Enable Uncrafting Blacklist Patch")
     public boolean enableUncraftingBlacklist = true;
+    @Config.Name("Enable Calculator Patch")
+    public boolean enableCalculator = true;
 }
