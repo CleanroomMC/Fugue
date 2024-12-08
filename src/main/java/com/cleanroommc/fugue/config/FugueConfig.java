@@ -17,6 +17,7 @@ public class FugueConfig {
             """
     )
     public static ModPatchConfig modPatchConfig = new ModPatchConfig();
+    public static LogisticsPipesPreloadConfig LPPreloadConfig = new LogisticsPipesPreloadConfig();
 
     @Config.Comment("""
             About *static final field has no write access*
