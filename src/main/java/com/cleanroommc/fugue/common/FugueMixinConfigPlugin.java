@@ -57,6 +57,7 @@ public class FugueMixinConfigPlugin implements IMixinConfigPlugin {
             case "litematica" -> Loader.isModLoaded("litematica") && FugueConfig.modPatchConfig.enableLitematica;
             case "betterrecords" -> Loader.isModLoaded("betterrecords") && FugueConfig.modPatchConfig.enableBetterRecords;
             case "refinedrelocation" -> Loader.isModLoaded("refinedrelocation") && FugueConfig.modPatchConfig.enableRefinedRelocation2Patch;
+            case "unilib" -> Loader.isModLoaded("unilib") && FugueConfig.modPatchConfig.enableUnilib;
             default -> true;
         };
     }

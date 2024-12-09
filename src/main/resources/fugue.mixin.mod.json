@@ -33,6 +33,7 @@
     "solarflux.INetworkSFMixin",
     "solarflux.SolarFluxMixin",
     "subaquatic.IBubbleColumnMixin",
+    "unilib.FileUtilsMixin",
     "waterpower.ClassEngineMixin",
     "xaeroplus.ChunkHighlightSavingCacheMixin",
     "xaeroplus.XaeroPlusSettingsReflectionHaxMixin"

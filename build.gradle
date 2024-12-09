@@ -247,6 +247,8 @@ dependencies {
     //Calculator
     compileOnly(fg.deobf("curse.maven:calculator-225104:2847174"))
 
+    compileOnly(fg.deobf("curse.maven:unilib-1056812:5946214"))
+
     implementation("com.cleanroommc:groovyscript:1.1.1") {
         transitive = false
     }
