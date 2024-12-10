@@ -29,5 +29,6 @@ public class LogisticsPipesPreloadConfig {
             "logisticspipes.network.packets.debuggui.DebugPanelOpen",
             "logisticspipes.network.packets.upgrade.SneakyUpgradeSidePacket",
             "logisticspipes.network.packets.hud.ChestContent",
+            "logisticspipes.network.packets.chassis.ChestGuiClosed",
     };
 }
