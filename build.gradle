@@ -249,6 +249,9 @@ dependencies {
 
     compileOnly(fg.deobf("curse.maven:unilib-1056812:5946214"))
 
+    //BetterPortals
+    compileOnly(fg.deobf("curse.maven:betterportals-322948:2883633"))
+
     implementation("com.cleanroommc:groovyscript:1.1.1") {
         transitive = false
     }
