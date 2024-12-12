@@ -210,6 +210,15 @@ public class TransformerHelper {
         if (FugueConfig.modPatchConfig.enableCalculator) {
             TransformerDelegate.registerExplicitTransformer(new GuiInfoCalculatorTransformer(), "sonar.calculator.mod.client.gui.calculators.GuiInfoCalculator");
         }
+        if (FugueConfig.modPatchConfig.enableBetterPortals) {
+            TransformerDelegate.registerTransformer(new com.cleanroommc.fugue.transformer.betterportals.MixinEntityRendererTransformer());
+            TransformerDelegate.registerExplicitTransformer(
+                    new com.cleanroommc.fugue.transformer.betterportals.ExtensionKtTransformer(),
+                    "de.johni0702.minecraft.betterportals.impl.transition.common.ExtensionsKt",
+                    "de.johni0702.minecraft.betterportals.impl.common.ExtensionsKt",
+                    "de.johni0702.minecraft.view.impl.common.ExtensionsKt"
+            );
+        }
 
         if (FugueConfig.getCodeSourcePatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformer(new ITweakerTransformer(), FugueConfig.getCodeSourcePatchTargets);

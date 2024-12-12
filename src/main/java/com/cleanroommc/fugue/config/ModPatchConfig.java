@@ -142,4 +142,6 @@ public class ModPatchConfig {
     @Config.Comment("This patches the CraftPresence spam log")
     @Config.Name("Enable Unilib Patch")
     public boolean enableUnilib = true;
+    @Config.Name("Enable BetterPortals Patch")
+    public boolean enableBetterPortals = true;
 }
