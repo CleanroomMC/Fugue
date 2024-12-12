@@ -30,5 +30,7 @@ public class LogisticsPipesPreloadConfig {
             "logisticspipes.network.packets.upgrade.SneakyUpgradeSidePacket",
             "logisticspipes.network.packets.hud.ChestContent",
             "logisticspipes.network.packets.chassis.ChestGuiClosed",
+            "logisticspipes.network.guis.LogisticsPlayerSettingsGuiProvider",
+            "logisticspipes.network.guis.EditChannelGuiProvider",
     };
 }
