@@ -212,7 +212,11 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(new GuiInfoCalculatorTransformer(), "sonar.calculator.mod.client.gui.calculators.GuiInfoCalculator");
         }
         if (FugueConfig.modPatchConfig.enableBetterPortals) {
-            MixinServiceLaunchWrapper.registerMixinClassTransformer(new MixinEntityRendererTransformer(), "de.johni0702.minecraft.view.impl.mixin.MixinEntityRenderer_NoOF", "de.johni0702.minecraft.view.impl.mixin.MixinEntityRenderer_OF");
+            MixinServiceLaunchWrapper.registerMixinClassTransformer(
+                    new MixinEntityRendererTransformer(),
+                    "de.johni0702.minecraft.view.impl.mixin.MixinEntityRenderer_NoOF",
+                    "de.johni0702.minecraft.view.impl.mixin.MixinEntityRenderer_OF"
+            );
             TransformerDelegate.registerExplicitTransformer(
                     new com.cleanroommc.fugue.transformer.betterportals.ExtensionKtTransformer(),
                     "de.johni0702.minecraft.betterportals.impl.transition.common.ExtensionsKt",
