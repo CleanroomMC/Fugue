@@ -4,6 +4,7 @@ import com.cleanroommc.fugue.config.FugueConfig;
 import com.cleanroommc.fugue.modifiers.IC2ExtraFixer;
 import com.cleanroommc.fugue.transformer.advancedrocket.ClassTransformerTransformer;
 import com.cleanroommc.fugue.transformer.betterfc.HK_LoaderTransformer;
+import com.cleanroommc.fugue.transformer.betterportals.MixinEntityRendererTransformer;
 import com.cleanroommc.fugue.transformer.calculator.GuiInfoCalculatorTransformer;
 import com.cleanroommc.fugue.transformer.codechickenlib.ClassHierarchyManagerTransformer;
 import com.cleanroommc.fugue.transformer.colytra.EntityLivingBaseTransformer;
@@ -211,7 +212,7 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(new GuiInfoCalculatorTransformer(), "sonar.calculator.mod.client.gui.calculators.GuiInfoCalculator");
         }
         if (FugueConfig.modPatchConfig.enableBetterPortals) {
-            TransformerDelegate.registerTransformer(new com.cleanroommc.fugue.transformer.betterportals.MixinEntityRendererTransformer());
+            MixinServiceLaunchWrapper.registerMixinClassTransformer(new MixinEntityRendererTransformer(), "de.johni0702.minecraft.view.impl.mixin.MixinEntityRenderer_NoOF", "de.johni0702.minecraft.view.impl.mixin.MixinEntityRenderer_OF");
             TransformerDelegate.registerExplicitTransformer(
                     new com.cleanroommc.fugue.transformer.betterportals.ExtensionKtTransformer(),
                     "de.johni0702.minecraft.betterportals.impl.transition.common.ExtensionsKt",

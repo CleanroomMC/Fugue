@@ -3,7 +3,6 @@ package com.cleanroommc.fugue.transformer.nothirium;
 import com.cleanroommc.fugue.common.Fugue;
 import javassist.ClassPool;
 import javassist.CtClass;
-import net.minecraft.launchwrapper.IClassTransformer;
 import top.outlands.foundation.IExplicitTransformer;
 
 import java.io.ByteArrayInputStream;
