@@ -99,6 +99,7 @@ public class TransformerHelper {
                     "network.rs485.debug.OpenGLDebugger",
                     "logisticspipes.utils.StaticResolverUtil");
             TransformerDelegate.registerExplicitTransformer(new LogisticsPipesTrigger(), "logisticspipes.asm.LogisticsPipesCoreLoader");
+            TransformerDelegate.registerExplicitTransformer(new StaticResolverUtilTransformer(), "logisticspipes.utils.StaticResolverUtil");
         }
         if (FugueConfig.modPatchConfig.enableEC){
             TransformerDelegate.registerExplicitTransformer(new EnumInputClassTransformer(), "austeretony.enchcontrol.common.core.EnumInputClass");
