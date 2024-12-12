@@ -32,5 +32,6 @@ public class LogisticsPipesPreloadConfig {
             "logisticspipes.network.packets.chassis.ChestGuiClosed",
             "logisticspipes.network.guis.LogisticsPlayerSettingsGuiProvider",
             "logisticspipes.network.guis.EditChannelGuiProvider",
+            "logisticspipes.network.packets.cpipe.CPipeSatelliteImport",
     };
 }
