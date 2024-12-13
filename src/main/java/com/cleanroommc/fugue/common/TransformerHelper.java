@@ -224,6 +224,32 @@ public class TransformerHelper {
                     "de.johni0702.minecraft.view.impl.common.ExtensionsKt"
             );
         }
+        if (FugueConfig.modPatchConfig.enableEssential) {
+            TransformerDelegate.registerExplicitTransformer(
+                new com.cleanroommc.fugue.transformer.essential.EssentialSetupTweakerTransformer(), 
+                "gg.essential.loader.stage0.EssentialSetupTweaker",
+                "gg.essential.loader.stage1.EssentialLoader",
+                "gg.essential.loader.stage2.EssentialLoader",
+                "gg.essential.main.Bootstrap"
+            );
+            TransformerDelegate.registerExplicitTransformer(
+                new com.cleanroommc.fugue.transformer.essential.EssentialRelaunchTransformer(), 
+                "gg.essential.loader.stage2.relaunch.Relaunch"
+            );
+            TransformerDelegate.registerExplicitTransformer(
+                new com.cleanroommc.fugue.transformer.essential.EssentialGlobalMouseOverrideTransformer(), 
+                "gg.essential.gui.overlay.OverlayManagerImpl$GlobalMouseOverride"
+            );
+            TransformerDelegate.registerExplicitTransformer(
+                new com.cleanroommc.fugue.transformer.essential.EssentialTransformerClearTransformer(), 
+                "gg.essential.asm.compat.betterfps.BetterFpsTransformerWrapper",
+                "gg.essential.asm.compat.PhosphorTransformer"
+            );
+            TransformerDelegate.registerExplicitTransformer(
+                new com.cleanroommc.fugue.transformer.essential.EssentialTelemetryManagerTransformer(), 
+                "gg.essential.network.connectionmanager.telemetry.TelemetryManager"
+            );
+        }
 
         if (FugueConfig.getCodeSourcePatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformer(new ITweakerTransformer(), FugueConfig.getCodeSourcePatchTargets);
