@@ -98,7 +98,6 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(new LoadClassTransformer(),
                     "network.rs485.debug.OpenGLDebugger",
                     "logisticspipes.utils.StaticResolverUtil");
-            TransformerDelegate.registerExplicitTransformer(new LogisticsPipesTrigger(), "logisticspipes.asm.LogisticsPipesCoreLoader");
             TransformerDelegate.registerExplicitTransformer(new StaticResolverUtilTransformer(), "logisticspipes.utils.StaticResolverUtil");
         }
         if (FugueConfig.modPatchConfig.enableEC){
