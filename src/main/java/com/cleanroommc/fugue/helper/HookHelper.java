@@ -9,6 +9,8 @@ import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.launchwrapper.LaunchClassLoader;
 import org.objectweb.asm.Opcodes;
+import org.lwjgl.opengl.GL11;
+import oshi.SystemInfo;
 import top.outlands.foundation.TransformerDelegate;
 import top.outlands.foundation.boot.ActualClassLoader;
 
@@ -207,6 +209,21 @@ public class HookHelper {
         try {
             Launch.classLoader.addURL(file.toURI().toURL());
         } catch (MalformedURLException ignored) {}
+    }
+
+    public static HashMap<String, Object> essential$gatherEnvironmentDetails() {
+        HashMap<String, Object> hardwareMap = new HashMap<>();
+        try { hardwareMap.put("cpu", new SystemInfo().getHardware().getProcessor().getProcessorIdentifier().getName()); } catch (Throwable ignored) {}
+        hardwareMap.putIfAbsent("cpu", "UNKNOWN");
+        hardwareMap.put("gpu", GL11.glGetString(GL11.GL_RENDERER));
+        hardwareMap.put("allocatedMemory", (Runtime.getRuntime().maxMemory() / 1024L / 1024L));
+        try {
+            hardwareMap.put("os", System.getProperty("os.name", "UNKNOWN"));
+            hardwareMap.put("osVersion", System.getProperty("os.version", "UNKNOWN"));
+        }catch (Throwable e) {}
+        hardwareMap.putIfAbsent("os", "UNKNOWN");
+        hardwareMap.putIfAbsent("osVersion", "UNKNOWN");
+        return hardwareMap;
     }
 
     public static String[] listToArray(List<String> list) {

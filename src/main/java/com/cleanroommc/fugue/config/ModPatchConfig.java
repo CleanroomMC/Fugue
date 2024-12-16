@@ -144,4 +144,6 @@ public class ModPatchConfig {
     public boolean enableUnilib = true;
     @Config.Name("Enable BetterPortals Patch")
     public boolean enableBetterPortals = true;
+    @Config.Name("Enable Essential Patch")
+    public boolean enableEssential = true;
 }

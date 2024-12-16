@@ -195,6 +195,8 @@ public class FugueConfig {
             "advancedshader.core.Core",
             "com.forgeessentials.core.preloader.FELaunchHandler",
             "eos.moe.armourers.tweaker.ForgePlugin",
+            "gg.essential.loader.stage2.jvm.ForkedJvm",
+            "gg.essential.main.Bootstrap"
     };
 
     @Config.Comment(
