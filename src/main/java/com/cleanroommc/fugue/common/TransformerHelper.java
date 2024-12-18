@@ -1,6 +1,7 @@
 package com.cleanroommc.fugue.common;
 
 import com.cleanroommc.fugue.config.FugueConfig;
+import com.cleanroommc.fugue.modifiers.DJ2AddonsFixer;
 import com.cleanroommc.fugue.modifiers.IC2ExtraFixer;
 import com.cleanroommc.fugue.transformer.advancedrocket.ClassTransformerTransformer;
 import com.cleanroommc.fugue.transformer.betterfc.HK_LoaderTransformer;
@@ -249,6 +250,9 @@ public class TransformerHelper {
                 new com.cleanroommc.fugue.transformer.essential.EssentialTelemetryManagerTransformer(), 
                 "gg.essential.network.connectionmanager.telemetry.TelemetryManager"
             );
+        }
+        if (FugueConfig.modPatchConfig.enableDivineJourney2Addons) {
+            Config.registerConfigModifier(new DJ2AddonsFixer(), "mixins.dj2addons.init.json");
         }
 
         if (FugueConfig.getCodeSourcePatchTargets.length > 0) {
