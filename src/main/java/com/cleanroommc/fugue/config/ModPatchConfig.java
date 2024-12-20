@@ -146,6 +146,7 @@ public class ModPatchConfig {
     public boolean enableBetterPortals = true;
     @Config.Name("Enable Essential Patch")
     public boolean enableEssential = true;
+    @Config.Comment("Only use with dj2addons 1.2.1.1 or lower")
     @Config.Name("Enable Divine Journey 2 Addons Patch")
     public boolean enableDivineJourney2Addons = true;
 }

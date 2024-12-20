@@ -2,6 +2,7 @@ package com.cleanroommc.fugue.common;
 
 import com.cleanroommc.fugue.config.FugueConfig;
 import com.cleanroommc.fugue.modifiers.DJ2AddonsFixer;
+import com.cleanroommc.fugue.modifiers.DJ2PhaseFixer;
 import com.cleanroommc.fugue.modifiers.IC2ExtraFixer;
 import com.cleanroommc.fugue.transformer.advancedrocket.ClassTransformerTransformer;
 import com.cleanroommc.fugue.transformer.betterfc.HK_LoaderTransformer;
@@ -11,6 +12,7 @@ import com.cleanroommc.fugue.transformer.codechickenlib.ClassHierarchyManagerTra
 import com.cleanroommc.fugue.transformer.colytra.EntityLivingBaseTransformer;
 import com.cleanroommc.fugue.transformer.crossbow.TransformerEntityArrowTransformer;
 import com.cleanroommc.fugue.transformer.customskinloader.ForgeTweakerTransformer;
+import com.cleanroommc.fugue.transformer.dj2addons.DJ2AddonsCoreTransformer;
 import com.cleanroommc.fugue.transformer.dropt.ValidatorAdapterFactoryTransformer;
 import com.cleanroommc.fugue.transformer.ears.EarsASMTransformer;
 import com.cleanroommc.fugue.transformer.enchantmentcontrol.EnumInputClassTransformer;
@@ -253,6 +255,8 @@ public class TransformerHelper {
         }
         if (FugueConfig.modPatchConfig.enableDivineJourney2Addons) {
             Config.registerConfigModifier(new DJ2AddonsFixer(), "mixins.dj2addons.init.json");
+            Config.registerConfigModifier(new DJ2PhaseFixer(), "mixins.dj2addons.json");
+            TransformerDelegate.registerExplicitTransformer(new DJ2AddonsCoreTransformer(), "org.btpos.dj2addons.core.DJ2AddonsCore");
         }
 
         if (FugueConfig.getCodeSourcePatchTargets.length > 0) {
