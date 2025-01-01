@@ -47,6 +47,7 @@ import com.cleanroommc.fugue.transformer.universal.RemoveMixinInitFromCotrTransf
 import com.cleanroommc.fugue.transformer.tickcentral.*;
 import com.cleanroommc.fugue.transformer.universal.*;
 import com.cleanroommc.fugue.transformer.valkyrie.MinecraftMixinTransformer;
+import com.cleanroommc.fugue.transformer.vampirism.TConstructBloodConversionTransformer;
 import com.cleanroommc.fugue.transformer.vampirism.WorldGenVampireOrchidTransformer;
 import com.cleanroommc.fugue.transformer.xnet.EnergyConnectorSettingsTransformer;
 import com.cleanroommc.fugue.transformer.zerocore.DisplayListTransformer;
@@ -161,6 +162,7 @@ public class TransformerHelper {
         }
         if (FugueConfig.modPatchConfig.enableVampirism) {
             TransformerDelegate.registerExplicitTransformer(new WorldGenVampireOrchidTransformer(), "de.teamlapen.vampirism.biome.BiomeGenVampireForest$WorldGenVampireOrchid");
+            TransformerDelegate.registerExplicitTransformer(new TConstructBloodConversionTransformer(), "de.teamlapen.vampirism_integrations.tconstruct.TConstructBloodConversion");
         }
         if (FugueConfig.modPatchConfig.enableExtraUtilities) {
             TransformerDelegate.registerExplicitTransformer(new FieldSetterTransformer(), "com.rwtema.extrautils2.utils.datastructures.FieldSetter");
