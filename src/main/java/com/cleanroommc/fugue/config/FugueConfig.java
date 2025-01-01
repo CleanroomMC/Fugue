@@ -63,6 +63,9 @@ public class FugueConfig {
             "eos.moe.dragoncore.za",
             "com.mcmoddev.lib.init.Items",
             "eos.moe.dragoncore.pn",
+            "tragicneko.tragicmc.TragicMC",
+            "energon.srpholiday.client.inject.render.SRPHReflect",
+            "maxhyper.dynamictreestbl.compat.RegistryReplacements",
     };
 
     @Config.Comment(
