@@ -33,7 +33,7 @@ public class AsmTransformerTransformer implements IExplicitTransformer{
         MethodNode methodNode = new MethodNode(Opcodes.ACC_PUBLIC, "getPriority", "()I", "getPriority()I", null);
         methodNode.visitInsn(Opcodes.ICONST_M1);
         methodNode.visitInsn(Opcodes.IRETURN);
-        methodNode.visitMaxs(1, 0);
+        methodNode.visitMaxs(1, 1);
         classNode.methods.add(methodNode);
 
         var classWriter = new ClassWriter(0);
