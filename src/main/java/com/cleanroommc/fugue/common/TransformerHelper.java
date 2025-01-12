@@ -260,6 +260,9 @@ public class TransformerHelper {
             Config.registerConfigModifier(new DJ2PhaseFixer(), "mixins.dj2addons.json");
             TransformerDelegate.registerExplicitTransformer(new DJ2AddonsCoreTransformer(), "org.btpos.dj2addons.core.DJ2AddonsCore");
         }
+        if (FugueConfig.modPatchConfig.enableLightAndShadow) {
+            TransformerDelegate.registerExplicitTransformer(new new com.cleanroommc.fugue.transformer.light_and_shadow.AsmTransformerTransformer(), "kpan.light_and_shadow.asm.core.AsmTransformer");
+        }
 
         if (FugueConfig.getCodeSourcePatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformer(new ITweakerTransformer(), FugueConfig.getCodeSourcePatchTargets);
