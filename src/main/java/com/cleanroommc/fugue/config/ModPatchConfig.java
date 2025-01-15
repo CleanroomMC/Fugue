@@ -149,4 +149,6 @@ public class ModPatchConfig {
     @Config.Comment("Only use with dj2addons 1.2.1.1 or lower")
     @Config.Name("Enable Divine Journey 2 Addons Patch")
     public boolean enableDivineJourney2Addons = true;
+    @Config.Name("Enable LightAndShadow Patch")
+    public boolean enableLightAndShadow = true;
 }
