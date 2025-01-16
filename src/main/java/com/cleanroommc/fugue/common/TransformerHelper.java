@@ -24,6 +24,7 @@ import com.cleanroommc.fugue.transformer.groovyscript.GroovyClassLoaderTransform
 import com.cleanroommc.fugue.transformer.groovyscript.GroovyRunnerRegistryTransformer;
 import com.cleanroommc.fugue.transformer.ic2ce.Ic2cExtrasLoadingPluginTransformer;
 import com.cleanroommc.fugue.transformer.integrated_proxy.MixinLoaderTransformer;
+import com.cleanroommc.fugue.transformer.journeymap.ThemeLoaderTransformer;
 import com.cleanroommc.fugue.transformer.logisticpipes.*;
 import com.cleanroommc.fugue.transformer.loliasm.JavaFixesTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.LoliFMLCallHookTransformer;
@@ -263,6 +264,9 @@ public class TransformerHelper {
         if (FugueConfig.modPatchConfig.enableLightAndShadow) {
             TransformerDelegate.registerExplicitTransformer(new com.cleanroommc.fugue.transformer.light_and_shadow.AsmTransformerTransformer(), "kpan.light_and_shadow.asm.core.AsmTransformer");
         }
+        TransformerDelegate.registerExplicitTransformer(new ThemeLoaderTransformer(), "journeymap.client.io.ThemeLoader");
+
+        //Common patches below
 
         if (FugueConfig.getCodeSourcePatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformer(new ITweakerTransformer(), FugueConfig.getCodeSourcePatchTargets);
