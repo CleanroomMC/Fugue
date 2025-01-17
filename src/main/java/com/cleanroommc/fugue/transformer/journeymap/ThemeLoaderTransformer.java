@@ -1,33 +1,58 @@
 package com.cleanroommc.fugue.transformer.journeymap;
 
-import com.cleanroommc.fugue.common.Fugue;
-import com.google.common.io.Files;
-import javassist.CannotCompileException;
-import javassist.ClassPool;
-import javassist.CtClass;
-import javassist.expr.ExprEditor;
-import javassist.expr.MethodCall;
+import com.google.common.graph.Traverser;
+import com.google.common.io.MoreFiles;
+import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.Type;
+import org.objectweb.asm.tree.*;
 import top.outlands.foundation.IExplicitTransformer;
-
-import java.io.ByteArrayInputStream;
 
 public class ThemeLoaderTransformer implements IExplicitTransformer {
     @Override
     public byte[] transform(byte[] bytes) {
-        try {
-            CtClass cc = ClassPool.getDefault().makeClass(new ByteArrayInputStream(bytes));
-            cc.getDeclaredMethod("preloadCurrentTheme").instrument(new ExprEditor(){
-                @Override
-                public void edit(MethodCall m) throws CannotCompileException {
-                    if (m.getMethodName().equals("fileTreeTraverser")) {
-                        m.where().setBody("$_ = com.google.common.io.Files#fileTraverser();");
+        ClassNode classNode = new ClassNode();
+        ClassReader classReader = new ClassReader(bytes);
+        classReader.accept(classNode, 0);
+        if (classNode.methods != null)
+        {
+            out:
+            for (MethodNode methodNode : classNode.methods)
+            {
+                if (methodNode.name.equals("preloadCurrentTheme")) {
+                    InsnList instructions = methodNode.instructions;
+                    if (instructions != null)
+                    {
+                        for (AbstractInsnNode insnNode : instructions)
+                        {
+                            if (insnNode instanceof MethodInsnNode methodInsnNode)
+                            {
+                                if (methodInsnNode.name.equals("fileTreeTraverser"))
+                                {
+                                    methodInsnNode.owner = Type.getType(MoreFiles.class).getInternalName();
+                                    methodInsnNode.name = "fileTraverser";
+                                    methodInsnNode.desc = "()Lcom/google/common/graph/Traverser;";
+                                }
+                                if (methodInsnNode.name.equals("breadthFirstTraversal"))
+                                {
+                                    methodInsnNode.owner = Type.getType(Traverser.class).getInternalName();
+                                    methodInsnNode.name = "breadthFirst";
+                                    methodInsnNode.desc = "(Ljava/lang/Object;)Ljava/lang/Iterable;";
+                                }
+                                if (methodInsnNode.name.equals("iterator"))
+                                {
+                                    instructions.remove(methodInsnNode);
+                                    break out;
+                                }
+                            }
+                        }
                     }
                 }
-            });
-            bytes = cc.toBytecode();
-        } catch (Throwable t) {
-            Fugue.LOGGER.error("Exception {} on {}", t, this.getClass().getSimpleName());
+            }
         }
-        return bytes;
+        ClassWriter classWriter = new ClassWriter(0);
+
+        classNode.accept(classWriter);
+        return classWriter.toByteArray();
     }
 }

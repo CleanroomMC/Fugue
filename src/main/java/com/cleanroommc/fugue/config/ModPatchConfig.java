@@ -151,4 +151,6 @@ public class ModPatchConfig {
     public boolean enableDivineJourney2Addons = true;
     @Config.Name("Enable LightAndShadow Patch")
     public boolean enableLightAndShadow = true;
+    @Config.Name("Enable JourneyMap Patch")
+    public boolean enableJourneyMap = true;
 }

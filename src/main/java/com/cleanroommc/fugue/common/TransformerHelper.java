@@ -264,7 +264,9 @@ public class TransformerHelper {
         if (FugueConfig.modPatchConfig.enableLightAndShadow) {
             TransformerDelegate.registerExplicitTransformer(new com.cleanroommc.fugue.transformer.light_and_shadow.AsmTransformerTransformer(), "kpan.light_and_shadow.asm.core.AsmTransformer");
         }
-        TransformerDelegate.registerExplicitTransformer(new ThemeLoaderTransformer(), "journeymap.client.io.ThemeLoader");
+        if (FugueConfig.modPatchConfig.enableJourneyMap) {
+            TransformerDelegate.registerExplicitTransformer(new ThemeLoaderTransformer(), "journeymap.client.io.ThemeLoader");
+        }
 
         //Common patches below
 
