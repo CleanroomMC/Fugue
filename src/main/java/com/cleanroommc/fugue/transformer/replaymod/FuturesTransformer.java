@@ -7,6 +7,10 @@ import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.expr.ExprEditor;
 import javassist.expr.MethodCall;
+import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.Opcodes;
+import org.objectweb.asm.tree.*;
 import top.outlands.foundation.IExplicitTransformer;
 
 import java.io.ByteArrayInputStream;
@@ -14,23 +18,35 @@ import java.io.ByteArrayInputStream;
 public class FuturesTransformer implements IExplicitTransformer {
     @Override
     public byte[] transform(byte[] bytes) {
-        try {
-            CtClass cc = ClassPool.getDefault().makeClass(new ByteArrayInputStream(bytes));
-            ExprEditor redirector = new ExprEditor(){
-                @Override
-                public void edit(MethodCall m) throws CannotCompileException {
-                    if (m.getMethodName().equals("addCallback")) {
-                        m.where().setBody("$_ = com.cleanroommc.fugue.helper.HookHelper#addCallback($1, $2);");
+        ClassNode classNode = new ClassNode();
+        ClassReader classReader = new ClassReader(bytes);
+        classReader.accept(classNode, 0);
+        if (classNode.methods != null)
+        {
+            out:
+            for (MethodNode methodNode : classNode.methods)
+            {
+                if (methodNode.name.equals("keyframeRepoButtonPressed") || methodNode.name.equals("loadEntityTracker")) {
+                    InsnList instructions = methodNode.instructions;
+                    if (instructions != null)
+                    {
+                        for (AbstractInsnNode insnNode : instructions)
+                        {
+                            if (insnNode instanceof MethodInsnNode methodInsnNode)
+                            {
+                                if (methodInsnNode.name.equals("addCallback"))
+                                {
+                                    methodInsnNode.owner = "com/cleanroommc/fugue/helper/HookHelper";
+                                    break out;
+                                }
+                            }
+                        }
                     }
                 }
-            };
-            cc.getDeclaredMethod("keyframeRepoButtonPressed").instrument(redirector);
-            cc.getDeclaredMethod("loadEntityTracker").instrument(redirector);
-            bytes = cc.toBytecode();
-            cc.defrost();
-        } catch (Throwable t) {
-            Fugue.LOGGER.error("Exception {} on {}", t, this.getClass().getSimpleName());
+            }
         }
-        return bytes;
+        ClassWriter classWriter = new ClassWriter(0);
+        classNode.accept(classWriter);
+        return classWriter.toByteArray();
     }
 }
