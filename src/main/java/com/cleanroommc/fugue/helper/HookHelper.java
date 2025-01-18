@@ -1,6 +1,9 @@
 package com.cleanroommc.fugue.helper;
 
 import com.cleanroommc.fugue.common.Fugue;
+import com.google.common.util.concurrent.FutureCallback;
+import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.ListenableFuture;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
@@ -8,6 +11,7 @@ import com.google.gson.reflect.TypeToken;
 import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.launchwrapper.LaunchClassLoader;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.objectweb.asm.Opcodes;
 import org.lwjgl.opengl.GL11;
 import oshi.SystemInfo;
@@ -23,6 +27,7 @@ import java.nio.file.Paths;
 import java.security.CodeSource;
 import java.security.ProtectionDomain;
 import java.util.*;
+import java.util.concurrent.Executor;
 import java.util.function.Function;
 
 public class HookHelper {
@@ -228,5 +233,11 @@ public class HookHelper {
 
     public static String[] listToArray(List<String> list) {
         return list.toArray(new String[0]);
+    }
+
+    public static <V extends @Nullable Object> void addCallback(
+            final ListenableFuture<V> future,
+            final FutureCallback<? super V> callback) {
+        Futures.addCallback(future, callback, Runnable::run);
     }
 }

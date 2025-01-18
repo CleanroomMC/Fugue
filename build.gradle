@@ -247,16 +247,13 @@ dependencies {
     //Calculator
     compileOnly(fg.deobf("curse.maven:calculator-225104:2847174"))
 
+    //Unilib
     compileOnly(fg.deobf("curse.maven:unilib-1056812:5946214"))
 
     //BetterPortals
     compileOnly(fg.deobf("curse.maven:betterportals-322948:2883633"))
 
-    implementation("com.cleanroommc:groovyscript:1.1.1") {
-        transitive = false
-    }
-
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.24'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:2.1.0'
 
     // Mixin and it's common libraries
     annotationProcessor 'org.ow2.asm:asm:9.6'

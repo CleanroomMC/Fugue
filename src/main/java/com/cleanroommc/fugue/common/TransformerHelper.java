@@ -37,6 +37,7 @@ import com.cleanroommc.fugue.transformer.nothirium.NothiriumClassTransformerTran
 import com.cleanroommc.fugue.transformer.openmodlib.InjectorMethodVisitorTransformer;
 import com.cleanroommc.fugue.transformer.openmodlib.PlayerRendererHookVisitorTransformer;
 import com.cleanroommc.fugue.transformer.polyfrost.LaunchWrapperTweakerTransformer;
+import com.cleanroommc.fugue.transformer.replaymod.FuturesTransformer;
 import com.cleanroommc.fugue.transformer.shouldersurfing.EntityPlayerRayTraceTransformer;
 import com.cleanroommc.fugue.transformer.simplehotspring.SimplyHotSpringsConfigTransformer;
 import com.cleanroommc.fugue.transformer.smoothfont.FontRendererTransformer;
@@ -266,6 +267,9 @@ public class TransformerHelper {
         }
         if (FugueConfig.modPatchConfig.enableJourneyMap) {
             TransformerDelegate.registerExplicitTransformer(new ThemeLoaderTransformer(), "journeymap.client.io.ThemeLoader");
+        }
+        if (FugueConfig.modPatchConfig.enableReplayMod) {
+            TransformerDelegate.registerExplicitTransformer(new FuturesTransformer(), "com.replaymod.simplepathing.gui.GuiPathing");
         }
 
         //Common patches below
