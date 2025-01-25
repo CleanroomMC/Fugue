@@ -187,6 +187,7 @@ public class FugueConfig {
             "pcl.opendisks.OpenDisksUnpack",
             "pcl.opensecurity.util.SoundUnpack",
             "pcl.OpenFM.misc.DepLoader",
+            "pcl.OpenFM.misc.OFMDepLoader",
             "optifine.OptiFineClassTransformer",
             "snownee.minieffects.core.CoreMod",
             "com.replaymod.core.tweaker.ReplayModTweaker",
