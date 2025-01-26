@@ -1,11 +1,8 @@
 package com.cleanroommc.fugue.transformer.journeymap;
 
 import com.cleanroommc.fugue.common.Fugue;
-import javassist.CannotCompileException;
 import javassist.ClassPool;
 import javassist.CtClass;
-import javassist.expr.ExprEditor;
-import javassist.expr.MethodCall;
 import top.outlands.foundation.IExplicitTransformer;
 
 import java.io.ByteArrayInputStream;
@@ -16,7 +13,15 @@ public class FileHandlerTransformer implements IExplicitTransformer {
     public byte[] transform(byte[] bytes) {
         try {
             CtClass cc = ClassPool.getDefault().makeClass(new ByteArrayInputStream(bytes));
-            cc.getDeclaredMethod("delete").setBody("return $1.delete();");
+            cc.getDeclaredMethod("delete").setBody(
+            """
+            {
+            com.cleanroommc.fugue.common.Fugue#LOGGER.info($1);
+            com.cleanroommc.fugue.common.Fugue#LOGGER.info($1.isFile());
+            com.cleanroommc.fugue.common.Fugue#LOGGER.info($1.isDirectory());
+            return $1.delete();
+            }
+            """);
             bytes = cc.toBytecode();
             cc.defrost();
         } catch (Throwable t) {
