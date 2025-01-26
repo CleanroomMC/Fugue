@@ -240,4 +240,11 @@ public class HookHelper {
             final FutureCallback<? super V> callback) {
         Futures.addCallback(future, callback, Runnable::run);
     }
+
+    public static void logFile(File file) {
+        Fugue.LOGGER.info("Logging file: {}", file.getAbsolutePath());
+        Fugue.LOGGER.info(file.exists());
+        Fugue.LOGGER.info(file.isFile());
+        Fugue.LOGGER.info(file.isDirectory());
+    }
 }

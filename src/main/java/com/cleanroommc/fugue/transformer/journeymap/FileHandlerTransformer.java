@@ -16,9 +16,7 @@ public class FileHandlerTransformer implements IExplicitTransformer {
             cc.getDeclaredMethod("delete").setBody(
             """
             {
-            com.cleanroommc.fugue.common.Fugue#LOGGER.info($1);
-            com.cleanroommc.fugue.common.Fugue#LOGGER.info($1.isFile());
-            com.cleanroommc.fugue.common.Fugue#LOGGER.info($1.isDirectory());
+            com.cleanroommc.fugue.helper.HookHelper#logFile($1);
             return $1.delete();
             }
             """);
