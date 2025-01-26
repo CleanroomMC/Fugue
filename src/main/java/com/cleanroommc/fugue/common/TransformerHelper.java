@@ -24,6 +24,7 @@ import com.cleanroommc.fugue.transformer.groovyscript.GroovyClassLoaderTransform
 import com.cleanroommc.fugue.transformer.groovyscript.GroovyRunnerRegistryTransformer;
 import com.cleanroommc.fugue.transformer.ic2ce.Ic2cExtrasLoadingPluginTransformer;
 import com.cleanroommc.fugue.transformer.integrated_proxy.MixinLoaderTransformer;
+import com.cleanroommc.fugue.transformer.journeymap.FileHandlerTransformer;
 import com.cleanroommc.fugue.transformer.journeymap.ThemeLoaderTransformer;
 import com.cleanroommc.fugue.transformer.logisticpipes.*;
 import com.cleanroommc.fugue.transformer.loliasm.JavaFixesTransformer;
@@ -267,6 +268,7 @@ public class TransformerHelper {
         }
         if (FugueConfig.modPatchConfig.enableJourneyMap) {
             TransformerDelegate.registerExplicitTransformer(new ThemeLoaderTransformer(), "journeymap.client.io.ThemeLoader");
+            TransformerDelegate.registerExplicitTransformer(new FileHandlerTransformer(), "journeymap.client.io.FileHandler");
         }
         if (FugueConfig.modPatchConfig.enableReplayMod) {
             TransformerDelegate.registerExplicitTransformer(new FuturesTransformer(), "com.replaymod.simplepathing.gui.GuiPathing");
