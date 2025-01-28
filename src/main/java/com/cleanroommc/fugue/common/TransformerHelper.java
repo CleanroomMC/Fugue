@@ -273,6 +273,11 @@ public class TransformerHelper {
         if (FugueConfig.modPatchConfig.enableReplayMod) {
             TransformerDelegate.registerExplicitTransformer(new FuturesTransformer(), "com.replaymod.simplepathing.gui.GuiPathing");
         }
+        if (FugueConfig.modPatchConfig.enableOfflineSkins) {
+            TransformerDelegate.registerExplicitTransformer(new com.cleanroommc.fugue.transformer.offlineskins.ObfHelperTransformer(), "lain.mods.skins.init.forge.asm.ObfHelper");
+            TransformerDelegate.registerExplicitTransformer(new com.cleanroommc.fugue.transformer.offlineskins.OfflineskinsTransformersTransformer(), "lain.mods.skins.init.forge.asm.ASMTransformer");
+            TransformerDelegate.registerExplicitTransformer(new com.cleanroommc.fugue.transformer.offlineskins.SetupTransformer(), "lain.mods.skins.init.forge.asm.Setup");
+        }
 
         //Common patches below
 

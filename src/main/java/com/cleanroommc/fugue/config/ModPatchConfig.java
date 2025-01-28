@@ -153,4 +153,6 @@ public class ModPatchConfig {
     public boolean enableLightAndShadow = true;
     @Config.Name("Enable JourneyMap Patch")
     public boolean enableJourneyMap = true;
+    @Config.Name("Enable OfflineSkins Patch")
+    public boolean enableOfflineSkins = true;
 }
