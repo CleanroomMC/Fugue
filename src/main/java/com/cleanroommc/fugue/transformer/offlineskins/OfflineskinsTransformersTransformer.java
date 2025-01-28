@@ -1,12 +1,9 @@
 package com.cleanroommc.fugue.transformer.offlineskins;
 
-import org.objectweb.asm.ClassReader;
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.Opcodes;
+import org.objectweb.asm.*;
 import org.objectweb.asm.tree.*;
 import top.outlands.foundation.IExplicitTransformer;
 
-import java.io.ByteArrayInputStream;
 /**
  * Targets :
  *      lain.mods.skins.init.forge.asm.ASMTransformer

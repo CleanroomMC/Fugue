@@ -1,12 +1,9 @@
 package com.cleanroommc.fugue.transformer.offlineskins;
 
-import com.cleanroommc.fugue.common.Fugue;
-import javassist.ClassPool;
-import javassist.CtClass;
-import net.minecraft.launchwrapper.Launch;
+import org.objectweb.asm.*;
+import org.objectweb.asm.tree.*;
 import top.outlands.foundation.IExplicitTransformer;
 
-import java.io.ByteArrayInputStream;
 /**
  * Targets :
  *      lain.mods.skins.init.forge.asm.ObfHelper
@@ -14,16 +11,18 @@ import java.io.ByteArrayInputStream;
 public class ObfHelperTransformer implements IExplicitTransformer {
     @Override
     public byte[] transform(byte[] bytes) {
-        if (Launch.classLoader.isClassExist("lain.mods.skins.init.forge.asm.ObfHelper")) {
-            try {
-                CtClass cc = ClassPool.getDefault().makeClass(new ByteArrayInputStream(bytes));
-                cc.getDeclaredMethod("transform")
-                .setBody("{}");
-                bytes = cc.toBytecode();
-            } catch (Throwable t) {
-                Fugue.LOGGER.error("Exception {} on {}", t, this.getClass().getSimpleName());
+        ClassReader classReader = new ClassReader(bytes);
+        ClassNode classNode = new ClassNode();
+        classReader.accept(classNode, 0);
+        for (MethodNode methodNode : classNode.methods) {
+            if ("transform".equals(methodNode.name)) {
+                SetupTransformer.clearMethod(methodNode);
+                methodNode.visitInsn(Opcodes.RETURN);
+                methodNode.visitMaxs(2, 2);
             }
         }
-        return bytes;
+        var classWriter = new ClassWriter(0);
+        classNode.accept(classWriter);
+        return classWriter.toByteArray();
     }
 }

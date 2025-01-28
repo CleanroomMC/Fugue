@@ -1,12 +1,9 @@
 package com.cleanroommc.fugue.transformer.offlineskins;
 
-import com.cleanroommc.fugue.common.Fugue;
-import javassist.ClassPool;
-import javassist.CtClass;
-import net.minecraft.launchwrapper.Launch;
+import org.objectweb.asm.*;
+import org.objectweb.asm.tree.*;
 import top.outlands.foundation.IExplicitTransformer;
 
-import java.io.ByteArrayInputStream;
 /**
  * Targets :
  *      lain.mods.skins.init.forge.asm.Setup
@@ -14,16 +11,26 @@ import java.io.ByteArrayInputStream;
 public class SetupTransformer implements IExplicitTransformer {
     @Override
     public byte[] transform(byte[] bytes) {
-        if (Launch.classLoader.isClassExist("lain.mods.skins.init.forge.asm.Setup")) {
-            try {
-                CtClass cc = ClassPool.getDefault().makeClass(new ByteArrayInputStream(bytes));
-                cc.getDeclaredMethod("call")
-                .setBody("{}");
-                bytes = cc.toBytecode();
-            } catch (Throwable t) {
-                Fugue.LOGGER.error("Exception {} on {}", t, this.getClass().getSimpleName());
+        ClassReader classReader = new ClassReader(bytes);
+        ClassNode classNode = new ClassNode();
+        classReader.accept(classNode, 0);
+        for (MethodNode methodNode : classNode.methods) {
+            if ("call".equals(methodNode.name)) {
+                SetupTransformer.clearMethod(methodNode);
+                methodNode.visitInsn(Opcodes.RETURN);
+                methodNode.visitMaxs(1, 1);
             }
         }
-        return bytes;
+        var classWriter = new ClassWriter(0);
+        classNode.accept(classWriter);
+        return classWriter.toByteArray();
+    }
+
+    static void clearMethod(MethodNode method) {
+        if (method.instructions != null) method.instructions.clear();
+        if (method.tryCatchBlocks != null) method.tryCatchBlocks.clear();
+        if (method.localVariables != null) method.localVariables.clear();
+        if (method.visibleLocalVariableAnnotations != null) method.visibleLocalVariableAnnotations.clear();
+        if (method.invisibleLocalVariableAnnotations != null) method.invisibleLocalVariableAnnotations.clear();
     }
 }
