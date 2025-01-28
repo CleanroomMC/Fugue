@@ -17,7 +17,8 @@ public class SetupTransformer implements IExplicitTransformer {
         for (MethodNode methodNode : classNode.methods) {
             if ("call".equals(methodNode.name)) {
                 SetupTransformer.clearMethod(methodNode);
-                methodNode.visitInsn(Opcodes.RETURN);
+                methodNode.visitInsn(Opcodes.ACONST_NULL);
+                methodNode.visitInsn(Opcodes.ARETURN);
                 methodNode.visitMaxs(1, 1);
             }
         }
