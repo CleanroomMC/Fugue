@@ -7,6 +7,7 @@ import com.cleanroommc.fugue.modifiers.IC2ExtraFixer;
 import com.cleanroommc.fugue.transformer.advancedrocket.ClassTransformerTransformer;
 import com.cleanroommc.fugue.transformer.betterfc.HK_LoaderTransformer;
 import com.cleanroommc.fugue.transformer.betterportals.MixinEntityRendererTransformer;
+import com.cleanroommc.fugue.transformer.betterportals.ExtensionKtTransformer;
 import com.cleanroommc.fugue.transformer.calculator.GuiInfoCalculatorTransformer;
 import com.cleanroommc.fugue.transformer.codechickenlib.ClassHierarchyManagerTransformer;
 import com.cleanroommc.fugue.transformer.colytra.EntityLivingBaseTransformer;
@@ -18,6 +19,11 @@ import com.cleanroommc.fugue.transformer.ears.EarsASMTransformer;
 import com.cleanroommc.fugue.transformer.enchantmentcontrol.EnumInputClassTransformer;
 import com.cleanroommc.fugue.transformer.endercore.EnderCoreTransformerTransformer;
 import com.cleanroommc.fugue.transformer.exu.FieldSetterTransformer;
+import com.cleanroommc.fugue.transformer.essential.EssentialSetupTweakerTransformer;
+import com.cleanroommc.fugue.transformer.essential.EssentialRelaunchTransformer;
+import com.cleanroommc.fugue.transformer.essential.EssentialGlobalMouseOverrideTransformer;
+import com.cleanroommc.fugue.transformer.essential.EssentialTransformerClearTransformer;
+import com.cleanroommc.fugue.transformer.essential.EssentialTelemetryManagerTransformer;
 import com.cleanroommc.fugue.transformer.fivezig.ClassTweakerTransformer;
 import com.cleanroommc.fugue.transformer.groovyscript.ASTTransformationCollectorCodeVisitorTransformer;
 import com.cleanroommc.fugue.transformer.groovyscript.GroovyClassLoaderTransformer;
@@ -27,6 +33,7 @@ import com.cleanroommc.fugue.transformer.integrated_proxy.MixinLoaderTransformer
 import com.cleanroommc.fugue.transformer.journeymap.FileHandlerTransformer;
 import com.cleanroommc.fugue.transformer.journeymap.ThemeLoaderTransformer;
 import com.cleanroommc.fugue.transformer.logisticpipes.*;
+import com.cleanroommc.fugue.transformer.light_and_shadow.AsmTransformerTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.JavaFixesTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.LoliFMLCallHookTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.LoliReflectorTransformer;
@@ -35,6 +42,9 @@ import com.cleanroommc.fugue.transformer.nothirium.BufferBuilderTransformer;
 import com.cleanroommc.fugue.transformer.nothirium.FreeSectorManagerTransformer;
 import com.cleanroommc.fugue.transformer.nothirium.MixinBufferBuilderTransformer;
 import com.cleanroommc.fugue.transformer.nothirium.NothiriumClassTransformerTransformer;
+import com.cleanroommc.fugue.transformer.offlineskins.ObfHelperTransformer;
+import com.cleanroommc.fugue.transformer.offlineskins.OfflineskinsTransformersTransformer;
+import com.cleanroommc.fugue.transformer.offlineskins.SetupTransformer;
 import com.cleanroommc.fugue.transformer.openmodlib.InjectorMethodVisitorTransformer;
 import com.cleanroommc.fugue.transformer.openmodlib.PlayerRendererHookVisitorTransformer;
 import com.cleanroommc.fugue.transformer.polyfrost.LaunchWrapperTweakerTransformer;
@@ -226,7 +236,7 @@ public class TransformerHelper {
                     "de.johni0702.minecraft.view.impl.mixin.MixinEntityRenderer_OF"
             );
             TransformerDelegate.registerExplicitTransformer(
-                    new com.cleanroommc.fugue.transformer.betterportals.ExtensionKtTransformer(),
+                    new ExtensionKtTransformer(),
                     "de.johni0702.minecraft.betterportals.impl.transition.common.ExtensionsKt",
                     "de.johni0702.minecraft.betterportals.impl.common.ExtensionsKt",
                     "de.johni0702.minecraft.view.impl.common.ExtensionsKt"
@@ -234,27 +244,27 @@ public class TransformerHelper {
         }
         if (FugueConfig.modPatchConfig.enableEssential) {
             TransformerDelegate.registerExplicitTransformer(
-                new com.cleanroommc.fugue.transformer.essential.EssentialSetupTweakerTransformer(), 
+                new EssentialSetupTweakerTransformer(), 
                 "gg.essential.loader.stage0.EssentialSetupTweaker",
                 "gg.essential.loader.stage1.EssentialLoader",
                 "gg.essential.loader.stage2.EssentialLoader",
                 "gg.essential.main.Bootstrap"
             );
             TransformerDelegate.registerExplicitTransformer(
-                new com.cleanroommc.fugue.transformer.essential.EssentialRelaunchTransformer(), 
+                new EssentialRelaunchTransformer(), 
                 "gg.essential.loader.stage2.relaunch.Relaunch"
             );
             TransformerDelegate.registerExplicitTransformer(
-                new com.cleanroommc.fugue.transformer.essential.EssentialGlobalMouseOverrideTransformer(), 
+                new EssentialGlobalMouseOverrideTransformer(), 
                 "gg.essential.gui.overlay.OverlayManagerImpl$GlobalMouseOverride"
             );
             TransformerDelegate.registerExplicitTransformer(
-                new com.cleanroommc.fugue.transformer.essential.EssentialTransformerClearTransformer(), 
+                new EssentialTransformerClearTransformer(), 
                 "gg.essential.asm.compat.betterfps.BetterFpsTransformerWrapper",
                 "gg.essential.asm.compat.PhosphorTransformer"
             );
             TransformerDelegate.registerExplicitTransformer(
-                new com.cleanroommc.fugue.transformer.essential.EssentialTelemetryManagerTransformer(), 
+                new EssentialTelemetryManagerTransformer(), 
                 "gg.essential.network.connectionmanager.telemetry.TelemetryManager"
             );
         }
@@ -264,7 +274,7 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(new DJ2AddonsCoreTransformer(), "org.btpos.dj2addons.core.DJ2AddonsCore");
         }
         if (FugueConfig.modPatchConfig.enableLightAndShadow) {
-            TransformerDelegate.registerExplicitTransformer(new com.cleanroommc.fugue.transformer.light_and_shadow.AsmTransformerTransformer(), "kpan.light_and_shadow.asm.core.AsmTransformer");
+            TransformerDelegate.registerExplicitTransformer(new AsmTransformerTransformer(), "kpan.light_and_shadow.asm.core.AsmTransformer");
         }
         if (FugueConfig.modPatchConfig.enableJourneyMap) {
             TransformerDelegate.registerExplicitTransformer(new ThemeLoaderTransformer(), "journeymap.client.io.ThemeLoader");
@@ -272,6 +282,11 @@ public class TransformerHelper {
         }
         if (FugueConfig.modPatchConfig.enableReplayMod) {
             TransformerDelegate.registerExplicitTransformer(new FuturesTransformer(), "com.replaymod.simplepathing.gui.GuiPathing");
+        }
+        if (FugueConfig.modPatchConfig.enableOfflineSkins) {
+            TransformerDelegate.registerExplicitTransformer(new ObfHelperTransformer(), "lain.mods.skins.init.forge.asm.ObfHelper");
+            TransformerDelegate.registerExplicitTransformer(new OfflineskinsTransformersTransformer(), "lain.mods.skins.init.forge.asm.ASMTransformer");
+            TransformerDelegate.registerExplicitTransformer(new SetupTransformer(), "lain.mods.skins.init.forge.asm.Setup");
         }
 
         //Common patches below
