@@ -1,9 +1,9 @@
 package com.cleanroommc.fugue.transformer.offlineskins;
 
-import com.cleanroommc.fugue.common.Fugue;
-import javassist.ClassPool;
-import javassist.CtClass;
-import net.minecraft.launchwrapper.Launch;
+import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.Opcodes;
+import org.objectweb.asm.tree.*;
 import top.outlands.foundation.IExplicitTransformer;
 
 import java.io.ByteArrayInputStream;
