@@ -16,8 +16,7 @@ public class FileHandlerTransformer implements IExplicitTransformer {
             cc.getDeclaredMethod("delete").setBody(
             """
             {
-            com.cleanroommc.fugue.helper.HookHelper#logFile($1);
-            return $1.delete();
+            return com.cleanroommc.fugue.helper.HookHelper#deleteFile($1);
             }
             """);
             bytes = cc.toBytecode();

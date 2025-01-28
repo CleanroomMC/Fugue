@@ -4,13 +4,10 @@ import com.cleanroommc.fugue.common.Fugue;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
-import com.google.gson.Gson;
-import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
 import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.launchwrapper.LaunchClassLoader;
+import org.apache.commons.io.FileUtils;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.objectweb.asm.Opcodes;
 import org.lwjgl.opengl.GL11;
@@ -27,7 +24,6 @@ import java.nio.file.Paths;
 import java.security.CodeSource;
 import java.security.ProtectionDomain;
 import java.util.*;
-import java.util.concurrent.Executor;
 import java.util.function.Function;
 
 public class HookHelper {
@@ -241,10 +237,15 @@ public class HookHelper {
         Futures.addCallback(future, callback, Runnable::run);
     }
 
-    public static void logFile(File file) {
-        Fugue.LOGGER.info("Logging file: {}", file.getAbsolutePath());
-        Fugue.LOGGER.info(file.exists());
-        Fugue.LOGGER.info(file.isFile());
-        Fugue.LOGGER.info(file.isDirectory());
+    public static boolean deleteFile(File file) {
+        boolean success = false;
+        try {
+            FileUtils.deleteDirectory(file);
+            success = true;
+        } catch (IOException e) {
+            Fugue.LOGGER.error("Failed to delete file: {}", file.getAbsolutePath());
+            Fugue.LOGGER.error("Caused by: {}", e);
+        }
+        return success;
     }
 }
