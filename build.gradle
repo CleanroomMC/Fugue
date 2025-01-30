@@ -28,12 +28,12 @@ archivesBaseName = "+" + mod_name
 
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
-
+/*
 tasks.register('downloadLitematica', Download) {
     src 'https://masa.dy.fi/mcmods/litematica/litematica-forge-1.12.2-0.0.0-dev.20191217.195055.jar'
     dest rootProject.mkdir("libs")
 }
-
+*/
 minecraft {
 
     mappings channel: mappings_channel, version: mappings_version
@@ -137,7 +137,9 @@ repositories {
 dependencies {
     minecraft "com.cleanroommc:cleanroom:0.2.4-alpha"
 
-    compileOnly fileTree('libs') { include '*.jar' }
+    //compileOnly fileTree('libs') { include '*.jar' }
+    // Litematica
+    compileOnly(fg.deobf("fi.dy.masa:litematica:forge-1.12.2-0.0.0-dev.20191217.195055"))
 
     //Charset Lib
     compileOnly(fg.deobf("curse.maven:charset-284523:3656492"))
@@ -290,7 +292,7 @@ jar {
 
 jar.finalizedBy('reobfJar')
 
-compileJava.dependsOn("downloadLitematica")
+//compileJava.dependsOn("downloadLitematica")
 
 publishing {
     publications {
