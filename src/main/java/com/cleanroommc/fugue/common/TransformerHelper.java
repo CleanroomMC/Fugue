@@ -297,7 +297,6 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(
                     new TConstructBloodConversionTransformer(),
                     "de.teamlapen.vampirism_integrations.tconstruct.TConstructBloodConversion"
-            
             );
         }
         if (FugueConfig.modPatchConfig.enableExtraUtilities) {
@@ -328,7 +327,6 @@ public class TransformerHelper {
                     "com.unascribed.ears.common.agent.mini.MiniTransformer",
                     "com.unascribed.ears.common.agent.mini.PatchContext",
                     "com.unascribed.ears.common.agent.mini.PatchContext$SearchResult"
-            
             );
         }
         if (FugueConfig.modPatchConfig.enableColytra) {
@@ -348,7 +346,6 @@ public class TransformerHelper {
                     new LaunchWrapperTweakerTransformer(),
                     "cc.polyfrost.oneconfig.loader.stage0.LaunchWrapperTweaker",
                     "cc.polyfrost.oneconfig.loader.OneConfigLoader"
-            
             );
         }
         if (FugueConfig.modPatchConfig.enableDropt) {
@@ -402,12 +399,10 @@ public class TransformerHelper {
         if (FugueConfig.modPatchConfig.enableEssential) {
             TransformerDelegate.registerExplicitTransformer(
                 new EssentialSetupTweakerTransformer(),
-                    
                 "gg.essential.loader.stage0.EssentialSetupTweaker",
                 "gg.essential.loader.stage1.EssentialLoader",
                 "gg.essential.loader.stage2.EssentialLoader",
                 "gg.essential.main.Bootstrap"
-            
             );
             TransformerDelegate.registerExplicitTransformer(
                 new EssentialRelaunchTransformer(),
