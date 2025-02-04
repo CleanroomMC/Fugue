@@ -539,8 +539,7 @@ public class TransformerHelper {
         if (!FugueConfig.finalRemovingTargets.isEmpty()) {
             TransformerDelegate.registerExplicitTransformer(
                     new FinalStripperTransformer(FugueConfig.finalRemovingTargets),
-                    FugueConfig.finalRemovingTargets.keySet().toArray(
-                    new String[0])
+                    FugueConfig.finalRemovingTargets.keySet().toArray(new String[0])
             );
         }
 
