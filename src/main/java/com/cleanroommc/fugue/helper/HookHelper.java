@@ -4,7 +4,6 @@ import com.cleanroommc.fugue.common.Fugue;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
-import net.minecraft.client.Minecraft;
 import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.launchwrapper.LaunchClassLoader;
@@ -250,7 +249,4 @@ public class HookHelper {
         return success;
     }
 
-    public static void setUnGrab() {
-        Minecraft.getMinecraft().setIngameNotInFocus();
-    }
 }

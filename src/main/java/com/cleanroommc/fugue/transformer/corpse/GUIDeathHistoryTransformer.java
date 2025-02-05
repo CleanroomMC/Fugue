@@ -18,7 +18,7 @@ public class GUIDeathHistoryTransformer implements IExplicitTransformer {
             cc.getDeclaredMethod("func_73876_c").instrument(new ExprEditor() {
                 public void edit(MethodCall m) throws CannotCompileException {
                     if (m.getMethodName().equals("setGrabbed")) {
-                        m.replace("com.cleanroommc.fugue.helper.HookHelper#setUnGrab();");
+                        m.replace("{}");
                     }
                 }
             });
