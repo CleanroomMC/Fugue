@@ -157,4 +157,6 @@ public class ModPatchConfig {
     public boolean enableOfflineSkins = true;
     @Config.Name("Enable Techgun Patch")
     public boolean enableTechgun = true;
+    @Config.Name("Enable Corpse Patch")
+    public boolean enableCorpse = true;
 }
