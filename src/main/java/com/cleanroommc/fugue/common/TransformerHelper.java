@@ -56,6 +56,7 @@ import com.cleanroommc.fugue.transformer.splashanimation.SplashProgressTransform
 import com.cleanroommc.fugue.transformer.subaquatic.PluginEntityTransformer;
 import com.cleanroommc.fugue.transformer.subaquatic.SubaquaticIMTransformer;
 import com.cleanroommc.fugue.transformer.survivalinc.ForgeASMInjectorTransformer;
+import com.cleanroommc.fugue.transformer.techgun.TechgunsASMTransformerTransformer;
 import com.cleanroommc.fugue.transformer.universal.RemoveMixinInitFromCotrTransformer;
 import com.cleanroommc.fugue.transformer.tickcentral.*;
 import com.cleanroommc.fugue.transformer.universal.*;
@@ -471,6 +472,12 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(
                     new SetupTransformer(),
                     "lain.mods.skins.init.forge.asm.Setup"
+            );
+        }
+        if (FugueConfig.modPatchConfig.enableTechgun) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new TechgunsASMTransformerTransformer(),
+                    "techguns.core.TechgunsASMTransformer"
             );
         }
 

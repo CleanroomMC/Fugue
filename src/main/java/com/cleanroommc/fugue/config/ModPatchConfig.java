@@ -155,4 +155,6 @@ public class ModPatchConfig {
     public boolean enableJourneyMap = true;
     @Config.Name("Enable OfflineSkins Patch")
     public boolean enableOfflineSkins = true;
+    @Config.Name("Enable Techgun Patch")
+    public boolean enableTechgun = true;
 }
