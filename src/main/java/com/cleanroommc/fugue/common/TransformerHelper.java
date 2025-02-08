@@ -11,7 +11,7 @@ import com.cleanroommc.fugue.transformer.betterportals.ExtensionKtTransformer;
 import com.cleanroommc.fugue.transformer.calculator.GuiInfoCalculatorTransformer;
 import com.cleanroommc.fugue.transformer.codechickenlib.ClassHierarchyManagerTransformer;
 import com.cleanroommc.fugue.transformer.colytra.EntityLivingBaseTransformer;
-import com.cleanroommc.fugue.transformer.corpse.GUIDeathHistoryTransformer;
+import com.cleanroommc.fugue.transformer.corpse.MessageOpenHistoryTransformer;
 import com.cleanroommc.fugue.transformer.crossbow.TransformerEntityArrowTransformer;
 import com.cleanroommc.fugue.transformer.customskinloader.ForgeTweakerTransformer;
 import com.cleanroommc.fugue.transformer.dj2addons.DJ2AddonsCoreTransformer;
@@ -483,8 +483,8 @@ public class TransformerHelper {
         }
         if (FugueConfig.modPatchConfig.enableCorpse) {
             TransformerDelegate.registerExplicitTransformer(
-                    new GUIDeathHistoryTransformer(),
-                    "de.maxhenkel.corpse.gui.GUIDeathHistory"
+                    new MessageOpenHistoryTransformer(),
+                    "de.maxhenkel.corpse.net.MessageOpenHistory"
             );
         }
 
