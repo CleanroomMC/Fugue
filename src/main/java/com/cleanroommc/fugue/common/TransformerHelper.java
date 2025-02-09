@@ -490,7 +490,7 @@ public class TransformerHelper {
         }
         if (FugueConfig.modPatchConfig.enableScreenshotViewer) {
             TransformerDelegate.registerExplicitTransformer(
-                    new MessageOpenHistoryTransformerScreenshotViewerTransformer(),
+                    new ScreenshotViewerTransformer(),
                     "io.github.lgatodu47.screenshot_viewer.ScreenshotViewer$ScreenshotViewerEvents"
             );
         }

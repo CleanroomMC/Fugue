@@ -21,10 +21,12 @@ public class ScreenshotViewerTransformer implements IExplicitTransformer, Opcode
             // Overwrite -- Actual Redirect
             if ("onKeyInput".equals(method.name)) {
                 for (AbstractInsnNode node : method.instructions) {
-                    if ("getEventKeyState".equals(node.name)) {
-                        node.owner = "net/minecraft/client/settings/KeyBinding";
-                        node.name = "func_151468_f";
-                        method.instructions.insertBefore(node, new VarInsnNode(Opcodes.ALOAD, 3));
+                    if (node instanceof MethodInsnNode mi) {
+                        if ("getEventKeyState".equals(mi.name)) {
+                            mi.owner = "net/minecraft/client/settings/KeyBinding";
+                            mi.name = "func_151468_f";
+                            method.instructions.insertBefore(mi, new VarInsnNode(Opcodes.ALOAD, 3));
+                        }
                     }
                 }
 
