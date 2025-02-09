@@ -35,7 +35,7 @@ public class ScreenshotViewerTransformer implements IExplicitTransformer, Opcode
                 AbstractInsnNode node;
                 while (iterator.hasNext()) {
                     node = iterator.next();
-                    if (node.getOpcode() instanceof JumpInsnNode jn) {
+                    if (node.getOpcode() == Opcodes.IF_ICMPNE && node instanceof JumpInsnNode jn) {
                         jn.setOpcode(Opcodes.IFEQ);
                         MethodInsnNode mn = (MethodInsnNode) node.getPrevious().getPrevious();
                         mn.name = "func_151468_f";
