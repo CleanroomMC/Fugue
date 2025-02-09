@@ -18,8 +18,17 @@ public class ScreenshotViewerTransformer implements IExplicitTransformer, Opcode
         classReader.accept(classNode, 0);
 
         for (var method : classNode.methods) {
-            // Overwrite -- Actual Redirect
-            if ("onKeyInput".equals(method.name)) {
+            /**
+             * if (client.world != null 
+             * && client.currentScreen == null 
+             *  - && Keyboard.getEventKeyState() 
+             *  + openScreenshotsScreenKey.isPressed();
+             * && openScreenshotsScreenKey != null 
+             * && openScreenshotsScreenKey.getKeyCode() == Keyboard.getEventKey())
+             * 
+             * Check Not null ? Should not be null. Here is the minimal modification.
+             */
+            if ("onKeyInput".equals(method.name)) { 
                 for (AbstractInsnNode node : method.instructions) {
                     if (node instanceof MethodInsnNode mi) {
                         if ("getEventKeyState".equals(mi.name)) {
