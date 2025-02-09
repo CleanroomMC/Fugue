@@ -50,6 +50,7 @@ import com.cleanroommc.fugue.transformer.openmodlib.InjectorMethodVisitorTransfo
 import com.cleanroommc.fugue.transformer.openmodlib.PlayerRendererHookVisitorTransformer;
 import com.cleanroommc.fugue.transformer.polyfrost.LaunchWrapperTweakerTransformer;
 import com.cleanroommc.fugue.transformer.replaymod.FuturesTransformer;
+import com.cleanroommc.fugue.transformer.screenshot_viewer.ScreenshotViewerTransformer;
 import com.cleanroommc.fugue.transformer.shouldersurfing.EntityPlayerRayTraceTransformer;
 import com.cleanroommc.fugue.transformer.simplehotspring.SimplyHotSpringsConfigTransformer;
 import com.cleanroommc.fugue.transformer.smoothfont.FontRendererTransformer;
@@ -485,6 +486,12 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(
                     new MessageOpenHistoryTransformer(),
                     "de.maxhenkel.corpse.net.MessageOpenHistory"
+            );
+        }
+        if (FugueConfig.modPatchConfig.enableScreenshotViewer) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new MessageOpenHistoryTransformerScreenshotViewerTransformer(),
+                    "io.github.lgatodu47.screenshot_viewer.ScreenshotViewer$ScreenshotViewerEvents"
             );
         }
 
