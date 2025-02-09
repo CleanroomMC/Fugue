@@ -6,6 +6,8 @@ import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;
 import top.outlands.foundation.IExplicitTransformer;
 
+import java.util.ListIterator;
+
 //Target: [
 //      io.github.lgatodu47.screenshot_viewer.ScreenshotViewer$ScreenshotViewerEvents
 // ]
@@ -21,21 +23,26 @@ public class ScreenshotViewerTransformer implements IExplicitTransformer, Opcode
             /**
              * if (client.world != null 
              * && client.currentScreen == null 
-             *  - && Keyboard.getEventKeyState() 
-             *  + openScreenshotsScreenKey.isPressed();
+             * - && Keyboard.getEventKeyState() 
              * && openScreenshotsScreenKey != null 
-             * && openScreenshotsScreenKey.getKeyCode() == Keyboard.getEventKey())
+             * - && openScreenshotsScreenKey.getKeyCode() == Keyboard.getEventKey())
+             * + openScreenshotsScreenKey.isPressed();
              * 
              * Check Not null ? Should not be null. Here is the minimal modification.
              */
             if ("onKeyInput".equals(method.name)) { 
-                for (AbstractInsnNode node : method.instructions) {
-                    if (node instanceof MethodInsnNode mi) {
-                        if ("getEventKeyState".equals(mi.name)) {
-                            mi.owner = "net/minecraft/client/settings/KeyBinding";
-                            mi.name = "func_151468_f";
-                            method.instructions.insertBefore(mi, new VarInsnNode(Opcodes.ALOAD, 3));
-                        }
+                ListIterator<AbstractInsnNode> iterator = method.instructions.iterator();
+                AbstractInsnNode node;
+                while (iterator.hasNext()) {
+                    node = iterator.next();
+                    if (node.getOpcode() == Opcodes.IF_ICMPNE) {
+                        node.setOpcode(Opcodes.IFEQ);
+                        MethodInsnNode mn = (MethodInsnNode) node.prev.prev;
+                        mn.name = "func_151468_f";
+                        mn.desc = "()Z";
+                        method.instructions.remove(node.prev);
+                    } else if (node instanceof MethodInsnNode mn && "getEventKeyState".equals(mn.name)) {
+                        iterator.set(new InsnNode(Opcodes.ICONST_1));
                     }
                 }
 
@@ -46,10 +53,5 @@ public class ScreenshotViewerTransformer implements IExplicitTransformer, Opcode
         var classWriter = new ClassWriter(0);
         classNode.accept(classWriter);
         return classWriter.toByteArray();
-    }
-
-    @Override
-    public int getPriority() {
-        return 0;
     }
 }
