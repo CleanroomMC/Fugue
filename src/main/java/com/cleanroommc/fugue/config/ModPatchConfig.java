@@ -159,4 +159,6 @@ public class ModPatchConfig {
     public boolean enableTechgun = true;
     @Config.Name("Enable Corpse Patch")
     public boolean enableCorpse = true;
+    @Config.Name("Enable ScreenshotViewer Patch")
+    public boolean enableScreenshotViewer = true;
 }
