@@ -72,6 +72,14 @@ If you are still using 0.1.0 Cleanroom, use 0.5.4. But that's not recommended.
 * Erebus Fix
 * Uncrafting Blacklist
 * Unilib
+* dj2addons
+* Vampirism Integration
+* Light and Shadow
+* Journey Map
+* Techgun
+* Corpse
+* ScreenshotViewer
+* Offline Skins
 
 ## Note
 Add + to start of the file if it's not there.
