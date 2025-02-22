@@ -11,7 +11,7 @@ import java.io.ByteArrayInputStream;
 public class BufferBuilderTransformer implements IExplicitTransformer {
     @Override
     public byte[] transform(byte[] bytes) {
-        if (Launch.classLoader.isClassExist("meldexun.nothirium.mc.asm.NothiriumPlugin")) {
+        if (Launch.classLoader.isClassExist("meldexun.nothirium.mc.asm.NothiriumPlugin") && !Launch.classLoader.isClassExist("meldexun.nothirium.mc.asm.NothiriumTweaker")) {
             try {
                 CtClass cc = ClassPool.getDefault().makeClass(new ByteArrayInputStream(bytes));
                 cc.getDeclaredMethod("func_181670_b").insertAfter("$0.address = meldexun.matrixutil.MemoryUtil.getAddress($0.field_179001_a);");

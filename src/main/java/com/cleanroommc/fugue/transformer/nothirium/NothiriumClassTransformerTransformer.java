@@ -10,7 +10,7 @@ import top.outlands.foundation.IExplicitTransformer;
 public class NothiriumClassTransformerTransformer implements IExplicitTransformer {
     @Override
     public byte[] transform(byte[] bytes) {
-        if (Launch.classLoader.isClassExist("Config")) return bytes;
+        if (Launch.classLoader.isClassExist("Config") || Launch.classLoader.isClassExist("meldexun.nothirium.mc.asm.NothiriumTweaker")) return bytes;
         ClassNode classNode = new ClassNode();
         ClassReader classReader = new ClassReader(bytes);
         classReader.accept(classNode, 0);

@@ -7,6 +7,7 @@ import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.expr.ExprEditor;
 import javassist.expr.NewExpr;
+import net.minecraft.launchwrapper.Launch;
 import top.outlands.foundation.IExplicitTransformer;
 
 import java.io.ByteArrayInputStream;
@@ -14,21 +15,23 @@ import java.io.ByteArrayInputStream;
 public class FreeSectorManagerTransformer implements IExplicitTransformer {
     @Override
     public byte[] transform(byte[] bytes) {
-        try {
-            CtClass cc = ClassPool.getDefault().makeClass(new ByteArrayInputStream(bytes));
-            cc.instrument(new ExprEditor(){
-                @Override
-                public void edit(NewExpr e) throws CannotCompileException {
-                    if (e.getClassName().equals("meldexun.reflectionutil.ReflectionField")) {
-                        if (e.getLineNumber() == 97 || e.getLineNumber() == 62) {
-                            e.replace("$_ = $proceed(\"it.unimi.dsi.fastutil.objects.AbstractObject2ObjectMap$BasicEntry\", \"key\", \"key\");");
+        if (!Launch.classLoader.isClassExist("meldexun.nothirium.mc.asm.NothiriumTweaker")) {
+            try {
+                CtClass cc = ClassPool.getDefault().makeClass(new ByteArrayInputStream(bytes));
+                cc.instrument(new ExprEditor() {
+                    @Override
+                    public void edit(NewExpr e) throws CannotCompileException {
+                        if (e.getClassName().equals("meldexun.reflectionutil.ReflectionField")) {
+                            if (e.getLineNumber() == 97 || e.getLineNumber() == 62) {
+                                e.replace("$_ = $proceed(\"it.unimi.dsi.fastutil.objects.AbstractObject2ObjectMap$BasicEntry\", \"key\", \"key\");");
+                            }
                         }
                     }
-                }
-            });
-            bytes = cc.toBytecode();
-        } catch (Throwable t) {
-            Fugue.LOGGER.error("Exception {} on {}", t, this.getClass().getSimpleName());
+                });
+                bytes = cc.toBytecode();
+            } catch (Throwable t) {
+                Fugue.LOGGER.error("Exception {} on {}", t, this.getClass().getSimpleName());
+            }
         }
         return bytes;
     }
