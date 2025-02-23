@@ -127,7 +127,7 @@ public class FugueConfig {
             "com.matez.wildnature.proxy.ClientProxy",
             "com.matez.wildnature.proxy.ServerProxy",
             "vazkii.botania.common.core.helper.StringObfuscator",
-            "net.silentchaos512.lib.tile.TileEntitySL",
+            "net.silentchaos512.lib.tile.SyncVariable$Helper",
     };
 
     @Config.Comment(
