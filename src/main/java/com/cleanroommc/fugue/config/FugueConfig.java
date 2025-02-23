@@ -126,7 +126,8 @@ public class FugueConfig {
             "com.matez.wildnature.util.IProxy",
             "com.matez.wildnature.proxy.ClientProxy",
             "com.matez.wildnature.proxy.ServerProxy",
-            "vazkii.botania.common.core.helper.StringObfuscator"
+            "vazkii.botania.common.core.helper.StringObfuscator",
+            "net.silentchaos512.gems.handler.PlayerDataHandler$PlayerData",
     };
 
     @Config.Comment(
