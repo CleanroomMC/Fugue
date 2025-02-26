@@ -164,4 +164,6 @@ public class ModPatchConfig {
     @Config.Name("Enable Worse Hurt Time Patch")
     @Config.Comment("Should be compatible with better hurt time")
     public boolean enableWorseHurtTime = true;
+    @Config.Name("Enable Inventory Tweaks Patch")
+    public boolean enableInvTweaks = true;
 }
