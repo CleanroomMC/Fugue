@@ -161,4 +161,7 @@ public class ModPatchConfig {
     public boolean enableCorpse = true;
     @Config.Name("Enable ScreenshotViewer Patch")
     public boolean enableScreenshotViewer = true;
+    @Config.Name("Enable Worse Hurt Time Patch")
+    @Config.Comment("Should be compatible with better hurt time")
+    public boolean enableWorseHurtTime = true;
 }

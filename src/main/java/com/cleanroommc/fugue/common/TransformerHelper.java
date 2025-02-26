@@ -6,6 +6,7 @@ import com.cleanroommc.fugue.modifiers.DJ2PhaseFixer;
 import com.cleanroommc.fugue.modifiers.IC2ExtraFixer;
 import com.cleanroommc.fugue.transformer.advancedrocket.ClassTransformerTransformer;
 import com.cleanroommc.fugue.transformer.betterfc.HK_LoaderTransformer;
+import com.cleanroommc.fugue.transformer.betterhurttimer.DamageSpecialArmorMixinTransformer;
 import com.cleanroommc.fugue.transformer.betterportals.MixinEntityRendererTransformer;
 import com.cleanroommc.fugue.transformer.betterportals.ExtensionKtTransformer;
 import com.cleanroommc.fugue.transformer.calculator.GuiInfoCalculatorTransformer;
@@ -363,8 +364,7 @@ public class TransformerHelper {
                     "com.shblock.integrated_proxy.mixin.MixinLoader"
             );
         }
-        RemoveMixinInitFromCotrTransformer instance = new RemoveMixinInitFromCotrTransformer(
-            );
+        RemoveMixinInitFromCotrTransformer instance = new RemoveMixinInitFromCotrTransformer();
         if (FugueConfig.modPatchConfig.enableThaumicFixesPatch) {
             TransformerDelegate.registerExplicitTransformer(instance,
                     "com.seriouscreeper.thaumicfixes.core.ThaumicFixesLoadingPlugin"
@@ -492,6 +492,12 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(
                     new ScreenshotViewerTransformer(),
                     "io.github.lgatodu47.screenshot_viewer.ScreenshotViewer$ScreenshotViewerEvents"
+            );
+        }
+        if (FugueConfig.modPatchConfig.enableWorseHurtTime) {
+            MixinServiceLaunchWrapper.registerMixinClassTransformer(
+                    new DamageSpecialArmorMixinTransformer(),
+                    "arekkuusu.betterhurttimer.mixin.DamageSpecialArmorMixin"
             );
         }
 
