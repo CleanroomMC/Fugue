@@ -1,18 +1,9 @@
 package com.cleanroommc.fugue.transformer.inventorytweaks;
 
-import com.cleanroommc.fugue.common.Fugue;
-import javassist.CannotCompileException;
-import javassist.ClassPool;
-import javassist.CtClass;
-import javassist.expr.ExprEditor;
-import javassist.expr.MethodCall;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;
 import top.outlands.foundation.IExplicitTransformer;
-
-import java.io.ByteArrayInputStream;
 
 public class InvTweaksHandlerShortcutsTransformer implements IExplicitTransformer {
     @Override
@@ -33,9 +24,10 @@ public class InvTweaksHandlerShortcutsTransformer implements IExplicitTransforme
                         {
                             if (insnNode instanceof MethodInsnNode methodInsnNode)
                             {
-                                if (methodInsnNode.name.startsWith("getEvent"))
+                                switch (methodInsnNode.name)
                                 {
-                                    methodInsnNode.name = methodInsnNode.name.replace("getEvent", "get");
+                                    case "destroy", "create", "setCursorPosition":
+                                        methodInsnNode.owner = "com/cleanroommc/fugue/helper/Mouse";
                                 }
                             }
                         }
@@ -43,7 +35,7 @@ public class InvTweaksHandlerShortcutsTransformer implements IExplicitTransforme
                 }
             }
         }
-        ClassWriter classWriter = new ClassWriter(0);
+        ClassWriter classWriter = new ClassWriter(ClassWriter.COMPUTE_FRAMES|ClassWriter.COMPUTE_MAXS);
         classNode.accept(classWriter);
         return classWriter.toByteArray();
     }
