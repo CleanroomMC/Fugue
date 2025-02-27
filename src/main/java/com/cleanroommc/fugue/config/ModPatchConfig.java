@@ -166,4 +166,6 @@ public class ModPatchConfig {
     public boolean enableWorseHurtTime = true;
     @Config.Name("Enable Inventory Tweaks Patch")
     public boolean enableInvTweaks = true;
+    @Config.Name("Enable Sound Device Options / More Sound Config Patch")
+    public boolean enableMoreSoundConfig = true;
 }

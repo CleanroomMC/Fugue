@@ -41,6 +41,7 @@ import com.cleanroommc.fugue.transformer.loliasm.JavaFixesTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.LoliFMLCallHookTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.LoliReflectorTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.ModIdentifierTransformer;
+import com.cleanroommc.fugue.transformer.moresoundconfig.SoundDevicesTransformer;
 import com.cleanroommc.fugue.transformer.nothirium.BufferBuilderTransformer;
 import com.cleanroommc.fugue.transformer.nothirium.FreeSectorManagerTransformer;
 import com.cleanroommc.fugue.transformer.nothirium.MixinBufferBuilderTransformer;
@@ -505,6 +506,12 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(
                     new InvTweaksHandlerShortcutsTransformer(),
                     "invtweaks.InvTweaksHandlerShortcuts"
+            );
+        }
+        if (FugueConfig.modPatchConfig.enableMoreSoundConfig) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new SoundDevicesTransformer(),
+                    "ichttt.mods.moresoundconfig.SoundDevices"
             );
         }
 
