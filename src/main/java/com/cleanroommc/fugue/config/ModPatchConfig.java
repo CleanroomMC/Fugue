@@ -168,4 +168,6 @@ public class ModPatchConfig {
     public boolean enableInvTweaks = true;
     @Config.Name("Enable Sound Device Options / More Sound Config Patch")
     public boolean enableMoreSoundConfig = true;
+    @Config.Name("Enable NBT Peripheral Patch")
+    public boolean enableNBTPeripheral = true;
 }
