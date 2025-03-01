@@ -1,17 +1,12 @@
 package com.cleanroommc.fugue.transformer.universal;
 
 import com.cleanroommc.fugue.common.Fugue;
-import javassist.ClassPool;
-import javassist.CtClass;
-import javassist.Modifier;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;
 import top.outlands.foundation.IExplicitTransformer;
 
-import java.io.ByteArrayInputStream;
-import java.lang.reflect.AccessFlag;
 import java.util.*;
 
 public class FinalStripperTransformer implements IExplicitTransformer {

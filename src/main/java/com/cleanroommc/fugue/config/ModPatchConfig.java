@@ -63,6 +63,7 @@ public class ModPatchConfig {
     @Config.Name("Enable Howling Moon Patch")
     public boolean enableHowlingMoon = true;
     @Config.Name("Enable Custom NPCs Patch")
+    @Config.Comment("Also patches Custom NPCs Unofficial, will log harmless errors")
     public boolean enableCustomNPC = true;
     @Config.Name("Enabel Survivial Inc. Patch")
     public boolean enableSurvivialInc = true;

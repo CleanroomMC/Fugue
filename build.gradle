@@ -255,6 +255,9 @@ dependencies {
     //BetterPortals
     compileOnly(fg.deobf("curse.maven:betterportals-322948:2883633"))
 
+    //CustomNPCs Unofficial
+    compileOnly(fg.deobf("curse.maven:customnpcs-1086839:6166874"))
+
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:2.1.0'
 
     // Mixin and it's common libraries
