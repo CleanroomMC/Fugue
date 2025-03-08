@@ -26,6 +26,7 @@ import com.cleanroommc.fugue.transformer.essential.EssentialRelaunchTransformer;
 import com.cleanroommc.fugue.transformer.essential.EssentialGlobalMouseOverrideTransformer;
 import com.cleanroommc.fugue.transformer.essential.EssentialTransformerClearTransformer;
 import com.cleanroommc.fugue.transformer.essential.EssentialTelemetryManagerTransformer;
+import com.cleanroommc.fugue.transformer.farseek.FarseekClassTransformerTransformer;
 import com.cleanroommc.fugue.transformer.fivezig.ClassTweakerTransformer;
 import com.cleanroommc.fugue.transformer.groovyscript.ASTTransformationCollectorCodeVisitorTransformer;
 import com.cleanroommc.fugue.transformer.groovyscript.GroovyClassLoaderTransformer;
@@ -521,6 +522,12 @@ public class TransformerHelper {
                     "nl.makertim.nbtperipheral.cc.BlockStateUtil",
                     "nl.makertim.nbtperipheral.cc.CCUtil",
                     "nl.makertim.nbtperipheral.cc.NBTUtil"
+            );
+        }
+        if (FugueConfig.modPatchConfig.enableFarseek) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new FarseekClassTransformerTransformer(),
+                    "farseek.core.FarseekClassTransformer"
             );
         }
 

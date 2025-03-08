@@ -171,4 +171,6 @@ public class ModPatchConfig {
     public boolean enableMoreSoundConfig = true;
     @Config.Name("Enable NBT Peripheral Patch")
     public boolean enableNBTPeripheral = true;
+    @Config.Name("Enable Farseek Patch")
+    public boolean enableFarseek = true;
 }
