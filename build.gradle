@@ -7,7 +7,7 @@ buildscript {
         gradlePluginPortal()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '6.10.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '6.10.43', changing: true
         classpath "org.spongepowered:mixingradle:0.7.+"
         classpath "net.kyori:blossom:2.1.0"
         classpath "de.undercouch:gradle-download-task:5.6.0"

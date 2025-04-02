@@ -67,7 +67,6 @@ import com.cleanroommc.fugue.transformer.techgun.TechgunsASMTransformerTransform
 import com.cleanroommc.fugue.transformer.universal.RemoveMixinInitFromCotrTransformer;
 import com.cleanroommc.fugue.transformer.tickcentral.*;
 import com.cleanroommc.fugue.transformer.universal.*;
-import com.cleanroommc.fugue.transformer.valkyrie.MinecraftMixinTransformer;
 import com.cleanroommc.fugue.transformer.vampirism.TConstructBloodConversionTransformer;
 import com.cleanroommc.fugue.transformer.vampirism.WorldGenVampireOrchidTransformer;
 import com.cleanroommc.fugue.transformer.xnet.EnergyConnectorSettingsTransformer;
@@ -289,12 +288,6 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(
                     new InjectorMethodVisitorTransformer(),
                     "openmods.renderer.PlayerRendererHookVisitor$InjectorMethodVisitor"
-            );
-        }
-        if (FugueConfig.modPatchConfig.enableValkyrie) {
-            MixinServiceLaunchWrapper.registerMixinClassTransformer(
-                    new MinecraftMixinTransformer(),
-                    "dev.redstudio.valkyrie.mixin.MinecraftMixin"
             );
         }
         if (FugueConfig.modPatchConfig.enableVampirism) {

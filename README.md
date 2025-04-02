@@ -46,7 +46,6 @@ If you are still using 0.1.0 Cleanroom, use 0.5.4. But that's not recommended.
 * IC2C Extra
 * Simply Hot Spring
 * OpenModsLib
-* Valkyrie (Temporary)
 * ReplayMod
 * Thaumic Speedup (Temporary)
 * Astral Sorcery
