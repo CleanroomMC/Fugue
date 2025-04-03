@@ -29,6 +29,7 @@ repositories {
 }
 
 dependencies {
+    implementation "com.cleanroommc:sponge-mixin:0.20.10+mixin.0.8.7"
 
     compileOnly "com.cleanroommc:lwjglx:1.0.0"
 
