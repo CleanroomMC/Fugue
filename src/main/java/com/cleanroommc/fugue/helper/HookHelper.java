@@ -8,7 +8,6 @@ import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.launchwrapper.LaunchClassLoader;
 import org.apache.commons.io.FileUtils;
-import org.checkerframework.checker.nullness.qual.Nullable;
 import org.objectweb.asm.Opcodes;
 import org.lwjgl.opengl.GL11;
 import oshi.SystemInfo;
@@ -231,7 +230,7 @@ public class HookHelper {
         return list.toArray(new String[0]);
     }
 
-    public static <V extends @Nullable Object> void addCallback(
+    public static <V extends Object> void addCallback(
             final ListenableFuture<V> future,
             final FutureCallback<? super V> callback) {
         Futures.addCallback(future, callback, Runnable::run);

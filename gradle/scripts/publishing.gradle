@@ -1,0 +1,31 @@
+apply from: 'gradle/scripts/helpers.gradle'
+
+setDefaultProperty('publish_to_maven', true, false)
+
+if (propertyBool('publish_to_maven')) {
+    assertProperty('maven_name')
+    assertProperty('maven_url')
+    publishing {
+        repositories {
+            maven {
+                name propertyString('maven_name').replaceAll("\\s", "")
+                url propertyString('maven_url')
+                credentials(PasswordCredentials)
+            }
+        }
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java // Publish with standard artifacts
+                setGroupId(propertyString('root_package'))// Publish with root package as maven group
+                setArtifactId(propertyString('mod_id')) // Publish artifacts with mod id as the artifact id
+
+                // Custom artifact:
+                // If you want to publish a different artifact to the one outputted when building normally
+                // Create a different gradle task (Jar task), in extra.gradle
+                // Remove the 'from components.java' line above
+                // Add this line (change the task name):
+                // artifacts task_name
+            }
+        }
+    }
+}

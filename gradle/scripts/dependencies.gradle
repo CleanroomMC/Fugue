@@ -1,0 +1,185 @@
+apply from: 'gradle/scripts/helpers.gradle'
+
+repositories {
+    // Other repositories described by default:
+    // CleanroomMC: https://maven.cleanroommc.com
+    maven {
+        name 'CurseMaven'
+        url 'https://cursemaven.com'
+    }
+    maven {
+        name 'Modrinth'
+        url 'https://api.modrinth.com/maven'
+    }
+    mavenCentral()
+    maven {
+        name 'Outlands'
+        url 'https://maven.outlands.top/releases'
+    }
+    maven {
+        name "chickenbones"
+        url "https://chickenbones.net/maven/"
+    }
+    maven {
+        name "tterrag" //EnderCore
+        url "https://maven.tterrag.com/"
+    }
+    mavenLocal() // Must be last for caching to work
+
+}
+
+dependencies {
+
+    compileOnly "com.cleanroommc:lwjglx:1.0.0"
+
+    modImplementation "fi.dy.masa:litematica:forge-1.12.2-0.0.0-dev.20191217.195055"
+
+    //Charset Lib
+    modImplementation "curse.maven:charset-284523:3656492"
+
+    //Xaero's Minimap
+    modImplementation "curse.maven:xaero-263420:4911777"
+    modImplementation "curse.maven:xaero-map-317780:4911823"
+
+    modImplementation "curse.maven:xaeroplus-866084:6312816"
+
+    //CodeChickenLib
+    modImplementation "codechicken:CodeChickenLib:1.12-3.1.5.330:universal"
+
+    //ForgeMultipart
+    modImplementation "codechicken:ForgeMultipart:1.12-2.3.0.51:universal"
+
+    //Project Red Core
+    modImplementation "curse.maven:pr-core-228702:2745545"
+
+    //Solar Flux Reborne
+    modImplementation "curse.maven:solarflux-246974:3050838"
+
+    //Custom Main Menu
+    modImplementation "curse.maven:cmm-226406:2857869"
+
+    //HammerLib
+    modImplementation "curse.maven:hammer-247401:4878669"
+
+    //EnderCore
+    modImplementation "com.enderio.core:EnderCore:1.12.2-0.5.78:core"
+
+    //TickCentral
+    modImplementation "curse.maven:tickcentral-377201:3140670"
+
+    //Lag Goggles
+    modImplementation "curse.maven:lag-goggles-283525:4493884"
+
+    //Shoulder Surfing Reloaded
+    modImplementation "curse.maven:shoulder-surfing-243190:5009912"
+
+    //Logistics Pipes
+    modImplementation "curse.maven:logistics-pipes-232838:4849512"
+
+    //GTCEU
+    modImplementation "curse.maven:gtceu-557242:5050979"
+
+    //The ASM
+    modImplementation "curse.maven:the-asm-460609:5120166"
+
+    //mcjty
+    modImplementation "curse.maven:mcjty-233105:2745846"
+
+    //howlingmoon
+    modImplementation "curse.maven:howlingmoon-236149:2567452"
+
+    //customNPCs
+    modImplementation "curse.maven:customnpc-221826:2996912"
+
+    //Water Power
+    modImplementation "curse.maven:waterpower-224579:2464789"
+
+    //Subaquatic
+    modImplementation "maven.modrinth:subaquatic:8I38sNEh"
+
+    //Nothirium
+    modImplementation "curse.maven:nothirium-624960:4710696"
+
+    //Astral Sorcery
+    modImplementation "curse.maven:as-241721:3044416"
+
+    //Armourer's Workshop
+    modImplementation "curse.maven:aw-229523:3101995"
+
+    //MAGE
+    modImplementation "curse.maven:mage-287471:2625223"
+
+    //Extra Utilities
+    modImplementation "curse.maven:exu2-225561:2678374"
+
+    //In Control!
+    modImplementation "curse.maven:incontrol-257356:3101719"
+
+    //MoreRefinedStorage
+    modImplementation "curse.maven:mrs-631058:3818846"
+
+    //HEI
+    modImplementation "curse.maven:hei-557549:5229422"
+
+    //InfinityLib
+    modImplementation "curse.maven:inflib-251396:3317119"
+
+    //Carry on
+    modImplementation "curse.maven:carry-274259:4507139"
+
+    //Better Records
+    modImplementation "curse.maven:br-222722:2930159"
+
+    //Aqua Acrobatics
+    modImplementation "curse.maven:aqua-321792:5225456"
+
+    //Refined Relocation 2
+    modImplementation "curse.maven:rr2-247135:2863241"
+
+    //Calculator
+    modImplementation "curse.maven:calculator-225104:2847174"
+
+    //Unilib
+    modImplementation "curse.maven:unilib-1056812:5946214"
+
+    //BetterPortals
+    modImplementation "curse.maven:betterportals-322948:2883633"
+
+    //CustomNPCs Unofficial
+    modImplementation "curse.maven:customnpcs-1086839:6166874"
+
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:2.1.20'
+
+    // Example - Dependency descriptor:
+    // 'com.google.code.gson:gson:2.8.6' << group: com.google.code.gson, name:gson, version:2.8.6
+    // 'group:name:version:classifier' where classifier is optional
+
+    // Example - Deobfuscating dependencies:
+    // rfg.deobf('curse.maven:had-enough-items-557549:4543375')
+    // By wrapping a dependency descriptor in rfg.deobf() method call, the dependency is queued for deobfuscation
+    // When deobfuscating, RFG respects the mapping_channel + mapping_version stated in gradle.properties
+
+    // Example - CurseMaven dependencies:
+    // 'curse.maven:had-enough-items-557549:4543375' << had-enough-items = project slug, 557549 = project id, 4543375 = file id
+    // Full documentation: https://cursemaven.com/
+
+    // Example - Modrinth dependencies:
+    // 'maven.modrinth:jei:4.16.1.1000' << jei = project name, 4.16.1.1000 = file version
+    // Full documentation: https://docs.modrinth.com/docs/tutorials/maven/
+
+    // Common dependency types (configuration):
+    // implementation = dependency available at both compile time and runtime
+    // runtimeOnly = runtime dependency
+    // compileOnly = compile time dependency
+    // annotationProcessor = annotation processing dependencies
+    // contain = bundle dependency jars into final artifact, will extract them in mod loading. Please only do this to non-mod dependencies.
+    // shadow = bundle dependencies into shadow output artifact (relocation configurable in shadowJar task)
+
+    // Transitive dependencies:
+    // (Dependencies that your dependency depends on)
+    // If you wish to exclude transitive dependencies in the described dependencies
+    // Use a closure as such:
+    // implementation ('com.google.code.gson:gson:2.8.6') {
+    //     transitive = false
+    // }
+}
