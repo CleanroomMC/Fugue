@@ -2,7 +2,6 @@
   "required": true,
   "package": "com.cleanroommc.fugue.mixin",
   "compatibilityLevel": "JAVA_8",
-  "refmap": "fugue.mixins.refmap.json",
   "target": "@env(MOD)",
   "plugin": "com.cleanroommc.fugue.common.FugueMixinConfigPlugin",
   "mixins": [

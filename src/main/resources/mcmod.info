@@ -1,13 +1,13 @@
 [
   {
-    "modid": "{{ mod_id }}",
-    "name": "{{ mod_name }}",
-    "description": "{{ mod_description }}",
-    "version": "{{ mod_version }}",
+    "modid": "${mod_id}",
+    "name": "${mod_name}",
+    "description": "${mod_description}",
+    "version": "${mod_version}",
     "mcversion": "1.12.2",
     "url": "https://github.com/CleanroomMC/Fugue",
     "updateUrl": "",
-    "authorList": ["{{ mod_authors }}"],
+    "authorList": ["${mod_authors}"],
     "credits": "",
     "logoFile": "",
     "screenshots": [],
