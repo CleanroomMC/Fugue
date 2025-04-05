@@ -248,6 +248,7 @@ public class FugueConfig {
             {"net.minecraft.entity.EntityTracker", "field_72793_b|field_72794_c|field_72795_a"}, //entries|trackedEntityHashTable|world
             {"net.minecraft.entity.EntityTrackerEntry", "field_73130_b|field_73132_a|field_187262_f|field_73131_c|field_73143_t"}, //range|trackedEntity|maxRange|updateFrequency|sendVelocityUpdates
             {"net.minecraft.world.World", "field_72996_f",}, //loadedEntityList
+            {"net.minecraft.client.renderer.EntityRenderer", "field_78504_Q"},
             {"meldexun.nothirium.api.renderer.chunk.ChunkRenderPass", "ALL"}, // For nothirium + gtceu
     }).collect(Collectors.toMap(data -> data[0], data -> data[1]));
 
