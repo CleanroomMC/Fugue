@@ -523,6 +523,24 @@ public class TransformerHelper {
                     "farseek.core.FarseekClassTransformer"
             );
         }
+        if (FugueConfig.modPatchConfig.enableKubeJS) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new RemapTransformer(
+                            new String[] { "jdk/nashorn/api/scripting/" },
+                            new String[] { "org/openjdk/nashorn/api/scripting/" }
+                    ),
+                    "dev.latvian.kubejs.event.EventsJS",
+                    "dev.latvian.kubejs.fluid.FluidStackJS",
+                    "dev.latvian.kubejs.item.ingredient.IngredientJS",
+                    "dev.latvian.kubejs.item.ItemStackJS",
+                    "dev.latvian.kubejs.script.ScriptManager",
+                    "dev.latvian.kubejs.server.KubeJSServerEventHandler",
+                    "dev.latvian.kubejs.util.FunctionBinding",
+                    "dev.latvian.kubejs.util.JsonUtilsJS",
+                    "dev.latvian.kubejs.util.nbt.NBTBaseJS",
+                    "dev.latvian.kubejs.util.UtilsJS"
+            );
+        }
 
         //Common patches below
 
@@ -558,7 +576,24 @@ public class TransformerHelper {
         }
         if (FugueConfig.remapTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformer(
-                    new RemapTransformer(),
+                    new RemapTransformer(
+                            new String[] {
+                                    "javax/xml/bind/",
+                                    "javax/xml/ws/",
+                                    "javax/ws/",
+                                    "javax/activation/",
+                                    "javax/soap/",
+                                    "javax/jws/"
+                            },
+                            new String[] {
+                                    "jakarta/xml/bind/",
+                                    "jakarta/xml/ws/",
+                                    "jakarta/ws/",
+                                    "jakarta/activation/",
+                                    "jakarta/soap/",
+                                    "jakarta/jws/"
+                            }
+                    ),
                     FugueConfig.remapTargets
             );
         }
