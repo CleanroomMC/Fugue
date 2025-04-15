@@ -36,6 +36,7 @@ import com.cleanroommc.fugue.transformer.integrated_proxy.MixinLoaderTransformer
 import com.cleanroommc.fugue.transformer.inventorytweaks.InvTweaksHandlerShortcutsTransformer;
 import com.cleanroommc.fugue.transformer.journeymap.FileHandlerTransformer;
 import com.cleanroommc.fugue.transformer.journeymap.ThemeLoaderTransformer;
+import com.cleanroommc.fugue.transformer.kubejs.KubeJSTransformer;
 import com.cleanroommc.fugue.transformer.logisticpipes.*;
 import com.cleanroommc.fugue.transformer.light_and_shadow.AsmTransformerTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.JavaFixesTransformer;
@@ -539,6 +540,10 @@ public class TransformerHelper {
                     "dev.latvian.kubejs.util.JsonUtilsJS",
                     "dev.latvian.kubejs.util.nbt.NBTBaseJS",
                     "dev.latvian.kubejs.util.UtilsJS"
+            );
+            TransformerDelegate.registerExplicitTransformer(
+                    new KubeJSTransformer(),
+                    "dev.latvian.kubejs.KubeJS"
             );
         }
 
