@@ -128,6 +128,22 @@ public class FugueConfig {
             "com.matez.wildnature.proxy.ServerProxy",
             "vazkii.botania.common.core.helper.StringObfuscator",
             "net.silentchaos512.lib.tile.SyncVariable$Helper",
+            "com.vicmatskiv.mw.ModernWarfareMod",
+            "com.vicmatskiv.weaponlib.config.EntityEquipment",
+            "com.vicmatskiv.weaponlib.config.package-info",
+            "com.vicmatskiv.weaponlib.config.Gui",
+            "com.vicmatskiv.weaponlib.config.Attachment",
+            "com.vicmatskiv.weaponlib.config.ObjectFactory",
+            "com.vicmatskiv.weaponlib.config.Explosions",
+            "com.vicmatskiv.weaponlib.config.ConfigurationManager",
+            "com.vicmatskiv.weaponlib.config.ConfigurationManager$Builder",
+            "com.vicmatskiv.weaponlib.config.Ores",
+            "com.vicmatskiv.weaponlib.config.Projectiles",
+            "com.vicmatskiv.weaponlib.config.AIEntity",
+            "com.vicmatskiv.weaponlib.config.Gun",
+            "com.vicmatskiv.weaponlib.config.Configuration",
+            "com.vicmatskiv.weaponlib.config.Ore",
+            "com.vicmatskiv.weaponlib.config.AI"
     };
 
     @Config.Comment(
