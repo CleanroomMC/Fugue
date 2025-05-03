@@ -173,4 +173,6 @@ public class ModPatchConfig {
     public boolean enableFarseek = true;
     @Config.Name("Enable KubeJS Patch")
     public boolean enableKubeJS = true;
+    @Config.Name("Enable Celeritas Patch")
+    public boolean enableCeleritas = true;
 }
