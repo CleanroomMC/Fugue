@@ -149,6 +149,9 @@ dependencies {
     //CustomNPCs Unofficial
     modImplementation "curse.maven:customnpcs-1086839:6166874"
 
+    //funky locomotion
+    modImplementation "curse.maven:funky-locomotion-224190:2599318"
+
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:2.1.20'
 
     // Example - Dependency descriptor:
