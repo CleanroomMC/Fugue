@@ -58,6 +58,7 @@ public class FugueMixinConfigPlugin implements IMixinConfigPlugin {
             case "betterrecords" -> Loader.isModLoaded("betterrecords") && FugueConfig.modPatchConfig.enableBetterRecords;
             case "refinedrelocation" -> Loader.isModLoaded("refinedrelocation") && FugueConfig.modPatchConfig.enableRefinedRelocation2Patch;
             case "unilib" -> Loader.isModLoaded("unilib") && FugueConfig.modPatchConfig.enableUnilib;
+            case "funkylocomotion" -> Loader.isModLoaded("funkylocomotion") && FugueConfig.modPatchConfig.enableFunkyLocomotion;
             default -> true;
         };
     }

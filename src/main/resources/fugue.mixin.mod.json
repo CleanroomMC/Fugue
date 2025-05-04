@@ -17,6 +17,7 @@
     "extrautils2.FieldSetterMixin",
     "extrautils2.TileIndexerMixin",
     "extrautils2.TransferNodeEnergyMixin",
+    "funkylocomotion.WrenchFactoryMixin",
     "gregtech.GTRecipeInputCacheMixin",
     "hammercore.ReflectionUtilMixin",
     "howlingmoon.WerewolfCapabilityMixin",
