@@ -175,4 +175,6 @@ public class ModPatchConfig {
     public boolean enableKubeJS = true;
     @Config.Name("Enable Funky Locomotion")
     public boolean enableFunkyLocomotion = true;
+    @Config.Name("Enable Celeritas Patch")
+    public boolean enableCeleritas = true;
 }
