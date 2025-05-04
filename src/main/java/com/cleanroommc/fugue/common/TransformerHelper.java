@@ -10,7 +10,6 @@ import com.cleanroommc.fugue.transformer.betterhurttimer.DamageSpecialArmorMixin
 import com.cleanroommc.fugue.transformer.betterportals.MixinEntityRendererTransformer;
 import com.cleanroommc.fugue.transformer.betterportals.ExtensionKtTransformer;
 import com.cleanroommc.fugue.transformer.calculator.GuiInfoCalculatorTransformer;
-import com.cleanroommc.fugue.transformer.celeritas.CeleritasVintageMixinPluginTransformer;
 import com.cleanroommc.fugue.transformer.codechickenlib.ClassHierarchyManagerTransformer;
 import com.cleanroommc.fugue.transformer.colytra.EntityLivingBaseTransformer;
 import com.cleanroommc.fugue.transformer.corpse.MessageOpenHistoryTransformer;
@@ -545,12 +544,6 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(
                     new KubeJSTransformer(),
                     "dev.latvian.kubejs.KubeJS"
-            );
-        }
-        if (FugueConfig.modPatchConfig.enableCeleritas) {
-            TransformerDelegate.registerExplicitTransformer(
-                    new CeleritasVintageMixinPluginTransformer(),
-                    "org.taumc.celeritas.mixin.CeleritasVintageMixinPlugin"
             );
         }
 
