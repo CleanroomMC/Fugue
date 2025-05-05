@@ -26,7 +26,7 @@ public class FuturesTransformer implements IExplicitTransformer {
             out:
             for (MethodNode methodNode : classNode.methods)
             {
-                if (methodNode.name.equals("keyframeRepoButtonPressed") || methodNode.name.equals("loadEntityTracker")) {
+                if (methodNode.name.equals("keyframeRepoButtonPressed") || methodNode.name.equals("loadEntityTracker") || methodNode.name.equals("run")) {
                     InsnList instructions = methodNode.instructions;
                     if (instructions != null)
                     {

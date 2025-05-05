@@ -457,7 +457,8 @@ public class TransformerHelper {
         if (FugueConfig.modPatchConfig.enableReplayMod) {
             TransformerDelegate.registerExplicitTransformer(
                     new FuturesTransformer(),
-                    "com.replaymod.simplepathing.gui.GuiPathing"
+                    "com.replaymod.simplepathing.gui.GuiPathing",
+                    "com.replaymod.simplepathing.gui.GuiPathing$10"
             );
         }
         if (FugueConfig.modPatchConfig.enableOfflineSkins) {
