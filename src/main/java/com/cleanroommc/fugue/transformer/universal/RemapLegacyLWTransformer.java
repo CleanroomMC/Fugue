@@ -20,14 +20,8 @@ public class RemapLegacyLWTransformer implements IExplicitTransformer {
         classNode.methods.forEach(methodNode -> methodNode.instructions.forEach(abstractInsnNode -> {
             if (abstractInsnNode instanceof MethodInsnNode methodInsnNode) {
                 if (methodInsnNode.owner.equals("net/minecraft/launchwrapper/LaunchClassLoader")) {
-                    if (methodInsnNode.name.equals("getTransformers")) {
-                        methodNode.instructions.insert(abstractInsnNode, new MethodInsnNode(Opcodes.INVOKESTATIC, "top/outlands/foundation/TransformerDelegate", "getTransformers", "()Ljava/util/List;"));
-                        methodNode.instructions.insert(abstractInsnNode, new InsnNode(Opcodes.POP));
-                        methodNode.instructions.remove(abstractInsnNode);
-                    } else {
-                        methodNode.instructions.insert(abstractInsnNode, new MethodInsnNode(methodInsnNode.getOpcode(), "top/outlands/foundation/boot/ActualClassLoader", methodInsnNode.name, methodInsnNode.desc));
-                        methodNode.instructions.remove(abstractInsnNode);
-                    }
+                    methodNode.instructions.insert(abstractInsnNode, new MethodInsnNode(methodInsnNode.getOpcode(), "top/outlands/foundation/boot/ActualClassLoader", methodInsnNode.name, methodInsnNode.desc));
+                    methodNode.instructions.remove(abstractInsnNode);
                 } else if (methodInsnNode.getOpcode() == Opcodes.INVOKEVIRTUAL &&
                         methodInsnNode.owner.equals("java/lang/Class") && (methodInsnNode.name.equals("getDeclaredField") || methodInsnNode.name.equals("getField"))) {
 
