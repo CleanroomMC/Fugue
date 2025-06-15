@@ -27,6 +27,7 @@
     "mage.ColorspacesMixin",
     "minecraftmultipartcbe.ASMMixinCompilerMixin",
     "minecraftmultipartcbe.StackAnalyserMixin",
+    "patchouli.BookRegistryMixin",
     "projectred_core.WirePropagatorMixin",
     "refinedrelocation.BlockSortingConnectorMixin",
     "refinedstorage.OperatorMixin",

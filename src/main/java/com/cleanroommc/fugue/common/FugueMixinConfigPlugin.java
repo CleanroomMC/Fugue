@@ -59,6 +59,7 @@ public class FugueMixinConfigPlugin implements IMixinConfigPlugin {
             case "refinedrelocation" -> Loader.isModLoaded("refinedrelocation") && FugueConfig.modPatchConfig.enableRefinedRelocation2Patch;
             case "unilib" -> Loader.isModLoaded("unilib") && FugueConfig.modPatchConfig.enableUnilib;
             case "funkylocomotion" -> Loader.isModLoaded("funkylocomotion") && FugueConfig.modPatchConfig.enableFunkyLocomotion;
+            case "patchouli" -> Loader.isModLoaded("patchouli") && FugueConfig.modPatchConfig.enablePatchouli;
             default -> true;
         };
     }
