@@ -159,6 +159,8 @@ dependencies {
     //Patchouli
     modImplementation "curse.maven:patchouli-306770:3162874"
 
+    modImplementation "curse.maven:recurrent-complex-223150:5615733"
+
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:2.1.21'
 
     // Example - Dependency descriptor:

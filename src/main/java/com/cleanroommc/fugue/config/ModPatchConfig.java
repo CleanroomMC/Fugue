@@ -173,8 +173,10 @@ public class ModPatchConfig {
     public boolean enableFarseek = true;
     @Config.Name("Enable KubeJS Patch")
     public boolean enableKubeJS = true;
-    @Config.Name("Enable Funky Locomotion")
+    @Config.Name("Enable Funky Locomotion Patch")
     public boolean enableFunkyLocomotion = true;
-    @Config.Name("Enable Patchouli")
+    @Config.Name("Enable Patchouli Patch")
     public boolean enablePatchouli = true;
+    @Config.Name("Enable Recurrent Complex Patch")
+    public boolean enableRecurrentComplex = true;
 }

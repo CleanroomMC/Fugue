@@ -29,6 +29,7 @@
     "minecraftmultipartcbe.StackAnalyserMixin",
     "patchouli.BookRegistryMixin",
     "projectred_core.WirePropagatorMixin",
+    "reccomplex.NBTToJsonMixin",
     "refinedrelocation.BlockSortingConnectorMixin",
     "refinedstorage.OperatorMixin",
     "solarflux.INetworkSFMixin",

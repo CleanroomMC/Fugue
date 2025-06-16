@@ -83,6 +83,11 @@ If you are still using 0.1.0 Cleanroom, use 0.5.4. But that's not recommended.
 * Inventory Tweaks
 * More Sound Config
 * NBTPeripheral
+* Farseek
+* KubeJS
+* Funky Locomotion
+* Patchouli
+* Recurrent Complex
 
 ## Note
 Add + to start of the file if it's not there.
