@@ -266,6 +266,7 @@ public class FugueConfig {
             {"net.minecraft.world.World", "field_72996_f",}, //loadedEntityList
             {"net.minecraft.client.renderer.EntityRenderer", "field_78504_Q"},
             {"meldexun.nothirium.api.renderer.chunk.ChunkRenderPass", "ALL"}, // For nothirium + gtceu
+            {"com.mrcrayfish.vehicle.crafting.VehicleRecipes", "RECIPES"}
     }).collect(Collectors.toMap(data -> data[0], data -> data[1]));
 
 }
