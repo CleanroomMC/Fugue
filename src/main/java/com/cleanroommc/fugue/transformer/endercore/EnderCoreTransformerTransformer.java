@@ -51,10 +51,7 @@ public class EnderCoreTransformerTransformer implements IExplicitTransformer {
                                             "(IILjava/lang/String;Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;)V"));
                                     instructions.insert(prevLine, toInsert);
                                     AbstractInsnNode loadNull = instructions.get(instructions.indexOf(methodInsnNode) - 2);
-                                    if (loadNull instanceof InsnNode nullNode) {
-                                        instructions.insertBefore(nullNode, new LdcInsnNode("B"));
-                                        instructions.remove(nullNode);
-                                    } else {
+                                    if (!(loadNull instanceof InsnNode)) {
                                         return bytes;
                                     }
                                 }

@@ -24,6 +24,10 @@ repositories {
         name "tterrag" //EnderCore
         url "https://maven.tterrag.com/"
     }
+    maven {
+        name "Cleanroom"
+        url "https://repo.cleanroommc.com/releases"
+    }
     mavenLocal() // Must be last for caching to work
 
 }
