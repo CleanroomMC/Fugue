@@ -94,6 +94,7 @@ public class FugueConfig {
             "tk.zeitheron.solarflux.api.SolarScriptEngine",
             "com.github.tartaricacid.touhoulittlemaid.proxy.CommonProxy",
             "tk.zeitheron.expequiv.api.js.JSExpansion",
+            "nuparu.sevendaystomine.proxy.CommonProxy",
     };
 
     @Config.Comment(
