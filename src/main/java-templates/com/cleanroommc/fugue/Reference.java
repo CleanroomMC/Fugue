@@ -28,5 +28,5 @@ public class Reference {
     
     // Dependencies
     public static final String MOD_DEPENDENCIES =
-            "required-after:" + MOD_FORGE + "@[" + MOD_FORGE_VERSION_MIN + ",);required-after:cleanroom@[0.2.4-alpha,);";
+            "required-after:" + MOD_FORGE + "@[" + MOD_FORGE_VERSION_MIN + ",);required-after:cleanroom@[0.3.5-alpha,);";
 }
