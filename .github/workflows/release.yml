@@ -31,7 +31,10 @@ jobs:
           artifacts: "build/libs/*"
           generateReleaseNotes: true
 
-      - uses: Kir-Antipov/mc-publish@v3.3
+      - uses: actions-ecosystem/action-get-latest-tag@v1.6.0
+        id: get-latest-tag
+
+      - uses: Kir-Antipov/mc-publish@v3.3.0
         with:
           # Only include this section if you wish to publish
           # your assets on Modrinth.
@@ -42,3 +45,11 @@ jobs:
           # your assets on CurseForge.
           curseforge-id: 1005815
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
+
+          files: build/libs/*.jar
+          loaders: forge
+          game-versions: 1.12.2
+          java: |
+            21
+            22
+          version: ${{ steps.get-latest-tag.outputs.tag }}
