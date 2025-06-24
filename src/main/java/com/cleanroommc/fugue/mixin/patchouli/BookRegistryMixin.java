@@ -15,7 +15,7 @@ public class BookRegistryMixin {
     @Redirect(method = "lambda$null$0", at = @At(value = "INVOKE", target = "Ljava/nio/file/Files;exists(Ljava/nio/file/Path;[Ljava/nio/file/LinkOption;)Z"))
     private static boolean moreCheck(Path path, LinkOption[] options) {
         boolean exist = Files.exists(path, options);
-        if (exist && Files.isDirectory(path, options)) {
+        if (exist && !Files.isDirectory(path, options)) {
             return false;
         }
         return exist;
