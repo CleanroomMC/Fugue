@@ -46,7 +46,9 @@ jobs:
           curseforge-id: 1005815
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
 
-          files: build/libs/*.jar
+          files: |
+            build/libs/!(*-@(dev|sources|javadoc)).jar
+            build/libs/*-@(dev|sources|javadoc).jar
           loaders: forge
           game-versions: 1.12.2
           java: |
