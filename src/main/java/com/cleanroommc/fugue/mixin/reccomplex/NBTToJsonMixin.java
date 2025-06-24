@@ -85,6 +85,7 @@ public abstract class NBTToJsonMixin {
                 case "double" -> NBTTagDouble.class;
                 case "byte" -> NBTTagByte.class;
                 case "list" -> NBTTagList.class;
+                case "string" -> NBTTagString.class;
                 default -> null;
             };
             if (clazz != null) {
