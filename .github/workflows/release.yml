@@ -34,6 +34,10 @@ jobs:
       - uses: actions-ecosystem/action-get-latest-tag@v1.6.0
         id: get-latest-tag
 
+      - name: "Build Changelog"
+        id: build_changelog
+        uses: mikepenz/release-changelog-builder-action@v5
+
       - uses: Kir-Antipov/mc-publish@v3.3.0
         with:
           # Only include this section if you wish to publish
@@ -55,3 +59,4 @@ jobs:
             21
             22
           version: ${{ steps.get-latest-tag.outputs.tag }}
+          changelog: ${{steps.build_changelog.outputs.changelog}}

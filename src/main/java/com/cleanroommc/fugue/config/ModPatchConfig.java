@@ -179,4 +179,6 @@ public class ModPatchConfig {
     public boolean enablePatchouli = true;
     @Config.Name("Enable Recurrent Complex Patch")
     public boolean enableRecurrentComplex = true;
+    @Config.Name("Enable Lockdown Patch")
+    public boolean enableLockdown = true;
 }

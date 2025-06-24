@@ -61,6 +61,7 @@ public class FugueMixinConfigPlugin implements IMixinConfigPlugin {
             case "funkylocomotion" -> Loader.isModLoaded("funkylocomotion") && FugueConfig.modPatchConfig.enableFunkyLocomotion;
             case "patchouli" -> Loader.isModLoaded("patchouli") && FugueConfig.modPatchConfig.enablePatchouli;
             case "reccomplex" -> Loader.isModLoaded("reccomplex") && FugueConfig.modPatchConfig.enableRecurrentComplex;
+            case "lockdown" -> Loader.isModLoaded("lockdown") && FugueConfig.modPatchConfig.enableLockdown;
             default -> true;
         };
     }

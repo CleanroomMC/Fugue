@@ -45,6 +45,7 @@
     "custommainmenu.SlideshowMixin",
     "extrautils2.XUBlockStatic$3Mixin",
     "jei.RecipesGuiMixin",
+    "lockdown.GuiMainMenuTweakedMixin",
     "mcjty.AbstractContainerWidgetMixin",
     "mcjty.SliderMixin"
   ],
