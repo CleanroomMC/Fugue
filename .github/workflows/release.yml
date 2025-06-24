@@ -30,3 +30,15 @@ jobs:
         with:
           artifacts: "build/libs/*"
           generateReleaseNotes: true
+
+      - uses: Kir-Antipov/mc-publish@v3.3
+        with:
+          # Only include this section if you wish to publish
+          # your assets on Modrinth.
+          modrinth-id: vylTACsh
+          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+
+          # Only include this section if you wish to publish
+          # your assets on CurseForge.
+          curseforge-id: 1005815
+          curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
