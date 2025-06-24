@@ -21,8 +21,8 @@ repositories {
         url "https://chickenbones.net/maven/"
     }
     maven {
-        name "tterrag" //EnderCore
-        url "https://maven.tterrag.com/"
+        name "ModMaven" //EnderCore
+        url "https://modmaven.dev/"
     }
     maven {
         name "Cleanroom"
