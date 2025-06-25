@@ -56,6 +56,7 @@ import com.cleanroommc.fugue.transformer.openmodlib.InjectorMethodVisitorTransfo
 import com.cleanroommc.fugue.transformer.openmodlib.PlayerRendererHookVisitorTransformer;
 import com.cleanroommc.fugue.transformer.polyfrost.LaunchWrapperTweakerTransformer;
 import com.cleanroommc.fugue.transformer.replaymod.FuturesTransformer;
+import com.cleanroommc.fugue.transformer.saoui.HudTransformer;
 import com.cleanroommc.fugue.transformer.screenshot_viewer.ScreenshotViewerTransformer;
 import com.cleanroommc.fugue.transformer.shouldersurfing.EntityPlayerRayTraceTransformer;
 import com.cleanroommc.fugue.transformer.simplehotspring.SimplyHotSpringsConfigTransformer;
@@ -546,6 +547,35 @@ public class TransformerHelper {
                     new KubeJSTransformer(),
                     "dev.latvian.kubejs.KubeJS"
             );
+        }
+        if (FugueConfig.modPatchConfig.enableSaoUI) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new HudTransformer(),
+                    "com.tencao.saoui.themes.elements.Hud"
+            );
+            TransformerDelegate.registerExplicitTransformer(
+                    new RemapTransformer(
+                            new String[] { "javax/xml/bind/" },
+                            new String[] { "jakarta/xml/bind/" }
+                    ),
+                    "com.tencao.saoui.SAOCore",
+                    "com.tencao.saoui.themes.ThemeLoader",
+                    "com.tencao.saoui.themes.elements.Element",
+                    "com.tencao.saoui.themes.elements.ElementGroup",
+                    "com.tencao.saoui.themes.elements.GLHotbarItem",
+                    "com.tencao.saoui.themes.elements.GLRectangle",
+                    "com.tencao.saoui.themes.elements.GLString",
+                    "com.tencao.saoui.themes.elements.Hud",
+                    "com.tencao.saoui.themes.elements.package-info",
+                    "com.tencao.saoui.themes.elements.RawElement",
+                    "com.tencao.saoui.themes.elements.RepetitionGroup",
+                    "com.tencao.saoui.themes.util.CBoolean",
+                    "com.tencao.saoui.themes.util.CDouble",
+                    "com.tencao.saoui.themes.util.CInt",
+                    "com.tencao.saoui.themes.util.CString",
+                    "com.tencao.saoui.themes.util.CUnit",
+                    "com.tencao.saoui.themes.util.ExpressionAdapter",
+                    "com.tencao.saoui.themes.util.ExpressionIntermediate");
         }
 
         //Common patches below

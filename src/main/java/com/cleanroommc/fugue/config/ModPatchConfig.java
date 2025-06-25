@@ -181,4 +181,6 @@ public class ModPatchConfig {
     public boolean enableRecurrentComplex = true;
     @Config.Name("Enable Lockdown Patch")
     public boolean enableLockdown = true;
+    @Config.Name("Enable SAO UI Patch")
+    public boolean enableSaoUI = true;
 }
