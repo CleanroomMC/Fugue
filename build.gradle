@@ -7,7 +7,7 @@ plugins {
     id 'maven-publish'
     id 'org.jetbrains.gradle.plugin.idea-ext' version '1.1.10'
     id 'org.jetbrains.changelog' version '2.2.1'
-    id 'xyz.wagyourtail.unimined' version '1.4.1-SNAPSHOT'
+    id 'xyz.wagyourtail.unimined' version '1.4.1'
     id 'net.kyori.blossom' version '2.1.0'
 }
 
@@ -65,7 +65,7 @@ unimined.minecraft {
         if (propertyBool('use_access_transformer')) {
             accessTransformer 'src/main/resources/META-INF/' +  propertyString('access_transformer_locations')
         }
-        loader "0.3.4-alpha"
+        loader "0.3.7-alpha"
         runs.config("client", {args += extra_jvm_args.split(" ")})
         runs.config("server", {args += extra_jvm_args.split(" ")})
         runs.auth.username = minecraft_username
