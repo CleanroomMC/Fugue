@@ -1,6 +1,7 @@
 package com.cleanroommc.fugue.common;
 
 import com.cleanroommc.fugue.Reference;
+import net.minecraftforge.fml.common.ICrashCallable;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -39,6 +40,17 @@ public class Fugue {
     @NetworkCheckHandler
     public boolean checker(Map<String, String> mods, Side side) {
         return true;
+    }
+
+    public static class FugueCrashTag implements ICrashCallable {
+	@Override
+        public String call() {
+            return Reference.MOD_VERSION;
+        }
+        @Override
+        public String getLabel() {
+            return "Fugue Version";
+        }
     }
 
 }
