@@ -169,6 +169,13 @@ public class TransformerHelper {
                     "austeretony.enchcontrol.common.core.EnumInputClass"
             );
         }
+        if (FugueConfig.modPatchConfig.enableTFCMedical) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new CommonRegistrar$Transformer(),
+                    "com.lumintorious.tfcmedicinal.CommonRegistrar$",
+                    "com.lumintorious.tfcmedicinal.object.mpestle.MPestleRecipe$",
+                    "com.lumintorious.tfcmedicinal.object.heater.HeaterRecipe");
+        }
         if (FugueConfig.modPatchConfig.enableTheASM) {
             TransformerDelegate.registerExplicitTransformer(
                     new LoliReflectorTransformer(),

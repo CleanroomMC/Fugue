@@ -1,10 +1,14 @@
 package com.cleanroommc.fugue.common;
 
+import com.cleanroommc.fugue.Reference;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.ICrashCallable;
 import com.cleanroommc.fugue.config.FugueConfig;
 import com.cleanroommc.fugue.transformer.tfcmedical.CommonRegistrar$Transformer;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
+import net.minecraftforge.fml.relauncher.IFMLCallHook;
 import top.outlands.foundation.TransformerDelegate;
 
 import javax.annotation.Nullable;
@@ -28,38 +32,10 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
         TransformerHelper.registerTransformers();
     }
 
-    
-    @Override
-    public String[] getASMTransformerClass() {
-        if (FugueConfig.modPatchConfig.enableTFCMedical) {
-            TransformerDelegate.registerExplicitTransformer(
-                    new CommonRegistrar$Transformer(),
-                    "com.lumintorious.tfcmedicinal.CommonRegistrar$",
-                    "com.lumintorious.tfcmedicinal.object.mpestle.MPestleRecipe$",
-                    "com.lumintorious.tfcmedicinal.object.heater.HeaterRecipe");
-        }
-        return new String[0];
-    }
-
-    @Override
-    public String getModContainerClass() {
-        return null;
-    }
-
     @Nullable
     @Override
     public String getSetupClass() {
-        return null;
-    }
-
-    @Override
-    public void injectData(Map<String, Object> map) {
-
-    }
-
-    @Override
-    public String getAccessTransformerClass() {
-        return null;
+        return "com.cleanroommc.fugue.common.FugueLoadingPlugin$Setup";
     }
 
     public static void injectCascadingTweak(String tweakClassName)
@@ -67,5 +43,25 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
         @SuppressWarnings("unchecked")
         List<String> tweakClasses = (List<String>) Launch.blackboard.get("TweakClasses");
         tweakClasses.add(tweakClassName);
+    }
+
+    public static class Setup implements IFMLCallHook {
+        public void injectData(Map<String,Object> data) {}
+
+        public Void call() {
+            FMLCommonHandler.instance().registerCrashCallable(new FugueCrashTag());
+            return null;
+        }
+
+        public static class FugueCrashTag implements ICrashCallable {
+	        @Override
+            public String call() {
+                return Reference.MOD_VERSION;
+            }
+            @Override
+            public String getLabel() {
+                return "Fugue Version";
+            }
+        }
     }
 }
