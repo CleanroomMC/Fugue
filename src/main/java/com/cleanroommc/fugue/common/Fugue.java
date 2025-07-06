@@ -23,7 +23,7 @@ import java.util.Map;
 )
 public class Fugue {
     
-    public static Logger LOGGER = LogManager.getLogger(Reference.MOD_NAME);
+    public static Logger LOGGER = FugueLoadingPlugin.LOGGER;
 
     public static boolean isModNewerThan(String modid, String version) {
         var mod = Loader.instance().getIndexedModList().get(modid);
