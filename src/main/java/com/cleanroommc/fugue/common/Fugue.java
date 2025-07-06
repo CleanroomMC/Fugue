@@ -1,6 +1,7 @@
 package com.cleanroommc.fugue.common;
 
 import com.cleanroommc.fugue.Reference;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.ICrashCallable;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
@@ -31,10 +32,11 @@ public class Fugue {
         return new ComparableVersion(mod.getVersion()).compareTo(new ComparableVersion(version)) > 0;
     }
 	
-	@Instance(Reference.MOD_ID)
-	public static Fugue _instance;
-    public Fugue() {
+    @Instance(Reference.MOD_ID)
+    public static Fugue _instance;
 
+    public Fugue() {
+	FMLCommonHandler.instance().registerCrashCallable(new FugueCrashTag());`
     }
 
     @NetworkCheckHandler
