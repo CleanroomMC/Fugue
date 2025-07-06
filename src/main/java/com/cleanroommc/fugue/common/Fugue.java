@@ -36,7 +36,7 @@ public class Fugue {
     public static Fugue _instance;
 
     public Fugue() {
-	FMLCommonHandler.instance().registerCrashCallable(new FugueCrashTag());`
+	FMLCommonHandler.instance().registerCrashCallable(new FugueCrashTag());
     }
 
     @NetworkCheckHandler
