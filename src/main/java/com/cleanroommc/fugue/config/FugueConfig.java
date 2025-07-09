@@ -144,7 +144,8 @@ public class FugueConfig {
             "com.vicmatskiv.weaponlib.config.Gun",
             "com.vicmatskiv.weaponlib.config.Configuration",
             "com.vicmatskiv.weaponlib.config.Ore",
-            "com.vicmatskiv.weaponlib.config.AI"
+            "com.vicmatskiv.weaponlib.config.AI",
+            "top.seraphjack.simplelogin.server.storage.StorageProviderFile"
     };
 
     @Config.Comment(
