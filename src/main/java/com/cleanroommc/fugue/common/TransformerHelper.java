@@ -28,6 +28,7 @@ import com.cleanroommc.fugue.transformer.essential.EssentialTransformerClearTran
 import com.cleanroommc.fugue.transformer.essential.EssentialTelemetryManagerTransformer;
 import com.cleanroommc.fugue.transformer.farseek.FarseekClassTransformerTransformer;
 import com.cleanroommc.fugue.transformer.fivezig.ClassTweakerTransformer;
+import com.cleanroommc.fugue.transformer.forgeendertech.ForgeMainTransformer;
 import com.cleanroommc.fugue.transformer.groovyscript.ASTTransformationCollectorCodeVisitorTransformer;
 import com.cleanroommc.fugue.transformer.groovyscript.GroovyClassLoaderTransformer;
 import com.cleanroommc.fugue.transformer.groovyscript.GroovyRunnerRegistryTransformer;
@@ -576,6 +577,12 @@ public class TransformerHelper {
                     "com.tencao.saoui.themes.util.CUnit",
                     "com.tencao.saoui.themes.util.ExpressionAdapter",
                     "com.tencao.saoui.themes.util.ExpressionIntermediate");
+        }
+        if (FugueConfig.modPatchConfig.enableForgeEndertech) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new ForgeMainTransformer(),
+                    "com.endertech.minecraft.forge.ForgeMain"
+            );
         }
 
         //Common patches below

@@ -183,4 +183,6 @@ public class ModPatchConfig {
     public boolean enableLockdown = true;
     @Config.Name("Enable SAO UI Patch")
     public boolean enableSaoUI = true;
+    @Config.Name("Enable Forge Endertech")
+    public boolean enableForgeEndertech = true;
 }
