@@ -44,6 +44,7 @@ import com.cleanroommc.fugue.transformer.loliasm.JavaFixesTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.LoliFMLCallHookTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.LoliReflectorTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.ModIdentifierTransformer;
+import com.cleanroommc.fugue.transformer.moreplayermodels.ClientEventHandlerTransformer;
 import com.cleanroommc.fugue.transformer.moresoundconfig.SoundDevicesTransformer;
 import com.cleanroommc.fugue.transformer.nbtperipheral.LinkedTreeMapTransformer;
 import com.cleanroommc.fugue.transformer.nothirium.BufferBuilderTransformer;
@@ -582,6 +583,12 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(
                     new ForgeMainTransformer(),
                     "com.endertech.minecraft.forge.ForgeMain"
+            );
+        }
+        if (FugueConfig.modPatchConfig.enableMorePlayerModel) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new ClientEventHandlerTransformer(),
+                    "noppes.mpm.client.ClientEventHandler"
             );
         }
 

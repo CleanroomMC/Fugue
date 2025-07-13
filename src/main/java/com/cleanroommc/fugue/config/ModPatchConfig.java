@@ -185,4 +185,6 @@ public class ModPatchConfig {
     public boolean enableSaoUI = true;
     @Config.Name("Enable Forge Endertech")
     public boolean enableForgeEndertech = true;
+    @Config.Name("Enable More Player Model")
+    public boolean enableMorePlayerModel = true;
 }
