@@ -14,6 +14,7 @@
     "charset.ColorspacesMixin",
     "codechickenlib.ReflectionManagerMixin",
     "customnpcs.ScriptPlayerEventHandlerMixin",
+    "dissolution.PossessableEntityFactoryMixin",
     "extrautils2.FieldSetterMixin",
     "extrautils2.TileIndexerMixin",
     "extrautils2.TransferNodeEnergyMixin",

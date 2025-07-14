@@ -161,7 +161,9 @@ dependencies {
 
     modImplementation "curse.maven:recurrent-complex-223150:5615733"
 
-    modImplementation "curse.maven:recurrent-complex-244019:2477270"
+    modImplementation "curse.maven:lockdown-244019:2477270"
+
+    modImplementation "curse.maven:requiem-265729:2942107"
 
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:2.2.0'
 
