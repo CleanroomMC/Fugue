@@ -183,8 +183,10 @@ public class ModPatchConfig {
     public boolean enableLockdown = true;
     @Config.Name("Enable SAO UI Patch")
     public boolean enableSaoUI = true;
-    @Config.Name("Enable Forge Endertech")
+    @Config.Name("Enable Forge Endertech Patch")
     public boolean enableForgeEndertech = true;
-    @Config.Name("Enable More Player Model")
+    @Config.Name("Enable More Player Model Patch")
     public boolean enableMorePlayerModel = true;
+    @Config.Name("Enable Dissolution Patch")
+    public boolean enableDissolution = true;
 }
