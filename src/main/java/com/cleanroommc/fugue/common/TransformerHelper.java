@@ -71,6 +71,7 @@ import com.cleanroommc.fugue.transformer.techgun.TechgunsASMTransformerTransform
 import com.cleanroommc.fugue.transformer.universal.RemoveMixinInitFromCotrTransformer;
 import com.cleanroommc.fugue.transformer.tickcentral.*;
 import com.cleanroommc.fugue.transformer.universal.*;
+import com.cleanroommc.fugue.transformer.valkyrienskies.WorldPhysicsColliderTransformer;
 import com.cleanroommc.fugue.transformer.vampirism.TConstructBloodConversionTransformer;
 import com.cleanroommc.fugue.transformer.vampirism.WorldGenVampireOrchidTransformer;
 import com.cleanroommc.fugue.transformer.xnet.EnergyConnectorSettingsTransformer;
@@ -589,6 +590,12 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(
                     new ClientEventHandlerTransformer(),
                     "noppes.mpm.client.ClientEventHandler"
+            );
+        }
+        if (FugueConfig.modPatchConfig.enableUnvalkyriedHeavens) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new WorldPhysicsColliderTransformer(),
+                    "org.valkyrienskies.mod.common.collision.WorldPhysicsCollider"
             );
         }
 

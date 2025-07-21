@@ -189,4 +189,6 @@ public class ModPatchConfig {
     public boolean enableMorePlayerModel = true;
     @Config.Name("Enable Dissolution Patch")
     public boolean enableDissolution = true;
+    @Config.Name("Enable Unvalkyried Heavens Patch")
+    public boolean enableUnvalkyriedHeavens = true;
 }
