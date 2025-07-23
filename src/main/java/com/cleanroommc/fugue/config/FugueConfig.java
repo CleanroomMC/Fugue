@@ -66,6 +66,7 @@ public class FugueConfig {
             "tragicneko.tragicmc.TragicMC",
             "energon.srpholiday.client.inject.render.SRPHReflect",
             "maxhyper.dynamictreestbl.compat.RegistryReplacements",
+            "com.github.alexthe666.iceandfire.event.EventNewMenu",
     };
 
     @Config.Comment(
