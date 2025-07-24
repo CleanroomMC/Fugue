@@ -27,7 +27,7 @@ public class WorldPhysicsColliderTransformer implements IExplicitTransformer {
                     {
                         for (AbstractInsnNode insnNode : instructions)
                         {
-                            if (insnNode.getOpcode() == Opcodes.INVOKESPECIAL && insnNode instanceof MethodInsnNode methodInsnNode)
+                            if (insnNode.getOpcode() == Opcodes.INVOKEVIRTUAL && insnNode instanceof MethodInsnNode methodInsnNode)
                             {
                                 if ("gnu/trove/list/array/TIntArrayList".equals(methodInsnNode.owner) && "resetQuick".equals(methodInsnNode.name))
                                 {
