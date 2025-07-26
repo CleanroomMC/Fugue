@@ -44,6 +44,7 @@ import com.cleanroommc.fugue.transformer.loliasm.JavaFixesTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.LoliFMLCallHookTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.LoliReflectorTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.ModIdentifierTransformer;
+import com.cleanroommc.fugue.transformer.mobends.ConnectionHelperTransformation;
 import com.cleanroommc.fugue.transformer.moreplayermodels.ClientEventHandlerTransformer;
 import com.cleanroommc.fugue.transformer.moresoundconfig.SoundDevicesTransformer;
 import com.cleanroommc.fugue.transformer.nbtperipheral.LinkedTreeMapTransformer;
@@ -596,6 +597,21 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(
                     new WorldPhysicsColliderTransformer(),
                     "org.valkyrienskies.mod.common.collision.WorldPhysicsCollider"
+            );
+        }
+        if (FugueConfig.modPatchConfig.enableMoBends) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new ConnectionHelperTransformation(),
+                    "goblinbob.mobends.core.util.ConnectionHelper"
+            );
+            TransformerDelegate.registerExplicitTransformer(
+                    new RemapTransformer(
+                            new String[]{"org/apache/http/conn/"},
+                            new String[]{"org/apache/hc/client5/http/"}
+                    ),
+                    "goblinbob.mobends.core.connection.PlayerSettingsDownloader",
+                    "goblinbob.mobends.core.asset.AssetsModule",
+                    "goblinbob.mobends.core.supporters.SupporterContent"
             );
         }
 

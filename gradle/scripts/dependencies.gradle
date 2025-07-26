@@ -165,6 +165,8 @@ dependencies {
 
     modImplementation "curse.maven:requiem-265729:2942107"
 
+    modImplementation "curse.maven:mo-bends-231347:3573346"
+
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:2.2.0'
 
     // Example - Dependency descriptor:

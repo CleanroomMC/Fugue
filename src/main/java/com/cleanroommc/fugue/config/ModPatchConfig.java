@@ -191,4 +191,6 @@ public class ModPatchConfig {
     public boolean enableDissolution = true;
     @Config.Name("Enable Unvalkyried Heavens Patch")
     public boolean enableUnvalkyriedHeavens = true;
+    @Config.Name("Enable Mo'Bends Patch")
+    public boolean enableMoBends = true;
 }
