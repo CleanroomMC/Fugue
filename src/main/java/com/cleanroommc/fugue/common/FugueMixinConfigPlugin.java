@@ -33,7 +33,7 @@ public class FugueMixinConfigPlugin implements IMixinConfigPlugin {
         return switch (mixinClassName.split("\\.")[4]) {
             case "charset" -> Loader.isModLoaded("charset") && FugueConfig.modPatchConfig.enableCharset;
             case "xaeroplus" -> Loader.isModLoaded("xaeroplus") && FugueConfig.modPatchConfig.enableXP;
-            case "codechickenlib" -> Launch.classLoader.isClassExist("codechicken.lib.CodeChickenLib") && FugueConfig.modPatchConfig.enableCCL;
+            case "codechickenlib" -> Launch.classLoader.isClassExist("codechicken.lib.CodeChickenLib") && !Launch.classLoader.isClassExist("codechicken.lib.Reference") && FugueConfig.modPatchConfig.enableCCL;
             case "minecraftmultipartcbe" -> Loader.isModLoaded("minecraftmultipartcbe") && FugueConfig.modPatchConfig.enableMultiPart;
             case "projectred_core" -> Loader.isModLoaded("projectred-core") && FugueConfig.modPatchConfig.enablePR;
             case "solarflux" -> Loader.isModLoaded("solarflux") && FugueConfig.modPatchConfig.enableSolarFlux;
@@ -63,6 +63,7 @@ public class FugueMixinConfigPlugin implements IMixinConfigPlugin {
             case "reccomplex" -> Loader.isModLoaded("reccomplex") && FugueConfig.modPatchConfig.enableRecurrentComplex;
             case "lockdown" -> Loader.isModLoaded("lockdown") && FugueConfig.modPatchConfig.enableLockdown;
             case "dissolution" -> Loader.isModLoaded("dissolution") && FugueConfig.modPatchConfig.enableDissolution;
+            case "wirelessutils" -> Loader.isModLoaded("wirelessutils") && FugueConfig.modPatchConfig.enableWirelessUtilities;
             default -> true;
         };
     }

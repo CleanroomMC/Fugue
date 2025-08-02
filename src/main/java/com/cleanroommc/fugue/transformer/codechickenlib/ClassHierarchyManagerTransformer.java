@@ -10,6 +10,9 @@ public class ClassHierarchyManagerTransformer implements IExplicitTransformer {
     @Override
     public byte[] transform(byte[] bytes) {
         ClassNode classNode = new ClassNode();
+        if (classNode.version >= 65) {
+            return bytes;
+        }
         ClassReader classReader = new ClassReader(bytes);
         classReader.accept(classNode, 0);
         if (classNode.methods != null)

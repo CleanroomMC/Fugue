@@ -39,6 +39,7 @@
     "subaquatic.IBubbleColumnMixin",
     "unilib.FileUtilsMixin",
     "waterpower.ClassEngineMixin",
+    "wirelessutils.ModelBlockWrapperMixin",
     "xaeroplus.ChunkHighlightSavingCacheMixin",
     "xaeroplus.XaeroPlusSettingsReflectionHaxMixin"
   ],

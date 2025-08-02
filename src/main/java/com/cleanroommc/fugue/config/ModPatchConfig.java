@@ -193,4 +193,6 @@ public class ModPatchConfig {
     public boolean enableUnvalkyriedHeavens = true;
     @Config.Name("Enable Mo'Bends Patch")
     public boolean enableMoBends = true;
+    @Config.Name("Enable Wireless Utilities Patch")
+    public boolean enableWirelessUtilities = true;
 }
