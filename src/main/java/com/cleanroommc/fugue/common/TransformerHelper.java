@@ -10,7 +10,6 @@ import com.cleanroommc.fugue.transformer.betterhurttimer.DamageSpecialArmorMixin
 import com.cleanroommc.fugue.transformer.betterportals.MixinEntityRendererTransformer;
 import com.cleanroommc.fugue.transformer.betterportals.ExtensionKtTransformer;
 import com.cleanroommc.fugue.transformer.calculator.GuiInfoCalculatorTransformer;
-import com.cleanroommc.fugue.transformer.codechickenlib.ClassHierarchyManagerTransformer;
 import com.cleanroommc.fugue.transformer.colytra.EntityLivingBaseTransformer;
 import com.cleanroommc.fugue.transformer.corpse.MessageOpenHistoryTransformer;
 import com.cleanroommc.fugue.transformer.crossbow.TransformerEntityArrowTransformer;
@@ -213,12 +212,6 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(
                     new EnergyConnectorSettingsTransformer(),
                     "mcjty.xnet.apiimpl.energy.EnergyConnectorSettings"
-            );
-        }
-        if (FugueConfig.modPatchConfig.enableCCL) {
-            TransformerDelegate.registerExplicitTransformer(
-                    new ClassHierarchyManagerTransformer(),
-                    "codechicken.asm.ClassHierarchyManager"
             );
         }
         if (FugueConfig.modPatchConfig.enableSurvivialInc) {
