@@ -37,8 +37,6 @@ dependencies {
 
     compileOnly "com.cleanroommc:lwjglx:1.0.0"
 
-    modImplementation "fi.dy.masa:litematica:forge-1.12.2-0.0.0-dev.20191217.195055"
-
     //Charset Lib
     modImplementation "curse.maven:charset-284523:3656492"
 

@@ -45,7 +45,6 @@ public class FugueMixinConfigPlugin implements IMixinConfigPlugin {
             case "refinedstorage" -> Loader.isModLoaded("refinedstorage") && FugueConfig.modPatchConfig.enableMoreRefinedStorage && Fugue.isModNewerThan("refinedstorage", "2.0.0");
             case "jei" -> Loader.isModLoaded("jei") && FugueConfig.modPatchConfig.enableHEI && Fugue.isModNewerThan("jei", "4.17.0");
             case "carryon" -> Loader.isModLoaded("carryon") && FugueConfig.modPatchConfig.enableCarryon;
-            case "litematica" -> Loader.isModLoaded("litematica") && FugueConfig.modPatchConfig.enableLitematica;
             case "betterrecords" -> Loader.isModLoaded("betterrecords") && FugueConfig.modPatchConfig.enableBetterRecords;
             case "unilib" -> Loader.isModLoaded("unilib") && FugueConfig.modPatchConfig.enableUnilib;
             case "funkylocomotion" -> Loader.isModLoaded("funkylocomotion") && FugueConfig.modPatchConfig.enableFunkyLocomotion;

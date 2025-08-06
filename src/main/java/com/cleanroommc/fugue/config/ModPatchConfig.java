@@ -114,8 +114,6 @@ public class ModPatchConfig {
     public boolean enableDropt = true;
     @Config.Name("Enable Carryon Patch")
     public boolean enableCarryon = true;
-    @Config.Name("Enable Litematica Patch")
-    public boolean enableLitematica = true;
     @Config.Name("Enable Better Records Patch")
     public boolean enableBetterRecords = true;
     @Config.Name("Enable Aqua Acrobatics Patch")
