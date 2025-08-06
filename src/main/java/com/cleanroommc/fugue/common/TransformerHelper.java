@@ -57,7 +57,6 @@ import com.cleanroommc.fugue.transformer.offlineskins.SetupTransformer;
 import com.cleanroommc.fugue.transformer.openmodlib.InjectorMethodVisitorTransformer;
 import com.cleanroommc.fugue.transformer.openmodlib.PlayerRendererHookVisitorTransformer;
 import com.cleanroommc.fugue.transformer.polyfrost.LaunchWrapperTweakerTransformer;
-import com.cleanroommc.fugue.transformer.replaymod.FuturesTransformer;
 import com.cleanroommc.fugue.transformer.saoui.HudTransformer;
 import com.cleanroommc.fugue.transformer.screenshot_viewer.ScreenshotViewerTransformer;
 import com.cleanroommc.fugue.transformer.shouldersurfing.EntityPlayerRayTraceTransformer;
@@ -452,13 +451,6 @@ public class TransformerHelper {
                     "journeymap.client.io.FileHandler"
             );
         }
-        if (FugueConfig.modPatchConfig.enableReplayMod) {
-            TransformerDelegate.registerExplicitTransformer(
-                    new FuturesTransformer(),
-                    "com.replaymod.simplepathing.gui.GuiPathing",
-                    "com.replaymod.simplepathing.gui.GuiPathing$10"
-            );
-        }
         if (FugueConfig.modPatchConfig.enableOfflineSkins) {
             TransformerDelegate.registerExplicitTransformer(
                     new ObfHelperTransformer(),
@@ -699,6 +691,10 @@ public class TransformerHelper {
                     FugueConfig.computeIfAbsentTargets.keySet().toArray(new String[0])
             );
         }
-
+        if (!FugueConfig.addFutureCallbackTargets.isEmpty()) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new AddFutureCallbackTransformer(FugueConfig.addFutureCallbackTargets),
+                    FugueConfig.addFutureCallbackTargets.keySet().toArray(new String[0]));
+        }
     }
 }

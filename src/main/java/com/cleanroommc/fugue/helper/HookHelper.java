@@ -237,7 +237,8 @@ public class HookHelper {
         return list.toArray(new String[0]);
     }
 
-    public static <V extends Object> void addCallback(
+
+    public static <V> void addCallback(
             final ListenableFuture<V> future,
             final FutureCallback<? super V> callback) {
         Futures.addCallback(future, callback, Runnable::run);
