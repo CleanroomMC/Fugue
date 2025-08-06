@@ -693,6 +693,12 @@ public class TransformerHelper {
                     FugueConfig.finalRemovingTargets.keySet().toArray(new String[0])
             );
         }
+        if (!FugueConfig.computeIfAbsentTargets.isEmpty()) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new ComputeIfAbsentTransformer(FugueConfig.computeIfAbsentTargets),
+                    FugueConfig.computeIfAbsentTargets.keySet().toArray(new String[0])
+            );
+        }
 
     }
 }

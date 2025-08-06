@@ -187,6 +187,13 @@ public class HookHelper {
         return Launch.classLoader.isClassExist(clazz);
     }
 
+    /**
+     * computeIfAbsent without concurrent check
+     * @param map
+     * @param key
+     * @param function
+     * @return
+     */
     public static Object computeIfAbsent(Map<Object, Object> map, Object key, Function<Object, Object> function) {
         if (map.containsKey(key)) {
             return map.get(key);

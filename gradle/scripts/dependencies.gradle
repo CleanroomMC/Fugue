@@ -105,9 +105,6 @@ dependencies {
     //Nothirium
     modImplementation "curse.maven:nothirium-624960:4710696"
 
-    //Astral Sorcery
-    modImplementation "curse.maven:as-241721:3044416"
-
     //Armourer's Workshop
     modImplementation "curse.maven:aw-229523:3101995"
 
@@ -117,17 +114,11 @@ dependencies {
     //Extra Utilities
     modImplementation "curse.maven:exu2-225561:2678374"
 
-    //In Control!
-    modImplementation "curse.maven:incontrol-257356:3101719"
-
     //MoreRefinedStorage
     modImplementation "curse.maven:mrs-631058:3818846"
 
     //HEI
     modImplementation "curse.maven:hei-557549:5229422"
-
-    //InfinityLib
-    modImplementation "curse.maven:inflib-251396:3317119"
 
     //Carry on
     modImplementation "curse.maven:carry-274259:4507139"
@@ -137,9 +128,6 @@ dependencies {
 
     //Aqua Acrobatics
     modImplementation "curse.maven:aqua-321792:5225456"
-
-    //Refined Relocation 2
-    modImplementation "curse.maven:rr2-247135:2863241"
 
     //Calculator
     modImplementation "curse.maven:calculator-225104:2847174"
@@ -166,8 +154,6 @@ dependencies {
     modImplementation "curse.maven:requiem-265729:2942107"
 
     modImplementation "curse.maven:mo-bends-231347:3573346"
-
-    modImplementation "curse.maven:wireless-utilities-306122:4715235"
 
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:2.2.0'
 

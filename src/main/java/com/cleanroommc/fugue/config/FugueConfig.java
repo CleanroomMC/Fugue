@@ -3,6 +3,7 @@ package com.cleanroommc.fugue.config;
 import com.cleanroommc.fugue.Reference;
 import net.minecraftforge.common.config.Config;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -250,6 +251,17 @@ public class FugueConfig {
     public static String[] extraTransformExclusions = new String[] {
             "org.vivecraft.",
     };
+
+    @Config.Comment("Newer Java now has concurrent check in this method. Should be rare so normally you don't need to modify this.")
+    @Config.Name("computeIfAbsent Patching List")
+    public static Map<String, String> computeIfAbsentTargets = new HashMap<>() {{
+       put("hellfirepvp.astralsorcery.common.constellation.perk.attribute.PerkAttributeType", "onApply|onRemove|hasTypeApplied");
+       put("com.rwtema.extrautils2.backend.XUBlockStatic$3", "getQuads");
+       put("mcjty.incontrol.rules.RuleCache$CachePerWorld", "count");
+       put("com.lordmau5.repack.net.covers1624.model.LayeredTemplateModel$ModelBlockWrapper", "load");
+       put("com.infinityraider.infinitylib.render.block.BakedInfBlockModel", "getQuads");
+       put("net.blay09.mods.refinedrelocation.block.BlockSortingConnector", "getBoundingBox");
+    }};
 
     @Config.Comment(
             """

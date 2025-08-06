@@ -8,7 +8,6 @@
     "armourers_workshop.GlobalSkinLibraryUtilsMixin",
     "armourers_workshop.GlobalTaskMixin",
     "armourers_workshop.SkinTextureMixin",
-    "astralsorcery.PerkAttributeTypeMixin",
     "betterrecords.SoundManagerMixin",
     "carryon.ItemTileMixin",
     "charset.ColorspacesMixin",
@@ -22,8 +21,6 @@
     "gregtech.GTRecipeInputCacheMixin",
     "hammercore.ReflectionUtilMixin",
     "howlingmoon.WerewolfCapabilityMixin",
-    "incontrol.CachePerWorldMixin",
-    "infinitylib.BakedInfBlockModelMixin",
     "litematica.ChunkRenderWorkerLitematicaMixin",
     "mage.ColorspacesMixin",
     "minecraftmultipartcbe.ASMMixinCompilerMixin",
@@ -32,24 +29,21 @@
     "projectred_core.WirePropagatorMixin",
     "reccomplex.NBTToJsonMixin",
     "reccomplex.WorldgenMonitorMixin",
-    "refinedrelocation.BlockSortingConnectorMixin",
     "refinedstorage.OperatorMixin",
     "solarflux.INetworkSFMixin",
     "solarflux.SolarFluxMixin",
     "subaquatic.IBubbleColumnMixin",
     "unilib.FileUtilsMixin",
     "waterpower.ClassEngineMixin",
-    "wirelessutils.ModelBlockWrapperMixin",
     "xaeroplus.ChunkHighlightSavingCacheMixin",
     "xaeroplus.XaeroPlusSettingsReflectionHaxMixin"
   ],
   "client": [
     "custommainmenu.SlideshowMixin",
-    "extrautils2.XUBlockStatic$3Mixin",
     "jei.RecipesGuiMixin",
     "lockdown.GuiMainMenuTweakedMixin",
     "mcjty.AbstractContainerWidgetMixin",
     "mcjty.SliderMixin"
   ],
-  "minVersion": "0.8"
+  "minVersion": "0.8.7"
 }

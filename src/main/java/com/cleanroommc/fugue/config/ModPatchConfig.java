@@ -85,8 +85,6 @@ public class ModPatchConfig {
     public boolean enableReplayMod = true;
     @Config.Name("Fix Thaumic Speedup Loader")
     public boolean fixTahumicSpeedup = true;
-    @Config.Name("Enable Astral Sorcery Patch")
-    public boolean enableAstralSorcery = true;
     @Config.Name("Enable Armourer's Workshop Patch")
     public boolean enableArmourersWorkshop = true;
     @Config.Name("Enable Vampirism Patch")
@@ -95,8 +93,6 @@ public class ModPatchConfig {
     public boolean enableMage = true;
     @Config.Name("Enable Extra Utilities Patch")
     public boolean enableExtraUtilities = true;
-    @Config.Name("Enable In Control! Patch")
-    public boolean enableInControl = true;
     @Config.Name("Enable More Refined Storage Patch")
     public boolean enableMoreRefinedStorage = true;
     @Config.Name("Enable HEI Patch (temporary)")
@@ -110,8 +106,6 @@ public class ModPatchConfig {
     public boolean enableEars = true;
     @Config.Name("Enable Colytra Patch")
     public boolean enableColytra = true;
-    @Config.Name("Enable InfinityLib Patch")
-    public boolean enableInfLib = true;
     @Config.Name("Enable Crossbow(jbredwards) Patch")
     public boolean enableCrossbow = true;
     @Config.Name("Enable Patch to PolyForst mods")
@@ -126,8 +120,6 @@ public class ModPatchConfig {
     public boolean enableBetterRecords = true;
     @Config.Name("Enable Aqua Acrobatics Patch")
     public boolean enableAquaAcrobatics = true;
-    @Config.Name("Enable Refined Relocation 2 Patach")
-    public boolean enableRefinedRelocation2Patch = true;
     @Config.Name("Enable Integrated Proxy Patch")
     public boolean enableIntegratedProxyPatch = true;
     @Config.Name("Enable Thaumic Fixes Patch")
@@ -193,6 +185,4 @@ public class ModPatchConfig {
     public boolean enableUnvalkyriedHeavens = true;
     @Config.Name("Enable Mo'Bends Patch")
     public boolean enableMoBends = true;
-    @Config.Name("Enable Wireless Utilities Patch")
-    public boolean enableWirelessUtilities = true;
 }
