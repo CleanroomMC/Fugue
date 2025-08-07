@@ -22,9 +22,9 @@ public class AddFutureCallbackTransformer implements IExplicitTransformer {
     public byte[] transform(byte[] bytes) {
         ClassReader reader = new ClassReader(bytes);
         ClassNode classNode = new ClassNode();
+        reader.accept(classNode, 0);
         Set<String> methods =
                 Set.of(targets.get(classNode.name.replace('/', '.')).split("\\|"));
-        reader.accept(classNode, 0);
         classNode.methods.stream()
                 .filter(methodNode -> methods.contains(methodNode.name))
                 .forEach(methodNode -> methodNode.instructions.forEach(abstractInsnNode -> {
