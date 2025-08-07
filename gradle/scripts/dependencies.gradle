@@ -83,7 +83,7 @@ dependencies {
     modImplementation "curse.maven:gtceu-557242:5050979"
 
     //The ASM
-    modImplementation "curse.maven:the-asm-460609:5120166"
+    modImplementation "curse.maven:lolasm-460609:6854259"
 
     //mcjty
     modImplementation "curse.maven:mcjty-233105:2745846"
