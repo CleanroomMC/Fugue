@@ -1,14 +1,8 @@
 package com.cleanroommc.fugue.common;
 
 import com.cleanroommc.fugue.config.FugueConfig;
-import com.cleanroommc.fugue.modifiers.DJ2AddonsFixer;
-import com.cleanroommc.fugue.modifiers.DJ2PhaseFixer;
-import com.cleanroommc.fugue.modifiers.IC2ExtraFixer;
 import com.cleanroommc.fugue.transformer.advancedrocket.ClassTransformerTransformer;
 import com.cleanroommc.fugue.transformer.betterfc.HK_LoaderTransformer;
-import com.cleanroommc.fugue.transformer.betterhurttimer.DamageSpecialArmorMixinTransformer;
-import com.cleanroommc.fugue.transformer.betterportals.MixinEntityRendererTransformer;
-import com.cleanroommc.fugue.transformer.betterportals.ExtensionKtTransformer;
 import com.cleanroommc.fugue.transformer.calculator.GuiInfoCalculatorTransformer;
 import com.cleanroommc.fugue.transformer.colytra.EntityLivingBaseTransformer;
 import com.cleanroommc.fugue.transformer.corpse.MessageOpenHistoryTransformer;
@@ -47,10 +41,6 @@ import com.cleanroommc.fugue.transformer.mobends.ConnectionHelperTransformation;
 import com.cleanroommc.fugue.transformer.moreplayermodels.ClientEventHandlerTransformer;
 import com.cleanroommc.fugue.transformer.moresoundconfig.SoundDevicesTransformer;
 import com.cleanroommc.fugue.transformer.nbtperipheral.LinkedTreeMapTransformer;
-import com.cleanroommc.fugue.transformer.nothirium.BufferBuilderTransformer;
-import com.cleanroommc.fugue.transformer.nothirium.FreeSectorManagerTransformer;
-import com.cleanroommc.fugue.transformer.nothirium.MixinBufferBuilderTransformer;
-import com.cleanroommc.fugue.transformer.nothirium.NothiriumClassTransformerTransformer;
 import com.cleanroommc.fugue.transformer.offlineskins.ObfHelperTransformer;
 import com.cleanroommc.fugue.transformer.offlineskins.OfflineskinsTransformersTransformer;
 import com.cleanroommc.fugue.transformer.offlineskins.SetupTransformer;
@@ -75,8 +65,6 @@ import com.cleanroommc.fugue.transformer.vampirism.TConstructBloodConversionTran
 import com.cleanroommc.fugue.transformer.vampirism.WorldGenVampireOrchidTransformer;
 import com.cleanroommc.fugue.transformer.xnet.EnergyConnectorSettingsTransformer;
 import com.cleanroommc.fugue.transformer.zerocore.DisplayListTransformer;
-import org.spongepowered.asm.mixin.transformer.Config;
-import org.spongepowered.asm.service.mojang.MixinServiceLaunchWrapper;
 import top.outlands.foundation.TransformerDelegate;
 import top.outlands.foundation.boot.ActualClassLoader;
 
@@ -229,25 +217,6 @@ public class TransformerHelper {
                     "net.minecraft.world.gen.layer.GenLayer"
             );
         }
-        if (FugueConfig.modPatchConfig.enableNothirium){
-            TransformerDelegate.registerExplicitTransformer(
-                    new NothiriumClassTransformerTransformer(),
-                    "meldexun.nothirium.mc.asm.NothiriumClassTransformer"
-            );
-            MixinServiceLaunchWrapper.registerMixinClassTransformer(
-                    new MixinBufferBuilderTransformer(),
-                    "meldexun.nothirium.mc.mixin.vertex.MixinBufferBuilder"
-            );
-            TransformerDelegate.registerExplicitTransformer(
-                    new BufferBuilderTransformer(),
-                    "net.minecraft.client.renderer.BufferBuilder"
-            );
-            TransformerDelegate.registerExplicitTransformer(
-                    new FreeSectorManagerTransformer(),
-                    "meldexun.nothirium.util.FreeSectorManager$AVL",
-                    "meldexun.nothirium.util.FreeSectorManager$RB"
-            );
-        }
         if (FugueConfig.modPatchConfig.enableGroovyScript) {
             TransformerDelegate.registerExplicitTransformer(
                     new GroovyClassLoaderTransformer(),
@@ -263,10 +232,6 @@ public class TransformerHelper {
             );
         }
         if (FugueConfig.modPatchConfig.enableIC2CE) {
-            Config.registerConfigModifier(
-                    new IC2ExtraFixer(),
-                    "mixins.ic2c_extras.json"
-            );
             TransformerDelegate.registerExplicitTransformer(
                     new Ic2cExtrasLoadingPluginTransformer(),
                     "trinsdar.ic2c_extras.asm.Ic2cExtrasLoadingPlugin"
@@ -381,19 +346,6 @@ public class TransformerHelper {
                     "sonar.calculator.mod.client.gui.calculators.GuiInfoCalculator"
             );
         }
-        if (FugueConfig.modPatchConfig.enableBetterPortals) {
-            MixinServiceLaunchWrapper.registerMixinClassTransformer(
-                    new MixinEntityRendererTransformer(),
-                    "de.johni0702.minecraft.view.impl.mixin.MixinEntityRenderer_NoOF",
-                    "de.johni0702.minecraft.view.impl.mixin.MixinEntityRenderer_OF"
-            );
-            TransformerDelegate.registerExplicitTransformer(
-                    new ExtensionKtTransformer(),
-                    "de.johni0702.minecraft.betterportals.impl.transition.common.ExtensionsKt",
-                    "de.johni0702.minecraft.betterportals.impl.common.ExtensionsKt",
-                    "de.johni0702.minecraft.view.impl.common.ExtensionsKt"
-            );
-        }
         if (FugueConfig.modPatchConfig.enableEssential) {
             TransformerDelegate.registerExplicitTransformer(
                 new EssentialSetupTweakerTransformer(),
@@ -422,14 +374,6 @@ public class TransformerHelper {
             );
         }
         if (FugueConfig.modPatchConfig.enableDivineJourney2Addons) {
-            Config.registerConfigModifier(
-                    new DJ2AddonsFixer(),
-                    "mixins.dj2addons.init.json"
-            );
-            Config.registerConfigModifier(
-                    new DJ2PhaseFixer(),
-                    "mixins.dj2addons.json"
-            );
             TransformerDelegate.registerExplicitTransformer(
                     new DJ2AddonsCoreTransformer(),
                     "org.btpos.dj2addons.core.DJ2AddonsCore"
@@ -481,12 +425,6 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(
                     new ScreenshotViewerTransformer(),
                     "io.github.lgatodu47.screenshot_viewer.ScreenshotViewer$ScreenshotViewerEvents"
-            );
-        }
-        if (FugueConfig.modPatchConfig.enableWorseHurtTime) {
-            MixinServiceLaunchWrapper.registerMixinClassTransformer(
-                    new DamageSpecialArmorMixinTransformer(),
-                    "arekkuusu.betterhurttimer.mixin.DamageSpecialArmorMixin"
             );
         }
         if (FugueConfig.modPatchConfig.enableInvTweaks) {

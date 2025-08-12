@@ -71,8 +71,6 @@ public class ModPatchConfig {
     public boolean enableWaterPower = true;
     @Config.Name("Enable Subaquatic Patch")
     public boolean enableSubaquatic = true;
-    @Config.Name("Enable Nothirium Patch")
-    public boolean enableNothirium = true;
     @Config.Name("Enable GroovyScript Patch")
     public boolean enableGroovyScript = true;
     @Config.Name("Enable IC2C Extra Patch")
@@ -131,8 +129,6 @@ public class ModPatchConfig {
     @Config.Comment("This patches the CraftPresence spam log")
     @Config.Name("Enable Unilib Patch")
     public boolean enableUnilib = true;
-    @Config.Name("Enable BetterPortals Patch")
-    public boolean enableBetterPortals = true;
     @Config.Name("Enable Essential Patch")
     public boolean enableEssential = true;
     @Config.Comment("Only use with dj2addons 1.2.1.1 or lower")

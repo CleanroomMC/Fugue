@@ -5,8 +5,6 @@ import net.minecraftforge.common.config.Config;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Config(modid = Reference.MOD_ID, name = Reference.MOD_ID)
 @Config.RequiresMcRestart
