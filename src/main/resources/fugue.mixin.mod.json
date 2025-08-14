@@ -2,6 +2,7 @@
   "required": true,
   "package": "com.cleanroommc.fugue.mixin",
   "compatibilityLevel": "JAVA_8",
+  "plugin": "com.cleanroommc.fugue.common.FugueMixinConfigPlugin",
   "target": "@env(MOD)",
   "mixins": [
     "armourers_workshop.SkinTextureMixin",
