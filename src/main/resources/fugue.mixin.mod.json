@@ -3,7 +3,6 @@
   "package": "com.cleanroommc.fugue.mixin",
   "compatibilityLevel": "JAVA_8",
   "target": "@env(MOD)",
-  "plugin": "com.cleanroommc.fugue.common.FugueMixinConfigPlugin",
   "mixins": [
     "armourers_workshop.SkinTextureMixin",
     "betterrecords.SoundManagerMixin",

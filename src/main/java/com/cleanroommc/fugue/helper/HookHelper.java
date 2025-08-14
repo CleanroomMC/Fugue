@@ -76,7 +76,7 @@ public class HookHelper {
         }
     }
 
-    public static InputStream open(URL instance) throws IOException {
+    public static InputStream openStream(URL instance) throws IOException {
         throw new IOException("Connection blocked by Fugue!");
     }
 
