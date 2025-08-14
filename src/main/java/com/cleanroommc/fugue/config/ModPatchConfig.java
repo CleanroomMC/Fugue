@@ -179,4 +179,7 @@ public class ModPatchConfig {
     public boolean enableUnvalkyriedHeavens = true;
     @Config.Name("Enable Mo'Bends Patch")
     public boolean enableMoBends = true;
+    @Config.Name("Enable Aether II Patch")
+    @Config.Comment("Using Apache http4 for game analytics. The URL is shutdown now so just removed it.")
+    public boolean enableAetherII = true;
 }
