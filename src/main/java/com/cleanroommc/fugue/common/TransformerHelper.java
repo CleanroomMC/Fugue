@@ -531,24 +531,23 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(
                     new RemapSunReflectionTransformer(), FugueConfig.remapReflectionTargets);
         }
-        if (FugueConfig.mouseWheelPatchTargets.length > 0) {
-            TransformerDelegate.registerExplicitTransformer(
-                    new DWheelTransformer(), FugueConfig.mouseWheelPatchTargets);
-        }
         if (!FugueConfig.finalRemovingTargets.isEmpty()) {
             TransformerDelegate.registerExplicitTransformer(
                     new FinalStripperTransformer(FugueConfig.finalRemovingTargets),
                     FugueConfig.finalRemovingTargets.keySet().toArray(new String[0]));
         }
-        if (!FugueConfig.computeIfAbsentTargets.isEmpty()) {
+        if (FugueConfig.computeIfAbsentTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformer(
-                    new ComputeIfAbsentTransformer(FugueConfig.computeIfAbsentTargets),
-                    FugueConfig.computeIfAbsentTargets.keySet().toArray(new String[0]));
+
+                    new ComputeIfAbsentTransformer(),
+                    FugueConfig.computeIfAbsentTargets
+            );
         }
-        if (!FugueConfig.addFutureCallbackTargets.isEmpty()) {
+        if (FugueConfig.addFutureCallbackTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformer(
-                    new AddFutureCallbackTransformer(FugueConfig.addFutureCallbackTargets),
-                    FugueConfig.addFutureCallbackTargets.keySet().toArray(new String[0]));
+                    new AddFutureCallbackTransformer(),
+                    FugueConfig.addFutureCallbackTargets
+            );
         }
     }
 }

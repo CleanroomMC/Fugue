@@ -1,84 +1,107 @@
 package com.cleanroommc.fugue.transformer.universal;
 
 import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;
 import top.outlands.foundation.IExplicitTransformer;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ReflectFieldTransformer implements IExplicitTransformer {
 
     private static final String OUR_REFLECTION_CLASS = "com/cleanroommc/hackery/ReflectionHackery";
 
-    private static void replaceInstruction(InsnList insnList, MethodInsnNode oldNode, String methodName, String methodDescriptor)
-    {
-        insnList.set(oldNode, new MethodInsnNode(Opcodes.INVOKESTATIC, OUR_REFLECTION_CLASS, methodName, methodDescriptor));
+    @Override
+    public byte[] transform(byte[] bytes) {
+        ClassReader reader = new ClassReader(bytes);
+        ClassWriter writer = new ClassWriter(0);
+        CV cv = new CV(writer);
+        reader.accept(cv, 0);
+        return writer.toByteArray();
     }
 
+    private static class CV extends ClassVisitor {
+        public CV(ClassVisitor cv) {
+            super(Opcodes.ASM9, cv);
+        }
 
-    @Override
-    public byte[] transform(byte[] bytes)
-    {
+        public void visit(
+                final int version,
+                final int access,
+                final String name,
+                final String signature,
+                final String superName,
+                final String[] interfaces) {
+            if (cv != null) {
+                cv.visit(version, access, name, signature, superName, interfaces);
+            }
+        }
 
-        ClassNode classNode = new ClassNode();
-        ClassReader classReader = new ClassReader(bytes);
-        classReader.accept(classNode, 0);
-        if (classNode.methods != null)
-        {
-            for (MethodNode methodNode : classNode.methods)
+        @Override
+        public MethodVisitor visitMethod(
+                final int access,
+                final String name,
+                final String descriptor,
+                final String signature,
+                final String[] exceptions) {
+            MethodVisitor mv;
+            mv = cv.visitMethod(access, name, descriptor, signature, exceptions);
+            if (mv != null) {
+                mv = new MV(mv);
+            }
+            return mv;
+        }
+    }
+
+    private static class MV extends MethodVisitor {
+        private final Map<String, String> primitiveMap = new HashMap<>() {
             {
-                InsnList instructions = methodNode.instructions;
-                if (instructions != null) {
-                    for (AbstractInsnNode insnNode : instructions) {
-                        if (insnNode.getOpcode() == Opcodes.INVOKEVIRTUAL && insnNode instanceof MethodInsnNode methodInsnNode) {
-                            if ("java/lang/reflect/Field".equals(methodInsnNode.owner)) {
-                                switch (methodInsnNode.name) {
-                                    case "set" ->
-                                            replaceInstruction(instructions, methodInsnNode, "setField", "(Ljava/lang/reflect/Field;Ljava/lang/Object;Ljava/lang/Object;)V");
-                                    case "get" ->
-                                            replaceInstruction(instructions, methodInsnNode, "getField", "(Ljava/lang/reflect/Field;Ljava/lang/Object;)Ljava/lang/Object;");
-                                    case "setBoolean" ->
-                                            replaceInstruction(instructions, methodInsnNode, "setBooleanField", "(Ljava/lang/reflect/Field;Ljava/lang/Object;Z)V");
-                                    case "getBoolean" ->
-                                            replaceInstruction(instructions, methodInsnNode, "getBooleanField", "(Ljava/lang/reflect/Field;Ljava/lang/Object;)Z");
-                                    case "setByte" ->
-                                            replaceInstruction(instructions, methodInsnNode, "setByteField", "(Ljava/lang/reflect/Field;Ljava/lang/Object;B)V");
-                                    case "getByte" ->
-                                            replaceInstruction(instructions, methodInsnNode, "getByteField", "(Ljava/lang/reflect/Field;Ljava/lang/Object;)B");
-                                    case "setChar" ->
-                                            replaceInstruction(instructions, methodInsnNode, "setCharField", "(Ljava/lang/reflect/Field;Ljava/lang/Object;C)V");
-                                    case "getChar" ->
-                                            replaceInstruction(instructions, methodInsnNode, "getCharField", "(Ljava/lang/reflect/Field;Ljava/lang/Object;)C");
-                                    case "setShort" ->
-                                            replaceInstruction(instructions, methodInsnNode, "setShortField", "(Ljava/lang/reflect/Field;Ljava/lang/Object;S)V");
-                                    case "getShort" ->
-                                            replaceInstruction(instructions, methodInsnNode, "getShortField", "(Ljava/lang/reflect/Field;Ljava/lang/Object;)S");
-                                    case "setInt" ->
-                                            replaceInstruction(instructions, methodInsnNode, "setIntField", "(Ljava/lang/reflect/Field;Ljava/lang/Object;I)V");
-                                    case "getInt" ->
-                                            replaceInstruction(instructions, methodInsnNode, "getIntField", "(Ljava/lang/reflect/Field;Ljava/lang/Object;)I");
-                                    case "setLong" ->
-                                            replaceInstruction(instructions, methodInsnNode, "setLongField", "(Ljava/lang/reflect/Field;Ljava/lang/Object;J)V");
-                                    case "getLong" ->
-                                            replaceInstruction(instructions, methodInsnNode, "getLongField", "(Ljava/lang/reflect/Field;Ljava/lang/Object;)J");
-                                    case "setFloat" ->
-                                            replaceInstruction(instructions, methodInsnNode, "setFloatField", "(Ljava/lang/reflect/Field;Ljava/lang/Object;F)V");
-                                    case "getFloat" ->
-                                            replaceInstruction(instructions, methodInsnNode, "getFloatField", "(Ljava/lang/reflect/Field;Ljava/lang/Object;)F");
-                                    case "setDouble" ->
-                                            replaceInstruction(instructions, methodInsnNode, "setDoubleField", "(Ljava/lang/reflect/Field;Ljava/lang/Object;D)V");
-                                    case "getDouble" ->
-                                            replaceInstruction(instructions, methodInsnNode, "getDoubleField", "(Ljava/lang/reflect/Field;Ljava/lang/Object;)D");
-                                }
-                            }
-                        }
+                put("Boolean", "Z");
+                put("Byte", "B");
+                put("Char", "C");
+                put("Short", "S");
+                put("Int", "I");
+                put("Long", "J");
+                put("Float", "F");
+                put("Double", "D");
+            }
+        };
+
+        public MV(MethodVisitor mv) {
+            super(Opcodes.ASM9, mv);
+        }
+
+        public void visitMethodInsn(
+                final int opcode,
+                final String owner,
+                final String name,
+                final String descriptor,
+                final boolean isInterface) {
+            if (mv != null) {
+                if (owner.equals("java/lang/reflect/Field")
+                        && (name.startsWith("set") || name.startsWith("get"))
+                        && (name.length() == 3 || primitiveMap.containsKey(name.substring(3)))) {
+                    String newName = name + "Field";
+                    String newDesc;
+                    if (name.length() == 3) {
+                        newDesc = "Ljava/lang/Object;";
+                    } else {
+                        newDesc = primitiveMap.get(name.substring(3));
                     }
+                    if (name.startsWith("s")) {
+                        newDesc = "(Ljava/lang/reflect/Field;Ljava/lang/Object;" + newDesc + ")V";
+                    } else {
+                        newDesc = "(Ljava/lang/reflect/Field;Ljava/lang/Object;)" + newDesc;
+                    }
+                    mv.visitMethodInsn(Opcodes.INVOKESTATIC, OUR_REFLECTION_CLASS, newName, newDesc, false);
+                } else {
+                    mv.visitMethodInsn(opcode, owner, name, descriptor, isInterface);
                 }
             }
         }
-        ClassWriter classWriter = new ClassWriter(0);
-
-        classNode.accept(classWriter);
-        return classWriter.toByteArray();
     }
 }

@@ -225,27 +225,6 @@ public class FugueConfig {
         "gg.essential.main.Bootstrap"
     };
 
-    @Config.Comment(
-            """
-            Used when mouse wheel related operation being weird.
-            Classes in this list will get their Mouse.getDWheel() and Mouse.getEventDWheel() redirected.
-            Consult Cleanroom developers before using it!
-            """)
-    @Config.Name("Mouse.getEventDWheel() Patching List")
-    public static String[] mouseWheelPatchTargets = new String[] {
-        "mekanism.client.ClientTickHandler",
-        "journeymap.client.ui.fullscreen.Fullscreen",
-        "xaero.map.gui.ScreenBase",
-        "xaero.map.gui.GuiMap",
-        "betterquesting.api2.client.gui.GuiContainerCanvas",
-        "betterquesting.api2.client.gui.GuiScreenCanvas",
-        "yalter.mousetweaks.MouseState",
-        "yalter.mousetweaks.SimpleMouseState",
-        "com.feed_the_beast.ftblib.lib.gui.GuiWrapper",
-        "com.feed_the_beast.ftblib.lib.gui.GuiContainerWrapper",
-        "com.github.terminatornl.laggoggles.client.gui.GuiProfile",
-    };
-
     @Config.Comment("Use this when you encountered ClassCircularityError.")
     @Config.Name("Extra Transform Exclusion")
     public static String[] extraTransformExclusions = new String[] {
@@ -255,33 +234,27 @@ public class FugueConfig {
     @Config.Comment(
             "Newer Java now has concurrent check in this method. Should be rare so normally you don't need to modify this.")
     @Config.Name("computeIfAbsent Patching List")
-    public static Map<String, String> computeIfAbsentTargets = new HashMap<>() {
-        {
-            put(
-                    "hellfirepvp.astralsorcery.common.constellation.perk.attribute.PerkAttributeType",
-                    "onApply|onRemove|hasTypeApplied");
-            put("com.rwtema.extrautils2.backend.XUBlockStatic$3", "getQuads");
-            put("mcjty.incontrol.rules.RuleCache$CachePerWorld", "count");
-            put("com.lordmau5.repack.net.covers1624.model.LayeredTemplateModel$ModelBlockWrapper", "load");
-            put("com.infinityraider.infinitylib.render.block.BakedInfBlockModel", "getQuads");
-            put("net.blay09.mods.refinedrelocation.block.BlockSortingConnector", "getBoundingBox");
-        }
+    public static String[] computeIfAbsentTargets = new String[] {
+        "hellfirepvp.astralsorcery.common.constellation.perk.attribute.PerkAttributeType",
+        "com.rwtema.extrautils2.backend.XUBlockStatic$3",
+        "mcjty.incontrol.rules.RuleCache$CachePerWorld",
+        "com.lordmau5.repack.net.covers1624.model.LayeredTemplateModel$ModelBlockWrapper",
+        "com.infinityraider.infinitylib.render.block.BakedInfBlockModel",
+        "net.blay09.mods.refinedrelocation.block.BlockSortingConnector",
     };
 
     @Config.Comment(
             "Guava now use a new method with a different desc. Should be rare so normally you don't need to modify this.")
-    @Config.Name("computeIfAbsent Patching List")
-    public static Map<String, String> addFutureCallbackTargets = new HashMap<>() {
-        {
-            put("moe.plushie.armourers_workshop.common.library.global.GlobalSkinLibraryUtils", "getUserInfo");
-            put("moe.plushie.armourers_workshop.common.library.global.task.GlobalTask", "createTask|createTaskAndRun");
-            put("com.rwtema.extrautils2.transfernodes.TileIndexer", "reload");
-            put("com.rwtema.extrautils2.transfernodes.TransferNodeEnergy", "update");
-            put("fi.dy.masa.litematica.render.schematic.ChunkRenderWorkerLitematica", "processTask");
-            put("com.replaymod.simplepathing.gui.GuiPathing", "keyframeRepoButtonPressed|loadEntityTracker");
-            put("com.replaymod.simplepathing.gui.GuiPathing$10", "run");
+    @Config.Name("Futures.addCallback Patching List")
+    public static String[] addFutureCallbackTargets = new String[] {
+            "moe.plushie.armourers_workshop.common.library.global.GlobalSkinLibraryUtils",
+            "moe.plushie.armourers_workshop.common.library.global.task.GlobalTask",
+            "com.rwtema.extrautils2.transfernodes.TileIndexer",
+            "com.rwtema.extrautils2.transfernodes.TransferNodeEnergy",
+            "fi.dy.masa.litematica.render.schematic.ChunkRenderWorkerLitematica",
+            "com.replaymod.simplepathing.gui.GuiPathing",
+            "com.replaymod.simplepathing.gui.GuiPathing$10",
 
-        }
     };
 
     @Config.Comment(

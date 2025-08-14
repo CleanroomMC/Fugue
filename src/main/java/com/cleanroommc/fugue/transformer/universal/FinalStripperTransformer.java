@@ -2,7 +2,10 @@ package com.cleanroommc.fugue.transformer.universal;
 
 import com.cleanroommc.fugue.common.Fugue;
 import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.FieldVisitor;
+import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;
 import top.outlands.foundation.IExplicitTransformer;
@@ -16,23 +19,56 @@ public class FinalStripperTransformer implements IExplicitTransformer {
     }
     @Override
     public byte[] transform(byte[] bytes) {
-        ClassNode classNode = new ClassNode();
-        ClassReader classReader = new ClassReader(bytes);
-        classReader.accept(classNode, 0);
-        Set<String> fields = Set.of(targets.get(classNode.name.replace('/', '.')).split("\\|"));
-        if (classNode.methods != null)
-        {
-            for (FieldNode fieldNode : classNode.fields)
-            {
-                if (fields.contains(fieldNode.name)) {
-                    fieldNode.access &= ~Opcodes.ACC_FINAL;
-                    Fugue.LOGGER.debug("Stripping final modifier of {} from {}", fieldNode.name, classNode.name.replace('/', '.'));
-                }
+        ClassReader reader = new ClassReader(bytes);
+        ClassWriter writer = new ClassWriter(0);
+        CV cv = new CV(writer);
+        reader.accept(cv, 0);
+        return writer.toByteArray();
+    }
+
+    private class CV extends ClassVisitor {
+
+        private Set<String> fields;
+        private String className;
+
+        public CV(ClassVisitor cv) {
+            super(Opcodes.ASM9, cv);
+        }
+
+        @Override
+        public void visit(
+                final int version,
+                final int access,
+                final String name,
+                final String signature,
+                final String superName,
+                final String[] interfaces) {
+            String outerName = name.replace('/', '.');
+            if (targets.containsKey(outerName)) {
+                fields = Set.of(targets.get(outerName.replace('/', '.')).split("\\|"));
+                className = outerName;
+            }
+            if (cv != null) {
+                cv.visit(version, access, name, signature, superName, interfaces);
             }
         }
-        ClassWriter classWriter = new ClassWriter(0);
 
-        classNode.accept(classWriter);
-        return classWriter.toByteArray();
+        @Override
+        public FieldVisitor visitField(
+                final int access,
+                final String name,
+                final String descriptor,
+                final String signature,
+                final Object value) {
+            if (cv != null) {
+                if (fields.contains(name)) {
+                    Fugue.LOGGER.debug("Stripping final modifier of {} from {}", name, className.replace('/', '.'));
+                    return cv.visitField(access & ~Opcodes.ACC_FINAL, name, descriptor, signature, value);
+                }
+                return cv.visitField(access, name, descriptor, signature, value);
+            }
+            return null;
+        }
+
     }
 }
