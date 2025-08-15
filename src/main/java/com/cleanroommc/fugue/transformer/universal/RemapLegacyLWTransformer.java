@@ -31,18 +31,6 @@ public class RemapLegacyLWTransformer implements IExplicitTransformer {
             super(Opcodes.ASM9, cv);
         }
 
-        public void visit(
-                final int version,
-                final int access,
-                final String name,
-                final String signature,
-                final String superName,
-                final String[] interfaces) {
-            if (cv != null) {
-                cv.visit(version, access, name, signature, superName, interfaces);
-            }
-        }
-
         @Override
         public MethodVisitor visitMethod(
                 final int access,
@@ -73,7 +61,7 @@ public class RemapLegacyLWTransformer implements IExplicitTransformer {
                 final boolean isInterface) {
             if (mv != null) {
                 if (owner.equals("net/minecraft/launchwrapper/LaunchClassLoader")) {
-                    mv.visitMethodInsn(opcode, "com/cleanroommc/hackery/Reflection", name, descriptor, isInterface);
+                    mv.visitMethodInsn(opcode, "top/outlands/foundation/boot/ActualClassLoader", name, descriptor, isInterface);
                 } else if (owner.equals("java/lang/Class") && (name.equals("getDeclaredField") || name.equals("getField"))) {
                     mv.visitMethodInsn(Opcodes.INVOKESTATIC, "com/cleanroommc/fugue/helper/HookHelper", "getField", "(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/reflect/Field;", false);
                 } else {

@@ -29,18 +29,6 @@ public class ReflectFieldTransformer implements IExplicitTransformer {
             super(Opcodes.ASM9, cv);
         }
 
-        public void visit(
-                final int version,
-                final int access,
-                final String name,
-                final String signature,
-                final String superName,
-                final String[] interfaces) {
-            if (cv != null) {
-                cv.visit(version, access, name, signature, superName, interfaces);
-            }
-        }
-
         @Override
         public MethodVisitor visitMethod(
                 final int access,
