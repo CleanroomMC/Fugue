@@ -14,7 +14,7 @@ import java.util.ListIterator;
 // ]
 public class RandomTitleConfigManagerTransformer implements IExplicitTransformer {
     @Override
-    public byte[] transform(byte[] cls) {
+    public byte[] transform(byte[] cls){
         var classReader = new ClassReader(cls);
         var classNode = new ClassNode();
         classReader.accept(classNode, 0);
@@ -23,7 +23,7 @@ public class RandomTitleConfigManagerTransformer implements IExplicitTransformer
             if ("getTitleFromHitokoto".equals(methodNode.name)) {
                 boolean started = false;
                 AbstractInsnNode endNode = null;
-                ListIterator<AbstractInsnNode> iterator = methodNode.instructions.iterator();
+                var iterator = methodNode.instructions.iterator();
                 while (iterator.hasNext()) {
                     if (iterator.next() instanceof MethodInsnNode methodInsnNode) {
                         if ("org/apache/http/impl/client/HttpClients".equals(methodInsnNode.owner) && "createDefault".equals(methodInsnNode.name) && "()Lorg/apache/http/impl/client/CloseableHttpClient;".equals(methodInsnNode.desc)) {
@@ -41,7 +41,7 @@ public class RandomTitleConfigManagerTransformer implements IExplicitTransformer
                 InsnList newCodes = new InsnList();
                 newCodes.add(new LdcInsnNode("https://v1.hitokoto.cn/"));
                 newCodes.add(new InsnNode(Opcodes.ICONST_0));
-                newCodes.add(new TypeInsnNode(Opcodes.ANEWARRAY, "Ljava/lang/String;"));
+                newCodes.add(new TypeInsnNode(Opcodes.ANEWARRAY, "java/lang/String"));
                 newCodes.add(new MethodInsnNode(Opcodes.INVOKESTATIC, "com/cleanroommc/fugue/helper/ConnectionHelper", "sendGetRequest", "(Ljava/lang/String;[Ljava/lang/String;)Ljava/lang/String;", false));
 
                 methodNode.instructions.insert(endNode, newCodes);
