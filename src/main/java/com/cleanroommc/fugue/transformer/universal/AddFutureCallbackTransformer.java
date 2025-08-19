@@ -3,9 +3,6 @@ package com.cleanroommc.fugue.transformer.universal;
 import org.objectweb.asm.*;
 import top.outlands.foundation.IExplicitTransformer;
 
-import java.util.Map;
-import java.util.Set;
-
 public class AddFutureCallbackTransformer implements IExplicitTransformer {
 
 
