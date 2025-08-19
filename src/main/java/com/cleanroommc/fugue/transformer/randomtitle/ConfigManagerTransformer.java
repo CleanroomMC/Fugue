@@ -7,8 +7,11 @@ import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.ConstantDynamic;
+import org.objectweb.asm.Handle;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
+import org.objectweb.asm.Type;
 import top.outlands.foundation.IExplicitTransformer;
 
 import java.util.ArrayList;
@@ -49,32 +52,31 @@ public class ConfigManagerTransformer implements IExplicitTransformer {
 
     private static class MV extends MethodVisitor {
         
-        private static int counter = 0;
-        
-        private static final List<Pair<String, String>> replaceMap = new ArrayList<>(){{
-            add(Pair.of("org/apache/http/client/methods/HttpGet", "org/apache/hc/client5/http/classic/methods/HttpGet"));
-            add(Pair.of("org/apache/http/impl/client/CloseableHttpClient", "org/apache/hc/client5/http/impl/classic/CloseableHttpClient"));
-            add(Pair.of("org/apache/http/client/methods/CloseableHttpResponse", "org/apache/hc/client5/http/impl/classic/CloseableHttpResponse"));
-            add(Pair.of("org/apache/http/impl/client/HttpClients", "org/apache/hc/client5/http/impl/classic/HttpClients"));
-            add(Pair.of("org/apache/http/util/EntityUtils", "org/apache/hc/core5/http/io/entity/EntityUtils"));
-            add(Pair.of("org/apache/http/HttpEntity", "org/apache/hc/core5/http/HttpEntity"));
-            add(Pair.of("org/apache/http/client/methods/HttpUriRequest", "org/apache/hc/core5/http/ClassicHttpRequest"));
-        }};
+        private static boolean remove = false;
+        private static boolean done = false;
         
         public MV(MethodVisitor mv) {
             super(Opcodes.ASM9, mv);
         }
 
         public void visitTypeInsn(final int opcode, final String type) {
-            if (mv != null) {
-                if (opcode == Opcodes.NEW && type.startsWith("org/apache/http")) {
-                    mv.visitTypeInsn(opcode, "org/apache/hc/client5/http/classic/methods/HttpGet");
-                } else {
-                    mv.visitTypeInsn(opcode, type);
-                }
+            if (mv != null && !remove) {
+                mv.visitTypeInsn(opcode, type);
             }
         }
 
+        public void visitLdcInsn(final Object value) {
+            if (mv != null && !remove) {
+                mv.visitLdcInsn(value);
+            }
+        }
+
+        public void visitInsn(final int opcode) {
+            if (mv != null && !remove) {
+                mv.visitInsn(opcode);
+            }
+        }
+        
         public void visitMethodInsn(
                 final int opcode,
                 final String owner,
@@ -82,22 +84,23 @@ public class ConfigManagerTransformer implements IExplicitTransformer {
                 final String descriptor,
                 final boolean isInterface) {
             if (mv != null) {
-                if (counter < 5 && owner.startsWith("org/apache/http")) {
-                    String newOwner = owner;
-                    String newDescriptor = descriptor;
-                    int newOpcode = opcode;
-                    if (newOpcode == Opcodes.INVOKEINTERFACE) {
-                        newOpcode = Opcodes.INVOKEVIRTUAL;
+                if (!done) {
+                    if (owner.equals("org/apache/http/util/EntityUtils")) {
+                        remove = false;
+                        done = true;
+                        mv.visitMethodInsn(Opcodes.INVOKESTATIC, "com/cleanroommc/fugue/helper/HookHelper", "getTitle", "()Ljava/lang/String;", false);
+                        return;
                     }
-                    for (Pair<String, String> pair : replaceMap) {
-                        newOwner = newOwner.replace(pair.getLeft(), pair.getRight());
-                        newDescriptor = newDescriptor.replace(pair.getLeft(), pair.getRight());
+                    if (remove) {
+                        return;
                     }
-                    mv.visitMethodInsn(newOpcode, newOwner, name, newDescriptor, false);
-                    counter++;
-                } else {
-                    mv.visitMethodInsn(opcode, owner, name, descriptor, isInterface);
+                    if (owner.equals("org/apache/http/impl/client/HttpClients")) {
+                        remove = true;
+                        return;
+                    }
                 }
+                mv.visitMethodInsn(opcode, owner, name, descriptor, isInterface);
+                
                 
             }
         }
