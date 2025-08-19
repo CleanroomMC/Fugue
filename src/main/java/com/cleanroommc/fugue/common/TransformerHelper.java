@@ -58,6 +58,7 @@ import com.cleanroommc.fugue.transformer.offlineskins.SetupTransformer;
 import com.cleanroommc.fugue.transformer.openmodlib.InjectorMethodVisitorTransformer;
 import com.cleanroommc.fugue.transformer.openmodlib.PlayerRendererHookVisitorTransformer;
 import com.cleanroommc.fugue.transformer.polyfrost.LaunchWrapperTweakerTransformer;
+import com.cleanroommc.fugue.transformer.randomtitle.ConfigManagerTransformer;
 import com.cleanroommc.fugue.transformer.saoui.HudTransformer;
 import com.cleanroommc.fugue.transformer.screenshot_viewer.ScreenshotViewerTransformer;
 import com.cleanroommc.fugue.transformer.shouldersurfing.EntityPlayerRayTraceTransformer;
@@ -471,6 +472,11 @@ public class TransformerHelper {
         if (FugueConfig.modPatchConfig.enableAetherII) {
             TransformerDelegate.registerExplicitTransformer(
                     new ClientProxyTransformer(), "com.gildedgames.aether.client.ClientProxy");
+        }
+        if (FugueConfig.modPatchConfig.enableRandomTitle) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new ConfigManagerTransformer(),
+                    "me.PercyDan.RandomTitle.ConfigManager");
         }
 
         // Common patches below
