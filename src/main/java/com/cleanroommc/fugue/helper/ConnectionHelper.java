@@ -57,7 +57,7 @@ public class ConnectionHelper
     {
         HashMap<String, String> params = new HashMap<>();
         for (int i = 0; i < args.length; i = i + 2) {
-            str.put(args[i], args[i+1]);
+            params.put(args[i], args[i+1]);
         }
         return sendGetRequest(url, params);
     }
@@ -93,7 +93,7 @@ public class ConnectionHelper
     public static <T> T sendGetRequest(URL url, Map<String, String> params, Class<T> responseClass) throws IOException, URISyntaxException, ParseException {
         String result = sendGetRequest(url, params);
         if (result != null) {
-            return INSTANCE.gson.fromJson(EntityUtils.toString(entity), responseClass);
+            return INSTANCE.gson.fromJson(result, responseClass);
         } else return null;
     }
 
