@@ -29,95 +29,23 @@ import java.util.HashMap;
 import java.net.MalformedURLException;
 import java.net.URI;
 
+// Redirect for Mo'Bends, Use ConnectionHelperInternal
 public class ConnectionHelper
 {
     public static ConnectionHelper INSTANCE = new ConnectionHelper();
-    private final CloseableHttpClient httpClient = HttpClients.createDefault();
-    private final Gson gson;
+   
+    private ConnectionHelper(){}
 
-    /**
-     * Makes it so we can't instantiate this class.
-     */
-    private ConnectionHelper()
-    {
-        GsonBuilder builder = new GsonBuilder();
-        builder.setPrettyPrinting();
-        builder.registerTypeAdapter(Color.class, new ColorAdapter());
-        builder.registerTypeAdapter(BindPoint.class, new BindPoint.Adapter());
-        builder.registerTypeAdapter(AssetLocation.class, new AssetLocation.Adapter());
-        this.gson = builder.create();
-    }
-
-    public Gson getGson()
-    {
-        return gson;
-    }
-
-    public static String sendGetRequest(String url, String... args) throws IOException, URISyntaxException, ParseException, MalformedURLException, URISyntaxException 
-    {
-        HashMap<String, String> params = new HashMap<>();
-        for (int i = 0; i < args.length; i = i + 2) {
-            params.put(args[i], args[i+1]);
-        }
-        return sendGetRequest(url, params);
-    }
-
-    public static String sendGetRequest(String url, Map<String, String> params) throws IOException, URISyntaxException, ParseException, MalformedURLException, URISyntaxException 
-    {
-        return sendGetRequest(new URI(url).toURL(), params);
-    }
-
-    public static String sendGetRequest(URL url, Map<String, String> params) throws IOException, URISyntaxException, ParseException
-    {
-        URIBuilder uriBuilder = new URIBuilder(url.toURI());
-        for (Map.Entry<String, String> entry : params.entrySet())
-        {
-            uriBuilder.addParameter(entry.getKey(), entry.getValue());
-        }
-
-        HttpGet request = new HttpGet(uriBuilder.build());
-
-        try (CloseableHttpResponse response = INSTANCE.httpClient.execute(request))
-        {
-            HttpEntity entity = response.getEntity();
-
-            if (entity != null) {
-                // return it as a String
-                return EntityUtils.toString(entity);
-            }
-        }
-
-        return null;
+    public Gson getGson() {
+        return ConnectionHelperInternal.INSTANCE.getGson();
     }
 
     public static <T> T sendGetRequest(URL url, Map<String, String> params, Class<T> responseClass) throws IOException, URISyntaxException, ParseException {
-        String result = sendGetRequest(url, params);
-        if (result != null) {
-            return INSTANCE.gson.fromJson(result, responseClass);
-        } else return null;
+        return ConnectionHelperInternal.sendGetRequest(url, params, responseClass);
     }
 
     public static <T> T sendPostRequest(URL url, JsonObject body, Class<T> responseClass) throws IOException
     {
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        connection.setRequestMethod("POST");
-        connection.setDoOutput(true);
-
-        byte[] out = (new Gson()).toJson(body).getBytes(StandardCharsets.UTF_8);
-        int length = out.length;
-
-        connection.setFixedLengthStreamingMode(length);
-        connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-        connection.connect();
-
-        try (OutputStream os = connection.getOutputStream())
-        {
-            os.write(out);
-        }
-
-        // Response
-        BufferedReader json = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-
-        return INSTANCE.gson.fromJson(json, responseClass);
+        return ConnectionHelperInternal.sendPostRequest(url, body, responseClass);
     }
 }

@@ -42,7 +42,7 @@ public class RandomTitleConfigManagerTransformer implements IExplicitTransformer
                 newCodes.add(new LdcInsnNode("https://v1.hitokoto.cn/"));
                 newCodes.add(new InsnNode(Opcodes.ICONST_0));
                 newCodes.add(new TypeInsnNode(Opcodes.ANEWARRAY, "java/lang/String"));
-                newCodes.add(new MethodInsnNode(Opcodes.INVOKESTATIC, "com/cleanroommc/fugue/helper/ConnectionHelper", "sendGetRequest", "(Ljava/lang/String;[Ljava/lang/String;)Ljava/lang/String;", false));
+                newCodes.add(new MethodInsnNode(Opcodes.INVOKESTATIC, "com/cleanroommc/fugue/helper/ConnectionHelperInternal", "sendGetRequest", "(Ljava/lang/String;[Ljava/lang/String;)Ljava/lang/String;", false));
 
                 methodNode.instructions.insert(endNode, newCodes);
                 methodNode.instructions.remove(endNode);
