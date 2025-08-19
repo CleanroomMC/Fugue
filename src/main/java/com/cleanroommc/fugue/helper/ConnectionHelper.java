@@ -53,7 +53,7 @@ public class ConnectionHelper
         return gson;
     }
 
-    public static String sendGetRequest(String url, String... args) throws IOException, URISyntaxException, ParseException, throws MalformedURLException, URISyntaxException 
+    public static String sendGetRequest(String url, String... args) throws IOException, URISyntaxException, ParseException, MalformedURLException, URISyntaxException 
     {
         HashMap<String, String> params = new HashMap<>();
         for (int i = 0; i < args.length; i = i + 2) {
@@ -62,7 +62,7 @@ public class ConnectionHelper
         return sendGetRequest(url, params);
     }
 
-    public static String sendGetRequest(String url, Map<String, String> params) throws IOException, URISyntaxException, ParseException, throws MalformedURLException, URISyntaxException 
+    public static String sendGetRequest(String url, Map<String, String> params) throws IOException, URISyntaxException, ParseException, MalformedURLException, URISyntaxException 
     {
         return sendGetRequest(new URI(url).toURL(), params);
     }
