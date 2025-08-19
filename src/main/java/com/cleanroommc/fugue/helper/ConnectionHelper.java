@@ -25,6 +25,9 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
+import java.util.HashMap;
+import java.net.MalformedURLException;
+import java.net.URI;
 
 public class ConnectionHelper
 {
@@ -50,10 +53,22 @@ public class ConnectionHelper
         return gson;
     }
 
-    public static <T> T sendGetRequest(URL url, Map<String, String> params, Class<T> responseClass) throws IOException, URISyntaxException, ParseException
+    public static String sendGetRequest(String url, String... args) throws IOException, URISyntaxException, ParseException, throws MalformedURLException, URISyntaxException 
     {
+        HashMap<String, String> params = new HashMap<>();
+        for (int i = 0; i < args.length; i = i + 2) {
+            str.put(args[i], args[i+1]);
+        }
+        return sendGetRequest(url, params);
+    }
 
+    public static String sendGetRequest(String url, Map<String, String> params) throws IOException, URISyntaxException, ParseException, throws MalformedURLException, URISyntaxException 
+    {
+        return sendGetRequest(new URI(url).toURL(), params);
+    }
 
+    public static String sendGetRequest(URL url, Map<String, String> params) throws IOException, URISyntaxException, ParseException
+    {
         URIBuilder uriBuilder = new URIBuilder(url.toURI());
         for (Map.Entry<String, String> entry : params.entrySet())
         {
@@ -68,11 +83,18 @@ public class ConnectionHelper
 
             if (entity != null) {
                 // return it as a String
-                return INSTANCE.gson.fromJson(EntityUtils.toString(entity), responseClass);
+                return EntityUtils.toString(entity);
             }
         }
 
         return null;
+    }
+
+    public static <T> T sendGetRequest(URL url, Map<String, String> params, Class<T> responseClass) throws IOException, URISyntaxException, ParseException {
+        String result = sendGetRequest(url, params);
+        if (result != null) {
+            return INSTANCE.gson.fromJson(EntityUtils.toString(entity), responseClass);
+        } else return null;
     }
 
     public static <T> T sendPostRequest(URL url, JsonObject body, Class<T> responseClass) throws IOException

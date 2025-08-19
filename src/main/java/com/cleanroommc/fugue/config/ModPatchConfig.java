@@ -183,4 +183,6 @@ public class ModPatchConfig {
     public boolean enableUnvalkyriedHeavens = true;
     @Config.Name("Enable Mo'Bends Patch")
     public boolean enableMoBends = true;
+    @Config.Name("Enable Random Title Patch")
+    public boolean enableRandomTitle = true;
 }

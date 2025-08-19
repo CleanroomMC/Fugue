@@ -57,6 +57,7 @@ import com.cleanroommc.fugue.transformer.offlineskins.SetupTransformer;
 import com.cleanroommc.fugue.transformer.openmodlib.InjectorMethodVisitorTransformer;
 import com.cleanroommc.fugue.transformer.openmodlib.PlayerRendererHookVisitorTransformer;
 import com.cleanroommc.fugue.transformer.polyfrost.LaunchWrapperTweakerTransformer;
+import com.cleanroommc.fugue.transformer.random_title.RandomTitleConfigManagerTransformer;
 import com.cleanroommc.fugue.transformer.saoui.HudTransformer;
 import com.cleanroommc.fugue.transformer.screenshot_viewer.ScreenshotViewerTransformer;
 import com.cleanroommc.fugue.transformer.shouldersurfing.EntityPlayerRayTraceTransformer;
@@ -597,6 +598,12 @@ public class TransformerHelper {
                     "goblinbob.mobends.core.connection.PlayerSettingsDownloader",
                     "goblinbob.mobends.core.asset.AssetsModule",
                     "goblinbob.mobends.core.supporters.SupporterContent"
+            );
+        }
+        if (FugueConfig.modPatchConfig.enableRandomTitle) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new RandomTitleConfigManagerTransformer(),
+                    "me.PercyDan.RandomTitle.ConfigManager"
             );
         }
 
