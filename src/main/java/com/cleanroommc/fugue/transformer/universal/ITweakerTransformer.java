@@ -1,9 +1,6 @@
 package com.cleanroommc.fugue.transformer.universal;
 
-import com.cleanroommc.fugue.common.Fugue;
 import javassist.*;
-import javassist.expr.ExprEditor;
-import javassist.expr.MethodCall;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
@@ -11,8 +8,6 @@ import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;
 import top.outlands.foundation.IExplicitTransformer;
-
-import java.io.ByteArrayInputStream;
 
 public class ITweakerTransformer implements IExplicitTransformer {
 

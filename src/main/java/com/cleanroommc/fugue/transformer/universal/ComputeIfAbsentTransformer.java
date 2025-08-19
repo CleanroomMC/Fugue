@@ -7,9 +7,6 @@ import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 import top.outlands.foundation.IExplicitTransformer;
 
-import java.util.Map;
-import java.util.Set;
-
 public class ComputeIfAbsentTransformer implements IExplicitTransformer {
 
     @Override
