@@ -178,8 +178,12 @@ public class ModPatchConfig {
     @Config.Name("Enable Unvalkyried Heavens Patch")
     public boolean enableUnvalkyriedHeavens = true;
     @Config.Name("Enable Mo'Bends Patch")
+    @Config.Comment("Has a whole http4 helper class to interact with server.")
     public boolean enableMoBends = true;
     @Config.Name("Enable Aether II Patch")
     @Config.Comment("Using Apache http4 for game analytics. The URL is shutdown now so just removed it.")
     public boolean enableAetherII = true;
+    @Config.Name("Enable Random Title Patch")
+    @Config.Comment("Using Apache http for json getting. Totally pointless since you don't need a lib to do this.")
+    public boolean enableRandomTitle = true;
 }

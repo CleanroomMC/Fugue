@@ -8,6 +8,10 @@ import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.launchwrapper.LaunchClassLoader;
 import org.apache.commons.io.FileUtils;
+import org.apache.hc.client5.http.classic.methods.HttpGet;
+import org.apache.hc.client5.http.impl.classic.HttpClients;
+import org.apache.hc.core5.http.ParseException;
+import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.objectweb.asm.Opcodes;
 import org.lwjgl.opengl.GL11;
 import oshi.SystemInfo;
@@ -254,6 +258,10 @@ public class HookHelper {
             Fugue.LOGGER.error("Caused by: {}", e);
         }
         return success;
+    }
+    
+    public static String getTitle() throws IOException, ParseException {
+        return EntityUtils.toString(HttpClients.createDefault().execute(new HttpGet("https://v1.hitokoto.cn/")).getEntity());
     }
 
 }
