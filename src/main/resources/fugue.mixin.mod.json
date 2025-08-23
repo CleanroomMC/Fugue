@@ -31,7 +31,8 @@
     "unilib.FileUtilsMixin",
     "waterpower.ClassEngineMixin",
     "xaeroplus.ChunkHighlightSavingCacheMixin",
-    "xaeroplus.XaeroPlusSettingsReflectionHaxMixin"
+    "xaeroplus.XaeroPlusSettingsReflectionHaxMixin",
+    "glibysphysics.GManMixin"
   ],
   "client": [
     "custommainmenu.SlideshowMixin",

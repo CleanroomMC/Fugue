@@ -153,6 +153,9 @@ dependencies {
 
     modImplementation "curse.maven:mo-bends-231347:3573346"
 
+    //Gliby's Physics
+    modImplementation "curse.maven:glibys-physics-298126:2915953"
+
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:2.2.0'
 
     // Example - Dependency descriptor:

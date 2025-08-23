@@ -190,4 +190,6 @@ public class ModPatchConfig {
     @Config.Name("Enable Random Title Patch")
     @Config.Comment("Using Apache http for json getting. Totally pointless since you don't need a lib to do this.")
     public boolean enableRandomTitle = true;
+    @Config.Name("Enable Gliby's Physics Patch")
+    public boolean enableGlibysPhysics = true;
 }
