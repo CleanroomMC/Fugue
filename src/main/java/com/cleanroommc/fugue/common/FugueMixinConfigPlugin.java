@@ -52,6 +52,7 @@ public class FugueMixinConfigPlugin implements IMixinConfigPlugin {
             case "reccomplex" -> Loader.isModLoaded("reccomplex") && FugueConfig.modPatchConfig.enableRecurrentComplex;
             case "lockdown" -> Loader.isModLoaded("lockdown") && FugueConfig.modPatchConfig.enableLockdown;
             case "dissolution" -> Loader.isModLoaded("dissolution") && FugueConfig.modPatchConfig.enableDissolution;
+            case "glibysphysics" -> Loader.isModLoaded("glibysphysics") && FugueConfig.modPatchConfig.enableGlibysPhysics;
             default -> true;
         };
     }
