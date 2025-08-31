@@ -10,7 +10,7 @@ import java.io.InputStream;
 public class AllMusicHudTransformer implements IExplicitTransformer {
     @Override
     public byte[] transform(byte[] bytes) {
-        try (InputStream inputStream = getClass().getResourceAsStream("/patches/AllMusicHud.clazz")) {
+        try (InputStream inputStream = getClass().getResourceAsStream("/patches/AllMusicHud.bin")) {
             if (inputStream != null) {
                 return IOUtils.toByteArray(inputStream);
             } else {

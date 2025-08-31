@@ -11,7 +11,7 @@ import java.io.InputStream;
 public class AllMusicPlayerTransformer implements IExplicitTransformer {
     @Override
     public byte[] transform(byte[] bytes) {
-        try (InputStream inputStream = getClass().getResourceAsStream("/patches/AllMusicPlayer.clazz.patch")) {
+        try (InputStream inputStream = getClass().getResourceAsStream("/patches/AllMusicPlayer.bin")) {
             if (inputStream != null) {
                 return IOUtils.toByteArray(inputStream);
             } else {
