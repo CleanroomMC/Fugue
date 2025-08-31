@@ -193,4 +193,6 @@ public class ModPatchConfig {
     @Config.Name("Enable All Music Patch")
     @Config.Comment("Bad Apache httpclient4 user, had to patch with dirty trick.")
     public boolean enableAllMusic = true;
+    @Config.Name("Enable Gliby's Physics Patch")
+    public boolean enableGlibysPhysics = true;
 }
