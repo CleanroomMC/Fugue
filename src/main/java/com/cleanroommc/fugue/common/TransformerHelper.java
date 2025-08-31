@@ -447,10 +447,17 @@ public class TransformerHelper {
                     new ConnectionHelperTransformation(), "goblinbob.mobends.core.util.ConnectionHelper");
             TransformerDelegate.registerExplicitTransformer(
                     new RemapTransformer(
-                            new String[] {"org/apache/http/conn/"}, new String[] {"org/apache/hc/client5/http/"}),
+                            new String[] {"org/apache/http/conn/"},
+                            new String[] {"org/apache/hc/client5/http/"}),
                     "goblinbob.mobends.core.connection.PlayerSettingsDownloader",
                     "goblinbob.mobends.core.asset.AssetsModule",
                     "goblinbob.mobends.core.supporters.SupporterContent");
+            TransformerDelegate.registerExplicitTransformer(
+                    new RemapTransformer(
+                            new String[]{"org/apache/http/util/"},
+                            new String[]{"org/apache/hc/core5/util/"}), 
+                    "goblinbob.mobends.core.util.SerialHelper",
+                    "goblinbob.mobends.core.animation.keyframe.BinaryAnimationLoader");
         }
         if (FugueConfig.modPatchConfig.enableAetherII) {
             TransformerDelegate.registerExplicitTransformer(
