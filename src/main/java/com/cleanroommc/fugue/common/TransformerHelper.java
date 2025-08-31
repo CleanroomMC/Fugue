@@ -6,6 +6,8 @@ import com.cleanroommc.fugue.modifiers.DJ2PhaseFixer;
 import com.cleanroommc.fugue.modifiers.IC2ExtraFixer;
 import com.cleanroommc.fugue.transformer.advancedrocket.ClassTransformerTransformer;
 import com.cleanroommc.fugue.transformer.aether.ClientProxyTransformer;
+import com.cleanroommc.fugue.transformer.allmusic_client.AllMusicHudTransformer;
+import com.cleanroommc.fugue.transformer.allmusic_client.AllMusicPlayerTransformer;
 import com.cleanroommc.fugue.transformer.betterfc.HK_LoaderTransformer;
 import com.cleanroommc.fugue.transformer.betterhurttimer.DamageSpecialArmorMixinTransformer;
 import com.cleanroommc.fugue.transformer.betterportals.MixinEntityRendererTransformer;
@@ -184,24 +186,17 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(
                     new SubaquaticIMTransformer(), "net.minecraft.world.gen.layer.GenLayer");
         }
-        if (FugueConfig.modPatchConfig.enableNothirium){
+        if (FugueConfig.modPatchConfig.enableNothirium) {
             TransformerDelegate.registerExplicitTransformer(
-                    new NothiriumClassTransformerTransformer(),
-                    "meldexun.nothirium.mc.asm.NothiriumClassTransformer"
-            );
+                    new NothiriumClassTransformerTransformer(), "meldexun.nothirium.mc.asm.NothiriumClassTransformer");
             MixinServiceLaunchWrapper.registerMixinClassTransformer(
-                    new MixinBufferBuilderTransformer(),
-                    "meldexun.nothirium.mc.mixin.vertex.MixinBufferBuilder"
-            );
+                    new MixinBufferBuilderTransformer(), "meldexun.nothirium.mc.mixin.vertex.MixinBufferBuilder");
             TransformerDelegate.registerExplicitTransformer(
-                    new BufferBuilderTransformer(),
-                    "net.minecraft.client.renderer.BufferBuilder"
-            );
+                    new BufferBuilderTransformer(), "net.minecraft.client.renderer.BufferBuilder");
             TransformerDelegate.registerExplicitTransformer(
                     new FreeSectorManagerTransformer(),
                     "meldexun.nothirium.util.FreeSectorManager$AVL",
-                    "meldexun.nothirium.util.FreeSectorManager$RB"
-            );
+                    "meldexun.nothirium.util.FreeSectorManager$RB");
         }
         if (FugueConfig.modPatchConfig.enableGroovyScript) {
             TransformerDelegate.registerExplicitTransformer(
@@ -213,10 +208,7 @@ public class TransformerHelper {
                     "org.codehaus.groovy.transform.ASTTransformationCollectorCodeVisitor");
         }
         if (FugueConfig.modPatchConfig.enableIC2CE) {
-            Config.registerConfigModifier(
-                    new IC2ExtraFixer(),
-                    "mixins.ic2c_extras.json"
-            );
+            Config.registerConfigModifier(new IC2ExtraFixer(), "mixins.ic2c_extras.json");
             TransformerDelegate.registerExplicitTransformer(
                     new Ic2cExtrasLoadingPluginTransformer(), "trinsdar.ic2c_extras.asm.Ic2cExtrasLoadingPlugin");
         }
@@ -308,14 +300,12 @@ public class TransformerHelper {
             MixinServiceLaunchWrapper.registerMixinClassTransformer(
                     new MixinEntityRendererTransformer(),
                     "de.johni0702.minecraft.view.impl.mixin.MixinEntityRenderer_NoOF",
-                    "de.johni0702.minecraft.view.impl.mixin.MixinEntityRenderer_OF"
-            );
+                    "de.johni0702.minecraft.view.impl.mixin.MixinEntityRenderer_OF");
             TransformerDelegate.registerExplicitTransformer(
                     new ExtensionKtTransformer(),
                     "de.johni0702.minecraft.betterportals.impl.transition.common.ExtensionsKt",
                     "de.johni0702.minecraft.betterportals.impl.common.ExtensionsKt",
-                    "de.johni0702.minecraft.view.impl.common.ExtensionsKt"
-            );
+                    "de.johni0702.minecraft.view.impl.common.ExtensionsKt");
         }
         if (FugueConfig.modPatchConfig.enableEssential) {
             TransformerDelegate.registerExplicitTransformer(
@@ -338,14 +328,8 @@ public class TransformerHelper {
                     "gg.essential.network.connectionmanager.telemetry.TelemetryManager");
         }
         if (FugueConfig.modPatchConfig.enableDivineJourney2Addons) {
-            Config.registerConfigModifier(
-                    new DJ2AddonsFixer(),
-                    "mixins.dj2addons.init.json"
-            );
-            Config.registerConfigModifier(
-                    new DJ2PhaseFixer(),
-                    "mixins.dj2addons.json"
-            );
+            Config.registerConfigModifier(new DJ2AddonsFixer(), "mixins.dj2addons.init.json");
+            Config.registerConfigModifier(new DJ2PhaseFixer(), "mixins.dj2addons.json");
             TransformerDelegate.registerExplicitTransformer(
                     new DJ2AddonsCoreTransformer(), "org.btpos.dj2addons.core.DJ2AddonsCore");
         }
@@ -383,8 +367,7 @@ public class TransformerHelper {
         if (FugueConfig.modPatchConfig.enableWorseHurtTime) {
             MixinServiceLaunchWrapper.registerMixinClassTransformer(
                     new DamageSpecialArmorMixinTransformer(),
-                    "arekkuusu.betterhurttimer.mixin.DamageSpecialArmorMixin"
-            );
+                    "arekkuusu.betterhurttimer.mixin.DamageSpecialArmorMixin");
         }
         if (FugueConfig.modPatchConfig.enableInvTweaks) {
             TransformerDelegate.registerExplicitTransformer(
@@ -475,8 +458,14 @@ public class TransformerHelper {
         }
         if (FugueConfig.modPatchConfig.enableRandomTitle) {
             TransformerDelegate.registerExplicitTransformer(
-                    new ConfigManagerTransformer(),
-                    "me.PercyDan.RandomTitle.ConfigManager");
+                    new ConfigManagerTransformer(), "me.PercyDan.RandomTitle.ConfigManager");
+        }
+        if (FugueConfig.modPatchConfig.enableAllMusic) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new AllMusicHudTransformer(), "com.coloryr.allmusic.client.core.hud.AllMusicHud");
+
+            TransformerDelegate.registerExplicitTransformer(
+                    new AllMusicPlayerTransformer(), "com.coloryr.allmusic.client.core.player.AllMusicPlayer");
         }
 
         // Common patches below
@@ -534,9 +523,7 @@ public class TransformerHelper {
         }
         if (FugueConfig.mouseWheelPatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformer(
-                    new DWheelTransformer(),
-                    FugueConfig.mouseWheelPatchTargets
-            );
+                    new DWheelTransformer(), FugueConfig.mouseWheelPatchTargets);
         }
         if (!FugueConfig.finalRemovingTargets.isEmpty()) {
             TransformerDelegate.registerExplicitTransformer(
@@ -546,15 +533,12 @@ public class TransformerHelper {
         if (!FugueConfig.computeIfAbsentTargets.isEmpty()) {
             TransformerDelegate.registerExplicitTransformer(
                     new ComputeIfAbsentTransformer(FugueConfig.computeIfAbsentTargets),
-                    FugueConfig.computeIfAbsentTargets.keySet().toArray(new String[0])
-            );
-
+                    FugueConfig.computeIfAbsentTargets.keySet().toArray(new String[0]));
         }
         if (!FugueConfig.addFutureCallbackTargets.isEmpty()) {
             TransformerDelegate.registerExplicitTransformer(
                     new AddFutureCallbackTransformer(FugueConfig.addFutureCallbackTargets),
                     FugueConfig.addFutureCallbackTargets.keySet().toArray(new String[0]));
-
         }
     }
 }

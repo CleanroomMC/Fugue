@@ -17,143 +17,143 @@ repositories {
         url 'https://maven.outlands.top/releases'
     }
     maven {
-        name "chickenbones"
-        url "https://chickenbones.net/maven/"
+        name 'chickenbones'
+        url 'https://chickenbones.net/maven/'
     }
     maven {
-        name "ModMaven" //EnderCore
-        url "https://modmaven.dev/"
+        name 'ModMaven' //EnderCore
+        url 'https://modmaven.dev/'
     }
     maven {
-        name "Cleanroom"
-        url "https://repo.cleanroommc.com/releases"
+        name 'Cleanroom'
+        url 'https://repo.cleanroommc.com/releases'
     }
     mavenLocal() // Must be last for caching to work
 
 }
 
 dependencies {
-    implementation "com.cleanroommc:sponge-mixin:0.20.10+mixin.0.8.7"
+    implementation 'com.cleanroommc:sponge-mixin:0.20.10+mixin.0.8.7'
 
-    compileOnly "com.cleanroommc:lwjglx:1.0.0"
+    compileOnly 'com.cleanroommc:lwjglx:1.0.0'
 
     //Charset Lib
-    modImplementation "curse.maven:charset-284523:3656492"
+    modImplementation 'curse.maven:charset-284523:3656492'
 
     //Xaero's Minimap
-    modImplementation "curse.maven:xaero-263420:4911777"
-    modImplementation "curse.maven:xaero-map-317780:4911823"
+    modImplementation 'curse.maven:xaero-263420:4911777'
+    modImplementation 'curse.maven:xaero-map-317780:4911823'
 
-    modImplementation "curse.maven:xaeroplus-866084:6312816"
+    modImplementation 'curse.maven:xaeroplus-866084:6312816'
 
     //CodeChickenLib
-    modImplementation "codechicken:CodeChickenLib:1.12-3.1.5.330:universal"
+    modImplementation 'codechicken:CodeChickenLib:1.12-3.1.5.330:universal'
 
     //ForgeMultipart
-    modImplementation "codechicken:ForgeMultipart:1.12-2.3.0.51:universal"
+    modImplementation 'codechicken:ForgeMultipart:1.12-2.3.0.51:universal'
 
     //Project Red Core
-    modImplementation "curse.maven:pr-core-228702:2745545"
+    modImplementation 'curse.maven:pr-core-228702:2745545'
 
     //Solar Flux Reborne
-    modImplementation "curse.maven:solarflux-246974:3050838"
+    modImplementation 'curse.maven:solarflux-246974:3050838'
 
     //Custom Main Menu
-    modImplementation "curse.maven:cmm-226406:2857869"
+    modImplementation 'curse.maven:cmm-226406:2857869'
 
     //HammerLib
-    modImplementation "curse.maven:hammer-247401:4878669"
+    modImplementation 'curse.maven:hammer-247401:4878669'
 
     //EnderCore
-    modImplementation "com.enderio.core:EnderCore:1.12.2-0.5.78:core"
+    modImplementation 'com.enderio.core:EnderCore:1.12.2-0.5.78:core'
 
     //TickCentral
-    modImplementation "curse.maven:tickcentral-377201:3140670"
+    modImplementation 'curse.maven:tickcentral-377201:3140670'
 
     //Lag Goggles
-    modImplementation "curse.maven:lag-goggles-283525:4493884"
+    modImplementation 'curse.maven:lag-goggles-283525:4493884'
 
     //Shoulder Surfing Reloaded
-    modImplementation "curse.maven:shoulder-surfing-243190:5009912"
+    modImplementation 'curse.maven:shoulder-surfing-243190:5009912'
 
     //Logistics Pipes
-    modImplementation "curse.maven:logistics-pipes-232838:4849512"
+    modImplementation 'curse.maven:logistics-pipes-232838:4849512'
 
     //GTCEU
-    modImplementation "curse.maven:gtceu-557242:5050979"
+    modImplementation 'curse.maven:gtceu-557242:5050979'
 
     //The ASM
-    modImplementation "curse.maven:lolasm-460609:6854259"
+    modImplementation 'curse.maven:lolasm-460609:6854259'
 
     //mcjty
-    modImplementation "curse.maven:mcjty-233105:2745846"
+    modImplementation 'curse.maven:mcjty-233105:2745846'
 
     //howlingmoon
-    modImplementation "curse.maven:howlingmoon-236149:2567452"
+    modImplementation 'curse.maven:howlingmoon-236149:2567452'
 
     //customNPCs
-    modImplementation "curse.maven:customnpc-221826:2996912"
+    modImplementation 'curse.maven:customnpc-221826:2996912'
 
     //Water Power
-    modImplementation "curse.maven:waterpower-224579:2464789"
+    modImplementation 'curse.maven:waterpower-224579:2464789'
 
     //Subaquatic
-    modImplementation "maven.modrinth:subaquatic:8I38sNEh"
+    modImplementation 'maven.modrinth:subaquatic:8I38sNEh'
 
     //Nothirium
-    modImplementation "curse.maven:nothirium-624960:4710696"
+    modImplementation 'curse.maven:nothirium-624960:4710696'
 
     //Armourer's Workshop
-    modImplementation "curse.maven:aw-229523:3101995"
+    modImplementation 'curse.maven:aw-229523:3101995'
 
     //MAGE
-    modImplementation "curse.maven:mage-287471:2625223"
+    modImplementation 'curse.maven:mage-287471:2625223'
 
     //Extra Utilities
-    modImplementation "curse.maven:exu2-225561:2678374"
+    modImplementation 'curse.maven:exu2-225561:2678374'
 
     //MoreRefinedStorage
-    modImplementation "curse.maven:mrs-631058:3818846"
+    modImplementation 'curse.maven:mrs-631058:3818846'
 
     //HEI
-    modImplementation "curse.maven:hei-557549:5229422"
+    modImplementation 'curse.maven:hei-557549:5229422'
 
     //Carry on
-    modImplementation "curse.maven:carry-274259:4507139"
+    modImplementation 'curse.maven:carry-274259:4507139'
 
     //Better Records
-    modImplementation "curse.maven:br-222722:2930159"
+    modImplementation 'curse.maven:br-222722:2930159'
 
     //Aqua Acrobatics
-    modImplementation "curse.maven:aqua-321792:5225456"
+    modImplementation 'curse.maven:aqua-321792:5225456'
 
     //Calculator
-    modImplementation "curse.maven:calculator-225104:2847174"
+    modImplementation 'curse.maven:calculator-225104:2847174'
 
     //Unilib
-    modImplementation "curse.maven:unilib-1056812:5946214"
+    modImplementation 'curse.maven:unilib-1056812:5946214'
 
     //BetterPortals
-    modImplementation "curse.maven:betterportals-322948:2883633"
+    modImplementation 'curse.maven:betterportals-322948:2883633'
 
     //CustomNPCs Unofficial
-    modImplementation "curse.maven:customnpcs-1086839:6166874"
+    modImplementation 'curse.maven:customnpcs-1086839:6166874'
 
     //funky locomotion
-    modImplementation "curse.maven:funky-locomotion-224190:2599318"
+    modImplementation 'curse.maven:funky-locomotion-224190:2599318'
 
     //Patchouli
-    modImplementation "curse.maven:patchouli-306770:3162874"
+    modImplementation 'curse.maven:patchouli-306770:3162874'
 
-    modImplementation "curse.maven:recurrent-complex-223150:5615733"
+    modImplementation 'curse.maven:recurrent-complex-223150:5615733'
 
-    modImplementation "curse.maven:lockdown-244019:2477270"
+    modImplementation 'curse.maven:lockdown-244019:2477270'
 
-    modImplementation "curse.maven:requiem-265729:2942107"
+    modImplementation 'curse.maven:requiem-265729:2942107'
 
-    modImplementation "curse.maven:mo-bends-231347:3573346"
+    modImplementation 'curse.maven:mo-bends-231347:3573346'
 
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib:2.2.0'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:2.2.10'
 
     // Example - Dependency descriptor:
     // 'com.google.code.gson:gson:2.8.6' << group: com.google.code.gson, name:gson, version:2.8.6
