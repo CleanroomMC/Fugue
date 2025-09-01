@@ -39,6 +39,7 @@ import com.cleanroommc.fugue.transformer.integrated_proxy.MixinLoaderTransformer
 import com.cleanroommc.fugue.transformer.inventorytweaks.InvTweaksHandlerShortcutsTransformer;
 import com.cleanroommc.fugue.transformer.journeymap.FileHandlerTransformer;
 import com.cleanroommc.fugue.transformer.journeymap.ThemeLoaderTransformer;
+import com.cleanroommc.fugue.transformer.journeymap.VersionCheck$1Transformer;
 import com.cleanroommc.fugue.transformer.kubejs.KubeJSTransformer;
 import com.cleanroommc.fugue.transformer.logisticpipes.*;
 import com.cleanroommc.fugue.transformer.light_and_shadow.AsmTransformerTransformer;
@@ -342,6 +343,8 @@ public class TransformerHelper {
                     new ThemeLoaderTransformer(), "journeymap.client.io.ThemeLoader");
             TransformerDelegate.registerExplicitTransformer(
                     new FileHandlerTransformer(), "journeymap.client.io.FileHandler");
+            TransformerDelegate.registerExplicitTransformer(
+                    new VersionCheck$1Transformer(), "journeymap.common.version.VersionCheck$1");
         }
         if (FugueConfig.modPatchConfig.enableOfflineSkins) {
             TransformerDelegate.registerExplicitTransformer(
