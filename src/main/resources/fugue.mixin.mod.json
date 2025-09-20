@@ -11,6 +11,7 @@
     "charset.ColorspacesMixin",
     "codechickenlib.ReflectionManagerMixin",
     "customnpcs.ScriptPlayerEventHandlerMixin",
+    "darktheme.FinalFieldHelperMixin",
     "dissolution.PossessableEntityFactoryMixin",
     "extrautils2.FieldSetterMixin",
     "funkylocomotion.WrenchFactoryMixin",

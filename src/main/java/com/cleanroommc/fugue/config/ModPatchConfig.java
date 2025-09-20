@@ -193,4 +193,7 @@ public class ModPatchConfig {
     public boolean enableAllMusic = true;
     @Config.Name("Enable Gliby's Physics Patch")
     public boolean enableGlibysPhysics = true;
+    @Config.Name("Enable DarkTheme Patch")
+    @Config.Comment("Patches DarkTheme's use of internal Java reflection APIs that are not available in Java 9+")
+    public boolean enableDarkTheme = true;
 }
