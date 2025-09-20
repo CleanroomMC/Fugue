@@ -36,7 +36,6 @@ import com.cleanroommc.fugue.transformer.groovyscript.GroovyClassLoaderTransform
 import com.cleanroommc.fugue.transformer.groovyscript.GroovyRunnerRegistryTransformer;
 import com.cleanroommc.fugue.transformer.ic2ce.Ic2cExtrasLoadingPluginTransformer;
 import com.cleanroommc.fugue.transformer.integrated_proxy.MixinLoaderTransformer;
-import com.cleanroommc.fugue.transformer.inventorytweaks.InvTweaksHandlerShortcutsTransformer;
 import com.cleanroommc.fugue.transformer.journeymap.FileHandlerTransformer;
 import com.cleanroommc.fugue.transformer.journeymap.ThemeLoaderTransformer;
 import com.cleanroommc.fugue.transformer.journeymap.VersionCheck$1Transformer;
@@ -371,10 +370,6 @@ public class TransformerHelper {
             MixinServiceLaunchWrapper.registerMixinClassTransformer(
                     new DamageSpecialArmorMixinTransformer(),
                     "arekkuusu.betterhurttimer.mixin.DamageSpecialArmorMixin");
-        }
-        if (FugueConfig.modPatchConfig.enableInvTweaks) {
-            TransformerDelegate.registerExplicitTransformer(
-                    new InvTweaksHandlerShortcutsTransformer(), "invtweaks.InvTweaksHandlerShortcuts");
         }
         if (FugueConfig.modPatchConfig.enableMoreSoundConfig) {
             TransformerDelegate.registerExplicitTransformer(
