@@ -146,9 +146,6 @@ public class ModPatchConfig {
     public boolean enableCorpse = true;
     @Config.Name("Enable ScreenshotViewer Patch")
     public boolean enableScreenshotViewer = true;
-    @Config.Name("Enable Worse Hurt Time Patch")
-    @Config.Comment("Should be compatible with better hurt time")
-    public boolean enableWorseHurtTime = true;
     @Config.Name("Enable Inventory Tweaks Patch")
     public boolean enableInvTweaks = true;
     @Config.Name("Enable Sound Device Options / More Sound Config Patch")
@@ -186,4 +183,12 @@ public class ModPatchConfig {
     @Config.Name("Enable Random Title Patch")
     @Config.Comment("Using Apache http for json getting. Totally pointless since you don't need a lib to do this.")
     public boolean enableRandomTitle = true;
+    @Config.Name("Enable All Music Patch")
+    @Config.Comment("Bad Apache httpclient4 user, had to patch with dirty trick.")
+    public boolean enableAllMusic = true;
+    @Config.Name("Enable Gliby's Physics Patch")
+    public boolean enableGlibysPhysics = true;
+    @Config.Name("Enable DarkTheme Patch")
+    @Config.Comment("Patches DarkTheme's use of internal Java reflection APIs that are not available in Java 9+")
+    public boolean enableDarkTheme = true;
 }

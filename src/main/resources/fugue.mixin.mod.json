@@ -11,6 +11,7 @@
     "charset.ColorspacesMixin",
     "codechickenlib.ReflectionManagerMixin",
     "customnpcs.ScriptPlayerEventHandlerMixin",
+    "darktheme.FinalFieldHelperMixin",
     "dissolution.PossessableEntityFactoryMixin",
     "extrautils2.FieldSetterMixin",
     "funkylocomotion.WrenchFactoryMixin",
@@ -31,7 +32,8 @@
     "unilib.FileUtilsMixin",
     "waterpower.ClassEngineMixin",
     "xaeroplus.ChunkHighlightSavingCacheMixin",
-    "xaeroplus.XaeroPlusSettingsReflectionHaxMixin"
+    "xaeroplus.XaeroPlusSettingsReflectionHaxMixin",
+    "glibysphysics.GManMixin"
   ],
   "client": [
     "custommainmenu.SlideshowMixin",

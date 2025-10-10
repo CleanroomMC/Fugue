@@ -3,6 +3,8 @@ package com.cleanroommc.fugue.common;
 import com.cleanroommc.fugue.config.FugueConfig;
 import com.cleanroommc.fugue.transformer.advancedrocket.ClassTransformerTransformer;
 import com.cleanroommc.fugue.transformer.aether.ClientProxyTransformer;
+import com.cleanroommc.fugue.transformer.allmusic_client.AllMusicHudTransformer;
+import com.cleanroommc.fugue.transformer.allmusic_client.AllMusicPlayerTransformer;
 import com.cleanroommc.fugue.transformer.betterfc.HK_LoaderTransformer;
 import com.cleanroommc.fugue.transformer.calculator.GuiInfoCalculatorTransformer;
 import com.cleanroommc.fugue.transformer.colytra.EntityLivingBaseTransformer;
@@ -28,9 +30,10 @@ import com.cleanroommc.fugue.transformer.groovyscript.GroovyClassLoaderTransform
 import com.cleanroommc.fugue.transformer.groovyscript.GroovyRunnerRegistryTransformer;
 import com.cleanroommc.fugue.transformer.ic2ce.Ic2cExtrasLoadingPluginTransformer;
 import com.cleanroommc.fugue.transformer.integrated_proxy.MixinLoaderTransformer;
-import com.cleanroommc.fugue.transformer.inventorytweaks.InvTweaksHandlerShortcutsTransformer;
+import com.cleanroommc.fugue.transformer.invtweaks.InvTweaksHandlerShortcutsTransformer;
 import com.cleanroommc.fugue.transformer.journeymap.FileHandlerTransformer;
 import com.cleanroommc.fugue.transformer.journeymap.ThemeLoaderTransformer;
+import com.cleanroommc.fugue.transformer.journeymap.VersionCheck$1Transformer;
 import com.cleanroommc.fugue.transformer.kubejs.KubeJSTransformer;
 import com.cleanroommc.fugue.transformer.logisticpipes.*;
 import com.cleanroommc.fugue.transformer.light_and_shadow.AsmTransformerTransformer;
@@ -302,6 +305,8 @@ public class TransformerHelper {
                     new ThemeLoaderTransformer(), "journeymap.client.io.ThemeLoader");
             TransformerDelegate.registerExplicitTransformer(
                     new FileHandlerTransformer(), "journeymap.client.io.FileHandler");
+            TransformerDelegate.registerExplicitTransformer(
+                    new VersionCheck$1Transformer(), "journeymap.common.version.VersionCheck$1");
         }
         if (FugueConfig.modPatchConfig.enableOfflineSkins) {
             TransformerDelegate.registerExplicitTransformer(
@@ -402,10 +407,17 @@ public class TransformerHelper {
                     new ConnectionHelperTransformation(), "goblinbob.mobends.core.util.ConnectionHelper");
             TransformerDelegate.registerExplicitTransformer(
                     new RemapTransformer(
-                            new String[] {"org/apache/http/conn/"}, new String[] {"org/apache/hc/client5/http/"}),
+                            new String[] {"org/apache/http/conn/"},
+                            new String[] {"org/apache/hc/client5/http/"}),
                     "goblinbob.mobends.core.connection.PlayerSettingsDownloader",
                     "goblinbob.mobends.core.asset.AssetsModule",
                     "goblinbob.mobends.core.supporters.SupporterContent");
+            TransformerDelegate.registerExplicitTransformer(
+                    new RemapTransformer(
+                            new String[]{"org/apache/http/util/"},
+                            new String[]{"org/apache/hc/core5/util/"}), 
+                    "goblinbob.mobends.core.util.SerialHelper",
+                    "goblinbob.mobends.core.animation.keyframe.BinaryAnimationLoader");
         }
         if (FugueConfig.modPatchConfig.enableAetherII) {
             TransformerDelegate.registerExplicitTransformer(
@@ -413,8 +425,14 @@ public class TransformerHelper {
         }
         if (FugueConfig.modPatchConfig.enableRandomTitle) {
             TransformerDelegate.registerExplicitTransformer(
-                    new ConfigManagerTransformer(),
-                    "me.PercyDan.RandomTitle.ConfigManager");
+                    new ConfigManagerTransformer(), "me.PercyDan.RandomTitle.ConfigManager");
+        }
+        if (FugueConfig.modPatchConfig.enableAllMusic) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new AllMusicHudTransformer(), "com.coloryr.allmusic.client.core.hud.AllMusicHud");
+
+            TransformerDelegate.registerExplicitTransformer(
+                    new AllMusicPlayerTransformer(), "com.coloryr.allmusic.client.core.player.AllMusicPlayer");
         }
 
         // Common patches below
@@ -477,11 +495,16 @@ public class TransformerHelper {
         }
         if (FugueConfig.computeIfAbsentTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformer(
-                    new ComputeIfAbsentTransformer(), FugueConfig.computeIfAbsentTargets);
+
+                    new ComputeIfAbsentTransformer(),
+                    FugueConfig.computeIfAbsentTargets
+            );
         }
         if (FugueConfig.addFutureCallbackTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformer(
-                    new AddFutureCallbackTransformer(), FugueConfig.addFutureCallbackTargets);
+                    new AddFutureCallbackTransformer(),
+                    FugueConfig.addFutureCallbackTargets
+            );
         }
     }
 }
