@@ -65,7 +65,7 @@ unimined.minecraft {
         if (propertyBool('use_access_transformer')) {
             accessTransformer 'src/main/resources/META-INF/' +  propertyString('access_transformer_locations')
         }
-        loader "0.3.13-alpha"
+        loader "0.3.20-alpha"
         runs.config("client", {args += extra_jvm_args.split(" ")})
         runs.config("server", {args += extra_jvm_args.split(" ")})
         runs.auth.username = minecraft_username
