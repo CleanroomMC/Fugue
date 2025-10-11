@@ -48,8 +48,6 @@ import com.cleanroommc.fugue.transformer.nbtperipheral.LinkedTreeMapTransformer;
 import com.cleanroommc.fugue.transformer.offlineskins.ObfHelperTransformer;
 import com.cleanroommc.fugue.transformer.offlineskins.OfflineskinsTransformersTransformer;
 import com.cleanroommc.fugue.transformer.offlineskins.SetupTransformer;
-import com.cleanroommc.fugue.transformer.openmodlib.InjectorMethodVisitorTransformer;
-import com.cleanroommc.fugue.transformer.openmodlib.PlayerRendererHookVisitorTransformer;
 import com.cleanroommc.fugue.transformer.polyfrost.LaunchWrapperTweakerTransformer;
 import com.cleanroommc.fugue.transformer.randomtitle.ConfigManagerTransformer;
 import com.cleanroommc.fugue.transformer.saoui.HudTransformer;
@@ -192,13 +190,6 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(
                     new SimplyHotSpringsConfigTransformer(),
                     "connor135246.simplyhotsprings.util.SimplyHotSpringsConfig");
-        }
-        if (FugueConfig.modPatchConfig.enableOpenModsLib) {
-            TransformerDelegate.registerExplicitTransformer(
-                    new PlayerRendererHookVisitorTransformer(), "openmods.renderer.PlayerRendererHookVisitor");
-            TransformerDelegate.registerExplicitTransformer(
-                    new InjectorMethodVisitorTransformer(),
-                    "openmods.renderer.PlayerRendererHookVisitor$InjectorMethodVisitor");
         }
         if (FugueConfig.modPatchConfig.enableVampirism) {
             TransformerDelegate.registerExplicitTransformer(
