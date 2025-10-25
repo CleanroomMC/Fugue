@@ -66,6 +66,7 @@ public class FugueConfig {
         "energon.srpholiday.client.inject.render.SRPHReflect",
         "maxhyper.dynamictreestbl.compat.RegistryReplacements",
         "com.github.alexthe666.iceandfire.event.EventNewMenu",
+        "org.eientei.gtce2oc.GTCE2OC",
     };
 
     @Config.Comment(
@@ -245,14 +246,13 @@ public class FugueConfig {
             "Guava now use a new method with a different desc. Should be rare so normally you don't need to modify this.")
     @Config.Name("Futures.addCallback Patching List")
     public static String[] addFutureCallbackTargets = new String[] {
-            "moe.plushie.armourers_workshop.common.library.global.GlobalSkinLibraryUtils",
-            "moe.plushie.armourers_workshop.common.library.global.task.GlobalTask",
-            "com.rwtema.extrautils2.transfernodes.TileIndexer",
-            "com.rwtema.extrautils2.transfernodes.TransferNodeEnergy",
-            "fi.dy.masa.litematica.render.schematic.ChunkRenderWorkerLitematica",
-            "com.replaymod.simplepathing.gui.GuiPathing",
-            "com.replaymod.simplepathing.gui.GuiPathing$10",
-
+        "moe.plushie.armourers_workshop.common.library.global.GlobalSkinLibraryUtils",
+        "moe.plushie.armourers_workshop.common.library.global.task.GlobalTask",
+        "com.rwtema.extrautils2.transfernodes.TileIndexer",
+        "com.rwtema.extrautils2.transfernodes.TransferNodeEnergy",
+        "fi.dy.masa.litematica.render.schematic.ChunkRenderWorkerLitematica",
+        "com.replaymod.simplepathing.gui.GuiPathing",
+        "com.replaymod.simplepathing.gui.GuiPathing$10",
     };
 
     @Config.Comment(
