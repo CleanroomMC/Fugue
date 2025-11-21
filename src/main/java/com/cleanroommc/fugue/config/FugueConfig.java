@@ -9,21 +9,20 @@ import java.util.Map;
 @Config(modid = Reference.MOD_ID, name = Reference.MOD_ID)
 @Config.RequiresMcRestart
 public class FugueConfig {
-    @Config.Comment(
-            """
-            Fix and patches for certain mods.
-            WARNING: Enable too much patches may lower performance.
-            If you are a pack maker, just enable what you need.
-            """)
+    @Config.Comment("""
+        Fix and patches for certain mods.
+        WARNING: Enable too much patches may lower performance.
+        If you are a pack maker, just enable what you need.
+        """)
     public static ModPatchConfig modPatchConfig = new ModPatchConfig();
 
-    @Config.Comment(
-            """
-            About *static final field has no write access*
-            Field.set() and Field.get() may throw exceptions in newer Java when trying to handle final fields.
-            The few options remain are Unsafe or JNI.
-            Classes in this list will be used as transform targets.
-            Any Field related reflection calls will be redirected to Unsafe, so it wouldn't crash anymore.""")
+    @Config.Comment("""
+        About *static final field has no write access*
+        Field.set() and Field.get() may throw exceptions in newer Java when trying to handle final fields.
+        The few options remain are Unsafe or JNI.
+        Classes in this list will be used as transform targets.
+        Any Field related reflection calls will be redirected to Unsafe, so it wouldn't crash anymore.\
+        """)
     @Config.Name("Reflection Patch Target List")
     public static String[] reflectionPatchTargets = new String[] {
         "quaternary.botaniatweaks.modules.botania.block.BotaniaRegistryReplacements",
@@ -69,11 +68,11 @@ public class FugueConfig {
         "org.eientei.gtce2oc.GTCE2OC",
     };
 
-    @Config.Comment(
-            """
-            Mods like Apotheosis is casting AppClassLoader to URLClassLoader for getting its URLs.
-            This will crash in newer Java, because AppClassLoader is no longer a URLClassLoader.
-            Targets class here will be patched to new method we provide.""")
+    @Config.Comment("""
+        Mods like Apotheosis is casting AppClassLoader to URLClassLoader for getting its URLs.
+        This will crash in newer Java, because AppClassLoader is no longer a URLClassLoader.
+        Targets class here will be patched to new method we provide.\
+        """)
     @Config.Name("Get URL Patch Target List")
     public static String[] getURLPatchTargets = new String[] {
         "shadows.CustomClassWriter",
@@ -82,11 +81,11 @@ public class FugueConfig {
         "com.elytradev.wings.asm.RemappingClassWriter",
     };
 
-    @Config.Comment(
-            """
-            ScriptEngine from javax has changed a lot in past Java versions.
-            Many old code will end up getting an null in newer Java.
-            Target classes here will be patched to use a helper method we provide.""")
+    @Config.Comment("""
+        ScriptEngine from javax has changed a lot in past Java versions.
+        Many old code will end up getting an null in newer Java.
+        Target classes here will be patched to use a helper method we provide.\
+        """)
     @Config.Name("New Script Engine Patch Target List")
     public static String[] scriptEngineTargets = new String[] {
         "nc.util.I18nHelper",
@@ -96,11 +95,11 @@ public class FugueConfig {
         "nuparu.sevendaystomine.proxy.CommonProxy",
     };
 
-    @Config.Comment(
-            """
-            Java 8's UUID creation is flawed. It allow invalid UUIDs to be created.
-            This was fixed in later Java, but old mods still need a solution.
-            Target classes here will be patched to use a helper method we provide.""")
+    @Config.Comment("""
+        Java 8's UUID creation is flawed. It allow invalid UUIDs to be created.
+        This was fixed in later Java, but old mods still need a solution.
+        Target classes here will be patched to use a helper method we provide.\
+        """)
     @Config.Name("UUID Patch Target List")
     public static String[] UUIDTargets = new String[] {
         "com.Shultrea.Rin.Utility_Sector.HurtPatchHandler",
@@ -111,10 +110,10 @@ public class FugueConfig {
         "com.Shultrea.Rin.Utility_Sector.LivingAttackFixerHandler",
     };
 
-    @Config.Comment(
-            """
-            Javax (Java EE) redirect targets.
-            They are gone in newer Java, so we are redirecting them to a replacement.""")
+    @Config.Comment("""
+        Javax (Java EE) redirect targets.
+        They are gone in newer Java, so we are redirecting them to a replacement.\
+        """)
     @Config.Name("Javax Patch Target List")
     public static String[] remapTargets = new String[] {
         "com.ldtteam.structurize.util.StructureUtils",
@@ -148,13 +147,13 @@ public class FugueConfig {
         "top.seraphjack.simplelogin.server.storage.StorageProviderFile"
     };
 
-    @Config.Comment(
-            """
-            Non-Update was gone with Security Manager.
-            As a workaround, These targets will be banned from making connections with URL.openStream().
-            If you don't need a proxy to access github, you could empty this setting.
-            The Secret Room entry should be kept - the url now points to an 404 page which will crash the game.
-            This may block more connection than update checks, so if anything gone wrong please open an issue.""")
+    @Config.Comment("""
+        Non-Update was gone with Security Manager.
+        As a workaround, These targets will be banned from making connections with URL.openStream().
+        If you don't need a proxy to access github, you could empty this setting.
+        The Secret Room entry should be kept - the url now points to an 404 page which will crash the game.
+        This may block more connection than update checks, so if anything gone wrong please open an issue.\
+        """)
     @Config.Name("Connection Blocking List")
     public static String[] nonUpdateTargets = new String[] {
         "xxrexraptorxx.customizeddungeonloot.util.UpdateChecker$1",
@@ -166,11 +165,11 @@ public class FugueConfig {
         "com.wynprice.secretroomsmod.handler.HandlerUpdateChecker",
     };
 
-    @Config.Comment(
-            """
-            Foundation (the LaunchWrapper under Java 21+) comes with some ABI changes.
-            If you got a crash says some methods/fields in LaunchClassLoader not found, that's the remapper you want.
-            As a workaround, These targets will be redirected to new API.""")
+    @Config.Comment("""
+        Foundation (the LaunchWrapper under Java 21+) comes with some ABI changes.
+        If you got a crash says some methods/fields in LaunchClassLoader not found, that's the remapper you want.
+        As a workaround, These targets will be redirected to new API.\
+        """)
     @Config.Name("Launch Wrapper API Change Patching List")
     public static String[] remapLWTargets = new String[] {
         "zone.rong.loliasm.common.crashes.ModIdentifier",
@@ -182,10 +181,10 @@ public class FugueConfig {
         "com.forgeessentials.core.preloader.asminjector.ASMUtil",
     };
 
-    @Config.Comment(
-            """
-            sun.reflect.Reflection has moved to jdk.internal, and most of its features have replacements.
-            As a workaround, These targets will be redirected to new dummy class.""")
+    @Config.Comment("""
+        sun.reflect.Reflection has moved to jdk.internal, and most of its features have replacements.
+        As a workaround, These targets will be redirected to new dummy class.\
+        """)
     @Config.Name("sun.misc.Reflection Patching List")
     public static String[] remapReflectionTargets = new String[] {
         "quaternary.botaniatweaks.modules.botania.config.BotaniaConfig",
@@ -195,12 +194,11 @@ public class FugueConfig {
         "thedarkcolour.futuremc.world.gen.feature.BeeNestGenerator",
     };
 
-    @Config.Comment(
-            """
-            ITweaker classes loaded in LCL will be defined in a different code source like file:jar:.
-            This will cause errors like java.lang.IllegalArgumentException: URI is not hierarchical
-            Add them to list could redirect their toURI() to a decent jar URL.
-            """)
+    @Config.Comment("""
+        ITweaker classes loaded in LCL will be defined in a different code source like file:jar:.
+        This will cause errors like java.lang.IllegalArgumentException: URI is not hierarchical
+        Add them to list could redirect their toURI() to a decent jar URL.
+        """)
     @Config.Name("getCodeSource() Patching List")
     public static String[] getCodeSourcePatchTargets = new String[] {
         "pm.c7.pmr.tweaker.MixinLoadingTweaker",
@@ -231,7 +229,8 @@ public class FugueConfig {
     };
 
     @Config.Comment(
-            "Newer Java now has concurrent check in this method. Should be rare so normally you don't need to modify this.")
+            "Newer Java now has concurrent check in this method. Should be rare so normally you don't need to modify"
+                    + " this.")
     @Config.Name("computeIfAbsent Patching List")
     public static String[] computeIfAbsentTargets = new String[] {
         "hellfirepvp.astralsorcery.common.constellation.perk.attribute.PerkAttributeType",
@@ -243,7 +242,8 @@ public class FugueConfig {
     };
 
     @Config.Comment(
-            "Guava now use a new method with a different desc. Should be rare so normally you don't need to modify this.")
+            "Guava now use a new method with a different desc. Should be rare so normally you don't need to modify"
+                    + " this.")
     @Config.Name("Futures.addCallback Patching List")
     public static String[] addFutureCallbackTargets = new String[] {
         "moe.plushie.armourers_workshop.common.library.global.GlobalSkinLibraryUtils",
@@ -255,11 +255,31 @@ public class FugueConfig {
         "com.replaymod.simplepathing.gui.GuiPathing$10",
     };
 
-    @Config.Comment(
-            """
-            Target field's final modifier will be removed. No checks will be preformed before removal.
-            All fields with same name will be targeted.
-            Format: S:"foo.bar.classname"=field1|filed2""")
+    @Config.Comment("""
+        Used when mouse wheel related operation being weird.
+        Classes in this list will get their Mouse.getDWheel() and Mouse.getEventDWheel() redirected.
+        Consult Cleanroom developers before using it!
+        """)
+    @Config.Name("Mouse.getEventDWheel() Patching List")
+    public static String[] mouseWheelPatchTargets = new String[] {
+        "mekanism.client.ClientTickHandler",
+        "journeymap.client.ui.fullscreen.Fullscreen",
+        "xaero.map.gui.ScreenBase",
+        "xaero.map.gui.GuiMap",
+        "betterquesting.api2.client.gui.GuiContainerCanvas",
+        "betterquesting.api2.client.gui.GuiScreenCanvas",
+        "yalter.mousetweaks.MouseState",
+        "yalter.mousetweaks.SimpleMouseState",
+        "com.feed_the_beast.ftblib.lib.gui.GuiWrapper",
+        "com.feed_the_beast.ftblib.lib.gui.GuiContainerWrapper",
+        "com.github.terminatornl.laggoggles.client.gui.GuiProfile",
+    };
+
+    @Config.Comment("""
+        Target field's final modifier will be removed. No checks will be preformed before removal.
+        All fields with same name will be targeted.
+        Format: S:"foo.bar.classname"=field1|filed2\
+        """)
     @Config.Name("Final Fields Patching List")
     public static Map<String, String> finalRemovingTargets = new HashMap<>() {
         {

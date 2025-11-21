@@ -324,10 +324,6 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(
                     new InvTweaksHandlerShortcutsTransformer(), "invtweaks.InvTweaksHandlerShortcuts");
         }
-        if (FugueConfig.modPatchConfig.enableInvTweaks) {
-            TransformerDelegate.registerExplicitTransformer(
-                    new InvTweaksHandlerShortcutsTransformer(), "invtweaks.InvTweaksHandlerShortcuts");
-        }
         if (FugueConfig.modPatchConfig.enableMoreSoundConfig) {
             TransformerDelegate.registerExplicitTransformer(
                     new SoundDevicesTransformer(), "ichttt.mods.moresoundconfig.SoundDevices");
@@ -402,15 +398,13 @@ public class TransformerHelper {
                     new ConnectionHelperTransformation(), "goblinbob.mobends.core.util.ConnectionHelper");
             TransformerDelegate.registerExplicitTransformer(
                     new RemapTransformer(
-                            new String[] {"org/apache/http/conn/"},
-                            new String[] {"org/apache/hc/client5/http/"}),
+                            new String[] {"org/apache/http/conn/"}, new String[] {"org/apache/hc/client5/http/"}),
                     "goblinbob.mobends.core.connection.PlayerSettingsDownloader",
                     "goblinbob.mobends.core.asset.AssetsModule",
                     "goblinbob.mobends.core.supporters.SupporterContent");
             TransformerDelegate.registerExplicitTransformer(
                     new RemapTransformer(
-                            new String[]{"org/apache/http/util/"},
-                            new String[]{"org/apache/hc/core5/util/"}), 
+                            new String[] {"org/apache/http/util/"}, new String[] {"org/apache/hc/core5/util/"}),
                     "goblinbob.mobends.core.util.SerialHelper",
                     "goblinbob.mobends.core.animation.keyframe.BinaryAnimationLoader");
         }
@@ -490,16 +484,15 @@ public class TransformerHelper {
         }
         if (FugueConfig.computeIfAbsentTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformer(
-
-                    new ComputeIfAbsentTransformer(),
-                    FugueConfig.computeIfAbsentTargets
-            );
+                    new ComputeIfAbsentTransformer(), FugueConfig.computeIfAbsentTargets);
         }
         if (FugueConfig.addFutureCallbackTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformer(
-                    new AddFutureCallbackTransformer(),
-                    FugueConfig.addFutureCallbackTargets
-            );
+                    new AddFutureCallbackTransformer(), FugueConfig.addFutureCallbackTargets);
+        }
+        if (FugueConfig.mouseWheelPatchTargets.length > 0) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new DWheelTransformer(), FugueConfig.mouseWheelPatchTargets);
         }
     }
 }
