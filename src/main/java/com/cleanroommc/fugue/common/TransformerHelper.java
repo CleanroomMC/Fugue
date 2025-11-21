@@ -324,6 +324,10 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(
                     new InvTweaksHandlerShortcutsTransformer(), "invtweaks.InvTweaksHandlerShortcuts");
         }
+        if (FugueConfig.modPatchConfig.enableInvTweaks) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new InvTweaksHandlerShortcutsTransformer(), "invtweaks.InvTweaksHandlerShortcuts");
+        }
         if (FugueConfig.modPatchConfig.enableMoreSoundConfig) {
             TransformerDelegate.registerExplicitTransformer(
                     new SoundDevicesTransformer(), "ichttt.mods.moresoundconfig.SoundDevices");
