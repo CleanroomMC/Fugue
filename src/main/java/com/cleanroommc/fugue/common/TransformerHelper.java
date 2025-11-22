@@ -52,6 +52,7 @@ import com.cleanroommc.fugue.transformer.polyfrost.LaunchWrapperTweakerTransform
 import com.cleanroommc.fugue.transformer.randomtitle.ConfigManagerTransformer;
 import com.cleanroommc.fugue.transformer.saoui.HudTransformer;
 import com.cleanroommc.fugue.transformer.screenshot_viewer.ScreenshotViewerTransformer;
+import com.cleanroommc.fugue.transformer.sereneseasons.EntityRendererTransformerTransformer;
 import com.cleanroommc.fugue.transformer.shouldersurfing.EntityPlayerRayTraceTransformer;
 import com.cleanroommc.fugue.transformer.simplehotspring.SimplyHotSpringsConfigTransformer;
 import com.cleanroommc.fugue.transformer.smoothfont.FontRendererTransformer;
@@ -422,6 +423,11 @@ public class TransformerHelper {
 
             TransformerDelegate.registerExplicitTransformer(
                     new AllMusicPlayerTransformer(), "com.coloryr.allmusic.client.core.player.AllMusicPlayer");
+        }
+        if (FugueConfig.modPatchConfig.enableSereneSeasons) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new EntityRendererTransformerTransformer(),
+                    "sereneseasons.asm.transformer.EntityRendererTransformer");
         }
 
         // Common patches below

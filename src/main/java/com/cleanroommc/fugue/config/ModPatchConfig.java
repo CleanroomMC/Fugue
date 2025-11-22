@@ -191,4 +191,7 @@ public class ModPatchConfig {
     @Config.Name("Enable DarkTheme Patch")
     @Config.Comment("Patches DarkTheme's use of internal Java reflection APIs that are not available in Java 9+")
     public boolean enableDarkTheme = true;
+    @Config.Name("Enable Serene Seasons Patch")
+    @Config.Comment("The mod is counting insn nodes in transformer and it breaks with latest recompiled class. Blame Vineflower and/or JDK 21 for this")
+    public boolean enableSereneSeasons = true;
 }
