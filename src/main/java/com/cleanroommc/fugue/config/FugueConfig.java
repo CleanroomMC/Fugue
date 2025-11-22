@@ -239,6 +239,7 @@ public class FugueConfig {
         "com.lordmau5.repack.net.covers1624.model.LayeredTemplateModel$ModelBlockWrapper",
         "com.infinityraider.infinitylib.render.block.BakedInfBlockModel",
         "net.blay09.mods.refinedrelocation.block.BlockSortingConnector",
+        "alexiil.mc.mod.load.render.FontRendererSeparate",
     };
 
     @Config.Comment(
