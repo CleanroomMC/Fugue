@@ -194,4 +194,7 @@ public class ModPatchConfig {
     @Config.Name("Enable Serene Seasons Patch")
     @Config.Comment("The mod is counting insn nodes in transformer and it breaks with latest recompiled class. Blame Vineflower and/or JDK 21 for this")
     public boolean enableSereneSeasons = true;
+    @Config.Name("Enable Rebind Patch")
+    @Config.Comment("The mod is removing getNext().getNext() and removed a label node")
+    public boolean enableRebind = true;
 }

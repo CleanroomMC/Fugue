@@ -50,6 +50,7 @@ import com.cleanroommc.fugue.transformer.offlineskins.OfflineskinsTransformersTr
 import com.cleanroommc.fugue.transformer.offlineskins.SetupTransformer;
 import com.cleanroommc.fugue.transformer.polyfrost.LaunchWrapperTweakerTransformer;
 import com.cleanroommc.fugue.transformer.randomtitle.ConfigManagerTransformer;
+import com.cleanroommc.fugue.transformer.rebind.EnumInputClassesTransformer;
 import com.cleanroommc.fugue.transformer.saoui.HudTransformer;
 import com.cleanroommc.fugue.transformer.screenshot_viewer.ScreenshotViewerTransformer;
 import com.cleanroommc.fugue.transformer.sereneseasons.EntityRendererTransformerTransformer;
@@ -428,6 +429,10 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(
                     new EntityRendererTransformerTransformer(),
                     "sereneseasons.asm.transformer.EntityRendererTransformer");
+        }
+        if (FugueConfig.modPatchConfig.enableRebind) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new EnumInputClassesTransformer(), "austeretony.rebind.common.core.EnumInputClasses");
         }
 
         // Common patches below
