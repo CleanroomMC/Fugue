@@ -24,6 +24,7 @@ import com.cleanroommc.fugue.transformer.essential.EssentialTransformerClearTran
 import com.cleanroommc.fugue.transformer.essential.EssentialTelemetryManagerTransformer;
 import com.cleanroommc.fugue.transformer.farseek.FarseekClassTransformerTransformer;
 import com.cleanroommc.fugue.transformer.fivezig.ClassTweakerTransformer;
+import com.cleanroommc.fugue.transformer.fluidlogged.IASMPluginTransformer;
 import com.cleanroommc.fugue.transformer.forgeendertech.ForgeMainTransformer;
 import com.cleanroommc.fugue.transformer.groovyscript.ASTTransformationCollectorCodeVisitorTransformer;
 import com.cleanroommc.fugue.transformer.groovyscript.GroovyClassLoaderTransformer;
@@ -433,6 +434,10 @@ public class TransformerHelper {
         if (FugueConfig.modPatchConfig.enableRebind) {
             TransformerDelegate.registerExplicitTransformer(
                     new EnumInputClassesTransformer(), "austeretony.rebind.common.core.EnumInputClasses");
+        }
+        if (FugueConfig.modPatchConfig.enableFluidlogged) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new IASMPluginTransformer(), "git.jbredwards.fluidlogged_api.api.asm.IASMPlugin");
         }
 
         // Common patches below

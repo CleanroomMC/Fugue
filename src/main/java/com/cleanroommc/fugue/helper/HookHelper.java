@@ -14,10 +14,16 @@ import org.apache.hc.core5.http.ParseException;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.objectweb.asm.Opcodes;
 import org.lwjgl.opengl.GL11;
+import org.objectweb.asm.tree.AbstractInsnNode;
+import org.objectweb.asm.tree.FrameNode;
+import org.objectweb.asm.tree.InsnList;
+import org.objectweb.asm.tree.LabelNode;
+import org.objectweb.asm.tree.LineNumberNode;
 import oshi.SystemInfo;
 import top.outlands.foundation.TransformerDelegate;
 import top.outlands.foundation.boot.ActualClassLoader;
 
+import javax.annotation.Nonnull;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -262,6 +268,27 @@ public class HookHelper {
     
     public static String getTitle() throws IOException, ParseException {
         return EntityUtils.toString(HttpClients.createDefault().execute(new HttpGet("https://v1.hitokoto.cn/")).getEntity());
+    }
+
+    public static void removeFrom(@Nonnull final InsnList instructions, @Nonnull final AbstractInsnNode insn, final int n) {
+        if (n > 0) {
+            for (int i = 0; i < n; i++) {
+                AbstractInsnNode next = insn.getNext();
+                while (next instanceof LabelNode || next instanceof LineNumberNode || next instanceof FrameNode) {
+                    next = next.getNext();
+                }
+                instructions.remove(next);
+            }
+        } else {
+            for (int i = 0; i > n; i--) {
+                AbstractInsnNode previous = insn.getPrevious();
+                while (previous instanceof LabelNode || previous instanceof LineNumberNode || previous instanceof FrameNode) {
+                    previous = previous.getPrevious();
+                }
+                instructions.remove(previous);
+            }
+        }
+        instructions.remove(insn);
     }
 
 }

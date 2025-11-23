@@ -197,4 +197,7 @@ public class ModPatchConfig {
     @Config.Name("Enable Rebind Patch")
     @Config.Comment("The mod is removing getNext().getNext() and removed a label node")
     public boolean enableRebind = true;
+    @Config.Name("Enable Fluidlogged API Patch")
+    @Config.Comment("The mod is removing insn nodes by counting")
+    public boolean enableFluidlogged = true;
 }
