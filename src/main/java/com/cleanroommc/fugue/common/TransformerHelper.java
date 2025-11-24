@@ -26,9 +26,6 @@ import com.cleanroommc.fugue.transformer.farseek.FarseekClassTransformerTransfor
 import com.cleanroommc.fugue.transformer.fivezig.ClassTweakerTransformer;
 import com.cleanroommc.fugue.transformer.fluidlogged.IASMPluginTransformer;
 import com.cleanroommc.fugue.transformer.forgeendertech.ForgeMainTransformer;
-import com.cleanroommc.fugue.transformer.groovyscript.ASTTransformationCollectorCodeVisitorTransformer;
-import com.cleanroommc.fugue.transformer.groovyscript.GroovyClassLoaderTransformer;
-import com.cleanroommc.fugue.transformer.groovyscript.GroovyRunnerRegistryTransformer;
 import com.cleanroommc.fugue.transformer.ic2ce.Ic2cExtrasLoadingPluginTransformer;
 import com.cleanroommc.fugue.transformer.integrated_proxy.MixinLoaderTransformer;
 import com.cleanroommc.fugue.transformer.invtweaks.InvTweaksHandlerShortcutsTransformer;
@@ -175,15 +172,6 @@ public class TransformerHelper {
                     "git.jbredwards.subaquatic.mod.asm.plugin.vanilla.entity.PluginEntity");
             TransformerDelegate.registerExplicitTransformer(
                     new SubaquaticIMTransformer(), "net.minecraft.world.gen.layer.GenLayer");
-        }
-        if (FugueConfig.modPatchConfig.enableGroovyScript) {
-            TransformerDelegate.registerExplicitTransformer(
-                    new GroovyClassLoaderTransformer(), "groovy.lang.GroovyClassLoader");
-            TransformerDelegate.registerExplicitTransformer(
-                    new GroovyRunnerRegistryTransformer(), "org.apache.groovy.plugin.GroovyRunnerRegistry");
-            TransformerDelegate.registerExplicitTransformer(
-                    new ASTTransformationCollectorCodeVisitorTransformer(),
-                    "org.codehaus.groovy.transform.ASTTransformationCollectorCodeVisitor");
         }
         if (FugueConfig.modPatchConfig.enableIC2CE) {
             TransformerDelegate.registerExplicitTransformer(
