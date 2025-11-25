@@ -26,6 +26,7 @@ import com.cleanroommc.fugue.transformer.farseek.FarseekClassTransformerTransfor
 import com.cleanroommc.fugue.transformer.fivezig.ClassTweakerTransformer;
 import com.cleanroommc.fugue.transformer.fluidlogged.IASMPluginTransformer;
 import com.cleanroommc.fugue.transformer.forgeendertech.ForgeMainTransformer;
+import com.cleanroommc.fugue.transformer.futuremc.CoreTransformerTransformer;
 import com.cleanroommc.fugue.transformer.ic2ce.Ic2cExtrasLoadingPluginTransformer;
 import com.cleanroommc.fugue.transformer.integrated_proxy.MixinLoaderTransformer;
 import com.cleanroommc.fugue.transformer.invtweaks.InvTweaksHandlerShortcutsTransformer;
@@ -426,6 +427,10 @@ public class TransformerHelper {
         if (FugueConfig.modPatchConfig.enableFluidlogged) {
             TransformerDelegate.registerExplicitTransformer(
                     new IASMPluginTransformer(), "git.jbredwards.fluidlogged_api.api.asm.IASMPlugin");
+        }
+        if (FugueConfig.modPatchConfig.enableFutureMC) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new CoreTransformerTransformer(), "thedarkcolour.futuremc.asm.CoreTransformer");
         }
 
         // Common patches below

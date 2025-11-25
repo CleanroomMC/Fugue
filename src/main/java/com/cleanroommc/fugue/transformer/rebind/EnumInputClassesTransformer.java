@@ -30,7 +30,6 @@ public class EnumInputClassesTransformer implements IExplicitTransformer {
                                     && insnNode.getNext() instanceof MethodInsnNode methodInsnNode1
                                     && methodInsnNode1.name.equals("getNext")) {
 
-                                Fugue.LOGGER.info("REBIND FOUND");
                                 instructions.insert(
                                         insnNode,
                                         new MethodInsnNode(

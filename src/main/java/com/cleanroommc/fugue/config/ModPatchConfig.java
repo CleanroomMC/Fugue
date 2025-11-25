@@ -198,4 +198,7 @@ public class ModPatchConfig {
     @Config.Name("Enable Fluidlogged API Patch")
     @Config.Comment("The mod is removing insn nodes by counting")
     public boolean enableFluidlogged = true;
+    @Config.Name("Enable Future MC Patch")
+    @Config.Comment("It's ASM code adapted to Forge's weird compiler")
+    public boolean enableFutureMC = true;
 }
