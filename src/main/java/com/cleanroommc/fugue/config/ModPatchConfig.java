@@ -201,4 +201,7 @@ public class ModPatchConfig {
     @Config.Name("Enable Future MC Patch")
     @Config.Comment("It's ASM code adapted to Forge's weird compiler")
     public boolean enableFutureMC = true;
+    @Config.Name("Enable Damage Indicators Mod Patch")
+    @Config.Comment("Patched toArray casting")
+    public boolean enableDamageIndicatorsMod = true;
 }

@@ -11,6 +11,7 @@ import com.cleanroommc.fugue.transformer.colytra.EntityLivingBaseTransformer;
 import com.cleanroommc.fugue.transformer.corpse.MessageOpenHistoryTransformer;
 import com.cleanroommc.fugue.transformer.crossbow.TransformerEntityArrowTransformer;
 import com.cleanroommc.fugue.transformer.customskinloader.ForgeTweakerTransformer;
+import com.cleanroommc.fugue.transformer.damageindicatorsmod.AdvancedGuiTransformer;
 import com.cleanroommc.fugue.transformer.dj2addons.DJ2AddonsCoreTransformer;
 import com.cleanroommc.fugue.transformer.dropt.ValidatorAdapterFactoryTransformer;
 import com.cleanroommc.fugue.transformer.ears.EarsASMTransformer;
@@ -432,8 +433,12 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(
                     new CoreTransformerTransformer(), "thedarkcolour.futuremc.asm.CoreTransformer");
         }
+        if (FugueConfig.modPatchConfig.enableDamageIndicatorsMod) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new AdvancedGuiTransformer(), "DamageIndicatorsMod.gui.AdvancedGui");
+        }
 
-        // Common patches below
+        // ======================================== Common patches below ===============================================
 
         if (FugueConfig.getCodeSourcePatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformer(

@@ -30,7 +30,14 @@ public class GuiInfoCalculatorTransformer implements IExplicitTransformer {
                                     instructions.remove(aload.getNext());
                                     instructions.remove(aload.getNext());
                                     instructions.remove(aload.getNext());
-                                    instructions.insert(aload, new MethodInsnNode(Opcodes.INVOKESTATIC, "com/cleanroommc/fugue/helper/HookHelper", "listToArray", "(Ljava/util/List;)[Ljava/lang/String;", false));
+                                    instructions.insert(
+                                            aload,
+                                            new MethodInsnNode(
+                                                    Opcodes.INVOKESTATIC,
+                                                    "com/cleanroommc/fugue/helper/HookHelper",
+                                                    "listToArray",
+                                                    "(Ljava/util/List;)[Ljava/lang/String;",
+                                                    false));
                                     break out;
                                 }
                             }
