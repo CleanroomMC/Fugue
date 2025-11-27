@@ -123,6 +123,7 @@ public class ModPatchConfig {
     @Config.Name("Enable Uncrafting Blacklist Patch")
     public boolean enableUncraftingBlacklist = true;
     @Config.Name("Enable Calculator Patch")
+    @Config.Comment("Patched toArray casting")
     public boolean enableCalculator = true;
     @Config.Comment("This patches the CraftPresence spam log")
     @Config.Name("Enable Unilib Patch")

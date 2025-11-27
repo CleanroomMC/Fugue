@@ -62,6 +62,7 @@ import com.cleanroommc.fugue.transformer.subaquatic.PluginEntityTransformer;
 import com.cleanroommc.fugue.transformer.subaquatic.SubaquaticIMTransformer;
 import com.cleanroommc.fugue.transformer.survivalinc.ForgeASMInjectorTransformer;
 import com.cleanroommc.fugue.transformer.techgun.TechgunsASMTransformerTransformer;
+import com.cleanroommc.fugue.transformer.terraplusplus.PorkUtilTransformer;
 import com.cleanroommc.fugue.transformer.universal.RemoveMixinInitFromCotrTransformer;
 import com.cleanroommc.fugue.transformer.tickcentral.*;
 import com.cleanroommc.fugue.transformer.universal.*;
@@ -437,6 +438,10 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(
                     new AdvancedGuiTransformer(), "DamageIndicatorsMod.gui.AdvancedGui");
         }
+        /*
+        TransformerDelegate.registerExplicitTransformer(
+                new PorkUtilTransformer(),
+                "net.buildtheearth.terraplusplus.dep.net.daporkchop.lib.common.util.PorkUtil");*/
 
         // ======================================== Common patches below ===============================================
 
