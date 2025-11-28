@@ -12,9 +12,9 @@ public class ScriptEngineTransformer implements IExplicitTransformer {
     @Override
     public byte[] transform(byte[] bytes) {
         ClassReader reader = new ClassReader(bytes);
-        ClassWriter writer = new ClassWriter(0);
+        ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_FRAMES);
         CV cv = new CV(writer);
-        reader.accept(cv, 0);
+        reader.accept(cv, ClassReader.EXPAND_FRAMES);
         return writer.toByteArray();
     }
 
