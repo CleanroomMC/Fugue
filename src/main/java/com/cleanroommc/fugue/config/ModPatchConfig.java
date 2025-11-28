@@ -208,4 +208,7 @@ public class ModPatchConfig {
     @Config.Name("Enable 7 Days to Mine Patch")
     @Config.Comment("It stores script engine manage to a field which doesn't handle by universal patch")
     public boolean enableSevenDaysToMine = true;
+    @Config.Name("Enable Better Sprinting Patch")
+    @Config.Comment("This mod is counting insn on target matching, which breaks after patch cleanup")
+    public boolean enableBetterSprinting = true;
 }

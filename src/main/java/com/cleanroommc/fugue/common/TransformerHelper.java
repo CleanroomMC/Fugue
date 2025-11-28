@@ -6,6 +6,7 @@ import com.cleanroommc.fugue.transformer.aether.ClientProxyTransformer;
 import com.cleanroommc.fugue.transformer.allmusic_client.AllMusicHudTransformer;
 import com.cleanroommc.fugue.transformer.allmusic_client.AllMusicPlayerTransformer;
 import com.cleanroommc.fugue.transformer.betterfc.HK_LoaderTransformer;
+import com.cleanroommc.fugue.transformer.bettersprinting.TransformerEntityPlayerSPTransformer;
 import com.cleanroommc.fugue.transformer.calculator.GuiInfoCalculatorTransformer;
 import com.cleanroommc.fugue.transformer.colytra.EntityLivingBaseTransformer;
 import com.cleanroommc.fugue.transformer.corpse.MessageOpenHistoryTransformer;
@@ -445,6 +446,11 @@ public class TransformerHelper {
         if (FugueConfig.modPatchConfig.enableSevenDaysToMine) {
             TransformerDelegate.registerExplicitTransformer(
                     new CommonProxyTransformer(), "nuparu.sevendaystomine.proxy.CommonProxy");
+        }
+        if (FugueConfig.modPatchConfig.enableBetterSprinting) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new TransformerEntityPlayerSPTransformer(),
+                    "chylex.bettersprinting.system.core.TransformerEntityPlayerSP");
         }
 
         // ======================================== Common patches below ===============================================
