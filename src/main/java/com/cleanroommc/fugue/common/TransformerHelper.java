@@ -54,6 +54,7 @@ import com.cleanroommc.fugue.transformer.rebind.EnumInputClassesTransformer;
 import com.cleanroommc.fugue.transformer.saoui.HudTransformer;
 import com.cleanroommc.fugue.transformer.screenshot_viewer.ScreenshotViewerTransformer;
 import com.cleanroommc.fugue.transformer.sereneseasons.EntityRendererTransformerTransformer;
+import com.cleanroommc.fugue.transformer.sevendaystomine.CommonProxyTransformer;
 import com.cleanroommc.fugue.transformer.shouldersurfing.EntityPlayerRayTraceTransformer;
 import com.cleanroommc.fugue.transformer.simplehotspring.SimplyHotSpringsConfigTransformer;
 import com.cleanroommc.fugue.transformer.smoothfont.FontRendererTransformer;
@@ -62,7 +63,6 @@ import com.cleanroommc.fugue.transformer.subaquatic.PluginEntityTransformer;
 import com.cleanroommc.fugue.transformer.subaquatic.SubaquaticIMTransformer;
 import com.cleanroommc.fugue.transformer.survivalinc.ForgeASMInjectorTransformer;
 import com.cleanroommc.fugue.transformer.techgun.TechgunsASMTransformerTransformer;
-import com.cleanroommc.fugue.transformer.terraplusplus.PorkUtilTransformer;
 import com.cleanroommc.fugue.transformer.universal.RemoveMixinInitFromCotrTransformer;
 import com.cleanroommc.fugue.transformer.tickcentral.*;
 import com.cleanroommc.fugue.transformer.universal.*;
@@ -442,6 +442,10 @@ public class TransformerHelper {
         TransformerDelegate.registerExplicitTransformer(
                 new PorkUtilTransformer(),
                 "net.buildtheearth.terraplusplus.dep.net.daporkchop.lib.common.util.PorkUtil");*/
+        if (FugueConfig.modPatchConfig.enableSevenDaysToMine) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new CommonProxyTransformer(), "nuparu.sevendaystomine.proxy.CommonProxy");
+        }
 
         // ======================================== Common patches below ===============================================
 

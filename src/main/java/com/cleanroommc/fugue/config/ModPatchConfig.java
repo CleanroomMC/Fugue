@@ -205,4 +205,7 @@ public class ModPatchConfig {
     @Config.Name("Enable Damage Indicators Mod Patch")
     @Config.Comment("Patched toArray casting")
     public boolean enableDamageIndicatorsMod = true;
+    @Config.Name("Enable 7 Days to Mine Patch")
+    @Config.Comment("It stores script engine manage to a field which doesn't handle by universal patch")
+    public boolean enableSevenDaysToMine = true;
 }
