@@ -12,9 +12,9 @@ public class ScriptEngineTransformer implements IExplicitTransformer {
     @Override
     public byte[] transform(byte[] bytes) {
         ClassReader reader = new ClassReader(bytes);
-        ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_FRAMES);
+        ClassWriter writer = new ClassWriter(0);
         CV cv = new CV(writer);
-        reader.accept(cv, ClassReader.EXPAND_FRAMES);
+        reader.accept(cv, 0);
         return writer.toByteArray();
     }
 
@@ -63,7 +63,7 @@ public class ScriptEngineTransformer implements IExplicitTransformer {
                 final String descriptor,
                 final boolean isInterface) {
             if (mv != null) {
-                if (owner.equals("javax/script/ScriptEngineManager")) {
+                if ("javax/script/ScriptEngineManager".equals(owner) && "<init>".equals(name)) {
                     mv.visitMethodInsn(
                             opcode,
                             "com/cleanroommc/loader/scripting/CleanroomScriptEngineManager",
