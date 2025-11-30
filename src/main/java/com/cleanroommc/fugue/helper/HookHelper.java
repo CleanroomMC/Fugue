@@ -19,6 +19,7 @@ import org.objectweb.asm.tree.FrameNode;
 import org.objectweb.asm.tree.InsnList;
 import org.objectweb.asm.tree.LabelNode;
 import org.objectweb.asm.tree.LineNumberNode;
+import org.objectweb.asm.tree.MethodNode;
 import oshi.SystemInfo;
 import top.outlands.foundation.TransformerDelegate;
 import top.outlands.foundation.boot.ActualClassLoader;
@@ -45,7 +46,8 @@ public class HookHelper {
 
     @SuppressWarnings("deprecation")
     private static String byGetResource() {
-        Class<?> clazz = StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE).getCallerClass();
+        Class<?> clazz = StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE)
+                .getCallerClass();
         URL classResource = clazz.getResource(clazz.getSimpleName() + ".class");
         if (classResource == null) {
             throw new RuntimeException("class resource is null");
@@ -67,7 +69,7 @@ public class HookHelper {
         URLConnection connection = url.openConnection();
         if (connection instanceof JarURLConnection jarURLConnection) {
             return jarURLConnection.getJarFileURL().toURI();
-        } else  {
+        } else {
             return url.toURI();
         }
     }
@@ -136,7 +138,6 @@ public class HookHelper {
         } else {
             return grsMap.computeIfAbsent(name, k -> Launch.classLoader.defineClass(k, bytes));
         }
-
     }
 
     public static void logCL(ClassLoader parent) {
@@ -147,10 +148,10 @@ public class HookHelper {
         Class<?> c = null;
         try {
             c = Launch.classLoader.findClass(name);
-        } catch (ClassNotFoundException | NoClassDefFoundError ignored) {}
+        } catch (ClassNotFoundException | NoClassDefFoundError ignored) {
+        }
         return c;
     }
-
 
     public static byte[] redirectGetClassByte(LaunchClassLoader instance, String s) throws IOException {
         byte[] bytes = null;
@@ -168,23 +169,31 @@ public class HookHelper {
 
     public static byte[] transformAsPureFML(String name, String transformedName, byte[] basicClass) {
         for (IClassTransformer transformer : TransformerDelegate.getTransformers()) {
-            boolean allowed = (transformer instanceof net.minecraftforge.fml.common.asm.transformers.PatchingTransformer || transformer instanceof net.minecraftforge.fml.common.asm.transformers.SideTransformer || transformer instanceof net.minecraftforge.fml.common.asm.transformers.SoundEngineFixTransformer || transformer instanceof net.minecraftforge.fml.common.asm.transformers.DeobfuscationTransformer || transformer instanceof net.minecraftforge.fml.common.asm.transformers.AccessTransformer || transformer instanceof net.minecraftforge.fml.common.asm.transformers.FieldRedirectTransformer || transformer instanceof net.minecraftforge.fml.common.asm.transformers.TerminalTransformer || transformer instanceof net.minecraftforge.fml.common.asm.transformers.ModAPITransformer);
-            if (!allowed)
-                continue;
+            boolean allowed = (transformer instanceof net.minecraftforge.fml.common.asm.transformers.PatchingTransformer
+                    || transformer instanceof net.minecraftforge.fml.common.asm.transformers.SideTransformer
+                    || transformer instanceof net.minecraftforge.fml.common.asm.transformers.SoundEngineFixTransformer
+                    || transformer instanceof net.minecraftforge.fml.common.asm.transformers.DeobfuscationTransformer
+                    || transformer instanceof net.minecraftforge.fml.common.asm.transformers.AccessTransformer
+                    || transformer instanceof net.minecraftforge.fml.common.asm.transformers.FieldRedirectTransformer
+                    || transformer instanceof net.minecraftforge.fml.common.asm.transformers.TerminalTransformer
+                    || transformer instanceof net.minecraftforge.fml.common.asm.transformers.ModAPITransformer);
+            if (!allowed) continue;
             basicClass = transformer.transform(name, transformedName, basicClass);
         }
         return basicClass;
     }
 
     public static void TickCentralPreLoad() {
-        List<String> list = new ArrayList<>() {{
-            add("com.github.terminatornl.tickcentral.asm.BlockTransformer");
-            add("com.github.terminatornl.tickcentral.asm.ITickableTransformer");
-            add("com.github.terminatornl.tickcentral.asm.EntityTransformer");
-            add("com.github.terminatornl.tickcentral.asm.HubAPITransformer");
-            add("net.minecraftforge.fml.common.asm.transformers.ModAPITransformer");
-            add("com.github.terminatornl.tickcentral.api.ClassSniffer");
-        }};
+        List<String> list = new ArrayList<>() {
+            {
+                add("com.github.terminatornl.tickcentral.asm.BlockTransformer");
+                add("com.github.terminatornl.tickcentral.asm.ITickableTransformer");
+                add("com.github.terminatornl.tickcentral.asm.EntityTransformer");
+                add("com.github.terminatornl.tickcentral.asm.HubAPITransformer");
+                add("net.minecraftforge.fml.common.asm.transformers.ModAPITransformer");
+                add("com.github.terminatornl.tickcentral.api.ClassSniffer");
+            }
+        };
         try {
             for (var s : list) {
                 Launch.classLoader.findClass(s);
@@ -216,7 +225,8 @@ public class HookHelper {
 
     public static boolean isInitialized(File file) {
         try {
-            return Arrays.asList(Launch.classLoader.getURLs()).contains(file.toURI().toURL());
+            return Arrays.asList(Launch.classLoader.getURLs())
+                    .contains(file.toURI().toURL());
         } catch (MalformedURLException e) {
             return false;
         }
@@ -225,19 +235,30 @@ public class HookHelper {
     public static void addToClasspath(File file) {
         try {
             Launch.classLoader.addURL(file.toURI().toURL());
-        } catch (MalformedURLException ignored) {}
+        } catch (MalformedURLException ignored) {
+        }
     }
 
     public static HashMap<String, Object> essential$gatherEnvironmentDetails() {
         HashMap<String, Object> hardwareMap = new HashMap<>();
-        try { hardwareMap.put("cpu", new SystemInfo().getHardware().getProcessor().getProcessorIdentifier().getName()); } catch (Throwable ignored) {}
+        try {
+            hardwareMap.put(
+                    "cpu",
+                    new SystemInfo()
+                            .getHardware()
+                            .getProcessor()
+                            .getProcessorIdentifier()
+                            .getName());
+        } catch (Throwable ignored) {
+        }
         hardwareMap.putIfAbsent("cpu", "UNKNOWN");
         hardwareMap.put("gpu", GL11.glGetString(GL11.GL_RENDERER));
         hardwareMap.put("allocatedMemory", (Runtime.getRuntime().maxMemory() / 1024L / 1024L));
         try {
             hardwareMap.put("os", System.getProperty("os.name", "UNKNOWN"));
             hardwareMap.put("osVersion", System.getProperty("os.version", "UNKNOWN"));
-        }catch (Throwable e) {}
+        } catch (Throwable ignored) {
+        }
         hardwareMap.putIfAbsent("os", "UNKNOWN");
         hardwareMap.putIfAbsent("osVersion", "UNKNOWN");
         return hardwareMap;
@@ -247,10 +268,7 @@ public class HookHelper {
         return list.toArray(new String[0]);
     }
 
-
-    public static <V> void addCallback(
-            final ListenableFuture<V> future,
-            final FutureCallback<? super V> callback) {
+    public static <V> void addCallback(final ListenableFuture<V> future, final FutureCallback<? super V> callback) {
         Futures.addCallback(future, callback, Runnable::run);
     }
 
@@ -265,12 +283,15 @@ public class HookHelper {
         }
         return success;
     }
-    
+
     public static String getTitle() throws IOException, ParseException {
-        return EntityUtils.toString(HttpClients.createDefault().execute(new HttpGet("https://v1.hitokoto.cn/")).getEntity());
+        return EntityUtils.toString(HttpClients.createDefault()
+                .execute(new HttpGet("https://v1.hitokoto.cn/"))
+                .getEntity());
     }
 
-    public static void removeFrom(@Nonnull final InsnList instructions, @Nonnull final AbstractInsnNode insn, final int n) {
+    public static void removeFrom(
+            @Nonnull final InsnList instructions, @Nonnull final AbstractInsnNode insn, final int n) {
         if (n > 0) {
             for (int i = 0; i < n; i++) {
                 AbstractInsnNode next = insn.getNext();
@@ -282,7 +303,9 @@ public class HookHelper {
         } else {
             for (int i = 0; i > n; i--) {
                 AbstractInsnNode previous = insn.getPrevious();
-                while (previous instanceof LabelNode || previous instanceof LineNumberNode || previous instanceof FrameNode) {
+                while (previous instanceof LabelNode
+                        || previous instanceof LineNumberNode
+                        || previous instanceof FrameNode) {
                     previous = previous.getPrevious();
                 }
                 instructions.remove(previous);
@@ -291,4 +314,29 @@ public class HookHelper {
         instructions.remove(insn);
     }
 
+    public static int filteredRemove(int index, InsnList list, AbstractInsnNode node) {
+        Fugue.LOGGER.info("Removing {}", node);
+        if (!(node instanceof FrameNode || node instanceof LabelNode || node instanceof LineNumberNode)) {
+            list.remove(node);
+        } else {
+            index++;
+        }
+        return index;
+    }
+
+    public static void clearNextInstructions(final MethodNode methodNode, AbstractInsnNode insnNode, int count) {
+        while (count > 0) {
+            AbstractInsnNode next = insnNode.getNext();
+            if (next != null) {
+                if (next instanceof FrameNode || next instanceof LabelNode || next instanceof LineNumberNode) {
+                    insnNode = insnNode.getNext();
+                } else {
+                    methodNode.instructions.remove(next);
+                    count--;
+                }
+            } else {
+                break;
+            }
+        }
+    }
 }

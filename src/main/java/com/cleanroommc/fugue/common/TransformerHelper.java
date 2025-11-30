@@ -54,6 +54,7 @@ import com.cleanroommc.fugue.transformer.randomtitle.ConfigManagerTransformer;
 import com.cleanroommc.fugue.transformer.rebind.EnumInputClassesTransformer;
 import com.cleanroommc.fugue.transformer.saoui.HudTransformer;
 import com.cleanroommc.fugue.transformer.screenshot_viewer.ScreenshotViewerTransformer;
+import com.cleanroommc.fugue.transformer.sereneseasons.ASMHelperTransformer;
 import com.cleanroommc.fugue.transformer.sereneseasons.EntityRendererTransformerTransformer;
 import com.cleanroommc.fugue.transformer.sevendaystomine.CommonProxyTransformer;
 import com.cleanroommc.fugue.transformer.shouldersurfing.EntityPlayerRayTraceTransformer;
@@ -422,6 +423,9 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(
                     new EntityRendererTransformerTransformer(),
                     "sereneseasons.asm.transformer.EntityRendererTransformer");
+            TransformerDelegate.registerExplicitTransformer(
+                new ASMHelperTransformer(),
+                "sereneseasons.asm.ASMHelper");
         }
         if (FugueConfig.modPatchConfig.enableRebind) {
             TransformerDelegate.registerExplicitTransformer(

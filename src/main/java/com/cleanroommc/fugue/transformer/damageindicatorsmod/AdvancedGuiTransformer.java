@@ -22,13 +22,11 @@ public class AdvancedGuiTransformer implements IExplicitTransformer {
             out:
             for (MethodNode methodNode : classNode.methods) {
                 if (methodNode.name.equals("createTooltips")) {
-                    Fugue.LOGGER.info("DIM FOUND");
                     InsnList instructions = methodNode.instructions;
                     if (instructions != null) {
                         for (AbstractInsnNode insnNode : instructions) {
                             if (insnNode instanceof MethodInsnNode methodInsnNode
                                     && methodInsnNode.name.equals("toArray")) {
-                                Fugue.LOGGER.info("DIM FOUND");
                                 instructions.insert(
                                         methodInsnNode,
                                         new MethodInsnNode(
