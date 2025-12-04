@@ -15,7 +15,9 @@
     "dissolution.PossessableEntityFactoryMixin",
     "extrautils2.FieldSetterMixin",
     "funkylocomotion.WrenchFactoryMixin",
+    "glibysphysics.GManMixin",
     "gregtech.GTRecipeInputCacheMixin",
+    "hammercore.FinalFieldHelperMixin",
     "hammercore.ReflectionUtilMixin",
     "howlingmoon.WerewolfCapabilityMixin",
     "mage.ColorspacesMixin",
@@ -32,8 +34,7 @@
     "unilib.FileUtilsMixin",
     "waterpower.ClassEngineMixin",
     "xaeroplus.ChunkHighlightSavingCacheMixin",
-    "xaeroplus.XaeroPlusSettingsReflectionHaxMixin",
-    "glibysphysics.GManMixin"
+    "xaeroplus.XaeroPlusSettingsReflectionHaxMixin"
   ],
   "client": [
     "custommainmenu.SlideshowMixin",
