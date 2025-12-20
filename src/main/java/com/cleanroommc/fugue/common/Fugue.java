@@ -21,7 +21,8 @@ import java.util.Map;
         useMetadata = true,
         version = Reference.MOD_VERSION,
         dependencies = Reference.MOD_DEPENDENCIES,
-        acceptableRemoteVersions = "*"
+        acceptableRemoteVersions = "*",
+        updateJSON = "https://forge.curseupdate.com/1005815/fugue"
 )
 public class Fugue {
     
