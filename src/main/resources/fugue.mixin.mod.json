@@ -26,6 +26,7 @@
     "patchouli.BookRegistryMixin",
     "projectred_core.WirePropagatorMixin",
     "reccomplex.NBTToJsonMixin",
+    "reccomplex.ParametersMixin",
     "reccomplex.WorldgenMonitorMixin",
     "refinedstorage.OperatorMixin",
     "solarflux.INetworkSFMixin",
