@@ -63,9 +63,9 @@ unimined.minecraft {
 
     cleanroom {
         if (propertyBool('use_access_transformer')) {
-            accessTransformer 'src/main/resources/META-INF/' +  propertyString('access_transformer_locations')
+            accessTransformer "src/main/resources/META-INF/${propertyString('access_transformer_locations')}"
         }
-        loader "0.3.27-alpha"
+        loader "0.3.34-alpha"
         runs.config("client", {args += extra_jvm_args.split(" ")})
         runs.config("server", {args += extra_jvm_args.split(" ")})
         runs.auth.username = minecraft_username
