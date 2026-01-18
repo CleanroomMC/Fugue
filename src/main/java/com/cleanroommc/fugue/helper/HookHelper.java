@@ -314,7 +314,7 @@ public class HookHelper {
         instructions.remove(insn);
     }
 
-    public static int filteredRemove(int index, InsnList list, AbstractInsnNode node) {
+    public static int filteredRemove(InsnList list, AbstractInsnNode node, int index) {
         Fugue.LOGGER.info("Removing {}", node);
         if (!(node instanceof FrameNode || node instanceof LabelNode || node instanceof LineNumberNode)) {
             list.remove(node);

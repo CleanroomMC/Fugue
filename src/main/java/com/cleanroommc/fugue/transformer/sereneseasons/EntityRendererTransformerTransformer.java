@@ -1,6 +1,5 @@
 package com.cleanroommc.fugue.transformer.sereneseasons;
 
-import com.cleanroommc.fugue.common.Fugue;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
@@ -30,18 +29,17 @@ public class EntityRendererTransformerTransformer implements IExplicitTransforme
                         }
                     } else if (insnNode instanceof MethodInsnNode methodInsnNode
                             && methodInsnNode.name.equals("remove")) {
-                        Fugue.LOGGER.info("FOUND SS");
-                        method.instructions.insert(insnNode, new VarInsnNode(Opcodes.ILOAD, 14));
+                        method.instructions.insert(insnNode, new VarInsnNode(Opcodes.ISTORE, 13));
                         method.instructions.insert(
                                 insnNode,
                                 new MethodInsnNode(
                                         Opcodes.INVOKESTATIC,
                                         "com/cleanroommc/fugue/helper/HookHelper",
                                         "filteredRemove",
-                                        "(ILorg/objectweb/asm/tree/InsnList;Lorg/objectweb/asm/tree/AbstractInsnNode;)I",
+                                        "(Lorg/objectweb/asm/tree/InsnList;Lorg/objectweb/asm/tree/AbstractInsnNode;I)I",
                                         false));
-                        method.instructions.insert(insnNode, new VarInsnNode(Opcodes.ISTORE, 14));
-                        break;
+                        method.instructions.insert(insnNode, new VarInsnNode(Opcodes.ILOAD, 13));
+                        method.instructions.remove(insnNode);
                     }
                 }
             }

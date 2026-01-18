@@ -160,6 +160,15 @@ jar {
     }
 }
 
+remapJar {
+    doFirst {
+        logging.captureStandardOutput LogLevel.INFO
+    }
+    doLast {
+        logging.captureStandardOutput LogLevel.QUIET
+    }
+}
+
 idea {
     module {
         inheritOutputDirs = true
