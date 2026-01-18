@@ -44,7 +44,7 @@ dependencies {
     modImplementation 'curse.maven:xaero-263420:4911777'
     modImplementation 'curse.maven:xaero-map-317780:4911823'
 
-    modImplementation 'curse.maven:xaeroplus-866084:6312816'
+    modImplementation 'curse.maven:xaeroplus-866084:7418444'
 
     //CodeChickenLib
     modImplementation 'codechicken:CodeChickenLib:1.12-3.1.5.330:universal'
