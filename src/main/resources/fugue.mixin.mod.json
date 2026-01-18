@@ -34,8 +34,7 @@
     "subaquatic.IBubbleColumnMixin",
     "unilib.FileUtilsMixin",
     "waterpower.ClassEngineMixin",
-    "xaeroplus.ChunkHighlightSavingCacheMixin",
-    "xaeroplus.XaeroPlusSettingsReflectionHaxMixin"
+    "xaeroplus.ChunkHighlightSavingCacheMixin"
   ],
   "client": [
     "custommainmenu.SlideshowMixin",
