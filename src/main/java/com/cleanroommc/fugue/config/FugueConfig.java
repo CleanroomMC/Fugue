@@ -214,6 +214,7 @@ public class FugueConfig {
         "com.replaymod.core.LoadingPlugin",
         "zone.rong.loliasm.common.crashes.ModIdentifier",
         "online.flowerinsnow.greatscrollabletooltips.tweaker.GreatScrollableTooltipsTweaker",
+        "cn.flowerinsnow.greatscrollabletooltips.tweaker.GreatScrollableTooltipsTweaker",
         "com.wjx.kablade.mixin.KabladeMixinTweak",
         "eos.moe.dragoncore.tweaker.ForgePlugin",
         "advancedshader.core.Core",
