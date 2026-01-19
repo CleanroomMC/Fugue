@@ -1,5 +1,6 @@
 package com.cleanroommc.fugue.transformer.sereneseasons;
 
+import net.minecraft.launchwrapper.Launch;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
@@ -12,6 +13,7 @@ import top.outlands.foundation.IExplicitTransformer;
 public class EntityRendererTransformerTransformer implements IExplicitTransformer {
     @Override
     public byte[] transform(byte[] bytes) {
+        if (Launch.classLoader.isClassExist("Config")) return bytes;
         var classReader = new ClassReader(bytes);
         var classNode = new ClassNode();
         classReader.accept(classNode, 0);
