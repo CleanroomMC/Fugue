@@ -487,7 +487,8 @@ public class TransformerHelper {
                                 "javax/ws/",
                                 "javax/activation/",
                                 "javax/soap/",
-                                "javax/jws/"
+                                "javax/jws/",
+                                "javax/inject/"
                             },
                             new String[] {
                                 "jakarta/xml/bind/",
@@ -495,7 +496,8 @@ public class TransformerHelper {
                                 "jakarta/ws/",
                                 "jakarta/activation/",
                                 "jakarta/soap/",
-                                "jakarta/jws/"
+                                "jakarta/jws/",
+                                "jakarta/inject/"
                             }),
                     FugueConfig.remapTargets);
         }

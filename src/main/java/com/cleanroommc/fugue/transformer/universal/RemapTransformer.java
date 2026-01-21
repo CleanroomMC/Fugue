@@ -4,6 +4,7 @@ import net.minecraftforge.fml.common.FMLLog;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.commons.ClassRemapper;
 import org.objectweb.asm.commons.Remapper;
 import top.outlands.foundation.IExplicitTransformer;
@@ -39,6 +40,7 @@ public class RemapTransformer implements IExplicitTransformer {
         private final String[] toPrefixes;
 
         public PrefixRemapper(String[] fromPrefixes, String[] toPrefixes) {
+            super(Opcodes.ASM9);
             this.fromPrefixes = fromPrefixes;
             this.toPrefixes = toPrefixes;
         }
