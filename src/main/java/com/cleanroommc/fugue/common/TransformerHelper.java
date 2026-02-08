@@ -42,6 +42,7 @@ import com.cleanroommc.fugue.transformer.loliasm.JavaFixesTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.LoliFMLCallHookTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.LoliReflectorTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.ModIdentifierTransformer;
+import com.cleanroommc.fugue.transformer.mechanimation.ConfigValueStringListTransformer;
 import com.cleanroommc.fugue.transformer.mobends.ConnectionHelperTransformation;
 import com.cleanroommc.fugue.transformer.moreplayermodels.ClientEventHandlerTransformer;
 import com.cleanroommc.fugue.transformer.moresoundconfig.SoundDevicesTransformer;
@@ -455,6 +456,10 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(
                     new TransformerEntityPlayerSPTransformer(),
                     "chylex.bettersprinting.system.core.TransformerEntityPlayerSP");
+        }
+        if (FugueConfig.modPatchConfig.enableMechanimation) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new ConfigValueStringListTransformer(), "firemerald.api.config.ConfigValueStringList");
         }
 
         // ======================================== Common patches below ===============================================

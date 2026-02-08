@@ -211,4 +211,6 @@ public class ModPatchConfig {
     @Config.Name("Enable Better Sprinting Patch")
     @Config.Comment("This mod is counting insn on target matching, which breaks after patch cleanup")
     public boolean enableBetterSprinting = true;
+    @Config.Name("Enable Mechanimation Patch")
+    public boolean enableMechanimation = true;
 }
