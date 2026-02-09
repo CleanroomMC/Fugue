@@ -180,6 +180,7 @@ public class FugueConfig {
         "com.cleanroommc.modularui.core.ModularUICore",
         "openeye.logic.ModMetaCollector",
         "com.forgeessentials.core.preloader.asminjector.ASMUtil",
+        "kpan.heavy_fallings.util.ReflectionUtil",
     };
 
     @Config.Comment("""
