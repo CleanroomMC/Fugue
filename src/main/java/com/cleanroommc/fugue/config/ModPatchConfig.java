@@ -213,4 +213,7 @@ public class ModPatchConfig {
     public boolean enableBetterSprinting = true;
     @Config.Name("Enable Mechanimation Patch")
     public boolean enableMechanimation = true;
+    @Config.Name("Enable Heavy Falling Patch")
+    @Config.Comment("This mod plays with transformer order and conflicts with UT")
+    public boolean enableHeavyFalling = true;
 }

@@ -424,9 +424,7 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(
                     new EntityRendererTransformerTransformer(),
                     "sereneseasons.asm.transformer.EntityRendererTransformer");
-            TransformerDelegate.registerExplicitTransformer(
-                new ASMHelperTransformer(),
-                "sereneseasons.asm.ASMHelper");
+            TransformerDelegate.registerExplicitTransformer(new ASMHelperTransformer(), "sereneseasons.asm.ASMHelper");
         }
         if (FugueConfig.modPatchConfig.enableRebind) {
             TransformerDelegate.registerExplicitTransformer(
@@ -460,6 +458,11 @@ public class TransformerHelper {
         if (FugueConfig.modPatchConfig.enableMechanimation) {
             TransformerDelegate.registerExplicitTransformer(
                     new ConfigValueStringListTransformer(), "firemerald.api.config.ConfigValueStringList");
+        }
+        if (FugueConfig.modPatchConfig.enableHeavyFalling) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new com.cleanroommc.fugue.transformer.heavy_fallings.AsmTransformerTransformer(),
+                    "kpan.heavy_fallings.asm.core.AsmTransformer");
         }
 
         // ======================================== Common patches below ===============================================
