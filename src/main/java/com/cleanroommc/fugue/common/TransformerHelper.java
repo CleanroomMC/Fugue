@@ -42,6 +42,7 @@ import com.cleanroommc.fugue.transformer.loliasm.JavaFixesTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.LoliFMLCallHookTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.LoliReflectorTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.ModIdentifierTransformer;
+import com.cleanroommc.fugue.transformer.mc4.TransformEntityLivingTransformer;
 import com.cleanroommc.fugue.transformer.mechanimation.ConfigValueStringListTransformer;
 import com.cleanroommc.fugue.transformer.mobends.ConnectionHelperTransformation;
 import com.cleanroommc.fugue.transformer.moreplayermodels.ClientEventHandlerTransformer;
@@ -463,6 +464,11 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(
                     new com.cleanroommc.fugue.transformer.heavy_fallings.AsmTransformerTransformer(),
                     "kpan.heavy_fallings.asm.core.AsmTransformer");
+        }
+        if (FugueConfig.modPatchConfig.enableMetroCubed4) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new TransformEntityLivingTransformer(),
+                    "firemerald.mc4.plugin.transformers.common.TransformEntityLiving");
         }
 
         // ======================================== Common patches below ===============================================

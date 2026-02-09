@@ -216,4 +216,7 @@ public class ModPatchConfig {
     @Config.Name("Enable Heavy Falling Patch")
     @Config.Comment("This mod plays with transformer order and conflicts with UT")
     public boolean enableHeavyFalling = true;
+    @Config.Name("Enable Metroid Cubed 4 Patch")
+    @Config.Comment("This mod is using mcp name in ASM")
+    public boolean enableMetroCubed4 = true;
 }
