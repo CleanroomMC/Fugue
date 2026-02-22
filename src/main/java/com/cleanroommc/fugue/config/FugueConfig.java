@@ -145,7 +145,8 @@ public class FugueConfig {
         "com.vicmatskiv.weaponlib.config.Ore",
         "com.vicmatskiv.weaponlib.config.AI",
         "top.seraphjack.simplelogin.server.storage.StorageProviderFile",
-        "com.gamearoosdevelopment.realistictrafficcontrol.proxy.ClientProxy"
+        "com.gamearoosdevelopment.realistictrafficcontrol.proxy.ClientProxy",
+        "org.valkyrienskies.mod.common.command.framework.VSCommandFactory"
     };
 
     @Config.Comment("""
