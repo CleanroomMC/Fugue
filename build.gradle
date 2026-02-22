@@ -32,13 +32,13 @@ version = versionDetails().lastTag
 group = propertyString('root_package')
 
 base {
-    archivesName.set("+${propertyString('mod_name')}" as String)
+    archivesName = "+${propertyString('mod_name')}" as String
 }
 
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(21))
+        languageVersion = JavaLanguageVersion.of(21)
     }
     if (propertyBool('generate_sources_jar')) {
         withSourcesJar()

@@ -264,10 +264,6 @@ public class HookHelper {
         return hardwareMap;
     }
 
-    public static String[] listToArray(List<String> list) {
-        return list.toArray(new String[0]);
-    }
-
     public static <V> void addCallback(final ListenableFuture<V> future, final FutureCallback<? super V> callback) {
         Futures.addCallback(future, callback, Runnable::run);
     }

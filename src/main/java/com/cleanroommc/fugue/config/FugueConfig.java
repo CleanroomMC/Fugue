@@ -281,6 +281,19 @@ public class FugueConfig {
     };
 
     @Config.Comment("""
+        Casting Object[] array from toArray() to String[] array or others is no longer possible in newer Java.
+        This patch will change it to toArray(new String[0]).
+        """)
+    @Config.Name("List.toArray() Patching List")
+    public static String[] toArrayPatchTargets = new String[] {
+        "com.ikara.dragonfire.common.world.darklands.gen.DarkLandsBiomeProvider",
+        "com.ikara.dragonfire.common.world.firenation.gen.FireNationBiomeProvider",
+        "DamageIndicatorsMod.gui.AdvancedGui",
+        "firemerald.api.config.ConfigValueStringList",
+        "sonar.calculator.mod.client.gui.calculators.GuiInfoCalculator",
+    };
+
+    @Config.Comment("""
         Target field's final modifier will be removed. No checks will be preformed before removal.
         All fields with same name will be targeted.
         Format: S:"foo.bar.classname"=field1|filed2\

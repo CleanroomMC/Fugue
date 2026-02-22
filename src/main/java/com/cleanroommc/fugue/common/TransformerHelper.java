@@ -7,12 +7,10 @@ import com.cleanroommc.fugue.transformer.allmusic_client.AllMusicHudTransformer;
 import com.cleanroommc.fugue.transformer.allmusic_client.AllMusicPlayerTransformer;
 import com.cleanroommc.fugue.transformer.betterfc.HK_LoaderTransformer;
 import com.cleanroommc.fugue.transformer.bettersprinting.TransformerEntityPlayerSPTransformer;
-import com.cleanroommc.fugue.transformer.calculator.GuiInfoCalculatorTransformer;
 import com.cleanroommc.fugue.transformer.colytra.EntityLivingBaseTransformer;
 import com.cleanroommc.fugue.transformer.corpse.MessageOpenHistoryTransformer;
 import com.cleanroommc.fugue.transformer.crossbow.TransformerEntityArrowTransformer;
 import com.cleanroommc.fugue.transformer.customskinloader.ForgeTweakerTransformer;
-import com.cleanroommc.fugue.transformer.damageindicatorsmod.AdvancedGuiTransformer;
 import com.cleanroommc.fugue.transformer.dj2addons.DJ2AddonsCoreTransformer;
 import com.cleanroommc.fugue.transformer.dropt.ValidatorAdapterFactoryTransformer;
 import com.cleanroommc.fugue.transformer.ears.EarsASMTransformer;
@@ -43,7 +41,6 @@ import com.cleanroommc.fugue.transformer.loliasm.LoliFMLCallHookTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.LoliReflectorTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.ModIdentifierTransformer;
 import com.cleanroommc.fugue.transformer.mc4.TransformEntityLivingTransformer;
-import com.cleanroommc.fugue.transformer.mechanimation.ConfigValueStringListTransformer;
 import com.cleanroommc.fugue.transformer.mobends.ConnectionHelperTransformation;
 import com.cleanroommc.fugue.transformer.moreplayermodels.ClientEventHandlerTransformer;
 import com.cleanroommc.fugue.transformer.moresoundconfig.SoundDevicesTransformer;
@@ -256,11 +253,6 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(
                     instance, "doomanidus.mods.uncraftingblacklist.core.UBLoadingPlugin");
         }
-        if (FugueConfig.modPatchConfig.enableCalculator) {
-            TransformerDelegate.registerExplicitTransformer(
-                    new GuiInfoCalculatorTransformer(),
-                    "sonar.calculator.mod.client.gui.calculators.GuiInfoCalculator");
-        }
         if (FugueConfig.modPatchConfig.enableEssential) {
             TransformerDelegate.registerExplicitTransformer(
                     new EssentialSetupTweakerTransformer(),
@@ -439,10 +431,6 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(
                     new CoreTransformerTransformer(), "thedarkcolour.futuremc.asm.CoreTransformer");
         }
-        if (FugueConfig.modPatchConfig.enableDamageIndicatorsMod) {
-            TransformerDelegate.registerExplicitTransformer(
-                    new AdvancedGuiTransformer(), "DamageIndicatorsMod.gui.AdvancedGui");
-        }
         /*
         TransformerDelegate.registerExplicitTransformer(
                 new PorkUtilTransformer(),
@@ -455,10 +443,6 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(
                     new TransformerEntityPlayerSPTransformer(),
                     "chylex.bettersprinting.system.core.TransformerEntityPlayerSP");
-        }
-        if (FugueConfig.modPatchConfig.enableMechanimation) {
-            TransformerDelegate.registerExplicitTransformer(
-                    new ConfigValueStringListTransformer(), "firemerald.api.config.ConfigValueStringList");
         }
         if (FugueConfig.modPatchConfig.enableHeavyFalling) {
             TransformerDelegate.registerExplicitTransformer(
@@ -542,6 +526,9 @@ public class TransformerHelper {
         if (FugueConfig.mouseWheelPatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformer(
                     new DWheelTransformer(), FugueConfig.mouseWheelPatchTargets);
+        }
+        if (FugueConfig.toArrayPatchTargets.length > 0) {
+            TransformerDelegate.registerExplicitTransformer(new ToArrayTransformer(), FugueConfig.toArrayPatchTargets);
         }
     }
 }

@@ -122,9 +122,6 @@ public class ModPatchConfig {
     public boolean enableErebusFixPatch = true;
     @Config.Name("Enable Uncrafting Blacklist Patch")
     public boolean enableUncraftingBlacklist = true;
-    @Config.Name("Enable Calculator Patch")
-    @Config.Comment("Patched toArray casting")
-    public boolean enableCalculator = true;
     @Config.Comment("This patches the CraftPresence spam log")
     @Config.Name("Enable Unilib Patch")
     public boolean enableUnilib = true;
@@ -202,17 +199,12 @@ public class ModPatchConfig {
     @Config.Name("Enable Future MC Patch")
     @Config.Comment("It's ASM code adapted to Forge's weird compiler")
     public boolean enableFutureMC = true;
-    @Config.Name("Enable Damage Indicators Mod Patch")
-    @Config.Comment("Patched toArray casting")
-    public boolean enableDamageIndicatorsMod = true;
     @Config.Name("Enable 7 Days to Mine Patch")
     @Config.Comment("It stores script engine manage to a field which doesn't handle by universal patch")
     public boolean enableSevenDaysToMine = true;
     @Config.Name("Enable Better Sprinting Patch")
     @Config.Comment("This mod is counting insn on target matching, which breaks after patch cleanup")
     public boolean enableBetterSprinting = true;
-    @Config.Name("Enable Mechanimation Patch")
-    public boolean enableMechanimation = true;
     @Config.Name("Enable Heavy Falling Patch")
     @Config.Comment("This mod plays with transformer order and conflicts with UT")
     public boolean enableHeavyFalling = true;
