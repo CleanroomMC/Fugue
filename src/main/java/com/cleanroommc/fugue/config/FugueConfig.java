@@ -66,6 +66,7 @@ public class FugueConfig {
         "maxhyper.dynamictreestbl.compat.RegistryReplacements",
         "com.github.alexthe666.iceandfire.event.EventNewMenu",
         "org.eientei.gtce2oc.GTCE2OC",
+        "com.hbm.lib.Library",
     };
 
     @Config.Comment("""
