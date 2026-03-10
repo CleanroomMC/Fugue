@@ -38,4 +38,3 @@ jobs:
       uses: actions/upload-artifact@v7
       with:
         path: build/libs
-        archive: false
