@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class is made for Thaumic Speedup!
+ * So many mods tring to hack Loader instead of using ILateMixinLoader
  */
 @SuppressWarnings("deprecation")
 public class FugueLateMixinLoader implements ILateMixinLoader {
@@ -39,7 +39,7 @@ public class FugueLateMixinLoader implements ILateMixinLoader {
                     } else if(version.equals("1.12.2-5.7.1")) {
                         configs.add("META-INF/mixins.aquaacrobatics.journeymap57.json");
                     } else {
-                        AquaAcrobaticsCore.LOGGER.warn("You have JourneyMap " + version + " installed. Only 1.12.2-5.5.4 and 1.12.2-5.7.1 are patched for water color compatibility.");
+                        AquaAcrobaticsCore.LOGGER.warn("You have JourneyMap {} installed. Only 1.12.2-5.5.4 and 1.12.2-5.7.1 are patched for water color compatibility.", version);
                     }
                 }
             }
@@ -62,6 +62,9 @@ public class FugueLateMixinLoader implements ILateMixinLoader {
         }
         if (FugueConfig.modPatchConfig.enableUncraftingBlacklist && Loader.isModLoaded("uncrafting_blacklist")) {
             configs.add("mixins.uncraftingblacklist.json");
+        }
+        if (FugueConfig.modPatchConfig.enableChiseledMe && Loader.isModLoaded("chiseled_me")) {
+            configs.add("chiseled-me.compat.mixins.json");
         }
         return configs;
     }

@@ -7,6 +7,7 @@ import com.cleanroommc.fugue.transformer.allmusic_client.AllMusicHudTransformer;
 import com.cleanroommc.fugue.transformer.allmusic_client.AllMusicPlayerTransformer;
 import com.cleanroommc.fugue.transformer.betterfc.HK_LoaderTransformer;
 import com.cleanroommc.fugue.transformer.bettersprinting.TransformerEntityPlayerSPTransformer;
+import com.cleanroommc.fugue.transformer.chiseled_me.ChiseledMeLoaderTransformer;
 import com.cleanroommc.fugue.transformer.colytra.EntityLivingBaseTransformer;
 import com.cleanroommc.fugue.transformer.corpse.MessageOpenHistoryTransformer;
 import com.cleanroommc.fugue.transformer.crossbow.TransformerEntityArrowTransformer;
@@ -453,6 +454,9 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(
                     new TransformEntityLivingTransformer(),
                     "firemerald.mc4.plugin.transformers.common.TransformEntityLiving");
+        }
+        if (FugueConfig.modPatchConfig.enableChiseledMe) {
+            TransformerDelegate.registerExplicitTransformer(new ChiseledMeLoaderTransformer(), "net.minecraftforge.fml.common.Loader");
         }
 
         // ======================================== Common patches below ===============================================

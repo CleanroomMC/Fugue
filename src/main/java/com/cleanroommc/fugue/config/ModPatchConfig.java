@@ -211,4 +211,7 @@ public class ModPatchConfig {
     @Config.Name("Enable Metroid Cubed 4 Patch")
     @Config.Comment("This mod is using mcp name in ASM")
     public boolean enableMetroCubed4 = true;
+    @Config.Name("Enable Chiseled Me Patch")
+    @Config.Comment("Uses a outdated way to setup its mixins")
+    public boolean enableChiseledMe = true;
 }
