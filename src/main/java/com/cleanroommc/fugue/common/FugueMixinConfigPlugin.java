@@ -77,6 +77,7 @@ public class FugueMixinConfigPlugin implements IMixinConfigPlugin {
             case "glibysphysics" ->
                 Loader.isModLoaded("glibysphysics") && FugueConfig.modPatchConfig.enableGlibysPhysics;
             case "darktheme" -> Loader.isModLoaded("darktheme") && FugueConfig.modPatchConfig.enableDarkTheme;
+            case "creativecore" -> Loader.isModLoaded("creativecore") &&  FugueConfig.modPatchConfig.enableCreativeCore;
             default -> true;
         };
     }

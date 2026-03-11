@@ -214,4 +214,7 @@ public class ModPatchConfig {
     @Config.Name("Enable Chiseled Me Patch")
     @Config.Comment("Uses a outdated way to setup its mixins")
     public boolean enableChiseledMe = true;
+    @Config.Name("Enable Creative Core Patch")
+    @Config.Comment("It creates a file writer but charset behavior changed in newer Java")
+    public boolean enableCreativeCore = true;
 }
