@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.io.StringReader;
 import java.lang.reflect.Field;
 
-@Mixin(Parameters.class)
+@Mixin(value = Parameters.class, remap = false)
 public class ParametersMixin {
     @Unique
     private static Field fugue$r = null;
