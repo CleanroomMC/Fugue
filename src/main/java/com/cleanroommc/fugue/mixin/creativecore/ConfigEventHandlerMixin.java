@@ -10,7 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-@Mixin(ConfigEventHandler.class)
+@Mixin(value = ConfigEventHandler.class, remap = false)
 public class ConfigEventHandlerMixin {
     @Redirect(method = "saveClientFields", at = @At(value="NEW", target="(Ljava/io/File;)Ljava/io/FileWriter;"))
     private static FileWriter fixCharset(File file) throws IOException {
