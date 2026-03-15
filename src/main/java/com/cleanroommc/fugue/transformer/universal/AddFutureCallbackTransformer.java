@@ -5,7 +5,6 @@ import top.outlands.foundation.IExplicitTransformer;
 
 public class AddFutureCallbackTransformer implements IExplicitTransformer {
 
-
     @Override
     public byte[] transform(byte[] bytes) {
         ClassReader reader = new ClassReader(bytes);
@@ -49,12 +48,12 @@ public class AddFutureCallbackTransformer implements IExplicitTransformer {
                 final boolean isInterface) {
             if (mv != null) {
                 if (owner.equals("com/google/common/util/concurrent/Futures") && name.equals("addCallback")) {
-                    mv.visitMethodInsn(Opcodes.INVOKESTATIC, "com/cleanroommc/fugue/helper/HookHelper", name, descriptor, false);
+                    mv.visitMethodInsn(
+                            Opcodes.INVOKESTATIC, "com/cleanroommc/fugue/helper/HookHelper", name, descriptor, false);
                 } else {
                     mv.visitMethodInsn(opcode, owner, name, descriptor, isInterface);
                 }
             }
         }
-
     }
 }

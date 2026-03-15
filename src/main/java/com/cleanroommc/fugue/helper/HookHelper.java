@@ -29,6 +29,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.*;
 import java.nio.file.Paths;
 import java.security.CodeSource;
@@ -36,6 +38,7 @@ import java.security.ProtectionDomain;
 import java.util.*;
 import java.util.function.Function;
 
+@SuppressWarnings("unused")
 public class HookHelper {
     public static boolean isInterface(int opcode) {
         return opcode == Opcodes.INVOKEINTERFACE;
@@ -220,6 +223,33 @@ public class HookHelper {
             Object value = function.apply(key);
             map.put(key, value);
             return value;
+        }
+    }
+
+    public static URL[] getURL(ClassLoader loader) {
+        if (loader instanceof LaunchClassLoader) {
+            return  ((LaunchClassLoader) loader).getSources().toArray(new URL[0]);
+        } else if (loader instanceof URLClassLoader) {
+            return ((URLClassLoader) loader).getURLs();
+        } else {
+            try {
+                Field UCP = LaunchClassLoader.class
+                        .getClassLoader()
+                        .getClass()
+                        .getSuperclass()
+                        .getDeclaredField("ucp");
+                UCP.setAccessible(true);
+                Object urls = UCP.get(loader);
+                Class<?> urlClassPath = Class.forName("jdk.internal.loader.URLClassPath");
+                Method get = urlClassPath.getMethod("getURLs");
+                return (URL[]) get.invoke(urls);
+            } catch (NoSuchFieldException
+                    | IllegalAccessException
+                    | ClassNotFoundException
+                    | NoSuchMethodException
+                    | InvocationTargetException e) {
+                return new URL[0];
+            }
         }
     }
 
