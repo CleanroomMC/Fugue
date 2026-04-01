@@ -56,7 +56,6 @@ jobs:
           loaders: forge
           game-versions: 1.12.2
           java: |
-            21
-            22
+            25
           version: ${{ steps.changes.outputs.tag }}
           changelog: ${{ steps.changes.outputs.changes }}
