@@ -61,6 +61,7 @@ import com.cleanroommc.fugue.transformer.shouldersurfing.EntityPlayerRayTraceTra
 import com.cleanroommc.fugue.transformer.simplehotspring.SimplyHotSpringsConfigTransformer;
 import com.cleanroommc.fugue.transformer.smoothfont.FontRendererTransformer;
 import com.cleanroommc.fugue.transformer.splashanimation.SplashProgressTransformerTransformer;
+import com.cleanroommc.fugue.transformer.subaquatic.PluginBiomeTransformer;
 import com.cleanroommc.fugue.transformer.subaquatic.PluginEntityTransformer;
 import com.cleanroommc.fugue.transformer.subaquatic.SubaquaticIMTransformer;
 import com.cleanroommc.fugue.transformer.survivalinc.ForgeASMInjectorTransformer;
@@ -177,6 +178,8 @@ public class TransformerHelper {
                     "git.jbredwards.subaquatic.mod.asm.plugin.vanilla.entity.PluginEntity");
             TransformerDelegate.registerExplicitTransformer(
                     new SubaquaticIMTransformer(), "net.minecraft.world.gen.layer.GenLayer");
+            TransformerDelegate.registerExplicitTransformer(
+                    new PluginBiomeTransformer(), "git.jbredwards.subaquatic.mod.asm.plugin.vanilla.world.PluginBiome");
         }
         if (FugueConfig.modPatchConfig.enableIC2CE) {
             TransformerDelegate.registerExplicitTransformer(
@@ -456,7 +459,8 @@ public class TransformerHelper {
                     "firemerald.mc4.plugin.transformers.common.TransformEntityLiving");
         }
         if (FugueConfig.modPatchConfig.enableChiseledMe) {
-            TransformerDelegate.registerExplicitTransformer(new ChiseledMeLoaderTransformer(), "net.minecraftforge.fml.common.Loader");
+            TransformerDelegate.registerExplicitTransformer(
+                    new ChiseledMeLoaderTransformer(), "net.minecraftforge.fml.common.Loader");
         }
 
         // ======================================== Common patches below ===============================================
