@@ -46,6 +46,7 @@ import com.cleanroommc.fugue.transformer.mobends.ConnectionHelperTransformation;
 import com.cleanroommc.fugue.transformer.moreplayermodels.ClientEventHandlerTransformer;
 import com.cleanroommc.fugue.transformer.moresoundconfig.SoundDevicesTransformer;
 import com.cleanroommc.fugue.transformer.nbtperipheral.LinkedTreeMapTransformer;
+import com.cleanroommc.fugue.transformer.ocwasm.ByteBufferReferenceTransformer;
 import com.cleanroommc.fugue.transformer.offlineskins.ObfHelperTransformer;
 import com.cleanroommc.fugue.transformer.offlineskins.OfflineskinsTransformersTransformer;
 import com.cleanroommc.fugue.transformer.offlineskins.SetupTransformer;
@@ -461,6 +462,9 @@ public class TransformerHelper {
         if (FugueConfig.modPatchConfig.enableChiseledMe) {
             TransformerDelegate.registerExplicitTransformer(
                     new ChiseledMeLoaderTransformer(), "net.minecraftforge.fml.common.Loader");
+        }
+        if (FugueConfig.modPatchConfig.enableOCWASM) {
+            TransformerDelegate.registerExplicitTransformer(new ByteBufferReferenceTransformer(), "asmble/compile/jvm/ByteBufferMem", "asmble/compile/jvm/ByteBufferMem$currentMemory$1", "asmble/compile/jvm/ByteBufferMem$getOrCreateGrowMemoryMethod$3$node$1", "", "");
         }
 
         // ======================================== Common patches below ===============================================

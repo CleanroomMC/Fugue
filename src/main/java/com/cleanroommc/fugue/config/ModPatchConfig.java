@@ -217,4 +217,7 @@ public class ModPatchConfig {
     @Config.Name("Enable Creative Core Patch")
     @Config.Comment("It creates a file writer but charset behavior changed in newer Java")
     public boolean enableCreativeCore = true;
+    @Config.Name("Enable OC-WASM Patch")
+    @Config.Comment("It shadowed an abandoned library developed on Java 8")
+    public boolean enableOCWASM = true;
 }
