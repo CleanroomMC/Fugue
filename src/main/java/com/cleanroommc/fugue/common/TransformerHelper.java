@@ -467,6 +467,7 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(
                     new ByteBufferReferenceTransformer(),
                     "asmble/compile/jvm/ByteBufferMem",
+                    "asmble/compile/jvm/ByteBufferMem$init$1",
                     "asmble/compile/jvm/ByteBufferMem$currentMemory$1",
                     "asmble/compile/jvm/ByteBufferMem$getOrCreateGrowMemoryMethod$3$node$1",
                     "asmble/compile/jvm/ByteBufferMem$data$2");
