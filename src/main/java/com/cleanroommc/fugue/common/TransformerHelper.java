@@ -466,11 +466,12 @@ public class TransformerHelper {
         if (FugueConfig.modPatchConfig.enableOCWASM) {
             TransformerDelegate.registerExplicitTransformer(
                     new ByteBufferReferenceTransformer(),
-                    "asmble/compile/jvm/ByteBufferMem",
-                    "asmble/compile/jvm/ByteBufferMem$init$1",
-                    "asmble/compile/jvm/ByteBufferMem$currentMemory$1",
-                    "asmble/compile/jvm/ByteBufferMem$getOrCreateGrowMemoryMethod$3$node$1",
-                    "asmble/compile/jvm/ByteBufferMem$data$2");
+                    "asmble.compile.jvm.ByteBufferMem",
+                    "asmble.compile.jvm.ByteBufferMem$init$1",
+                    "asmble.compile.jvm.ByteBufferMem$currentMemory$1",
+                    "asmble.compile.jvm.ByteBufferMem$getOrCreateGrowMemoryMethod$3$node$1",
+                    "asmble.compile.jvm.ByteBufferMem$getOrCreateGrowMemoryMethod$3$node$3",
+                    "asmble.compile.jvm.ByteBufferMem$data$2");
         }
 
         // ======================================== Common patches below ===============================================

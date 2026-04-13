@@ -33,7 +33,11 @@ public class ByteBufferReferenceTransformer implements IExplicitTransformer {
             MethodVisitor mv;
             mv = cv.visitMethod(access, name, descriptor, signature, exceptions);
             if (mv != null) {
-                mv = new MV(mv);
+                if (name.equals("getSignature")) {
+                    mv = new MV2(mv);
+                } else {
+                    mv = new MV(mv);
+                }
             }
             return mv;
         }
@@ -44,17 +48,44 @@ public class ByteBufferReferenceTransformer implements IExplicitTransformer {
             super(Opcodes.ASM9, mv);
         }
 
+        @Override
         public void visitMethodInsn(
             final int opcode,
             final String owner,
             final String name,
-            final String descriptor,
+            String descriptor,
             final boolean isInterface) {
             if (mv != null) {
                 if (owner.equals("java/nio/ByteBuffer") && (name.equals("limit") || name.equals("position"))) {
+                    if (descriptor.equals("(I)Ljava/nio/Buffer;")) {
+                        descriptor = "(I)Ljava/nio/ByteBuffer;";
+                    }
                     mv.visitMethodInsn(opcode, "java/nio/Buffer", name, descriptor, isInterface);
                 } else {
                     mv.visitMethodInsn(opcode, owner, name, descriptor, isInterface);
+                }
+            }
+        }
+    }
+
+    private static class MV2 extends MethodVisitor {
+        public MV2(MethodVisitor mv) {
+            super(Opcodes.ASM9, mv);
+        }
+
+        @Override
+        public void visitLdcInsn(final Object value) {
+            if (mv != null) {
+                if (value instanceof String s) {
+                    if (s.equals("limit(I)Ljava/nio/Buffer;")) {
+                        mv.visitLdcInsn("limit(I)Ljava/nio/ByteBuffer;");
+                    } else if (s.equals("position(I)Ljava/nio/Buffer;")) {
+                        mv.visitLdcInsn("position(I)Ljava/nio/ByteBuffer;");
+                    } else {
+                        mv.visitLdcInsn(value);
+                    }
+                } else {
+                    mv.visitLdcInsn(value);
                 }
             }
         }
