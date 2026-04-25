@@ -295,9 +295,9 @@ public class FugueConfig {
     };
 
     @Config.Comment("""
-        Target field's final modifier will be removed. No checks will be preformed before removal.
+        Target field's final modifier will be removed and force to be public. No checks will be preformed before removal.
         All fields with same name will be targeted.
-        Format: S:"foo.bar.classname"=field1|filed2\
+        Format: S:"foo.bar.classname"=field1|filed2
         """)
     @Config.Name("Final Fields Patching List")
     public static Map<String, String> finalRemovingTargets = new HashMap<>() {

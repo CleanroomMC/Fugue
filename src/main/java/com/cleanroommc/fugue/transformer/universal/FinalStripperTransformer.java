@@ -62,7 +62,7 @@ public class FinalStripperTransformer implements IExplicitTransformer {
             if (cv != null) {
                 if (fields.contains(name)) {
                     Fugue.LOGGER.debug("Stripping final modifier of {} from {}", name, className.replace('/', '.'));
-                    return cv.visitField(access & ~Opcodes.ACC_FINAL, name, descriptor, signature, value);
+                    return cv.visitField(access & ~Opcodes.ACC_FINAL & ~Opcodes.ACC_PRIVATE & ~Opcodes.ACC_PROTECTED | Opcodes.ACC_PUBLIC, name, descriptor, signature, value);
                 }
                 return cv.visitField(access, name, descriptor, signature, value);
             }
