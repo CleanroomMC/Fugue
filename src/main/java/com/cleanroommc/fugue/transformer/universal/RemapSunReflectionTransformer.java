@@ -55,7 +55,7 @@ public class RemapSunReflectionTransformer implements IExplicitTransformer {
                 final boolean isInterface) {
             if (mv != null) {
                 if (owner.equals("sun/reflect/Reflection")) {
-                    mv.visitMethodInsn(opcode, "com/cleanroommc/hackery/Reflection", name, descriptor, isInterface);
+                    mv.visitMethodInsn(opcode, "com/cleanroommc/cleanroom/hackery/Reflection", name, descriptor, isInterface);
                 } else {
                     mv.visitMethodInsn(opcode, owner, name, descriptor, isInterface);
                 }

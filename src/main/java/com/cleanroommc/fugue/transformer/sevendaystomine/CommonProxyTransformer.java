@@ -14,7 +14,7 @@ public class CommonProxyTransformer implements IExplicitTransformer {
         classReader.accept(classNode, 0);
         for (var field : classNode.fields) {
             if (field.desc.equals("Ljavax/script/ScriptEngineManager;")) {
-                field.desc = "Lcom/cleanroommc/loader/scripting/CleanroomScriptEngineManager;";
+                field.desc = "Lcom/cleanroommc/cleanroom/loader/scripting/CleanroomScriptEngineManager;";
                 break;
             }
         }
@@ -24,7 +24,7 @@ public class CommonProxyTransformer implements IExplicitTransformer {
                 for (var insnNode : method.instructions) {
                     if (insnNode instanceof FieldInsnNode fieldInsnNode
                             && fieldInsnNode.desc.equals("Ljavax/script/ScriptEngineManager;")) {
-                        fieldInsnNode.desc = "Lcom/cleanroommc/loader/scripting/CleanroomScriptEngineManager;";
+                        fieldInsnNode.desc = "Lcom/cleanroommc/cleanroom/loader/scripting/CleanroomScriptEngineManager;";
                     }
                 }
             }

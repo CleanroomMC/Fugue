@@ -48,7 +48,7 @@ public class ScriptEngineTransformer implements IExplicitTransformer {
         public void visitTypeInsn(final int opcode, final String type) {
             if (mv != null) {
                 if (type.equals("javax/script/ScriptEngineManager") && opcode == Opcodes.NEW) {
-                    mv.visitTypeInsn(opcode, "com/cleanroommc/loader/scripting/CleanroomScriptEngineManager");
+                    mv.visitTypeInsn(opcode, "com/cleanroommc/cleanroom/loader/scripting/CleanroomScriptEngineManager");
                 } else {
                     mv.visitTypeInsn(opcode, type);
                 }
@@ -66,7 +66,7 @@ public class ScriptEngineTransformer implements IExplicitTransformer {
                 if ("javax/script/ScriptEngineManager".equals(owner) && "<init>".equals(name)) {
                     mv.visitMethodInsn(
                             opcode,
-                            "com/cleanroommc/loader/scripting/CleanroomScriptEngineManager",
+                            "com/cleanroommc/cleanroom/loader/scripting/CleanroomScriptEngineManager",
                             name,
                             descriptor,
                             isInterface);
