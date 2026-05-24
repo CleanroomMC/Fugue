@@ -196,6 +196,7 @@ public class FugueConfig {
         "quaternary.botaniatweaks.modules.shared.lib.NiceTryMap",
         "thedarkcolour.futuremc.compat.quark.QuarkCompat",
         "thedarkcolour.futuremc.world.gen.feature.BeeNestGenerator",
+        "mods.railcraft.common.plugins.forge.DataManagerPlugin",
     };
 
     @Config.Comment("""
