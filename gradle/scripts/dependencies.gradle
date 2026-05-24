@@ -158,6 +158,8 @@ dependencies {
 
     modImplementation 'curse.maven:creativecore-257814:4722163'
 
+    modImplementation 'curse.maven:railcraft-51195:2687757'
+
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:2.3.10'
 
     // Example - Dependency descriptor:
