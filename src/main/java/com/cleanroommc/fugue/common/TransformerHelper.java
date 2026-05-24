@@ -51,7 +51,6 @@ import com.cleanroommc.fugue.transformer.offlineskins.ObfHelperTransformer;
 import com.cleanroommc.fugue.transformer.offlineskins.OfflineskinsTransformersTransformer;
 import com.cleanroommc.fugue.transformer.offlineskins.SetupTransformer;
 import com.cleanroommc.fugue.transformer.polyfrost.LaunchWrapperTweakerTransformer;
-import com.cleanroommc.fugue.transformer.railcraft.DataManagerPluginTransformer;
 import com.cleanroommc.fugue.transformer.randomtitle.ConfigManagerTransformer;
 import com.cleanroommc.fugue.transformer.rebind.EnumInputClassesTransformer;
 import com.cleanroommc.fugue.transformer.saoui.HudTransformer;
@@ -473,11 +472,6 @@ public class TransformerHelper {
                     "asmble.compile.jvm.ByteBufferMem$getOrCreateGrowMemoryMethod$3$node$1",
                     "asmble.compile.jvm.ByteBufferMem$getOrCreateGrowMemoryMethod$3$node$3",
                     "asmble.compile.jvm.ByteBufferMem$data$2");
-        }
-        if (FugueConfig.modPatchConfig.enableRailcraft) {
-            TransformerDelegate.registerExplicitTransformer(
-                    new DataManagerPluginTransformer(),
-                    "mods.railcraft.common.plugins.forge.DataManagerPlugin");
         }
 
         // ======================================== Common patches below ===============================================
