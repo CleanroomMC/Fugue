@@ -9,5 +9,5 @@ public class Reference {
     
     // Dependencies
     public static final String MOD_DEPENDENCIES =
-            "required-after:forge@[14.23.5.2864,);required-after:cleanroom@[{{ CRL_VERSION }},);";
+            "required-after:forge@[14.23.5.2864,);required-after:cleanroom@[0.5.7-alpha,);";
 }

@@ -1,6 +1,6 @@
 package com.cleanroommc.fugue.mixin.extrautils2;
 
-import com.cleanroommc.hackery.ReflectionHackery;
+import com.cleanroommc.cleanroom.hackery.ReflectionHackery;
 import com.rwtema.extrautils2.utils.datastructures.FieldSetter;
 import net.minecraftforge.fml.common.FMLLog;
 import org.apache.logging.log4j.Level;

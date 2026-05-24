@@ -13,11 +13,14 @@ import java.util.Map;
 
 @IFMLLoadingPlugin.MCVersion("1.12.2")
 @IFMLLoadingPlugin.Name("Fugue")
+@IFMLLoadingPlugin.TransformerExclusions({
+    "com.cleanroommc.fugue.common.",
+    "com.cleanroommc.fugue.helper.",
+    "com.cleanroommc.fugue.transformer."
+})
 public class FugueLoadingPlugin implements IFMLLoadingPlugin {
 
     static {
-        Launch.classLoader.addTransformerExclusion("com.cleanroommc.fugue.common.");
-        Launch.classLoader.addTransformerExclusion("com.cleanroommc.fugue.helper.");
         for (var prefix : FugueConfig.extraTransformExclusions) {
             Launch.classLoader.addTransformerExclusion(prefix);
         }
@@ -28,7 +31,6 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
         TransformerHelper.registerTransformers();
     }
 
-    
     @Override
     public String[] getASMTransformerClass() {
         if (FugueConfig.modPatchConfig.enableTFCMedical) {
@@ -53,17 +55,14 @@ public class FugueLoadingPlugin implements IFMLLoadingPlugin {
     }
 
     @Override
-    public void injectData(Map<String, Object> map) {
-
-    }
+    public void injectData(Map<String, Object> map) {}
 
     @Override
     public String getAccessTransformerClass() {
         return null;
     }
 
-    public static void injectCascadingTweak(String tweakClassName)
-    {
+    public static void injectCascadingTweak(String tweakClassName) {
         @SuppressWarnings("unchecked")
         List<String> tweakClasses = (List<String>) Launch.blackboard.get("TweakClasses");
         tweakClasses.add(tweakClassName);

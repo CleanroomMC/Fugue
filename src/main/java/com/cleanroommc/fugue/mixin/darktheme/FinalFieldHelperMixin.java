@@ -1,6 +1,6 @@
 package com.cleanroommc.fugue.mixin.darktheme;
 
-import com.cleanroommc.hackery.ReflectionHackery;
+import com.cleanroommc.cleanroom.hackery.ReflectionHackery;
 import net.minecraftforge.fml.common.FMLLog;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;

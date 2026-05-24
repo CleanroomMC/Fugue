@@ -1,18 +1,15 @@
 package com.cleanroommc.fugue.common;
 
 import com.cleanroommc.fugue.Reference;
-import com.cleanroommc.loader.scripting.CleanroomScriptEngineManager;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.network.NetworkCheckHandler;
 import net.minecraftforge.fml.relauncher.Side;
-import org.apache.commons.lang3.JavaVersion;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.maven.artifact.versioning.ComparableVersion;
 
-import javax.script.ScriptEngineManager;
 import java.util.Map;
 
 @Mod(

@@ -5,7 +5,7 @@ plugins {
     id 'java-library'
     id 'maven-publish'
     id 'org.jetbrains.gradle.plugin.idea-ext' version '1.4.1'
-    id 'xyz.wagyourtail.unimined' version '1.4.17-kappa'
+    id 'xyz.wagyourtail.unimined' version '1.4.18-kappa'
     id 'net.kyori.blossom' version '2.2.0'
     id 'com.palantir.git-version' version '4.2.0'
 }
@@ -26,7 +26,8 @@ setDefaultProperty 'generate_javadocs_jar', true, false
 setDefaultProperty 'minecraft_username', true, 'Developer'
 setDefaultProperty 'extra_jvm_args', false, ''
 
-version = versionDetails().lastTag
+//version = versionDetails().lastTag
+version = '0.24.0'
 group = propertyString('root_package')
 
 base {
@@ -139,6 +140,7 @@ jar {
     doFirst{
         manifest {
             def attribute_map = [:]
+            attribute_map['Lwjgl3-Aware'] = 'true'
             attribute_map['ModType'] = 'CRL'
             attribute_map['MixinConfigs'] = 'fugue.mixin.mod.json'
             if (configurations.contain.size() > 0) {

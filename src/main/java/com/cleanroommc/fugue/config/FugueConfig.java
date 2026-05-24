@@ -280,6 +280,14 @@ public class FugueConfig {
         "com.feed_the_beast.ftblib.lib.gui.GuiContainerWrapper",
         "com.github.terminatornl.laggoggles.client.gui.GuiProfile",
     };
+    @Config.Comment("Use when target class is behind transformer exclusion or use lwjgl in lambda")
+    @Config.Name("Radical LWJGL Remap List")
+    public static String[] extraLwjglPatchTargets = new String[] {
+        "com.zeitheron.hammercore.client.utils.rendering.WavefrontLoader",
+        "ichttt.mods.moresoundconfig.asm.MSCTransformer",
+        "ichttt.mods.moresoundconfig.asm.ASMHooks",
+        "codechicken.lib.render.OpenGLUtils",
+    };
 
     @Config.Comment("""
         Casting Object[] array from toArray() to String[] array or others is no longer possible in newer Java.

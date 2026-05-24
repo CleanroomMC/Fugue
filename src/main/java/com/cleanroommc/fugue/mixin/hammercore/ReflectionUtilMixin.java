@@ -1,7 +1,7 @@
 package com.cleanroommc.fugue.mixin.hammercore;
 
 import com.cleanroommc.fugue.common.Fugue;
-import com.cleanroommc.hackery.ReflectionHackery;
+import com.cleanroommc.cleanroom.hackery.ReflectionHackery;
 import com.zeitheron.hammercore.utils.ReflectionUtil;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
