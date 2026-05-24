@@ -53,7 +53,7 @@ public class MalformedUUIDTransformer implements IExplicitTransformer {
                 final boolean isInterface) {
             if (mv != null) {
                 if (owner.equals("java/util/UUID") && name.equals("fromString")) {
-                    mv.visitMethodInsn(Opcodes.INVOKESTATIC, "com/cleanroommc/cleanroom/loader/javafix/UUIDFix", name, descriptor, false);
+                    mv.visitMethodInsn(Opcodes.INVOKESTATIC, "com/cleanroommc/loader/javafix/UUIDFix", name, descriptor, false);
                 } else {
                     mv.visitMethodInsn(opcode, owner, name, descriptor, isInterface);
                 }

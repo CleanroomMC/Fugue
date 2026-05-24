@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class ReflectFieldTransformer implements IExplicitTransformer {
 
-    private static final String OUR_REFLECTION_CLASS = "com/cleanroommc/cleanroom/hackery/ReflectionHackery";
+    private static final String OUR_REFLECTION_CLASS = "com/cleanroommc/hackery/ReflectionHackery";
 
     @Override
     public byte[] transform(byte[] bytes) {
