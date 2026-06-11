@@ -67,6 +67,8 @@ import com.cleanroommc.fugue.transformer.subaquatic.PluginEntityTransformer;
 import com.cleanroommc.fugue.transformer.subaquatic.SubaquaticIMTransformer;
 import com.cleanroommc.fugue.transformer.survivalinc.ForgeASMInjectorTransformer;
 import com.cleanroommc.fugue.transformer.techgun.TechgunsASMTransformerTransformer;
+import com.cleanroommc.fugue.transformer.transcend.FMLLoadingPluginTransformer;
+import com.cleanroommc.fugue.transformer.transcend.TweakerTransformer;
 import com.cleanroommc.fugue.transformer.universal.RemoveMixinInitFromCotrTransformer;
 import com.cleanroommc.fugue.transformer.tickcentral.*;
 import com.cleanroommc.fugue.transformer.universal.*;
@@ -472,6 +474,12 @@ public class TransformerHelper {
                     "asmble.compile.jvm.ByteBufferMem$getOrCreateGrowMemoryMethod$3$node$1",
                     "asmble.compile.jvm.ByteBufferMem$getOrCreateGrowMemoryMethod$3$node$3",
                     "asmble.compile.jvm.ByteBufferMem$data$2");
+        }
+        if (FugueConfig.modPatchConfig.enableTranscend) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new FMLLoadingPluginTransformer(), "huige233.transcend.asm.FMLLoadingPlugin");
+            TransformerDelegate.registerExplicitTransformer(
+                    new TweakerTransformer(), "huige233.transcend.asm.tweaker.Tweaker");
         }
 
         // ======================================== Common patches below ===============================================

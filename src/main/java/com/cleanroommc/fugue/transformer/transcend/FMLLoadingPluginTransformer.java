@@ -1,24 +1,25 @@
-package com.cleanroommc.fugue.transformer.simplehotspring;
+package com.cleanroommc.fugue.transformer.transcend;
 
 import com.cleanroommc.fugue.common.Fugue;
 import javassist.CannotCompileException;
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.expr.ExprEditor;
-import javassist.expr.NewExpr;
+import javassist.expr.MethodCall;
 import top.outlands.foundation.IExplicitTransformer;
 
 import java.io.ByteArrayInputStream;
 
-public class SimplyHotSpringsConfigTransformer implements IExplicitTransformer {
+public class FMLLoadingPluginTransformer implements IExplicitTransformer {
     @Override
     public byte[] transform(byte[] bytes) {
         try {
             CtClass cc = ClassPool.getDefault().makeClass(new ByteArrayInputStream(bytes));
-            cc.getClassInitializer().instrument(new ExprEditor(){
-                public void edit(NewExpr e) throws CannotCompileException {
-                    if (e.getClassName().equals("it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap")) {
-                        e.replace("$_ = $proceed(255, 0.75F);");
+            cc.getDeclaredMethod("addTweaker").instrument(new ExprEditor(){
+                public void edit(MethodCall m) throws CannotCompileException {
+                    if (m.getMethodName().equals("invoke")) {
+                        Fugue.LOGGER.info("FOUND");
+                        m.replace("{$_ = null;}");
                     }
                 }
             });

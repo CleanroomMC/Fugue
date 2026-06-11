@@ -220,4 +220,7 @@ public class ModPatchConfig {
     @Config.Name("Enable OC-WASM Patch")
     @Config.Comment("It shadowed an abandoned library developed on Java 8")
     public boolean enableOCWASM = true;
+    @Config.Name("Enable Transcend Patch")
+    @Config.Comment("Unwelcomed classloader hack")
+    public boolean enableTranscend = true;
 }
