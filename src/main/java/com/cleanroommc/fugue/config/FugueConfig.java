@@ -80,6 +80,7 @@ public class FugueConfig {
         "lumien.randomthings.asm.CustomClassWriter",
         "shadows.squeezer.CustomClassWriter",
         "com.elytradev.wings.asm.RemappingClassWriter",
+        "gcg.CustomClassWriter",
     };
 
     @Config.Comment("""
