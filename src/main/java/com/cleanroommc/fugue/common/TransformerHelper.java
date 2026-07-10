@@ -533,6 +533,17 @@ public class TransformerHelper {
         if (FugueConfig.remapLWTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformer(new RemapLegacyLWTransformer(), FugueConfig.remapLWTargets);
         }
+        if (FugueConfig.remapOshiTargets.length > 0) {
+            TransformerDelegate.registerExplicitTransformer(
+                new RemapTransformer(
+                    new String[] {
+                        "oshi/SystemInfo",
+                    },
+                    new String[] {
+                        "oshi/ffm/SystemInfo",
+                    }),
+                FugueConfig.remapOshiTargets);
+        }
         if (FugueConfig.remapReflectionTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformer(
                     new RemapSunReflectionTransformer(), FugueConfig.remapReflectionTargets);

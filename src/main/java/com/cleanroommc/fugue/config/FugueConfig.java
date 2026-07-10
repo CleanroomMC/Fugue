@@ -200,6 +200,13 @@ public class FugueConfig {
         "thedarkcolour.futuremc.world.gen.feature.BeeNestGenerator",
         "mods.railcraft.common.plugins.forge.DataManagerPlugin",
     };
+    
+    @Config.Comment("After we switched to new ffm-based oshi with different package name, old references need to be redirected.")
+    @Config.Name("OSHI Remap List")
+    public static String[] remapOshiTargets = new String[] {
+        "dev.ftb.mods.ftbauxilium.auxilium.SystemStats",
+        "dev.kostromdan.mods.crash_assistant.common_config.utils.ProcessHelper",
+    };
 
     @Config.Comment("""
         ITweaker classes loaded in LCL will be defined in a different code source like file:jar:.
