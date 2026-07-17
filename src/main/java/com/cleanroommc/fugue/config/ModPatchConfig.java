@@ -223,4 +223,7 @@ public class ModPatchConfig {
     @Config.Name("Enable Transcend Patch")
     @Config.Comment("Unwelcomed classloader hack")
     public boolean enableTranscend = true;
+    @Config.Name("Enable Ender Utilities mouse wheel patch")
+    @Config.Comment("This patch fixes mouse wheel input for Ender Utilities on LWJGL3")
+    public boolean enableEnderUtilities = true;
 }

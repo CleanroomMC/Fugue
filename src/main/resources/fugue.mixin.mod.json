@@ -39,6 +39,7 @@
   ],
   "client": [
     "custommainmenu.SlideshowMixin",
+    "enderutilities.InputEventHandlerMixin",
     "jei.RecipesGuiMixin",
     "lockdown.GuiMainMenuTweakedMixin",
     "mcjty.AbstractContainerWidgetMixin",
