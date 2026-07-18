@@ -158,6 +158,9 @@ dependencies {
 
     modImplementation 'curse.maven:creativecore-257814:4722163'
 
+    //Ender Utilities
+    modImplementation 'curse.maven:ender-utilities-224320:2977010'
+
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:2.3.10'
 
     // Example - Dependency descriptor:
