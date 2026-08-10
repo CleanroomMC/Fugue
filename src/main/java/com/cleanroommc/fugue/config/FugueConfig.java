@@ -269,6 +269,7 @@ public class FugueConfig {
         "fi.dy.masa.litematica.render.schematic.ChunkRenderWorkerLitematica",
         "com.replaymod.simplepathing.gui.GuiPathing",
         "com.replaymod.simplepathing.gui.GuiPathing$10",
+        "ovh.corail.tombstone.helper.Helper",
     };
 
     @Config.Comment("""
