@@ -23,12 +23,7 @@ public class FugueMixinConfigPlugin implements IMixinConfigPlugin {
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
         return switch (mixinClassName.split("\\.")[4]) {
-            case "charset" -> FugueConfig.modPatchConfig.enableCharset;
             case "xaeroplus" -> FugueConfig.modPatchConfig.enableXP;
-            case "codechickenlib" ->
-                Launch.classLoader.isClassExist("codechicken.lib.CodeChickenLib")
-                        && !Launch.classLoader.isClassExist("codechicken.lib.Reference")
-                        && FugueConfig.modPatchConfig.enableCCL;
             case "minecraftmultipartcbe" -> FugueConfig.modPatchConfig.enableMultiPart;
             case "projectred_core" -> FugueConfig.modPatchConfig.enablePR;
             case "solarflux" -> FugueConfig.modPatchConfig.enableSolarFlux;

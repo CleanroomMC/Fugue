@@ -21,12 +21,6 @@ public class ModPatchConfig {
     public boolean enableLP = true;
     @Config.Name("Enable Enchantment Control Patch")
     public boolean enableEC = true;
-    @Config.Name("Enable Charset lib Patch")
-    @Config.Comment("Disable this if you are using Charset CRE")
-    public boolean enableCharset = true;
-    @Config.Name("Enable Code Chicken Lib Patch")
-    @Config.Comment("Disable this if you are using CCL CRE")
-    public boolean enableCCL = true;
     @Config.Name("Enable Custom Main Menu Patch")
     public boolean enableCMM = true;
     @Config.Comment("This gtceu patch is temporary. An official fix is pending.")

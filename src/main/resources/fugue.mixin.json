@@ -7,8 +7,6 @@
     "armourers_workshop.SkinTextureMixin",
     "betterrecords.SoundManagerMixin",
     "carryon.ItemTileMixin",
-    "charset.ColorspacesMixin",
-    "codechickenlib.ReflectionManagerMixin",
     "creativecore.ConfigEventHandlerMixin",
     "customnpcs.ScriptPlayerEventHandlerMixin",
     "darktheme.FinalFieldHelperMixin",
