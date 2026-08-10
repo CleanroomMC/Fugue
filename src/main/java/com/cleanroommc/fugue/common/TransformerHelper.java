@@ -12,7 +12,6 @@ import com.cleanroommc.fugue.transformer.colytra.EntityLivingBaseTransformer;
 import com.cleanroommc.fugue.transformer.corpse.MessageOpenHistoryTransformer;
 import com.cleanroommc.fugue.transformer.crossbow.TransformerEntityArrowTransformer;
 import com.cleanroommc.fugue.transformer.customskinloader.ForgeTweakerTransformer;
-import com.cleanroommc.fugue.transformer.dj2addons.DJ2AddonsCoreTransformer;
 import com.cleanroommc.fugue.transformer.dropt.ValidatorAdapterFactoryTransformer;
 import com.cleanroommc.fugue.transformer.ears.EarsASMTransformer;
 import com.cleanroommc.fugue.transformer.enchantmentcontrol.EnumInputClassTransformer;
@@ -279,10 +278,6 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(
                     new EssentialTelemetryManagerTransformer(),
                     "gg.essential.network.connectionmanager.telemetry.TelemetryManager");
-        }
-        if (FugueConfig.modPatchConfig.enableDivineJourney2Addons) {
-            TransformerDelegate.registerExplicitTransformer(
-                    new DJ2AddonsCoreTransformer(), "org.btpos.dj2addons.core.DJ2AddonsCore");
         }
         if (FugueConfig.modPatchConfig.enableLightAndShadow) {
             TransformerDelegate.registerExplicitTransformer(
