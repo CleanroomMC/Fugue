@@ -1,23 +1,17 @@
-apply from: 'gradle/scripts/helpers.gradle'
-
-setDefaultProperty('publish_to_maven', true, false)
-
-if (propertyBool('publish_to_maven')) {
-    assertProperty('maven_name')
-    assertProperty('maven_url')
+if (publish_to_maven.toBoolean()) {
     publishing {
         repositories {
             maven {
-                name propertyString('maven_name').replaceAll("\\s", "")
-                url propertyString('maven_url')
+                name = maven_name.replaceAll("\\s", "")
+                url = maven_url
                 credentials(PasswordCredentials)
             }
         }
         publications {
             mavenJava(MavenPublication) {
                 from components.java // Publish with standard artifacts
-                setGroupId(propertyString('root_package'))// Publish with root package as maven group
-                setArtifactId(propertyString('mod_id')) // Publish artifacts with mod id as the artifact id
+                setGroupId(root_package)// Publish with root package as maven group
+                setArtifactId(mod_id) // Publish artifacts with mod id as the artifact id
 
                 // Custom artifact:
                 // If you want to publish a different artifact to the one outputted when building normally

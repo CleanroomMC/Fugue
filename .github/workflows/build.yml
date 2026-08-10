@@ -1,0 +1,34 @@
+name: Build mod jar
+
+on:
+  [workflow_dispatch, push]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v7
+      with:
+        # Fugue versions itself from git tags (palantir git-version)
+        fetch-depth: 0
+    - name: Set up JDK
+      uses: actions/setup-java@v5
+      with:
+        java-version: '25'
+        distribution: 'temurin'
+    - uses: gradle/actions/setup-gradle@v6
+      name: Set up Gradle
+    - name: Add permission
+      run: chmod +x ./gradlew
+    - name: Execute Gradle build
+      run: ./gradlew build
+
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v7
+      with:
+        path: build/libs

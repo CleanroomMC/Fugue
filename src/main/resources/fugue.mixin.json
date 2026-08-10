@@ -1,9 +1,8 @@
 {
   "required": true,
   "package": "com.cleanroommc.fugue.mixin",
-  "compatibilityLevel": "JAVA_8",
+  "compatibilityLevel": "JAVA_25",
   "plugin": "com.cleanroommc.fugue.common.FugueMixinConfigPlugin",
-  "target": "@env(MOD)",
   "mixins": [
     "armourers_workshop.SkinTextureMixin",
     "betterrecords.SoundManagerMixin",
@@ -45,5 +44,7 @@
     "mcjty.AbstractContainerWidgetMixin",
     "mcjty.SliderMixin"
   ],
+  "server": [],
+  "setSourceFile": true,
   "minVersion": "0.8.7"
 }

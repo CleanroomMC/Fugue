@@ -1,57 +1,52 @@
-import org.jetbrains.gradle.ext.Gradle
-
 plugins {
     id 'java'
     id 'java-library'
     id 'maven-publish'
+    id 'com.gradleup.shadow' version '9.5.1'
     id 'org.jetbrains.gradle.plugin.idea-ext' version '1.4.1'
-    id 'xyz.wagyourtail.unimined' version '1.4.26-kappa'
+    id 'xyz.wagyourtail.unimined' version '1.4.36-kappa'
     id 'net.kyori.blossom' version '2.2.0'
     id 'com.palantir.git-version' version '4.2.0'
 }
 
-apply from: 'gradle/scripts/helpers.gradle'
+import org.jetbrains.gradle.ext.Gradle
 
-// Early Assertions
-assertProperty 'root_package'
-assertProperty 'mod_id'
-assertProperty 'mod_name'
-
-assertSubProperties 'use_access_transformer', 'access_transformer_locations'
-assertSubProperties 'is_coremod', 'coremod_includes_mod', 'coremod_plugin_class_name'
-assertSubProperties 'use_asset_mover', 'asset_mover_version'
-
-setDefaultProperty 'generate_sources_jar', true, false
-setDefaultProperty 'generate_javadocs_jar', true, false
-setDefaultProperty 'minecraft_username', true, 'Developer'
-setDefaultProperty 'extra_jvm_args', false, ''
-
-version = versionDetails().lastTag
-group = propertyString('root_package')
-
-base {
-    archivesName = "+${propertyString('mod_name')}" as String
+ext {
+    //noinspection GroovyAssignabilityCheck
+    access_transformer_locations = "${mod_id}_at.cfg"
 }
 
+version = versionDetails().lastTag
+group = root_package
+
+base {
+    archivesName = mod_id
+}
 
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(25)
     }
-    if (propertyBool('generate_sources_jar')) {
+    if (generate_sources_jar.toBoolean()) {
         withSourcesJar()
     }
-    if (propertyBool('generate_javadocs_jar')) {
+    if (generate_javadocs_jar.toBoolean()) {
         withJavadocJar()
     }
 }
 
 configurations {
-    embed
     contain
-    implementation.extendsFrom(embed)
+    implementation.extendsFrom(contain)
+    modCompileOnly
+    compileOnly.extendsFrom(modCompileOnly)
+    modRuntimeOnly
+    runtimeOnly.extendsFrom(modRuntimeOnly)
 }
 
+def remapTaskName = enable_shadow.toBoolean() ? "remapShadowJar" : "remapJar"
+
+//noinspection GroovyAssignabilityCheck
 unimined.minecraft {
     version "1.12.2"
 
@@ -60,111 +55,84 @@ unimined.minecraft {
     }
 
     cleanroom {
-        if (propertyBool('use_access_transformer')) {
-            accessTransformer "src/main/resources/META-INF/${propertyString('access_transformer_locations')}"
+        if (use_access_transformer.toBoolean()) {
+            accessTransformer "${rootProject.projectDir}/src/main/resources/$access_transformer_locations"
         }
-        loader propertyString('cleanroom_version')
-        runs.config("client", {args += extra_jvm_args.split(" ")})
-        runs.config("server", {args += extra_jvm_args.split(" ")})
-        runs.auth.username = minecraft_username
+        loader cleanroom_version
+        runs.all {
+            systemProperty("crl.dev.mixin", "${mod_id}.mixin.json")
+            args += ['--username', minecraft_username]
+            def extraArgs = extra_jvm_args
+            if (extraArgs != null && !extraArgs.trim().isEmpty()) {
+                jvmArgs += extraArgs.split { "\\s+" }.toList()
+            }
+            if (enable_foundation_debug.toBoolean()) {
+                systemProperty("foundation.dump", "true")
+                systemProperty("foundation.verbose", "true")
+            }
+            if (is_coremod.toBoolean()) {
+                systemProperty("fml.coreMods.load", coremod_plugin_class_name)
+            }
+            return
+        }
     }
 
+    defaultRemapJar = false
 
-}
+    String jarTaskName = enable_shadow.toBoolean() ? "shadowJar" : "jar"
 
-repositories {
-    maven {
-        name 'CleanroomMC Maven'
-        url 'https://maven.cleanroommc.com'
+    remap(tasks.named(jarTaskName).get()) {
+        mixinRemap {
+            enableBaseMixin()
+            enableMixinExtra()
+        }
+    }
+
+    mods {
+        remap(configurations.modCompileOnly)
+        remap(configurations.modRuntimeOnly)
     }
 }
 
 dependencies {
-    if (propertyBool('use_asset_mover')) {
-        implementation "com.cleanroommc:assetmover:${propertyString('asset_mover_version')}"
+    if (use_asset_mover.toBoolean()) {
+        implementation "com.cleanroommc:assetmover:${asset_mover_version}"
     }
-    if (propertyBool('enable_junit_testing')) {
-        testImplementation 'org.junit.jupiter:junit-jupiter:5.7.1'
+    if (enable_junit_testing.toBoolean()) {
+        testImplementation 'org.junit.jupiter:junit-jupiter:6.0.3'
         testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     }
 }
 
 apply from: 'gradle/scripts/dependencies.gradle'
 
+processResources {
+    rename '(.+_at.cfg)', 'META-INF/$1'
+}
+
 sourceSets {
     main {
         blossom {
             javaSources {
-                property('MODID', propertyString('mod_id'))
-                property('MODNAME', propertyString('mod_name'))
-                property('VERSION', version)
-                property('CRL_VERSION', propertyString('cleanroom_version'))
+                property('mod_id', mod_id)
+                property('mod_name', mod_name)
+                property('mod_version', version)
+                property('package', "${root_package}.${mod_id}")
+                property('crl_version', cleanroom_version)
+            }
+            resources {
+                property('mod_id', mod_id)
+                property('mod_name', mod_name)
+                property('mod_version', version)
+                property('mod_description', mod_description)
+                property('mod_authors', mod_authors.toString().split(',').findAll { !it.isBlank() }.collect { "\"${it.strip()}\"" }.join(', '))
+                property('mod_credits', mod_credits)
+                property('mod_url', mod_url)
+                property('mod_update_json', mod_update_json)
+                property('mod_logo_path', mod_logo_path)
+                property('mod_issue_tracker', mod_issue_tracker)
             }
         }
-    }
-}
-
-processResources {
-
-    inputs.property 'mod_id', propertyString('mod_id')
-    inputs.property 'mod_name', propertyString('mod_name')
-    inputs.property 'mod_version', version
-    inputs.property 'mod_description', propertyString('mod_description')
-    inputs.property 'mod_authors', "${propertyStringList('mod_authors', ',').join(', ')}"
-
-    def filterList = ['mcmod.info']
-
-    filesMatching(filterList) { fcd ->
-        fcd.expand(
-                'mod_id': propertyString('mod_id'),
-                'mod_name': propertyString('mod_name'),
-                'mod_version': version,
-                'mod_description': propertyString('mod_description'),
-                'mod_authors': "${propertyStringList('mod_authors', ',').join(', ')}",
-        )
-    }
-    
-    if (propertyBool('use_access_transformer')) {
-        rename '(.+_at.cfg)', 'META-INF/$1'
-    }
-
-}
-
-jar {
-    if (configurations.contain.size() > 0) {
-        into('/') {
-            from configurations.contain
-        }
-    }
-    doFirst{
-        manifest {
-            def attribute_map = [:]
-            attribute_map['ModType'] = 'CRL'
-            attribute_map['MixinConfigs'] = 'fugue.mixin.mod.json'
-            if (configurations.contain.size() > 0) {
-                attribute_map['ContainedDeps'] = configurations.contain.collect { it.name }.join(' ')
-                attribute_map['NonModDeps'] = true
-            }
-            if (propertyBool('is_coremod')) {
-                attribute_map['FMLCorePlugin'] = propertyString('coremod_plugin_class_name')
-                if (propertyBool('coremod_includes_mod')) {
-                    attribute_map['FMLCorePluginContainsFMLMod'] = true
-                }
-            }
-            if (propertyBool('use_access_transformer')) {
-                attribute_map['FMLAT'] = propertyString('access_transformer_locations')
-            }
-            attributes(attribute_map)
-        }
-    }
-}
-
-remapJar {
-    doFirst {
-        logging.captureStandardOutput LogLevel.INFO
-    }
-    doLast {
-        logging.captureStandardOutput LogLevel.QUIET
     }
 }
 
@@ -175,23 +143,75 @@ idea {
     project {
         settings {
             runConfigurations {
-                "1. Run Client"(Gradle) {
+                '1. Build'(Gradle) {
+                    taskNames = ["build"]
+                }
+                '2. Run Client'(Gradle) {
                     taskNames = ["runClient"]
                 }
-                "2. Run Server"(Gradle) {
+                '3. Run Server'(Gradle) {
                     taskNames = ["runServer"]
                 }
             }
             compiler.javac {
                 afterEvaluate {
-                    javacAdditionalOptions = "-encoding utf8"
+                    javacAdditionalOptions = '-encoding utf8'
                     moduleJavacAdditionalOptions = [
-                            (project.name + ".main"): tasks.compileJava.options.compilerArgs.collect { '"' + it + '"' }.join(' ')
+                            (project.name + '.main'): tasks.compileJava.options.compilerArgs.collect { "\"${it}\"" }.join(' ')
                     ]
                 }
             }
+            taskTriggers {
+                beforeSync tasks.named("genSources")
+            }
         }
     }
+}
+
+if (!enable_shadow.toBoolean()) {
+    shadowJar.enabled = false
+}
+
+compileJava {
+    sourceCompatibility = targetCompatibility = JavaVersion.VERSION_25
+}
+
+jar {
+    archiveClassifier = 'dev'
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    if (configurations.contain.size() > 0) {
+        into('/') {
+            from configurations.contain
+        }
+    }
+    doFirst {
+        manifest {
+            def attribute_map = [:]
+            attribute_map['ModType'] = 'CRL'
+            attribute_map['MixinConfigs'] = "${mod_id}.mixin.json"
+            if (configurations.contain.size() > 0) {
+                attribute_map['ContainedDeps'] = configurations.contain.collect { it.name }.join(' ')
+                attribute_map['NonModDeps'] = true
+            }
+            if (is_coremod.toBoolean()) {
+                attribute_map['FMLCorePlugin'] = coremod_plugin_class_name
+                if (coremod_includes_mod.toBoolean()) {
+                    attribute_map['FMLCorePluginContainsFMLMod'] = true
+                }
+            }
+            if (use_access_transformer.toBoolean()) {
+                attribute_map['FMLAT'] = access_transformer_locations
+            }
+            attributes(attribute_map)
+        }
+    }
+    finalizedBy(tasks.named(remapTaskName).get())
+}
+
+shadowJar {
+    //noinspection GroovyAssignabilityCheck,GroovyAccessibility
+    configurations = [project.configurations.shadow]
+    archiveClassifier = "shadow"
 }
 
 compileTestJava {
@@ -203,38 +223,15 @@ test {
     javaLauncher.set(javaToolchains.launcherFor {
         languageVersion = JavaLanguageVersion.of(25)
     })
-    if (propertyBool('show_testing_output')) {
+    if (show_testing_output.toBoolean()) {
         testLogging {
             showStandardStreams = true
         }
     }
 }
 
-String parserChangelog() {
-    if (!file('CHANGELOG.md').exists()) {
-        throw new GradleException('publish_with_changelog is true, but CHANGELOG.md does not exist in the workspace!')
-    }
-    String parsedChangelog = changelog.renderItem(
-            changelog.get(version).withHeader(false).withEmptySections(false),
-            Changelog.OutputType.MARKDOWN)
-    if (parsedChangelog.isEmpty()) {
-        throw new GradleException('publish_with_changelog is true, but the changelog for the latest version is empty!')
-    }
-    return parsedChangelog
-}
-
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
-}
-
-tasks.register('cleanroomAfterSync') {
-    group 'cleanroom helpers'
-}
-
-idea.project.settings {
-    taskTriggers {
-        afterSync 'cleanroomAfterSync'
-    }
 }
 
 apply from: 'gradle/scripts/publishing.gradle'

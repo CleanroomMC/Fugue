@@ -19,7 +19,7 @@ import java.util.Map;
         modid = Reference.MOD_ID,
         name = Reference.MOD_NAME,
         useMetadata = true,
-        version = Reference.MOD_VERSION,
+        version = Reference.VERSION,
         dependencies = Reference.MOD_DEPENDENCIES,
         acceptableRemoteVersions = "*",
         updateJSON = "https://forge.curseupdate.com/1005815/fugue"
