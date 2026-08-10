@@ -37,6 +37,8 @@ import java.security.CodeSource;
 import java.security.ProtectionDomain;
 import java.util.*;
 import java.util.function.Function;
+import java.util.stream.Collector;
+import java.util.stream.Stream;
 
 @SuppressWarnings("unused")
 public class HookHelper {
@@ -364,5 +366,12 @@ public class HookHelper {
                 break;
             }
         }
+    }
+
+    // For vintagefix command hack
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    public static Object collect(Stream stream, Collector collector) {
+        return stream.filter(element -> element instanceof String s && !s.startsWith("bugfix.tab_complete_ddos"))
+                .collect(collector);
     }
 }

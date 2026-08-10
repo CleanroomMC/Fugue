@@ -72,6 +72,7 @@ import com.cleanroommc.fugue.transformer.transcend.TweakerTransformer;
 import com.cleanroommc.fugue.transformer.universal.RemoveMixinInitFromCotrTransformer;
 import com.cleanroommc.fugue.transformer.tickcentral.*;
 import com.cleanroommc.fugue.transformer.universal.*;
+import com.cleanroommc.fugue.transformer.vintagefix.MixinConfigPluginTransformer;
 import com.cleanroommc.fugue.transformer.valkyrienskies.WorldPhysicsColliderTransformer;
 import com.cleanroommc.fugue.transformer.vampirism.TConstructBloodConversionTransformer;
 import com.cleanroommc.fugue.transformer.vampirism.WorldGenVampireOrchidTransformer;
@@ -481,6 +482,10 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(
                     new TweakerTransformer(), "huige233.transcend.asm.tweaker.Tweaker");
         }
+        if (FugueConfig.modPatchConfig.enableVintageFixPatch) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new MixinConfigPluginTransformer(), "org.embeddedt.vintagefix.core.MixinConfigPlugin");
+        }
 
         // ======================================== Common patches below ===============================================
 
@@ -535,14 +540,14 @@ public class TransformerHelper {
         }
         if (FugueConfig.remapOshiTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformer(
-                new RemapTransformer(
-                    new String[] {
-                        "oshi/SystemInfo",
-                    },
-                    new String[] {
-                        "oshi/ffm/SystemInfo",
-                    }),
-                FugueConfig.remapOshiTargets);
+                    new RemapTransformer(
+                            new String[] {
+                                "oshi/SystemInfo",
+                            },
+                            new String[] {
+                                "oshi/ffm/SystemInfo",
+                            }),
+                    FugueConfig.remapOshiTargets);
         }
         if (FugueConfig.remapReflectionTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformer(
