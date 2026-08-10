@@ -34,7 +34,6 @@ public class FugueMixinConfigPlugin implements IMixinConfigPlugin {
             case "solarflux" -> FugueConfig.modPatchConfig.enableSolarFlux;
             case "custommainmenu" -> FugueConfig.modPatchConfig.enableCMM;
             case "hammercore" -> FugueConfig.modPatchConfig.enableHammerCore;
-            case "gregtech" -> FugueConfig.modPatchConfig.enableGTCEU && !Fugue.isModNewerThan("gregtech", "2.8.7");
             case "mcjty" -> FugueConfig.modPatchConfig.enableMcjty;
             case "howlingmoon" -> FugueConfig.modPatchConfig.enableHowlingMoon;
             case "customnpcs" -> FugueConfig.modPatchConfig.enableCustomNPC;
@@ -45,7 +44,6 @@ public class FugueMixinConfigPlugin implements IMixinConfigPlugin {
             case "extrautils2" -> FugueConfig.modPatchConfig.enableExtraUtilities;
             case "refinedstorage" ->
                 FugueConfig.modPatchConfig.enableMoreRefinedStorage && Fugue.isModNewerThan("refinedstorage", "2.0.0");
-            case "jei" -> FugueConfig.modPatchConfig.enableHEI && Fugue.isModNewerThan("jei", "4.17.0");
             case "carryon" -> FugueConfig.modPatchConfig.enableCarryon;
             case "betterrecords" -> FugueConfig.modPatchConfig.enableBetterRecords;
             case "unilib" -> FugueConfig.modPatchConfig.enableUnilib;

@@ -16,7 +16,6 @@
     "extrautils2.FieldSetterMixin",
     "funkylocomotion.WrenchFactoryMixin",
     "glibysphysics.GManMixin",
-    "gregtech.GTRecipeInputCacheMixin",
     "hammercore.FinalFieldHelperMixin",
     "hammercore.ReflectionUtilMixin",
     "howlingmoon.WerewolfCapabilityMixin",
@@ -39,7 +38,6 @@
   "client": [
     "custommainmenu.SlideshowMixin",
     "enderutilities.InputEventHandlerMixin",
-    "jei.RecipesGuiMixin",
     "lockdown.GuiMainMenuTweakedMixin",
     "mcjty.AbstractContainerWidgetMixin",
     "mcjty.SliderMixin"
