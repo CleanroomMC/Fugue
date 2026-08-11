@@ -35,7 +35,7 @@ jobs:
         id: changes
         uses: simbo/changes-between-tags-action@v1
 
-      - uses: Kir-Antipov/mc-publish@v3.3.0
+      - uses: Kir-Antipov/mc-publish@v3
         with:
           # Only include this section if you wish to publish
           # your assets on Modrinth.
@@ -51,6 +51,7 @@ jobs:
             build/libs/!(*-@(dev|sources|javadoc)).jar
             build/libs/*-@(dev|sources|javadoc).jar
           loaders: forge
+          environment: client | server
           game-versions: 1.12.2
           java: |
             25
