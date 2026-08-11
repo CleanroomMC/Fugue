@@ -20,7 +20,7 @@ version = versionDetails().lastTag
 group = root_package
 
 base {
-    archivesName = mod_id
+    archivesName = "+$mod_name"
 }
 
 java {
