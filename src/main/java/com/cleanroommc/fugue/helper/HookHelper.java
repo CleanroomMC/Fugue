@@ -8,6 +8,7 @@ import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.launchwrapper.LaunchClassLoader;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.core5.http.ParseException;
@@ -366,6 +367,32 @@ public class HookHelper {
                 break;
             }
         }
+    }
+
+    // ==================== Field write hooks (see ModifiersWriteRedirectTransformer) ====================
+
+    public static void setField(Field f, Object obj, Object value) {
+        if (!isJdkModifiersField(f)) {
+            try {
+                f.set(obj, value);
+            } catch (ReflectiveOperationException e) {
+                ExceptionUtils.throwUnchecked(e);
+            }
+        }
+    }
+
+    public static void setIntField(Field f, Object obj, int value) {
+        if (!isJdkModifiersField(f)) {
+            try {
+                f.setInt(obj, value);
+            } catch (ReflectiveOperationException e) {
+                ExceptionUtils.throwUnchecked(e);
+            }
+        }
+    }
+    
+    private static boolean isJdkModifiersField(Field f) {
+        return f != null && f.getDeclaringClass() == Field.class && "modifiers".equals(f.getName());
     }
 
     // For vintagefix command hack

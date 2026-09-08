@@ -70,6 +70,7 @@ import com.cleanroommc.fugue.transformer.transcend.TweakerTransformer;
 import com.cleanroommc.fugue.transformer.universal.RemoveMixinInitFromCotrTransformer;
 import com.cleanroommc.fugue.transformer.tickcentral.*;
 import com.cleanroommc.fugue.transformer.universal.*;
+import com.cleanroommc.fugue.transformer.universal.ModifiersWriteRedirectTransformer;
 import com.cleanroommc.fugue.transformer.vintagefix.MixinConfigPluginTransformer;
 import com.cleanroommc.fugue.transformer.valkyrienskies.WorldPhysicsColliderTransformer;
 import com.cleanroommc.fugue.transformer.vampirism.TConstructBloodConversionTransformer;
@@ -482,6 +483,12 @@ public class TransformerHelper {
         if (FugueConfig.getCodeSourcePatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformer(
                     new ITweakerTransformer(), FugueConfig.getCodeSourcePatchTargets);
+        }
+        if (!FugueConfig.modifiersWriteRedirectTargets.isEmpty()) {
+                TransformerDelegate.registerExplicitTransformer(
+                        new ModifiersWriteRedirectTransformer(FugueConfig.modifiersWriteRedirectTargets),
+                    FugueConfig.modifiersWriteRedirectTargets.keySet().toArray(new String[0]));
+            
         }
         if (FugueConfig.reflectionPatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformer(

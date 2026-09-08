@@ -200,8 +200,9 @@ public class FugueConfig {
         "thedarkcolour.futuremc.world.gen.feature.BeeNestGenerator",
         "mods.railcraft.common.plugins.forge.DataManagerPlugin",
     };
-    
-    @Config.Comment("After we switched to new ffm-based oshi with different package name, old references need to be redirected.")
+
+    @Config.Comment("After we switched to new ffm-based oshi with different package name, old references need to be"
+            + " redirected.")
     @Config.Name("OSHI Remap List")
     public static String[] remapOshiTargets = new String[] {
         "dev.ftb.mods.ftbauxilium.auxilium.SystemStats",
@@ -303,6 +304,21 @@ public class FugueConfig {
         "DamageIndicatorsMod.gui.AdvancedGui",
         "firemerald.api.config.ConfigValueStringList",
         "sonar.calculator.mod.client.gui.calculators.GuiInfoCalculator",
+    };
+
+    @Config.Comment("""
+        Since JDK 26, writing java.lang.reflect.Field.modifiers through reflection throws IllegalAccessException
+        (the field is final and Field.set() enforces module opens / final field mutation policy).
+        Mods that clear the final bit of other fields via this hack crash at the write.
+        Each entry redirects every Field.set*/set in that method to a hook that drops writes to the JDK-internal
+        'modifiers' field (unnecessary on modern JDKs) and delegates all other writes to normal reflection.
+        Format: "fully.qualified.ClassName|methodName"
+        """)
+    @Config.Name("Modifiers Write Redirect Targets")
+    public static Map<String, String> modifiersWriteRedirectTargets = new HashMap<>() {
+        {
+            put("gregtech.common.worldgen.LootTableHelper", "replaceGsonTypeHierarchySerializer");
+        }
     };
 
     @Config.Comment("""
