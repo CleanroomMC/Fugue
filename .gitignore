@@ -28,3 +28,7 @@ gradle-app.setting
 # Fugue specific
 /mcmodsrepo/
 libs/
+
+# AI
+.pi
+.codegraph
