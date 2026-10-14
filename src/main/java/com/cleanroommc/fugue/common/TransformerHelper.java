@@ -480,6 +480,7 @@ public class TransformerHelper {
 
         // ======================================== Common patches below ===============================================
 
+        /*
         if (FugueConfig.getCodeSourcePatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformer(
                     new ITweakerTransformer(), FugueConfig.getCodeSourcePatchTargets);
@@ -528,10 +529,6 @@ public class TransformerHelper {
                             }),
                     FugueConfig.remapTargets);
         }
-        if (FugueConfig.nonUpdateTargets.length > 0) {
-            TransformerDelegate.registerExplicitTransformer(
-                    new ConnectionBlockingTransformer(), FugueConfig.nonUpdateTargets);
-        }
         if (FugueConfig.remapLWTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformer(new RemapLegacyLWTransformer(), FugueConfig.remapLWTargets);
         }
@@ -550,11 +547,6 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(
                     new RemapSunReflectionTransformer(), FugueConfig.remapReflectionTargets);
         }
-        if (!FugueConfig.finalRemovingTargets.isEmpty()) {
-            TransformerDelegate.registerExplicitTransformer(
-                    new FinalStripperTransformer(FugueConfig.finalRemovingTargets),
-                    FugueConfig.finalRemovingTargets.keySet().toArray(new String[0]));
-        }
         if (FugueConfig.computeIfAbsentTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformer(
                     new ComputeIfAbsentTransformer(), FugueConfig.computeIfAbsentTargets);
@@ -569,6 +561,15 @@ public class TransformerHelper {
         }
         if (FugueConfig.toArrayPatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformer(new ToArrayTransformer(), FugueConfig.toArrayPatchTargets);
+        }*/
+        if (FugueConfig.nonUpdateTargets.length > 0) {
+            TransformerDelegate.registerExplicitTransformer(
+                new ConnectionBlockingTransformer(), FugueConfig.nonUpdateTargets);
+        }
+        if (!FugueConfig.finalRemovingTargets.isEmpty()) {
+            TransformerDelegate.registerExplicitTransformer(
+                new FinalStripperTransformer(FugueConfig.finalRemovingTargets),
+                FugueConfig.finalRemovingTargets.keySet().toArray(new String[0]));
         }
     }
 }

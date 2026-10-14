@@ -118,7 +118,7 @@ sourceSets {
                 property('mod_name', mod_name)
                 property('mod_version', version)
                 property('package', "${root_package}.${mod_id}")
-                property('crl_version', cleanroom_version)
+                property('crl_version', '0.7.3')
             }
             resources {
                 property('mod_id', mod_id)
