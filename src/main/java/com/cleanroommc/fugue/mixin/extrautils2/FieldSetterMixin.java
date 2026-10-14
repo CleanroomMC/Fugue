@@ -1,6 +1,5 @@
 package com.cleanroommc.fugue.mixin.extrautils2;
 
-import com.cleanroommc.hackery.ReflectionHackery;
 import com.rwtema.extrautils2.utils.datastructures.FieldSetter;
 import net.minecraftforge.fml.common.FMLLog;
 import org.apache.logging.log4j.Level;
@@ -9,6 +8,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import zone.rong.imaginebreaker.Index;
 
 import java.lang.reflect.Field;
 
@@ -20,7 +20,7 @@ public class FieldSetterMixin {
     @Inject(method = "apply", at = @At(value = "HEAD"), cancellable = true)
     private void onApply(Object owner, Object object, CallbackInfo ci) {
         try {
-            ReflectionHackery.setField(this.field, owner, object);
+            Index.get().set(owner, this.field, object);
         } catch (Exception e) {
             FMLLog.log.log(Level.WARN, "Unable to set {} with value {}", this.field, object);
         }
