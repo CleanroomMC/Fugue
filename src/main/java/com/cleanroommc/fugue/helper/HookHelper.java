@@ -1,14 +1,10 @@
 package com.cleanroommc.fugue.helper;
 
 import com.cleanroommc.fugue.common.Fugue;
-import com.google.common.util.concurrent.FutureCallback;
-import com.google.common.util.concurrent.Futures;
-import com.google.common.util.concurrent.ListenableFuture;
 import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.launchwrapper.LaunchClassLoader;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.core5.http.ParseException;
@@ -37,7 +33,6 @@ import java.nio.file.Paths;
 import java.security.CodeSource;
 import java.security.ProtectionDomain;
 import java.util.*;
-import java.util.function.Function;
 import java.util.stream.Collector;
 import java.util.stream.Stream;
 
@@ -47,7 +42,6 @@ public class HookHelper {
         return opcode == Opcodes.INVOKEINTERFACE;
     }
 
-    public static List<IClassTransformer> transformers;
     private static final Map<String, Class<?>> grsMap = new HashMap<>();
 
     @SuppressWarnings("deprecation")
@@ -96,18 +90,6 @@ public class HookHelper {
 
     public static InputStream openStream(URL instance) throws IOException {
         throw new IOException("Connection blocked by Fugue!");
-    }
-
-    public static Field getField(Class<?> clazz, String name) throws NoSuchFieldException {
-        if (!clazz.equals(LaunchClassLoader.class)) {
-            return clazz.getDeclaredField(name);
-        }
-        if (name.equals("transformers") || name.equals("renameTransformer")) {
-            HookHelper.transformers = TransformerDelegate.getTransformers();
-            return HookHelper.class.getDeclaredField(name);
-        } else {
-            return ActualClassLoader.class.getDeclaredField(name);
-        }
     }
 
     public static Class<?> defineClass(String name, byte[] bytes, int off, int len, CodeSource codeSource) {
@@ -212,50 +194,6 @@ public class HookHelper {
         return Launch.classLoader.isClassExist(clazz);
     }
 
-    /**
-     * computeIfAbsent without concurrent check
-     * @param map
-     * @param key
-     * @param function
-     * @return
-     */
-    public static Object computeIfAbsent(Map<Object, Object> map, Object key, Function<Object, Object> function) {
-        if (map.containsKey(key)) {
-            return map.get(key);
-        } else {
-            Object value = function.apply(key);
-            map.put(key, value);
-            return value;
-        }
-    }
-
-    public static URL[] getURL(ClassLoader loader) {
-        if (loader instanceof LaunchClassLoader) {
-            return  ((LaunchClassLoader) loader).getSources().toArray(new URL[0]);
-        } else if (loader instanceof URLClassLoader) {
-            return ((URLClassLoader) loader).getURLs();
-        } else {
-            try {
-                Field UCP = LaunchClassLoader.class
-                        .getClassLoader()
-                        .getClass()
-                        .getSuperclass()
-                        .getDeclaredField("ucp");
-                UCP.setAccessible(true);
-                Object urls = UCP.get(loader);
-                Class<?> urlClassPath = Class.forName("jdk.internal.loader.URLClassPath");
-                Method get = urlClassPath.getMethod("getURLs");
-                return (URL[]) get.invoke(urls);
-            } catch (NoSuchFieldException
-                    | IllegalAccessException
-                    | ClassNotFoundException
-                    | NoSuchMethodException
-                    | InvocationTargetException e) {
-                return new URL[0];
-            }
-        }
-    }
-
     public static boolean isInitialized(File file) {
         try {
             return Arrays.asList(Launch.classLoader.getURLs())
@@ -295,10 +233,6 @@ public class HookHelper {
         hardwareMap.putIfAbsent("os", "UNKNOWN");
         hardwareMap.putIfAbsent("osVersion", "UNKNOWN");
         return hardwareMap;
-    }
-
-    public static <V> void addCallback(final ListenableFuture<V> future, final FutureCallback<? super V> callback) {
-        Futures.addCallback(future, callback, Runnable::run);
     }
 
     public static boolean deleteFile(File file) {
@@ -367,32 +301,6 @@ public class HookHelper {
                 break;
             }
         }
-    }
-
-    // ==================== Field write hooks (see ModifiersWriteRedirectTransformer) ====================
-
-    public static void setField(Field f, Object obj, Object value) {
-        if (!isJdkModifiersField(f)) {
-            try {
-                f.set(obj, value);
-            } catch (ReflectiveOperationException e) {
-                ExceptionUtils.throwUnchecked(e);
-            }
-        }
-    }
-
-    public static void setIntField(Field f, Object obj, int value) {
-        if (!isJdkModifiersField(f)) {
-            try {
-                f.setInt(obj, value);
-            } catch (ReflectiveOperationException e) {
-                ExceptionUtils.throwUnchecked(e);
-            }
-        }
-    }
-    
-    private static boolean isJdkModifiersField(Field f) {
-        return f != null && f.getDeclaringClass() == Field.class && "modifiers".equals(f.getName());
     }
 
     // For vintagefix command hack

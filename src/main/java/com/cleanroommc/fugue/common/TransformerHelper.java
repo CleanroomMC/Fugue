@@ -72,7 +72,6 @@ import com.cleanroommc.fugue.transformer.transcend.TweakerTransformer;
 import com.cleanroommc.fugue.transformer.universal.RemoveMixinInitFromCotrTransformer;
 import com.cleanroommc.fugue.transformer.tickcentral.*;
 import com.cleanroommc.fugue.transformer.universal.*;
-import com.cleanroommc.fugue.transformer.universal.ModifiersWriteRedirectTransformer;
 import com.cleanroommc.fugue.transformer.vintagefix.MixinConfigPluginTransformer;
 import com.cleanroommc.fugue.transformer.valkyrienskies.WorldPhysicsColliderTransformer;
 import com.cleanroommc.fugue.transformer.vampirism.TConstructBloodConversionTransformer;
@@ -491,80 +490,6 @@ public class TransformerHelper {
 
         // ======================================== Common patches below ===============================================
 
-        /*
-        if (FugueConfig.getCodeSourcePatchTargets.length > 0) {
-            TransformerDelegate.registerExplicitTransformer(
-                    new ITweakerTransformer(), FugueConfig.getCodeSourcePatchTargets);
-        }
-        if (!FugueConfig.modifiersWriteRedirectTargets.isEmpty()) {
-                TransformerDelegate.registerExplicitTransformer(
-                        new ModifiersWriteRedirectTransformer(FugueConfig.modifiersWriteRedirectTargets),
-                    FugueConfig.modifiersWriteRedirectTargets.keySet().toArray(new String[0]));
-            
-        }
-        if (FugueConfig.getURLPatchTargets.length > 0) {
-            TransformerDelegate.registerExplicitTransformer(
-                    new URLClassLoaderTransformer(), FugueConfig.getURLPatchTargets);
-        }
-        if (FugueConfig.scriptEngineTargets.length > 0) {
-            TransformerDelegate.registerExplicitTransformer(
-                    new ScriptEngineTransformer(), FugueConfig.scriptEngineTargets);
-        }
-        if (FugueConfig.UUIDTargets.length > 0) {
-            TransformerDelegate.registerExplicitTransformer(new MalformedUUIDTransformer(), FugueConfig.UUIDTargets);
-        }
-        if (FugueConfig.remapTargets.length > 0) {
-            TransformerDelegate.registerExplicitTransformer(
-                    new RemapTransformer(
-                            new String[] {
-                                "javax/xml/bind/",
-                                "javax/xml/ws/",
-                                "javax/ws/",
-                                "javax/activation/",
-                                "javax/soap/",
-                                "javax/jws/",
-                                "javax/inject/"
-                            },
-                            new String[] {
-                                "jakarta/xml/bind/",
-                                "jakarta/xml/ws/",
-                                "jakarta/ws/",
-                                "jakarta/activation/",
-                                "jakarta/soap/",
-                                "jakarta/jws/",
-                                "jakarta/inject/"
-                            }),
-                    FugueConfig.remapTargets);
-        }
-        if (FugueConfig.remapLWTargets.length > 0) {
-            TransformerDelegate.registerExplicitTransformer(new RemapLegacyLWTransformer(), FugueConfig.remapLWTargets);
-        }
-        if (FugueConfig.remapOshiTargets.length > 0) {
-            TransformerDelegate.registerExplicitTransformer(
-                    new RemapTransformer(
-                            new String[] {
-                                "oshi/SystemInfo",
-                            },
-                            new String[] {
-                                "oshi/ffm/SystemInfo",
-                            }),
-                    FugueConfig.remapOshiTargets);
-        }
-        if (FugueConfig.computeIfAbsentTargets.length > 0) {
-            TransformerDelegate.registerExplicitTransformer(
-                    new ComputeIfAbsentTransformer(), FugueConfig.computeIfAbsentTargets);
-        }
-        if (FugueConfig.addFutureCallbackTargets.length > 0) {
-            TransformerDelegate.registerExplicitTransformer(
-                    new AddFutureCallbackTransformer(), FugueConfig.addFutureCallbackTargets);
-        }
-        if (FugueConfig.mouseWheelPatchTargets.length > 0) {
-            TransformerDelegate.registerExplicitTransformer(
-                    new DWheelTransformer(), FugueConfig.mouseWheelPatchTargets);
-        }
-        if (FugueConfig.toArrayPatchTargets.length > 0) {
-            TransformerDelegate.registerExplicitTransformer(new ToArrayTransformer(), FugueConfig.toArrayPatchTargets);
-        }*/
         if (FugueConfig.nonUpdateTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformer(
                 new ConnectionBlockingTransformer(), FugueConfig.nonUpdateTargets);
