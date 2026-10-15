@@ -223,4 +223,7 @@ public class ModPatchConfig {
     @Config.Name("Enable VintageFix Patch")
     @Config.Comment("Cleanroom 0.6.10+ natively limits command suggestion display, making VintageFix's 'mixin.bugfix.tab_complete_ddos' obsolete. Forcibly drops that mixin from VintageFix's mixin list via ASM, regardless of its config file.")
     public boolean enableVintageFixPatch = true;
+    @Config.Name("Enable Thaumcraft Fix Patch")
+    @Config.Comment("Cleanroom 0.7+ requires event subscriber classes to be public, ThaumcraftFixConfigImpl is package-private")
+    public boolean enableThaumcraftFix = true;
 }

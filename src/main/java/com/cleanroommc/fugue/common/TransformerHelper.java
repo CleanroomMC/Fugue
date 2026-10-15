@@ -64,6 +64,7 @@ import com.cleanroommc.fugue.transformer.subaquatic.PluginBiomeTransformer;
 import com.cleanroommc.fugue.transformer.subaquatic.PluginEntityTransformer;
 import com.cleanroommc.fugue.transformer.subaquatic.SubaquaticIMTransformer;
 import com.cleanroommc.fugue.transformer.survivalinc.ForgeASMInjectorTransformer;
+import com.cleanroommc.fugue.transformer.thaumcraftfix.ThaumcraftFixConfigImplTransformer;
 import com.cleanroommc.fugue.transformer.techgun.TechgunsASMTransformerTransformer;
 import com.cleanroommc.fugue.transformer.transcend.FMLLoadingPluginTransformer;
 import com.cleanroommc.fugue.transformer.transcend.TweakerTransformer;
@@ -476,6 +477,11 @@ public class TransformerHelper {
         if (FugueConfig.modPatchConfig.enableVintageFixPatch) {
             TransformerDelegate.registerExplicitTransformer(
                     new MixinConfigPluginTransformer(), "org.embeddedt.vintagefix.core.MixinConfigPlugin");
+        }
+        if (FugueConfig.modPatchConfig.enableThaumcraftFix) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new ThaumcraftFixConfigImplTransformer(),
+                    "thecodex6824.thaumcraftfix.common.config.ThaumcraftFixConfigImpl");
         }
 
         // ======================================== Common patches below ===============================================
