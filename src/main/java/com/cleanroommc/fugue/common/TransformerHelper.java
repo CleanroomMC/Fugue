@@ -33,6 +33,7 @@ import com.cleanroommc.fugue.transformer.journeymap.FileHandlerTransformer;
 import com.cleanroommc.fugue.transformer.journeymap.ThemeLoaderTransformer;
 import com.cleanroommc.fugue.transformer.journeymap.VersionCheck$1Transformer;
 import com.cleanroommc.fugue.transformer.kubejs.KubeJSTransformer;
+import com.cleanroommc.fugue.transformer.loadingprofiler.TransformerProfilerTransformer;
 import com.cleanroommc.fugue.transformer.logisticpipes.*;
 import com.cleanroommc.fugue.transformer.light_and_shadow.AsmTransformerTransformer;
 import com.cleanroommc.fugue.transformer.loliasm.JavaFixesTransformer;
@@ -482,6 +483,10 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(
                     new ThaumcraftFixConfigImplTransformer(),
                     "thecodex6824.thaumcraftfix.common.config.ThaumcraftFixConfigImpl");
+        }
+        if (FugueConfig.modPatchConfig.enableLoadingProfiler) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new TransformerProfilerTransformer(), "lumien.loadingprofiler.profiler.TransformerProfiler");
         }
 
         // ======================================== Common patches below ===============================================
