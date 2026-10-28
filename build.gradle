@@ -1,238 +1,272 @@
 plugins {
     id 'java'
-    id 'java-library'
-    id 'maven-publish'
-    id 'com.gradleup.shadow' version '9.5.1'
-    id 'org.jetbrains.gradle.plugin.idea-ext' version '1.4.1'
-    id 'xyz.wagyourtail.unimined' version '1.4.43-kappa'
-    id 'net.kyori.blossom' version '2.2.0'
-    id 'com.palantir.git-version' version '4.2.0'
+    id 'com.cleanroommc.cleanroomgradle'
+    id 'com.cleanroommc.conventions' version '1.4.0'
 }
 
-import org.jetbrains.gradle.ext.Gradle
-
-ext {
-    //noinspection GroovyAssignabilityCheck
-    access_transformer_locations = "${mod_id}_at.cfg"
-}
-
-version = versionDetails().lastTag
 group = root_package
 
 base {
+    // Sorts Fugue before the mods it patches
     archivesName = "+$mod_name"
 }
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(25)
+conventions {
+    if (mod_authors) {
+        author = mod_authors
     }
-    if (generate_sources_jar.toBoolean()) {
-        withSourcesJar()
-    }
-    if (generate_javadocs_jar.toBoolean()) {
-        withJavadocJar()
-    }
-}
-
-configurations {
-    contain
-    implementation.extendsFrom(contain)
-    modCompileOnly
-    compileOnly.extendsFrom(modCompileOnly)
-    modRuntimeOnly
-    runtimeOnly.extendsFrom(modRuntimeOnly)
-}
-
-def remapTaskName = enable_shadow.toBoolean() ? "remapShadowJar" : "remapJar"
-
-//noinspection GroovyAssignabilityCheck
-unimined.minecraft {
-    version "1.12.2"
-
-    mappings {
-        mcp("stable", "39-1.12")
-    }
-
-    cleanroom {
-        if (use_access_transformer.toBoolean()) {
-            accessTransformer "${rootProject.projectDir}/src/main/resources/$access_transformer_locations"
-        }
-        loader cleanroom_version
-        runs.all {
-            systemProperty("crl.dev.mixin", "${mod_id}.mixin.json")
-            args += ['--username', minecraft_username]
-            def extraArgs = extra_jvm_args
-            if (extraArgs != null && !extraArgs.trim().isEmpty()) {
-                jvmArgs += extraArgs.split { "\\s+" }.toList()
-            }
-            if (enable_foundation_debug.toBoolean()) {
-                systemProperty("foundation.dump", "true")
-                systemProperty("foundation.verbose", "true")
-            }
-            if (is_coremod.toBoolean()) {
-                systemProperty("fml.coreMods.load", coremod_plugin_class_name)
-            }
-            return
-        }
-    }
-
-    defaultRemapJar = false
-
-    String jarTaskName = enable_shadow.toBoolean() ? "shadowJar" : "jar"
-
-    remap(tasks.named(jarTaskName).get()) {
-        mixinRemap {
-            enableBaseMixin()
-            enableMixinExtra()
-        }
-    }
-
     mods {
-        remap(configurations.modCompileOnly)
-        remap(configurations.modRuntimeOnly)
+        if (curseforge_project_id) {
+            curseforge {
+                projectId = curseforge_project_id
+            }
+        }
+        if (modrinth_project_id) {
+            modrinth {
+                projectId = modrinth_project_id
+            }
+        }
+    }
+}
+
+repositories {
+    exclusiveContent {
+        forRepository {
+            maven {
+                name 'CurseMaven'
+                url 'https://curse.cleanroommc.com'
+            }
+        }
+        filter {
+            includeGroup 'curse.maven'
+        }
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name 'Modrinth'
+                url 'https://api.modrinth.com/maven'
+            }
+        }
+        filter {
+            includeGroup 'maven.modrinth'
+        }
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name 'chickenbones'
+                url 'https://chickenbones.net/maven/'
+            }
+        }
+        filter {
+            includeGroup 'codechicken'
+        }
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name 'ModMaven'
+                url 'https://modmaven.dev/'
+            }
+        }
+        filter {
+            includeGroup 'com.enderio.core'
+        }
     }
 }
 
 dependencies {
-    if (use_asset_mover.toBoolean()) {
-        implementation "com.cleanroommc:assetmover:${asset_mover_version}"
-    }
-    if (enable_junit_testing.toBoolean()) {
-        testImplementation 'org.junit.jupiter:junit-jupiter:6.0.3'
-        testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    }
+    implementation cleanroom.userdev(cleanroom_version)
+
+    //Charset Lib
+    implementation deobf('curse.maven:charset-284523:3656492')
+
+    //Xaero's Minimap
+    implementation deobf('curse.maven:xaero-263420:7598566')
+    implementation deobf('curse.maven:xaero-map-317780:7598450')
+
+    implementation deobf('curse.maven:xaeroplus-866084:7598605')
+
+    //CodeChickenLib
+    implementation deobf('codechicken:CodeChickenLib:1.12-3.1.5.330:universal')
+
+    //ForgeMultipart
+    implementation deobf('codechicken:ForgeMultipart:1.12-2.3.0.51:universal')
+
+    //Project Red Core
+    implementation deobf('curse.maven:pr-core-228702:2745545')
+
+    //Solar Flux Reborne
+    implementation deobf('curse.maven:solarflux-246974:3050838')
+
+    //Custom Main Menu
+    implementation deobf('curse.maven:cmm-226406:2857869')
+
+    //HammerLib
+    implementation deobf('curse.maven:hammer-247401:4878669')
+
+    //EnderCore
+    implementation deobf('com.enderio.core:EnderCore:1.12.2-0.5.78:core')
+
+    //TickCentral
+    implementation deobf('curse.maven:tickcentral-377201:3140670')
+
+    //Lag Goggles
+    implementation deobf('curse.maven:lag-goggles-283525:4493884')
+
+    //Shoulder Surfing Reloaded
+    implementation deobf('curse.maven:shoulder-surfing-243190:5009912')
+
+    //Logistics Pipes
+    implementation deobf('curse.maven:logistics-pipes-232838:4849512')
+
+    //GTCEU
+    implementation deobf('curse.maven:gtceu-557242:5050979')
+
+    //The ASM
+    implementation deobf('curse.maven:lolasm-460609:6854259')
+
+    //mcjty
+    implementation deobf('curse.maven:mcjty-233105:2745846')
+
+    //howlingmoon
+    implementation deobf('curse.maven:howlingmoon-236149:2567452')
+
+    //customNPCs
+    implementation deobf('curse.maven:customnpc-221826:2996912')
+
+    //Water Power
+    implementation deobf('curse.maven:waterpower-224579:2464789')
+
+    //Subaquatic
+    implementation deobf('maven.modrinth:subaquatic:8I38sNEh')
+
+    //Nothirium
+    implementation deobf('curse.maven:nothirium-624960:4710696')
+
+    //Armourer's Workshop
+    implementation deobf('curse.maven:aw-229523:3101995')
+
+    //MAGE
+    implementation deobf('curse.maven:mage-287471:2625223')
+
+    //Extra Utilities
+    implementation deobf('curse.maven:exu2-225561:2678374')
+
+    //MoreRefinedStorage
+    implementation deobf('curse.maven:mrs-631058:3818846')
+
+    //HEI
+    implementation deobf('curse.maven:hei-557549:5229422')
+
+    //Carry on
+    implementation deobf('curse.maven:carry-274259:4507139')
+
+    //Better Records
+    implementation deobf('curse.maven:br-222722:2930159')
+
+    //Aqua Acrobatics
+    implementation deobf('curse.maven:aqua-321792:5225456')
+
+    //Calculator
+    implementation deobf('curse.maven:calculator-225104:2847174')
+
+    //Unilib
+    implementation deobf('curse.maven:unilib-1056812:5946214')
+
+    //BetterPortals
+    // Bundles its own ancient mixin classes (org.spongepowered.asm.lib.*), which would shadow
+    // cleanmix on the compile classpath, so keep it runtime-only
+    runtimeOnly deobf('curse.maven:betterportals-322948:2883633')
+
+    //CustomNPCs Unofficial
+    implementation deobf('curse.maven:customnpcs-1086839:6166874')
+
+    //funky locomotion
+    implementation deobf('curse.maven:funky-locomotion-224190:2599318')
+
+    //Patchouli
+    implementation deobf('curse.maven:patchouli-306770:3162874')
+
+    implementation deobf('curse.maven:recurrent-complex-223150:5615733')
+
+    implementation deobf('curse.maven:lockdown-244019:2477270')
+
+    implementation deobf('curse.maven:requiem-265729:2942107')
+
+    implementation deobf('curse.maven:mo-bends-231347:3573346')
+
+    //Gliby's Physics
+    implementation deobf('curse.maven:glibys-physics-298126:2915953')
+
+    implementation deobf('curse.maven:creativecore-257814:4722163')
+
+    //Ender Utilities
+    implementation deobf('curse.maven:ender-utilities-224320:2977010')
+
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:2.3.10'
+
+    implementation 'zone.rong:imaginebreaker:3.2'
 }
 
-apply from: 'gradle/scripts/dependencies.gradle'
-
-processResources {
-    rename '(.+_at.cfg)', 'META-INF/$1'
+def runProperties = [
+        'crl.dev.mixin'    : "${mod_id}.mixin.json",
+        'fml.coreMods.load': coremod_plugin_class,
+]
+if (enable_foundation_debug.toBoolean()) {
+    runProperties['foundation.dump'] = 'true'
+    runProperties['foundation.verbose'] = 'true'
 }
 
-sourceSets {
-    main {
-        blossom {
-            javaSources {
-                property('mod_id', mod_id)
-                property('mod_name', mod_name)
-                property('mod_version', version)
-                property('package', "${root_package}.${mod_id}")
-                property('crl_version', '0.7.3-alpha')
+cleanroom {
+    runs {
+        client {
+            configure {
+                username = minecraft_username
+                jvmArgs extra_jvm_args.tokenize()
+                systemProperties runProperties
             }
-            resources {
-                property('mod_id', mod_id)
-                property('mod_name', mod_name)
-                property('mod_version', version)
-                property('mod_description', mod_description)
-                property('mod_authors', mod_authors.toString().split(',').findAll { !it.isBlank() }.collect { "\"${it.strip()}\"" }.join(', '))
-                property('mod_credits', mod_credits)
-                property('mod_url', mod_url)
-                property('mod_update_json', mod_update_json)
-                property('mod_logo_path', mod_logo_path)
-                property('mod_issue_tracker', mod_issue_tracker)
+        }
+        server {
+            configure {
+                jvmArgs extra_jvm_args.tokenize()
+                systemProperties runProperties
             }
         }
     }
 }
 
-idea {
-    module {
-        inheritOutputDirs = true
-    }
-    project {
-        settings {
-            runConfigurations {
-                '1. Build'(Gradle) {
-                    taskNames = ["build"]
-                }
-                '2. Run Client'(Gradle) {
-                    taskNames = ["runClient"]
-                }
-                '3. Run Server'(Gradle) {
-                    taskNames = ["runServer"]
-                }
-            }
-            compiler.javac {
-                afterEvaluate {
-                    javacAdditionalOptions = '-encoding utf8'
-                    moduleJavacAdditionalOptions = [
-                            (project.name + '.main'): tasks.compileJava.options.compilerArgs.collect { "\"${it}\"" }.join(' ')
-                    ]
-                }
-            }
-            taskTriggers {
-                beforeSync tasks.named("genSources")
-            }
-        }
-    }
-}
-
-if (!enable_shadow.toBoolean()) {
-    shadowJar.enabled = false
-}
-
-compileJava {
-    sourceCompatibility = targetCompatibility = JavaVersion.VERSION_25
+tokenEnvoy {
+    set 'MOD_VERSION', project.version
+    set 'MOD_AUTHORS', mod_authors.tokenize(',')*.trim().join('", "')
+    set file('tokens.properties')
 }
 
 jar {
-    archiveClassifier = 'dev'
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    if (configurations.contain.size() > 0) {
-        into('/') {
-            from configurations.contain
-        }
-    }
-    doFirst {
-        manifest {
-            def attribute_map = [:]
-            attribute_map['ModType'] = 'CRL'
-            attribute_map['MixinConfigs'] = "${mod_id}.mixin.json"
-            if (configurations.contain.size() > 0) {
-                attribute_map['ContainedDeps'] = configurations.contain.collect { it.name }.join(' ')
-                attribute_map['NonModDeps'] = true
-            }
-            if (is_coremod.toBoolean()) {
-                attribute_map['FMLCorePlugin'] = coremod_plugin_class_name
-                if (coremod_includes_mod.toBoolean()) {
-                    attribute_map['FMLCorePluginContainsFMLMod'] = true
-                }
-            }
-            if (use_access_transformer.toBoolean()) {
-                attribute_map['FMLAT'] = access_transformer_locations
-            }
-            attributes(attribute_map)
-        }
-    }
-    finalizedBy(tasks.named(remapTaskName).get())
-}
-
-shadowJar {
-    //noinspection GroovyAssignabilityCheck,GroovyAccessibility
-    configurations = [project.configurations.shadow]
-    archiveClassifier = "shadow"
-}
-
-compileTestJava {
-    sourceCompatibility = targetCompatibility = JavaVersion.VERSION_25
-}
-
-test {
-    useJUnitPlatform()
-    javaLauncher.set(javaToolchains.launcherFor {
-        languageVersion = JavaLanguageVersion.of(25)
-    })
-    if (show_testing_output.toBoolean()) {
-        testLogging {
-            showStandardStreams = true
+    manifest {
+        attributes 'ModType': 'CRL', 'MixinConfigs': "${mod_id}.mixin.json"
+        attributes 'FMLCorePlugin': coremod_plugin_class
+        if (coremod_includes_mod.toBoolean()) {
+            attributes 'FMLCorePluginContainsFMLMod': true, 'ForceLoadAsMod': true
         }
     }
 }
 
-tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8'
+// @Overwrite needs @reason, which Javadoc does not know
+javadoc {
+    options.tags('reason:a:Reason:')
 }
 
-apply from: 'gradle/scripts/publishing.gradle'
-apply from: 'gradle/scripts/extra.gradle'
+tasks.withType(Checkstyle).configureEach {
+    enabled = enable_checkstyle.toBoolean()
+}
+
+tasks.matching { it.name in ['clearSkiesCheck', 'formatJavaCheck'] }.configureEach {
+    enabled = enable_formatting.toBoolean()
+}
+
+// TODO: fundamental Foundation issue
+tasks.withType(JavaExec).configureEach {
+    systemProperty 'foundation.loadsall', 'true'
+}

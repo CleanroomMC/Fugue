@@ -1,0 +1,15 @@
+[{
+	"modid": "@{MOD_ID}",
+	"name": "@{MOD_NAME}",
+	"version": "@{MOD_VERSION}",
+	"mcversion": "1.12.2",
+	"description": "@{MOD_DESCRIPTION}",
+	"authorList": ["@{MOD_AUTHORS}"],
+	"credits": "@{MOD_CREDITS}",
+	"url": "@{MOD_URL}",
+	"updateJSON": "@{MOD_UPDATE_JSON}",
+	"logoFile": "@{MOD_LOGO_PATH}",
+	"modProperties": {
+		"issueTrackerUrl": "@{MOD_ISSUE_TRACKER}"
+	}
+}]

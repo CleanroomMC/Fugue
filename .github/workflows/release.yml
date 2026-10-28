@@ -1,59 +1,22 @@
-name: Releases
+name: Release
 
 on:
   push:
     tags:
-      - "*"
+      - '[0-9]+.[0-9]+.[0-9]+'
+      - '[0-9]+.[0-9]+.[0-9]+-*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: read
+  pull-requests: read
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v7
-        with:
-          fetch-depth: 0
-      - name: Set up JDK
-        uses: actions/setup-java@v5
-        with:
-          java-version: '25'
-          distribution: 'temurin'
-      - uses: gradle/actions/setup-gradle@v6
-        name: Set up Gradle
-      - name: Add permission
-        run: chmod +x ./gradlew
-      - name: Execute Gradle build
-        run: ./gradlew build
-
-      - uses: ncipollo/release-action@v1
-        with:
-          artifacts: "build/libs/*"
-          generateReleaseNotes: true
-
-      - name: Get Changes between Tags
-        id: changes
-        uses: simbo/changes-between-tags-action@v1
-
-      - uses: Kir-Antipov/mc-publish@v3
-        with:
-          # Only include this section if you wish to publish
-          # your assets on Modrinth.
-          modrinth-id: vylTACsh
-          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
-
-          # Only include this section if you wish to publish
-          # your assets on CurseForge.
-          curseforge-id: 1005815
-          curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
-
-          files: |
-            build/libs/!(*-@(dev|sources|javadoc)).jar
-            build/libs/*-@(dev|sources|javadoc).jar
-          loaders: forge
-          environment: client | server
-          game-versions: 1.12.2
-          java: |
-            25
-          version: ${{ steps.changes.outputs.tag }}
-          changelog: ${{ steps.changes.outputs.changes }}
+  release:
+    uses: CleanroomMC/Conventions/.github/workflows/release.yml@1.4.0
+    with:
+      publish-maven: false
+      # Needs curseforge_project_id or modrinth_project_id in gradle.properties, and the matching token secret
+      publish-mods: true
+    secrets: inherit

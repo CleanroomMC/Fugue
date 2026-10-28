@@ -1,0 +1,19 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+      - 'develop/**'
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review, review_requested]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    uses: CleanroomMC/Conventions/.github/workflows/build.yml@1.4.0
+    with:
+      release-branch: master

@@ -3,6 +3,7 @@
   "package": "com.cleanroommc.fugue.mixin",
   "compatibilityLevel": "JAVA_25",
   "plugin": "com.cleanroommc.fugue.common.FugueMixinConfigPlugin",
+  "refmap": "mixins.fugue.refmap.json",
   "mixins": [
     "armourers_workshop.SkinTextureMixin",
     "betterrecords.SoundManagerMixin",

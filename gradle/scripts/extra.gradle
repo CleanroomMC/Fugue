@@ -1,5 +1,0 @@
-// You may write any gradle buildscript component in this file
-// This file is automatically applied after build.gradle + dependencies.gradle is ran
-
-// Helper methods (assertProperty, assertSubProperties, setDefaultProperty) are
-// defined directly in build.gradle's script scope and exported via ext.
