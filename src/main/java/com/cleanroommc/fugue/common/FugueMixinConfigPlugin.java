@@ -59,7 +59,7 @@ public class FugueMixinConfigPlugin implements IMixinConfigPlugin {
             case "darktheme" -> FugueConfig.modPatchConfig.enableDarkTheme;
             case "creativecore" -> FugueConfig.modPatchConfig.enableCreativeCore;
             case "littletiles" -> FugueConfig.modPatchConfig.enableLittleTiles;
-            case "enderutils" -> FugueConfig.modPatchConfig.enableEnderUtilities;
+            case "enderutilities" -> FugueConfig.modPatchConfig.enableEnderUtilities;
             default -> true;
         };
     }
