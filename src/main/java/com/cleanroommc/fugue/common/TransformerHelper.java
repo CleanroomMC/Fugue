@@ -502,10 +502,6 @@ public class TransformerHelper {
                     FugueConfig.modifiersWriteRedirectTargets.keySet().toArray(new String[0]));
             
         }
-        if (FugueConfig.reflectionPatchTargets.length > 0) {
-            TransformerDelegate.registerExplicitTransformer(
-                    new ReflectFieldTransformer(), FugueConfig.reflectionPatchTargets);
-        }
         if (FugueConfig.getURLPatchTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformer(
                     new URLClassLoaderTransformer(), FugueConfig.getURLPatchTargets);
@@ -553,10 +549,6 @@ public class TransformerHelper {
                                 "oshi/ffm/SystemInfo",
                             }),
                     FugueConfig.remapOshiTargets);
-        }
-        if (FugueConfig.remapReflectionTargets.length > 0) {
-            TransformerDelegate.registerExplicitTransformer(
-                    new RemapSunReflectionTransformer(), FugueConfig.remapReflectionTargets);
         }
         if (FugueConfig.computeIfAbsentTargets.length > 0) {
             TransformerDelegate.registerExplicitTransformer(

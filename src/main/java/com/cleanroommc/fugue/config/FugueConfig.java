@@ -17,59 +17,6 @@ public class FugueConfig {
     public static ModPatchConfig modPatchConfig = new ModPatchConfig();
 
     @Config.Comment("""
-        About *static final field has no write access*
-        Field.set() and Field.get() may throw exceptions in newer Java when trying to handle final fields.
-        The few options remain are Unsafe or JNI.
-        Classes in this list will be used as transform targets.
-        Any Field related reflection calls will be redirected to Unsafe, so it wouldn't crash anymore.\
-        """)
-    @Config.Name("Reflection Patch Target List")
-    public static String[] reflectionPatchTargets = new String[] {
-        "quaternary.botaniatweaks.modules.botania.block.BotaniaRegistryReplacements",
-        "pl.asie.foamfix.client.deduplicator.Deduplicator",
-        "com.fantasticsource.tools.ReflectionTool",
-        "lumien.custombackgrounds.CustomBackgrounds",
-        "com.fantasticsource.noadvancements.NoAdvancements",
-        "com.codetaylor.mc.athenaeum.util.Injector",
-        "epicsquid.mysticallib.hax.Hax",
-        "epicsquid.gadgetry.core.hax.Hax",
-        "vazkii.quark.world.feature.TreeVariants",
-        "vazkii.quark.base.handler.OverrideRegistryHandler",
-        "codechicken.lib.reflect.ReflectionManager",
-        "com.tmtravlr.potioncore.PotionCoreEffects",
-        "lumien.randomthings.recipes.ModRecipes",
-        "net.malisis.core.renderer.font.MinecraftFont",
-        "com.latmod.mods.projectex.ProjectEX",
-        "org.cyclops.evilcraft.core.helper.obfuscation.ObfuscationHelpers",
-        "xyz.phanta.tconevo.integration.IntegrationManager",
-        "xyz.phanta.tconevo.util.JReflect",
-        "xyz.phanta.tconevo.integration.astralsorcery.AstralHooksImpl",
-        "xyz.phanta.tconevo.integration.draconicevolution.client.DraconicShieldHudHandler",
-        "com.noobanidus.variegated.compat.vanilla.handlers.MansionBiomeTypesHandler",
-        "youyihj.zenutils.ZenUtils",
-        "org.valkyrienskies.mod.common.ValkyrienSkiesMod",
-        "com.legacy.lostaether.client.LostClientEvents",
-        "com.noobanidus.variegated.compat.bloodmagic.handlers.HellfireSpeed",
-        "ic2.core.util.ReflectionUtil",
-        "net.arsenalnetwork.betterhud.h",
-        "com.github.alexthe666.iceandfire.entity.EntitySnowVillager",
-        "betterwithmods.util.ReflectionLib",
-        "sedridor.B3M.ClientProxy",
-        "com.ferreusveritas.unifine.ThermalDynamicsActive",
-        "com.kirdow.itemlocks.util.reflect.ReflectClass",
-        "eos.moe.dragoncore.za",
-        "com.mcmoddev.lib.init.Items",
-        "eos.moe.dragoncore.pn",
-        "tragicneko.tragicmc.TragicMC",
-        "energon.srpholiday.client.inject.render.SRPHReflect",
-        "maxhyper.dynamictreestbl.compat.RegistryReplacements",
-        "com.github.alexthe666.iceandfire.event.EventNewMenu",
-        "org.eientei.gtce2oc.GTCE2OC",
-        "com.hbm.lib.Library",
-        "net.malisis.core.asm.AsmUtils"
-    };
-
-    @Config.Comment("""
         Mods like Apotheosis is casting AppClassLoader to URLClassLoader for getting its URLs.
         This will crash in newer Java, because AppClassLoader is no longer a URLClassLoader.
         Targets class here will be patched to new method we provide.\
@@ -185,20 +132,6 @@ public class FugueConfig {
         "openeye.logic.ModMetaCollector",
         "com.forgeessentials.core.preloader.asminjector.ASMUtil",
         "kpan.heavy_fallings.util.ReflectionUtil",
-    };
-
-    @Config.Comment("""
-        sun.reflect.Reflection has moved to jdk.internal, and most of its features have replacements.
-        As a workaround, These targets will be redirected to new dummy class.\
-        """)
-    @Config.Name("sun.misc.Reflection Patching List")
-    public static String[] remapReflectionTargets = new String[] {
-        "quaternary.botaniatweaks.modules.botania.config.BotaniaConfig",
-        "quaternary.botaniatweaks.modules.shared.lib.GeneratingFlowers$FlowerData",
-        "quaternary.botaniatweaks.modules.shared.lib.NiceTryMap",
-        "thedarkcolour.futuremc.compat.quark.QuarkCompat",
-        "thedarkcolour.futuremc.world.gen.feature.BeeNestGenerator",
-        "mods.railcraft.common.plugins.forge.DataManagerPlugin",
     };
 
     @Config.Comment("After we switched to new ffm-based oshi with different package name, old references need to be"
