@@ -38,6 +38,7 @@
   "client": [
     "custommainmenu.SlideshowMixin",
     "enderutilities.InputEventHandlerMixin",
+    "littletiles.LittleRenderChunkSuppilierMixin",
     "lockdown.GuiMainMenuTweakedMixin",
     "mcjty.AbstractContainerWidgetMixin",
     "mcjty.SliderMixin"

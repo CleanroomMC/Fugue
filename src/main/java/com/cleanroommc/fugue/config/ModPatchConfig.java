@@ -220,6 +220,9 @@ public class ModPatchConfig {
     @Config.Name("Enable Ender Utilities mouse wheel patch")
     @Config.Comment("This patch fixes mouse wheel input for Ender Utilities on LWJGL3")
     public boolean enableEnderUtilities = true;
+    @Config.Name("Enable LittleTiles Patch")
+    @Config.Comment("It deletes GL buffers from a finalizer, LWJGL3 aborts the JVM when no GL context is current")
+    public boolean enableLittleTiles = true;
     @Config.Name("Enable VintageFix Patch")
     @Config.Comment("Cleanroom 0.6.10+ natively limits command suggestion display, making VintageFix's 'mixin.bugfix.tab_complete_ddos' obsolete. Forcibly drops that mixin from VintageFix's mixin list via ASM, regardless of its config file.")
     public boolean enableVintageFixPatch = true;

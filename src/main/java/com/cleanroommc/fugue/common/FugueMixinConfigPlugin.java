@@ -58,6 +58,7 @@ public class FugueMixinConfigPlugin implements IMixinConfigPlugin {
             case "glibysphysics" -> FugueConfig.modPatchConfig.enableGlibysPhysics;
             case "darktheme" -> FugueConfig.modPatchConfig.enableDarkTheme;
             case "creativecore" -> FugueConfig.modPatchConfig.enableCreativeCore;
+            case "littletiles" -> FugueConfig.modPatchConfig.enableLittleTiles;
             case "enderutils" -> FugueConfig.modPatchConfig.enableEnderUtilities;
             default -> true;
         };

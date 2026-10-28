@@ -202,6 +202,8 @@ dependencies {
 
     implementation deobf('curse.maven:creativecore-257814:4722163')
 
+    implementation deobf('curse.maven:littletiles-257818:5180387')
+
     //Ender Utilities
     implementation deobf('curse.maven:ender-utilities-224320:2977010')
 
