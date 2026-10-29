@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   release:
-    uses: CleanroomMC/Conventions/.github/workflows/release.yml@1.4.0
+    uses: CleanroomMC/Conventions/.github/workflows/release.yml@1.4.4
     with:
       publish-maven: false
       # Needs curseforge_project_id or modrinth_project_id in gradle.properties, and the matching token secret
