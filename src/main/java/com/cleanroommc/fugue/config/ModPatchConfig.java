@@ -218,7 +218,7 @@ public class ModPatchConfig {
     @Config.Comment("Unwelcomed classloader hack")
     public boolean enableTranscend = true;
     @Config.Name("Enable Ender Utilities mouse wheel patch")
-    @Config.Comment("This patch fixes mouse wheel input for Ender Utilities on LWJGL3")
+    @Config.Comment("Ender Utilities reads scrolls smaller than one notch, from touchpads and high-resolution wheels, as scrolling down")
     public boolean enableEnderUtilities = true;
     @Config.Name("Enable LittleTiles Patch")
     @Config.Comment("It deletes GL buffers from a finalizer, LWJGL3 aborts the JVM when no GL context is current")
