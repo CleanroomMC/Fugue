@@ -60,6 +60,7 @@ public class FugueMixinConfigPlugin implements IMixinConfigPlugin {
             case "creativecore" -> FugueConfig.modPatchConfig.enableCreativeCore;
             case "littletiles" -> FugueConfig.modPatchConfig.enableLittleTiles;
             case "enderutilities" -> FugueConfig.modPatchConfig.enableEnderUtilities;
+            case "logisticspipes" -> FugueConfig.modPatchConfig.enableLP;
             default -> true;
         };
     }
