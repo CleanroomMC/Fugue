@@ -229,6 +229,9 @@ public class ModPatchConfig {
     @Config.Name("Enable Thaumcraft Fix Patch")
     @Config.Comment("Cleanroom 0.7+ requires event subscriber classes to be public, ThaumcraftFixConfigImpl is package-private")
     public boolean enableThaumcraftFix = true;
+    @Config.Name("Enable Bloodmoon Patch")
+    @Config.Comment("Bloodmoon injects its lightmap hooks with vanilla's local variable slots, which Cleanroom's recompiled EntityRenderer.updateLightmap does not have (VerifyError at game init)")
+    public boolean enableBloodmoon = true;
     @Config.Name("Enable Loading Profiler Patch")
     @Config.Comment("Its transformer profiler is not thread-safe, and crashes when the splash thread loads classes alongside the main thread")
     public boolean enableLoadingProfiler = true;

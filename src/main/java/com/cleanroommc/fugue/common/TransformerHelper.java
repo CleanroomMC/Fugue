@@ -6,6 +6,7 @@ import com.cleanroommc.fugue.transformer.aether.ClientProxyTransformer;
 import com.cleanroommc.fugue.transformer.allmusic_client.AllMusicHudTransformer;
 import com.cleanroommc.fugue.transformer.allmusic_client.AllMusicPlayerTransformer;
 import com.cleanroommc.fugue.transformer.betterfc.HK_LoaderTransformer;
+import com.cleanroommc.fugue.transformer.bloodmoon.BloodmoonClassTransformerTransformer;
 import com.cleanroommc.fugue.transformer.bettersprinting.TransformerEntityPlayerSPTransformer;
 import com.cleanroommc.fugue.transformer.chiseled_me.ChiseledMeLoaderTransformer;
 import com.cleanroommc.fugue.transformer.colytra.EntityLivingBaseTransformer;
@@ -482,6 +483,10 @@ public class TransformerHelper {
             TransformerDelegate.registerExplicitTransformer(
                     new ThaumcraftFixConfigImplTransformer(),
                     "thecodex6824.thaumcraftfix.common.config.ThaumcraftFixConfigImpl");
+        }
+        if (FugueConfig.modPatchConfig.enableBloodmoon) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new BloodmoonClassTransformerTransformer(), "lumien.bloodmoon.asm.ClassTransformer");
         }
         if (FugueConfig.modPatchConfig.enableLoadingProfiler) {
             TransformerDelegate.registerExplicitTransformer(
