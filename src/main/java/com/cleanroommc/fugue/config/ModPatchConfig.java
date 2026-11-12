@@ -173,4 +173,6 @@ public class ModPatchConfig {
     public boolean enableNBTPeripheral = true;
     @Config.Name("Enable Farseek Patch")
     public boolean enableFarseek = true;
+    @Config.Name("Enable Blockbuster Patch")
+    public boolean enableBlockbuster = true;
 }
