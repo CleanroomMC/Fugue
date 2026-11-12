@@ -78,6 +78,9 @@ import com.cleanroommc.fugue.transformer.vampirism.TConstructBloodConversionTran
 import com.cleanroommc.fugue.transformer.vampirism.WorldGenVampireOrchidTransformer;
 import com.cleanroommc.fugue.transformer.xnet.EnergyConnectorSettingsTransformer;
 import com.cleanroommc.fugue.transformer.zerocore.DisplayListTransformer;
+import com.cleanroommc.fugue.transformer.blockbuster.BlockbusterTransformer;
+import org.spongepowered.asm.mixin.transformer.Config;
+import org.spongepowered.asm.service.mojang.MixinServiceLaunchWrapper;
 import top.outlands.foundation.TransformerDelegate;
 import top.outlands.foundation.boot.ActualClassLoader;
 
@@ -332,6 +335,12 @@ public class TransformerHelper {
         if (FugueConfig.modPatchConfig.enableFarseek) {
             TransformerDelegate.registerExplicitTransformer(
                     new FarseekClassTransformerTransformer(), "farseek.core.FarseekClassTransformer");
+        }
+        if (FugueConfig.modPatchConfig.enableBlockbuster) {
+            TransformerDelegate.registerExplicitTransformer(
+                    new BlockbusterTransformer(),
+                     "mchorse.blockbuster.client.gui.dashboard.panels.snowstorm.sections.GuiSnowstormGeneralSection"
+            );
         }
         if (FugueConfig.modPatchConfig.enableKubeJS) {
             TransformerDelegate.registerExplicitTransformer(

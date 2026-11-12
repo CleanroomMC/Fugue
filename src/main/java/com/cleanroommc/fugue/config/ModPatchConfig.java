@@ -147,6 +147,8 @@ public class ModPatchConfig {
     public boolean enableNBTPeripheral = true;
     @Config.Name("Enable Farseek Patch")
     public boolean enableFarseek = true;
+    @Config.Name("Enable Blockbuster Patch")
+    public boolean enableBlockbuster = true;
     @Config.Name("Enable KubeJS Patch")
     public boolean enableKubeJS = true;
     @Config.Name("Enable Funky Locomotion Patch")
