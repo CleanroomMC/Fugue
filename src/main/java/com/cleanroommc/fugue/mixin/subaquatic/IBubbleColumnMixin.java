@@ -14,10 +14,11 @@ import java.util.function.Supplier;
 
 @Mixin(value = IBubbleColumn.class, remap = false)
 public interface IBubbleColumnMixin {
-    @Shadow @Final @Nonnull public static Map<Class<?>, Supplier<IBubbleColumn>> BUBBLE_COLUMN_FACTORY = null;
+    @Shadow @Final @Nonnull
+    Map<Class<?>, Supplier<IBubbleColumn>> BUBBLE_COLUMN_FACTORY = null;
 
     @Shadow
-    public static Supplier<IBubbleColumn> getHandlerForClass(@Nonnull Class<?> clazzIn) {
+    static Supplier<IBubbleColumn> getHandlerForClass(@Nonnull Class<?> clazzIn) {
         return null;
     }
 

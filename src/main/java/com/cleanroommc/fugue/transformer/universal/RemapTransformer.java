@@ -4,22 +4,28 @@ import net.minecraftforge.fml.common.FMLLog;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.commons.ClassRemapper;
 import org.objectweb.asm.commons.Remapper;
 import top.outlands.foundation.IExplicitTransformer;
 
 public class RemapTransformer implements IExplicitTransformer {
+    private final String[] fromPrefixes;
+    private final String[] toPrefixes;
 
+    public RemapTransformer(String[] fromPrefixes, String[] toPrefixes) {
+        this.fromPrefixes = fromPrefixes;
+        this.toPrefixes = toPrefixes;
+    }
 
     @Override
     public byte[] transform( byte[] bytes) {
-
         if (bytes == null) {
             return null;
         }
         ClassReader reader = new ClassReader(bytes);
         ClassWriter writer = new ClassWriter(0);
-        ClassVisitor visitor = new ClassRemapper(writer, new RemapTransformer.JavaxRemapper());
+        ClassVisitor visitor = new ClassRemapper(writer, new PrefixRemapper(fromPrefixes, toPrefixes));
         try {
             reader.accept(visitor, ClassReader.EXPAND_FRAMES);
         } catch (Exception e) {
@@ -29,10 +35,15 @@ public class RemapTransformer implements IExplicitTransformer {
         return writer.toByteArray();
     }
 
-    static class JavaxRemapper extends Remapper {
-        final String[] fromPrefixes = new String[] { "javax/xml/bind/", "javax/xml/ws/", "javax/ws/", "javax/activation/", "javax/soap/", "javax/jws/"};
+    static class PrefixRemapper extends Remapper {
+        private final String[] fromPrefixes;
+        private final String[] toPrefixes;
 
-        final String[] toPrefixes = new String[] { "jakarta/xml/bind/", "jakarta/xml/ws/", "jakarta/ws/", "jakarta/activation/", "jakarta/soap/", "jakarta/jws/"};
+        public PrefixRemapper(String[] fromPrefixes, String[] toPrefixes) {
+            super(Opcodes.ASM9);
+            this.fromPrefixes = fromPrefixes;
+            this.toPrefixes = toPrefixes;
+        }
 
         @Override
         public String map(String typeName) {

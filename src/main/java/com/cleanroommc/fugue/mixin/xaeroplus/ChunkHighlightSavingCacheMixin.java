@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import xaeroplus.util.highlights.ChunkHighlightSavingCache;
+import xaeroplus.feature.highlights.ChunkHighlightSavingCache;
 
 import java.util.List;
 

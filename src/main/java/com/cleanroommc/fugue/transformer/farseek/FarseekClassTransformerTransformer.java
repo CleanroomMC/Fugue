@@ -16,6 +16,7 @@ public class FarseekClassTransformerTransformer implements IExplicitTransformer 
             cc.getDeclaredMethod("moveAfterSponge").setBody("{}");
             cc.addMethod(CtMethod.make("public int getPriority() {return 2000;}", cc));
             bytes = cc.toBytecode();
+            cc.defrost();
         } catch (Throwable t) {
             Fugue.LOGGER.error("Exception {} on {}", t, this.getClass().getSimpleName());
         }

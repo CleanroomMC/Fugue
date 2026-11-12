@@ -53,9 +53,4 @@ public class ExtensionKtTransformer implements IExplicitTransformer {
         classNode.accept(classWriter);
         return classWriter.toByteArray();
     }
-
-    @Override
-    public int getPriority() {
-        return 0;
-    }
 }
